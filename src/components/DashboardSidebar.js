@@ -32,42 +32,42 @@ const items = [
   {
     href: '/app/dashboard',
     icon: BarChartIcon,
-    title: 'Dashboard'
+    title: 'داشبورد'
   },
   {
     href: '/app/customers',
     icon: UsersIcon,
-    title: 'Customers'
+    title: 'مشتریان'
   },
   {
     href: '/app/products',
     icon: ShoppingBagIcon,
-    title: 'Products'
+    title: 'محصولات'
   },
   {
     href: '/app/account',
     icon: UserIcon,
-    title: 'Account'
+    title: 'حساب کاربری'
   },
   {
     href: '/app/settings',
     icon: SettingsIcon,
-    title: 'Settings'
+    title: 'تنظیمات'
   },
   {
     href: '/login',
     icon: LockIcon,
-    title: 'Login'
+    title: 'ورود'
   },
   {
     href: '/register',
     icon: UserPlusIcon,
-    title: 'Register'
+    title: 'ثبت نام'
   },
   {
     href: '/404',
     icon: AlertCircleIcon,
-    title: 'Error'
+    title: 'صفحه خطا'
   }
 ];
 

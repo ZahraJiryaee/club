@@ -40,7 +40,7 @@ const DashboardLayoutContent = experimentalStyled('div')({
 
 const DashboardLayout = () => {
   const [isMobileNavOpen, setMobileNavOpen] = useState(false);
-  const [isDesktopNavOpen, setDesktopNavOpen] = useState(false);
+  const [isDesktopNavOpen, setDesktopNavOpen] = useState(true);
 
   return (
     <DashboardLayoutRoot>
@@ -48,7 +48,7 @@ const DashboardLayout = () => {
       <DashboardSidebar
         onMobileClose={() => setMobileNavOpen(false)}
         openMobile={isMobileNavOpen}
-        onDesktopClose={() => setDesktopNavOpen(false)}
+        onDesktopClose={() => setDesktopNavOpen(true)}
         openDesktop={isDesktopNavOpen}
       />
       <DashboardLayoutWrapper isDesktopNavOpen={isDesktopNavOpen}>
