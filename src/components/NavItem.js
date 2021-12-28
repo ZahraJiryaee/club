@@ -21,6 +21,7 @@ const NavItem = ({
 
   return (
     <ListItem
+      style={{ direction: 'rtl' }}
       disableGutters
       sx={{
         display: 'flex',
@@ -42,7 +43,7 @@ const NavItem = ({
             color: 'primary.main'
           }),
           '& svg': {
-            mr: 1
+            ml: 2
           }
         }}
         to={href}
