@@ -20,6 +20,14 @@ const Header = ({ handleLeftDrawerToggle }) => {
 
     return (
         <>
+            {/* header search */}
+            {/* <SearchSection /> */}
+            {/* notification & profile */}
+            <NotificationSection />
+            <ProfileSection />
+            <Box sx={{ flexGrow: 1 }} />
+            <Box sx={{ flexGrow: 1 }} />
+
             {/* logo & toggler button */}
             <Box
                 sx={{
@@ -30,9 +38,6 @@ const Header = ({ handleLeftDrawerToggle }) => {
                     }
                 }}
             >
-                <Box component="span" sx={{ display: { xs: 'none', md: 'block' }, flexGrow: 1 }}>
-                    <LogoSection />
-                </Box>
                 <ButtonBase sx={{ borderRadius: '12px', overflow: 'hidden' }}>
                     <Avatar
                         variant="rounded"
@@ -53,16 +58,10 @@ const Header = ({ handleLeftDrawerToggle }) => {
                         <IconMenu2 stroke={1.5} size="1.3rem" />
                     </Avatar>
                 </ButtonBase>
+                <Box component="span" sx={{ display: { xs: 'none', md: 'block' } }}>
+                    <LogoSection />
+                </Box>
             </Box>
-
-            {/* header search */}
-            <SearchSection />
-            <Box sx={{ flexGrow: 1 }} />
-            <Box sx={{ flexGrow: 1 }} />
-
-            {/* notification & profile */}
-            <NotificationSection />
-            <ProfileSection />
         </>
     );
 };

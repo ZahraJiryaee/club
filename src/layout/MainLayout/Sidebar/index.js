@@ -37,13 +37,13 @@ const Sidebar = ({ drawerOpen, drawerToggle, window }) => {
                     }}
                 >
                     <MenuList />
-                    <MenuCard />
+                    {/* <MenuCard /> */}
                 </PerfectScrollbar>
             </BrowserView>
             <MobileView>
                 <Box sx={{ px: 2 }}>
                     <MenuList />
-                    <MenuCard />
+                    {/* <MenuCard /> */}
                 </Box>
             </MobileView>
         </>
@@ -52,29 +52,31 @@ const Sidebar = ({ drawerOpen, drawerToggle, window }) => {
     const container = window !== undefined ? () => window.document.body : undefined;
 
     return (
-        <Box component="nav" sx={{ flexShrink: { md: 0 }, width: matchUpMd ? drawerWidth : 'auto' }} aria-label="mailbox folders">
-            <Drawer
-                container={container}
-                variant={matchUpMd ? 'persistent' : 'temporary'}
-                anchor="left"
-                open={drawerOpen}
-                onClose={drawerToggle}
-                sx={{
-                    '& .MuiDrawer-paper': {
-                        width: drawerWidth,
-                        background: theme.palette.background.default,
-                        color: theme.palette.text.primary,
-                        borderRight: 'none',
-                        [theme.breakpoints.up('md')]: {
-                            top: '88px'
+        <Box style={{ marginRight: '0' }}>
+            <Box component="nav" sx={{ flexShrink: { md: 0 }, width: matchUpMd ? drawerWidth : 'auto' }} aria-label="mailbox folders">
+                <Drawer
+                    container={container}
+                    variant={matchUpMd ? 'persistent' : 'temporary'}
+                    anchor="right"
+                    open={drawerOpen}
+                    onClose={drawerToggle}
+                    sx={{
+                        '& .MuiDrawer-paper': {
+                            width: drawerWidth,
+                            background: theme.palette.background.default,
+                            color: theme.palette.text.primary,
+                            borderRight: 'none',
+                            [theme.breakpoints.up('md')]: {
+                                top: '88px'
+                            }
                         }
-                    }
-                }}
-                ModalProps={{ keepMounted: true }}
-                color="inherit"
-            >
-                {drawer}
-            </Drawer>
+                    }}
+                    ModalProps={{ keepMounted: true }}
+                    color="inherit"
+                >
+                    {drawer}
+                </Drawer>
+            </Box>
         </Box>
     );
 };
