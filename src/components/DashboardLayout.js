@@ -15,13 +15,13 @@ const DashboardLayoutRoot = experimentalStyled('div')(
 );
 
 const DashboardLayoutWrapper = experimentalStyled('div')(
-  ({ theme }) => ({
+  ({ theme, isDesktopNavOpen }) => ({
     display: 'flex',
     flex: '1 1 auto',
     overflow: 'hidden',
     paddingTop: 64,
     [theme.breakpoints.up('lg')]: {
-      paddingRight: 256
+      paddingRight: isDesktopNavOpen ? 256 : 0
     }
   })
 );
@@ -40,15 +40,18 @@ const DashboardLayoutContent = experimentalStyled('div')({
 
 const DashboardLayout = () => {
   const [isMobileNavOpen, setMobileNavOpen] = useState(false);
+  const [isDesktopNavOpen, setDesktopNavOpen] = useState(false);
 
   return (
     <DashboardLayoutRoot>
-      <DashboardNavbar onMobileNavOpen={() => setMobileNavOpen(true)} />
+      <DashboardNavbar onMobileNavOpen={() => setMobileNavOpen(true)} onDesktopNavOpen={() => setDesktopNavOpen(!isDesktopNavOpen)} />
       <DashboardSidebar
         onMobileClose={() => setMobileNavOpen(false)}
         openMobile={isMobileNavOpen}
+        onDesktopClose={() => setDesktopNavOpen(false)}
+        openDesktop={isDesktopNavOpen}
       />
-      <DashboardLayoutWrapper>
+      <DashboardLayoutWrapper isDesktopNavOpen={isDesktopNavOpen}>
         <DashboardLayoutContainer>
           <DashboardLayoutContent>
             <Outlet />

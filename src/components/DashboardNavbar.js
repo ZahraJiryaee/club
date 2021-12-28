@@ -14,7 +14,7 @@ import NotificationsIcon from '@material-ui/icons/NotificationsOutlined';
 import InputIcon from '@material-ui/icons/Input';
 import Logo from './Logo';
 
-const DashboardNavbar = ({ onMobileNavOpen, ...rest }) => {
+const DashboardNavbar = ({ onMobileNavOpen, onDesktopNavOpen, ...rest }) => {
   const [notifications] = useState([]);
 
   return (
@@ -39,7 +39,7 @@ const DashboardNavbar = ({ onMobileNavOpen, ...rest }) => {
           </IconButton>
           <IconButton
             color="inherit"
-            onClick={onMobileNavOpen}
+            onClick={onDesktopNavOpen}
           >
             <MenuIcon />
           </IconButton>
@@ -61,7 +61,8 @@ const DashboardNavbar = ({ onMobileNavOpen, ...rest }) => {
 };
 
 DashboardNavbar.propTypes = {
-  onMobileNavOpen: PropTypes.func
+  onMobileNavOpen: PropTypes.func,
+  onDesktopNavOpen: PropTypes.func
 };
 
 export default DashboardNavbar;

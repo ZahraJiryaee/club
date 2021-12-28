@@ -72,12 +72,16 @@ const items = [
   }
 ];
 
-const DashboardSidebar = ({ onMobileClose, openMobile }) => {
+const DashboardSidebar = ({
+  onMobileClose, openMobile, onDesktopClose, openDesktop
+}) => {
   const location = useLocation();
 
   useEffect(() => {
     if (openMobile && onMobileClose) {
       onMobileClose();
+    } else if (openDesktop && onDesktopClose) {
+      onDesktopClose();
     }
   }, [location.pathname]);
 
@@ -194,7 +198,9 @@ const DashboardSidebar = ({ onMobileClose, openMobile }) => {
       <Hidden lgDown>
         <Drawer
           anchor="right"
-          open
+          // open
+          onClose={onDesktopClose}
+          open={openDesktop}
           variant="persistent"
           PaperProps={{
             sx: {
@@ -213,7 +219,9 @@ const DashboardSidebar = ({ onMobileClose, openMobile }) => {
 
 DashboardSidebar.propTypes = {
   onMobileClose: PropTypes.func,
-  openMobile: PropTypes.bool
+  openMobile: PropTypes.bool,
+  onDesktopClose: PropTypes.func,
+  openDesktop: PropTypes.bool,
 };
 
 DashboardSidebar.defaultProps = {
