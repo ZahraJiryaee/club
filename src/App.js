@@ -1,32 +1,20 @@
-import { useSelector } from 'react-redux';
-
-import { ThemeProvider } from '@mui/material/styles';
-import { CssBaseline, StyledEngineProvider } from '@mui/material';
-
-// routing
-import Routes from 'routes';
-
-// defaultTheme
-import themes from 'themes';
-
-// project imports
-import NavigationScroll from 'layout/NavigationScroll';
-
-// ==============================|| APP ||============================== //
+import 'react-perfect-scrollbar/dist/css/styles.css';
+import { useRoutes } from 'react-router-dom';
+import { ThemeProvider } from '@material-ui/core';
+import GlobalStyles from 'src/components/GlobalStyles';
+import 'src/mixins/chartjs';
+import theme from 'src/theme';
+import routes from 'src/routes';
 
 const App = () => {
-    const customization = useSelector((state) => state.customization);
+  const routing = useRoutes(routes);
 
-    return (
-        <StyledEngineProvider injectFirst>
-            <ThemeProvider theme={themes(customization)}>
-                <CssBaseline />
-                <NavigationScroll>
-                    <Routes />
-                </NavigationScroll>
-            </ThemeProvider>
-        </StyledEngineProvider>
-    );
+  return (
+    <ThemeProvider theme={theme}>
+      <GlobalStyles />
+      {routing}
+    </ThemeProvider>
+  );
 };
 
 export default App;
