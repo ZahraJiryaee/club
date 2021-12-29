@@ -21,7 +21,6 @@ import {
   User as UserIcon,
   UserPlus as UserPlusIcon,
   Users as UsersIcon,
-  // Clipboard as LeaderBoardIcon,
 } from "react-feather";
 import {
   SportsEsportsOutlined as GameIcon,
@@ -176,6 +175,8 @@ const DashboardSidebar = ({
           variant="temporary"
           PaperProps={{
             sx: {
+              borderTopLeftRadius: "20px",
+              borderBottomLeftRadius: "20px",
               width: 256,
             },
           }}
@@ -191,9 +192,11 @@ const DashboardSidebar = ({
           variant="persistent"
           PaperProps={{
             sx: {
+              borderTopLeftRadius: "20px",
+              borderBottomLeftRadius: "20px",
               width: 256,
-              top: 64,
-              height: "calc(100% - 64px)",
+              top: 100,
+              height: "calc(100% - 100px)",
             },
           }}
         >

@@ -32,8 +32,18 @@ const DashboardLayout = () => {
     display: "flex",
     flex: "1 1 auto",
     overflow: "hidden",
-    paddingTop: 64,
+    paddingTop: 100,
+    [theme.breakpoints.up("xs")]: {
+      paddingTop: 70,
+    },
+    [theme.breakpoints.up("sm")]: {
+      paddingTop: 80,
+    },
+    [theme.breakpoints.up("md")]: {
+      paddingTop: 90,
+    },
     [theme.breakpoints.up("lg")]: {
+      paddingTop: 100,
       paddingRight: isDesktopNavOpen ? 256 : 0,
     },
   }));

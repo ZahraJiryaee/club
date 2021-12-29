@@ -1,27 +1,24 @@
-import { useState } from 'react';
-import { Link as RouterLink } from 'react-router-dom';
-import PropTypes from 'prop-types';
+import { useState } from "react";
+import { Link as RouterLink } from "react-router-dom";
+import PropTypes from "prop-types";
 import {
   AppBar,
   Badge,
   Box,
   Hidden,
   IconButton,
-  Toolbar
-} from '@material-ui/core';
-import MenuIcon from '@material-ui/icons/Menu';
-import NotificationsIcon from '@material-ui/icons/NotificationsOutlined';
-import InputIcon from '@material-ui/icons/Input';
-import Logo from './Logo';
+  Toolbar,
+} from "@material-ui/core";
+import MenuIcon from "@material-ui/icons/Menu";
+import NotificationsIcon from "@material-ui/icons/NotificationsOutlined";
+import InputIcon from "@material-ui/icons/Input";
+import Logo from "./Logo";
 
 const DashboardNavbar = ({ onMobileNavOpen, onDesktopNavOpen, ...rest }) => {
   const [notifications] = useState([]);
 
   return (
-    <AppBar
-      elevation={0}
-      {...rest}
-    >
+    <AppBar className="app-bar-height" elevation={0} {...rest}>
       <Toolbar>
         <RouterLink to="/">
           <Logo />
@@ -37,10 +34,7 @@ const DashboardNavbar = ({ onMobileNavOpen, onDesktopNavOpen, ...rest }) => {
               <NotificationsIcon />
             </Badge>
           </IconButton>
-          <IconButton
-            color="inherit"
-            onClick={onDesktopNavOpen}
-          >
+          <IconButton color="inherit" onClick={onDesktopNavOpen}>
             <MenuIcon />
           </IconButton>
           <IconButton color="inherit">
@@ -48,10 +42,7 @@ const DashboardNavbar = ({ onMobileNavOpen, onDesktopNavOpen, ...rest }) => {
           </IconButton>
         </Hidden>
         <Hidden lgUp>
-          <IconButton
-            color="inherit"
-            onClick={onMobileNavOpen}
-          >
+          <IconButton color="inherit" onClick={onMobileNavOpen}>
             <MenuIcon />
           </IconButton>
         </Hidden>
@@ -62,7 +53,7 @@ const DashboardNavbar = ({ onMobileNavOpen, onDesktopNavOpen, ...rest }) => {
 
 DashboardNavbar.propTypes = {
   onMobileNavOpen: PropTypes.func,
-  onDesktopNavOpen: PropTypes.func
+  onDesktopNavOpen: PropTypes.func,
 };
 
 export default DashboardNavbar;

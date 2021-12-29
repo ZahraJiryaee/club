@@ -1,6 +1,28 @@
 @font-face {
-    font-family: 'BYekan';
-    src: url('./assets/fonts/BYekan-webfont.ttf') format('truetype');
-    src: url('./assets/fonts/BYekan-webfont.eot') format('eot'),;
-    src: url('./assets/fonts/BYekan-webfont.woff') format('woff'),;
+  font-family: "BYekan";
+  src: url("./assets/fonts/BYekan-webfont.ttf") format("truetype");
+  src: url("./assets/fonts/BYekan-webfont.eot") format("eot");
+  src: url("./assets/fonts/BYekan-webfont.woff") format("woff");
+}
+
+.app-bar-height {
+  height: 100px;
+}
+
+@media screen and (max-width: 1279px) {
+  .app-bar-height {
+    height: 90px;
+  }
+}
+
+@media screen and (max-width: 959px) {
+  .app-bar-height {
+    height: 80px;
+  }
+}
+
+@media screen and (max-width: 599px) {
+  .app-bar-height {
+    height: 70px;
+  }
 }
