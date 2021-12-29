@@ -1,6 +1,6 @@
-import { useEffect } from 'react';
-import { Link as RouterLink, useLocation } from 'react-router-dom';
-import PropTypes from 'prop-types';
+import { useEffect } from "react";
+import { Link as RouterLink, useLocation } from "react-router-dom";
+import PropTypes from "prop-types";
 import {
   Avatar,
   Box,
@@ -8,9 +8,11 @@ import {
   Drawer,
   Hidden,
   List,
-  Typography
-} from '@material-ui/core';
+  Typography,
+} from "@material-ui/core";
 import {
+  Target as LuckyWheelIcon,
+  ShoppingCart as ShopIcon,
   AlertCircle as AlertCircleIcon,
   BarChart as BarChartIcon,
   Lock as LockIcon,
@@ -18,61 +20,91 @@ import {
   ShoppingBag as ShoppingBagIcon,
   User as UserIcon,
   UserPlus as UserPlusIcon,
-  Users as UsersIcon
-} from 'react-feather';
-import NavItem from './NavItem';
+  Users as UsersIcon,
+  // Clipboard as LeaderBoardIcon,
+} from "react-feather";
+import {
+  SportsEsportsOutlined as GameIcon,
+  LeaderboardOutlined as LeaderBoardIcon,
+} from "@material-ui/icons";
+import NavItem from "./NavItem";
 
 const user = {
-  avatar: '/static/images/avatars/avatar_6.png',
-  jobTitle: 'Senior Developer',
-  name: 'Katarina Smith'
+  avatar: "/static/images/avatars/avatar_6.png",
+  jobTitle: "Senior Developer",
+  name: "Katarina Smith",
 };
 
 const items = [
   {
-    href: '/app/dashboard',
-    icon: BarChartIcon,
-    title: 'داشبورد'
+    href: "/app/lucky-wheel",
+    icon: LuckyWheelIcon,
+    title: "گردونه",
   },
   {
-    href: '/app/customers',
-    icon: UsersIcon,
-    title: 'مشتریان'
+    href: "/app/games",
+    icon: GameIcon,
+    title: "بازی‌ها",
   },
   {
-    href: '/app/products',
+    href: "/app/leader-board",
+    icon: LeaderBoardIcon,
+    title: "تابلو امتیازات",
+  },
+  {
+    href: "/app/shop",
+    icon: ShopIcon,
+    title: "فروشگاه",
+  },
+
+  {
+    href: "/app/products",
     icon: ShoppingBagIcon,
-    title: 'محصولات'
+    title: "محصولات",
   },
   {
-    href: '/app/account',
+    href: "/app/account",
     icon: UserIcon,
-    title: 'حساب کاربری'
+    title: "حساب کاربری",
   },
+
   {
-    href: '/app/settings',
-    icon: SettingsIcon,
-    title: 'تنظیمات'
-  },
-  {
-    href: '/login',
+    href: "/login",
     icon: LockIcon,
-    title: 'ورود'
+    title: "ورود",
   },
   {
-    href: '/register',
+    href: "/register",
     icon: UserPlusIcon,
-    title: 'ثبت نام'
+    title: "ثبت نام",
   },
   {
-    href: '/404',
+    href: "/404",
     icon: AlertCircleIcon,
-    title: 'صفحه خطا'
-  }
+    title: "صفحه خطا",
+  },
+  {
+    href: "/app/dashboard",
+    icon: BarChartIcon,
+    title: "داشبورد",
+  },
+  {
+    href: "/app/customers",
+    icon: UsersIcon,
+    title: "مشتریان",
+  },
+  {
+    href: "/app/settings",
+    icon: SettingsIcon,
+    title: "تنظیمات",
+  },
 ];
 
 const DashboardSidebar = ({
-  onMobileClose, openMobile, onDesktopClose, openDesktop
+  onMobileClose,
+  openMobile,
+  onDesktopClose,
+  openDesktop,
 }) => {
   const location = useLocation();
 
@@ -87,39 +119,33 @@ const DashboardSidebar = ({
   const content = (
     <Box
       sx={{
-        display: 'flex',
-        flexDirection: 'column',
-        height: '100%'
+        display: "flex",
+        flexDirection: "column",
+        height: "100%",
       }}
     >
       <Box
         sx={{
-          alignItems: 'center',
-          display: 'flex',
-          flexDirection: 'column',
-          p: 2
+          alignItems: "center",
+          display: "flex",
+          flexDirection: "column",
+          p: 2,
         }}
       >
         <Avatar
           component={RouterLink}
           src={user.avatar}
           sx={{
-            cursor: 'pointer',
+            cursor: "pointer",
             width: 64,
-            height: 64
+            height: 64,
           }}
           to="/app/account"
         />
-        <Typography
-          color="textPrimary"
-          variant="h5"
-        >
+        <Typography color="textPrimary" variant="h5">
           {user.name}
         </Typography>
-        <Typography
-          color="textSecondary"
-          variant="body2"
-        >
+        <Typography color="textSecondary" variant="body2">
           {user.jobTitle}
         </Typography>
       </Box>
@@ -150,8 +176,8 @@ const DashboardSidebar = ({
           variant="temporary"
           PaperProps={{
             sx: {
-              width: 256
-            }
+              width: 256,
+            },
           }}
         >
           {content}
@@ -167,8 +193,8 @@ const DashboardSidebar = ({
             sx: {
               width: 256,
               top: 64,
-              height: 'calc(100% - 64px)'
-            }
+              height: "calc(100% - 64px)",
+            },
           }}
         >
           {content}
@@ -186,8 +212,8 @@ DashboardSidebar.propTypes = {
 };
 
 DashboardSidebar.defaultProps = {
-  onMobileClose: () => { },
-  openMobile: false
+  onMobileClose: () => {},
+  openMobile: false,
 };
 
 export default DashboardSidebar;
