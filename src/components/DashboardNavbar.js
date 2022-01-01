@@ -20,7 +20,7 @@ const DashboardNavbar = ({ onMobileNavOpen, onDesktopNavOpen, ...rest }) => {
 
   return (
     <AppBar elevation={0} {...rest}>
-      <Toolbar>
+      <Toolbar className="navbar">
         <Box sx={{ flexGrow: 2 }} />
         <Hidden lgDown>
           <Grid container direction="row" alignItems="center" display="flex">

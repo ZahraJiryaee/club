@@ -5,8 +5,17 @@
   src: url("./assets/fonts/BYekan-webfont.woff") format("woff");
 }
 
+@font-face {
+  font-family: "Diodrum";
+  src: url("./assets/fonts/DiodrumArabic-Regular.ttf") format("truetype");
+}
+
 .app-bar-height {
   height: 100px;
+}
+
+.navbar {
+  box-shadow: 0 1px 15px rgb(0 0 0 / 4%), 0 1px 6px rgb(0 0 0 / 4%);
 }
 
 .navbar-logo {
@@ -25,10 +34,12 @@
 }
 
 .navbar-logo-text {
+  font-family: "Diodrum";
+  color: #fff;
   position: absolute;
   display: inline-block;
   align-items: center;
-  top: 40px;
+  top: 25px;
 }
 
 .navbar-menu-icon {

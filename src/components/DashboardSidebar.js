@@ -195,8 +195,8 @@ const DashboardSidebar = ({
               borderTopLeftRadius: "20px",
               borderBottomLeftRadius: "20px",
               width: 256,
-              top: 100,
-              height: "calc(100% - 100px)",
+              top: 95,
+              height: "calc(100% - 95px)",
             },
           }}
         >
