@@ -5,6 +5,7 @@ import {
   AppBar,
   Badge,
   Box,
+  Grid,
   Hidden,
   IconButton,
   Toolbar,
@@ -18,33 +19,50 @@ const DashboardNavbar = ({ onMobileNavOpen, onDesktopNavOpen, ...rest }) => {
   const [notifications] = useState([]);
 
   return (
-    <AppBar className="app-bar-height" elevation={0} {...rest}>
+    <AppBar elevation={0} {...rest}>
       <Toolbar>
-        <RouterLink to="/">
-          <Logo />
-        </RouterLink>
-        <Box sx={{ flexGrow: 1 }} />
+        <Box sx={{ flexGrow: 2 }} />
         <Hidden lgDown>
-          <IconButton color="inherit">
-            <Badge
-              badgeContent={notifications.length}
-              color="primary"
-              variant="dot"
-            >
-              <NotificationsIcon />
-            </Badge>
-          </IconButton>
-          <IconButton color="inherit" onClick={onDesktopNavOpen}>
-            <MenuIcon />
-          </IconButton>
-          <IconButton color="inherit">
-            <InputIcon />
-          </IconButton>
+          <Grid container direction="row" alignItems="center" display="flex">
+            <Grid item xs={1}>
+              <IconButton color="inherit">
+                <InputIcon />
+              </IconButton>
+              <IconButton color="inherit">
+                <Badge
+                  badgeContent={notifications.length}
+                  color="primary"
+                  variant="dot"
+                >
+                  <NotificationsIcon />
+                </Badge>
+              </IconButton>
+            </Grid>
+            <Grid item xs={10} className="navbar-logo-container">
+              <RouterLink to="/">
+                <Logo />
+              </RouterLink>
+            </Grid>
+            <Grid item xs={1} className="navbar-menu-icon">
+              <IconButton color="inherit" onClick={onDesktopNavOpen}>
+                <MenuIcon />
+              </IconButton>
+            </Grid>
+          </Grid>
         </Hidden>
         <Hidden lgUp>
-          <IconButton color="inherit" onClick={onMobileNavOpen}>
-            <MenuIcon />
-          </IconButton>
+          <Grid container direction="row" alignItems="center" display="flex">
+            <Grid item xs={10}>
+              <RouterLink to="/">
+                <Logo />
+              </RouterLink>
+            </Grid>
+            <Grid item xs={2} className="navbar-menu-icon">
+              <IconButton color="inherit" onClick={onMobileNavOpen}>
+                <MenuIcon />
+              </IconButton>
+            </Grid>
+          </Grid>
         </Hidden>
       </Toolbar>
     </AppBar>

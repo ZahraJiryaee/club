@@ -9,6 +9,33 @@
   height: 100px;
 }
 
+.navbar-logo {
+  width: 100px;
+  height: auto;
+}
+
+.navbar-logo-container {
+  text-align: center;
+  align-items: center;
+}
+
+.navbar-logo-image {
+  display: inline-block;
+  align-content: center;
+}
+
+.navbar-logo-text {
+  position: absolute;
+  display: inline-block;
+  align-items: center;
+  top: 40px;
+}
+
+.navbar-menu-icon {
+  text-align: right;
+  align-items: flex-end;
+}
+
 @media screen and (max-width: 1279px) {
   .app-bar-height {
     height: 90px;
@@ -19,10 +46,24 @@
   .app-bar-height {
     height: 80px;
   }
+  .navbar-logo-text {
+    display: none;
+  }
+  .navbar-logo {
+    width: 85px;
+    height: auto;
+  }
 }
 
 @media screen and (max-width: 599px) {
   .app-bar-height {
     height: 70px;
+  }
+  .navbar-logo-text {
+    display: none;
+  }
+  .navbar-logo {
+    width: 75px;
+    height: auto;
   }
 }
