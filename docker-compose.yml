@@ -1,0 +1,16 @@
+version: "3"
+
+services:
+  client:
+    image: medrick/club:0.0.1
+
+    stdin_open: true
+
+    ports:
+      - "5000:3000"
+    volumes:
+      - "/app/node_modules"
+      - "./:/app"
+
+    environment:
+      REACT_APP_API_URL: https://backend.medrickgames.com/
