@@ -3,8 +3,6 @@ import { Routes, Route, Navigate } from "react-router-dom";
 
 import LuckyWheelPage from "./pages/lucky-wheel/lucky-wheel.component";
 
-import "./App.css";
-
 function App() {
   return (
     <Fragment>

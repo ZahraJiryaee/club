@@ -1,0 +1,41 @@
+// Declare Fonts
+@font-face {
+  font-family: "IranYekan";
+  src: url("./../fonts/IRANYekanRegular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "BYekan";
+  src: url("./../fonts/BYekan+.ttf") format("truetype");
+}
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+html,
+body {
+  min-height: 100vh;
+}
+body {
+  line-height: $line-height-general;
+  font-size: $font-paragraph;
+  font-style: normal;
+  font-weight: $font-weight-normal;
+  visibility: visible;
+  font-family: $font-family-byekan;
+  color: $theme-color--dark;
+  position: relative;
+  background-color: $theme-color--white;
+
+  &.no-overflow {
+    overflow: hidden;
+  }
+
+  &.boxed {
+    max-width: 1500px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.06);
+    margin: 0 auto;
+  }
+}

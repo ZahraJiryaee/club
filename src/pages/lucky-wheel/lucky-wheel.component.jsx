@@ -3,8 +3,8 @@ import SpinningWheel from "../../components/spinning-wheel/spinning-wheel.compon
 
 const LuckyWheelPage = () => (
   <div>
-    <h2>Lucky wheel page.</h2>
-    <SpinningWheel />
+    <h2>چرخونه</h2>
+    {/* <SpinningWheel /> */}
   </div>
 );
 
