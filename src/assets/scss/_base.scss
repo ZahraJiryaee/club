@@ -14,10 +14,7 @@
 *::before {
   box-sizing: border-box;
 }
-html,
-body {
-  min-height: 100vh;
-}
+// html,body {min-height: 100vh;max-height: 999px;margin: 0;padding: 0;}
 body {
   line-height: $line-height-general;
   font-size: $font-paragraph;
@@ -28,10 +25,9 @@ body {
   color: $theme-color--dark;
   position: relative;
   background-color: $theme-color--white;
-
-  &.no-overflow {
-    overflow: hidden;
-  }
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
 
   &.boxed {
     max-width: 1500px;

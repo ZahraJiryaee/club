@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21">
+    <g data-name="emtiyaz icon">
+        <g data-name="Rectangle 791" style="stroke-width:1.8px;stroke:#182737;fill:none">
+            <rect width="21" height="21" rx="5" style="stroke:none"/>
+            <rect x=".9" y=".9" width="19.2" height="19.2" rx="4.1" style="fill:none"/>
+        </g>
+        <path data-name="Line 4" transform="translate(6 6.1)" style="stroke-linecap:round;stroke-width:1.7px;stroke:#182737;fill:none" d="M9 0H0"/>
+        <path data-name="Line 5" transform="translate(6 10.5)" style="stroke-linecap:round;stroke-width:1.7px;stroke:#182737;fill:none" d="M9 0H0"/>
+        <path data-name="Line 6" transform="translate(6 14.9)" style="stroke-linecap:round;stroke-width:1.7px;stroke:#182737;fill:none" d="M9 0H0"/>
+    </g>
+</svg>

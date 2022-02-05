@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import "./spinning-wheel.component.scss";
+import "./spinning-wheel.styles.scss";
 
 class SpinningWheel extends Component {
   state = {
