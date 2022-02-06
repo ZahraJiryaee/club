@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22">
+    <defs>
+        <linearGradient id="v3yyhpvpra" x1=".5" x2=".5" y2="1.32" gradientUnits="objectBoundingBox">
+            <stop offset="0" stop-color="#f2c94c"/>
+            <stop offset="1" stop-color="#f2994a"/>
+        </linearGradient>
+    </defs>
+    <g data-name="Path 8018" style="fill:none">
+        <path d="M11 0A11 11 0 1 1 0 11 11 11 0 0 1 11 0z" style="stroke:none"/>
+        <path d="M11 1.1c-5.459 0-9.9 4.441-9.9 9.9 0 5.459 4.441 9.9 9.9 9.9 5.459 0 9.9-4.441 9.9-9.9 0-5.459-4.441-9.9-9.9-9.9M11 0c6.075 0 11 4.925 11 11s-4.925 11-11 11S0 17.075 0 11 4.925 0 11 0z" style="fill:#182737;stroke:none"/>
+    </g>
+    <g data-name="Path 8016" style="fill:none">
+        <path d="M9 0a9 9 0 1 1-9 9 9 9 0 0 1 9-9z" style="stroke:none" transform="translate(2 2)"/>
+        <path d="M9 .8C4.479.8.8 4.479.8 9c0 4.521 3.679 8.2 8.2 8.2 4.521 0 8.2-3.679 8.2-8.2C17.2 4.479 13.521.8 9 .8M9 0a9 9 0 1 1 0 18A9 9 0 0 1 9 0z" style="fill:#182737;stroke:none" transform="translate(2 2)"/>
+    </g>
+    <path data-name="Icon awesome-star" d="m6.909.407-1.5 3.032-3.345.488a.733.733 0 0 0-.405 1.25l2.42 2.358-.572 3.332a.732.732 0 0 0 1.062.772l2.993-1.573 2.993 1.573a.733.733 0 0 0 1.062-.772l-.572-3.332 2.42-2.358a.733.733 0 0 0-.405-1.25l-3.341-.488L8.224.407a.733.733 0 0 0-1.314 0z" transform="translate(3.467 4.923)" style="fill:url(#v3yyhpvpra)"/>
+</svg>

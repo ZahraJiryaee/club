@@ -1,0 +1,123 @@
+header {
+  position: relative;
+  width: 100%;
+  padding: 30px 100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header .logo {
+  position: relative;
+  color: #222;
+  text-decoration: none;
+  font-size: 2em;
+  font-weight: 700;
+}
+
+.group {
+  position: relative;
+  display: flex;
+}
+
+.group .navigat,
+.group .action {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.group ul li {
+  list-style: none;
+}
+
+.group ul li a {
+  color: #222;
+  text-decoration: none;
+  margin-left: 30px;
+}
+.group ul li a:hover {
+  color: aqua;
+}
+
+.group .action {
+  margin-left: 20px;
+}
+
+.group .action li a {
+  font-size: 1.25em;
+}
+
+.menu-toggle {
+  display: none;
+}
+
+@media screen and (max-width: 991px) {
+  .menu-toggle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2em;
+    cursor: pointer;
+    margin-left: 20px;
+    width: 30px;
+    height: 30px;
+    z-index: 1000;
+  }
+
+  .menu-toggle.active {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+  }
+
+  .menu-toggle .toggle-icon {
+    position: absolute;
+    stroke-width: 20px;
+    display: none;
+  }
+  .menu-toggle.active .toggle-icon:nth-child(1) {
+    display: none;
+  }
+  .menu-toggle.active .toggle-icon:nth-child(2) {
+    display: block;
+  }
+  .menu-toggle .toggle-icon:nth-child(1) {
+    display: block;
+  }
+  .menu-toggle .toggle-icon:nth-child(2) {
+    display: none;
+  }
+  .group .navigat {
+    display: none;
+  }
+  .group .navigat.active {
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: #fff;
+    z-index: 999;
+  }
+  .group ul.navigat li a {
+    font-size: 1.5em;
+    margin-left: 0;
+    margin: 10px 0;
+    display: inline-block;
+  }
+  .group ul li a {
+    margin-left: 20px;
+  }
+  header {
+    padding: 20px;
+  }
+}
+
+// @media (max-width: 7) {}
