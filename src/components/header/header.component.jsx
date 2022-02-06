@@ -38,9 +38,10 @@ const Header = () => {
         </ul>
 
         <div className="action">
-          <a href="#">
+          <div className="score">
+            <span className="score-text">50</span>
             <StarLogo />
-          </a>
+          </div>
         </div>
       </div>
     </header>

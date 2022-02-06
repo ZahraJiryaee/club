@@ -1,7 +1,7 @@
 @import "../../assets/scss/variables";
 
 header {
-  position: relative;
+  position: fixed;
   width: 100%;
   padding: 30px 100px;
   display: flex;
@@ -51,6 +51,21 @@ header .logo {
 .menu-toggle {
   display: none;
   justify-content: left;
+}
+
+.score {
+  width: auto;
+  height: 22px;
+
+  background-color: #fff;
+  border-radius: 11px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.score-text {
+  padding: 5px;
 }
 
 @media screen and (max-width: 991px) {
