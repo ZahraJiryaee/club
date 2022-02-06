@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 import { ReactComponent as StarLogo } from "../../assets/images/header/star.svg";
 import { ReactComponent as BurgerIcon } from "../../assets/images/header/burger-icon.svg";
@@ -39,7 +39,7 @@ const Header = () => {
 
         <div className="action">
           <div className="score">
-            <span className="score-text">50</span>
+            <span className="score-text">500</span>
             <StarLogo />
           </div>
         </div>
