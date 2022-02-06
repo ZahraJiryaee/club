@@ -1,18 +1,18 @@
+@import "../../assets/scss/variables";
+
 header {
   position: relative;
   width: 100%;
   padding: 30px 100px;
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
+  background-color: $theme-color--yellow;
 }
 
 header .logo {
   position: relative;
-  color: #222;
-  text-decoration: none;
-  font-size: 2em;
-  font-weight: 700;
+  justify-content: center;
 }
 
 .group {
@@ -50,6 +50,7 @@ header .logo {
 
 .menu-toggle {
   display: none;
+  justify-content: left;
 }
 
 @media screen and (max-width: 991px) {
@@ -59,7 +60,7 @@ header .logo {
     align-items: center;
     font-size: 2em;
     cursor: pointer;
-    margin-left: 20px;
+    // margin-left: 5px;
     width: 30px;
     height: 30px;
     z-index: 1000;
@@ -115,6 +116,11 @@ header .logo {
   .group ul li a {
     margin-left: 20px;
   }
+  .group .action {
+    margin: 0;
+    padding: 0;
+  }
+
   header {
     padding: 20px;
   }

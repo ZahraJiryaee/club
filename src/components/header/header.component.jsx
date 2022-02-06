@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 
 import { ReactComponent as StarLogo } from "../../assets/images/header/star.svg";
 import { ReactComponent as BurgerIcon } from "../../assets/images/header/burger-icon.svg";
-import { ReactComponent as GamesIcon } from "../../assets/images/footer/games.svg";
+import { ReactComponent as CloseIcon } from "../../assets/images/header/close.svg";
+import Logo from "../../assets/images/header/logo.png";
 
 import "./header.styles.scss";
 
@@ -11,9 +12,18 @@ const Header = () => {
 
   return (
     <header>
-      <a href="#" className="logo">
-        Club
-      </a>
+      <div
+        className={`${toggleMenu ? "active" : ""} menu-toggle`}
+        onClick={() => setToggleMenu(!toggleMenu)}
+      >
+        <BurgerIcon className="toggle-icon" />
+        <CloseIcon className="toggle-icon" />
+      </div>
+      <div className="logo">
+        <a href="#">
+          <img src={Logo} />
+        </a>
+      </div>
       <div className="group">
         <ul className={`${toggleMenu ? "active" : ""} navigat`}>
           <li>
@@ -26,20 +36,12 @@ const Header = () => {
             <a href="#">Contact Us</a>
           </li>
         </ul>
-        <ul className="action">
-          <li>
-            <a href="#">
-              <StarLogo />
-            </a>
-          </li>
-          <div
-            className={`${toggleMenu ? "active" : ""} menu-toggle`}
-            onClick={() => setToggleMenu(!toggleMenu)}
-          >
-            <BurgerIcon className="toggle-icon" />
-            <GamesIcon className="toggle-icon" />
-          </div>
-        </ul>
+
+        <div className="action">
+          <a href="#">
+            <StarLogo />
+          </a>
+        </div>
       </div>
     </header>
   );
