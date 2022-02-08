@@ -56,7 +56,7 @@ const Footer = () => (
             <span className="icon">
               <GamesLogo />
             </span>
-            <span className="text">بازیها</span>
+            <span className="text">بازی‌ها</span>
           </NavLink>
         </li>
         <li className="list">
@@ -67,7 +67,7 @@ const Footer = () => (
             <span className="icon">
               <LeaderBoardLogo />
             </span>
-            <span className="text">رده بندی</span>
+            <span className="text">رده‌بندی</span>
           </NavLink>
         </li>
         <div className="indicator"></div>

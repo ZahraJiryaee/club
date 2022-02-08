@@ -1,12 +1,7 @@
 // Declare Fonts
 @font-face {
-  font-family: "IranYekan";
-  src: url("./../fonts/IRANYekanRegular.ttf") format("truetype");
-}
-
-@font-face {
-  font-family: "BYekan";
-  src: url("./../fonts/BYekan+.ttf") format("truetype");
+  font-family: "IranSans";
+  src: url("./../fonts/IRANSans\(FaNum\).ttf") format("truetype");
 }
 
 *,
@@ -14,14 +9,14 @@
 *::before {
   box-sizing: border-box;
 }
-// html,body {min-height: 100vh;max-height: 999px;margin: 0;padding: 0;}
+
 body {
   line-height: $line-height-general;
   font-size: $font-paragraph;
   font-style: normal;
   font-weight: $font-weight-normal;
   visibility: visible;
-  font-family: $font-family-byekan;
+  font-family: $font-family-iransans;
   color: $theme-color--dark;
   position: relative;
   background-color: $theme-color--white;
