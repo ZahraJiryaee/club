@@ -1,0 +1,128 @@
+@import "../../assets/scss/variables";
+
+.divider {
+  position: fixed;
+  bottom: 70px;
+  background-color: $theme-color--white;
+  width: 100%;
+  height: 20px;
+  margin: 0;
+  padding: 0;
+}
+
+.footer-navigation {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 70px;
+  background: $theme-color--footer-navigation;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  ul {
+    display: flex;
+    padding: 0;
+    margin: 0;
+
+    li {
+      position: relative;
+      list-style: none;
+      width: 70px;
+      height: 70px;
+      z-index: 15;
+
+      &.active {
+        a {
+          .icon {
+            transform: translateY(-4px);
+          }
+
+          .text {
+            opacity: 1;
+            transform: translateY(12px);
+          }
+        }
+      }
+
+      .selected {
+        .text {
+          color: $theme-color--orange;
+        }
+      }
+
+      a {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        width: 100%;
+        text-align: center;
+        font-weight: bold;
+
+        .text {
+          position: absolute;
+          color: $theme-color--dark;
+          font-weight: 400;
+          font-size: 0.75em;
+          letter-spacing: 0.05em;
+          transition: 0.5s;
+          opacity: 1;
+          transform: translateY(17px);
+        }
+
+        .icon {
+          position: relative;
+          display: block;
+          line-height: 45px;
+          font-size: 1.5em;
+          text-align: center;
+          transition: 0.5s;
+          color: $theme-color--white;
+        }
+      }
+
+      &:nth-child(3) {
+        &.active ~ .indicator {
+          transform: translateX(calc(70px * 2));
+        }
+      }
+    }
+
+    .indicator {
+      position: absolute;
+      bottom: 24%;
+      width: 70px;
+      height: 70px;
+      background: $theme-color--footer-navigation;
+      border-radius: 50%;
+      border: 8px solid $theme-color--white;
+      transition: 0.5s;
+
+      &:before {
+        content: "";
+        position: absolute;
+        top: 15%;
+        left: -34px;
+        width: 26px;
+        height: 44px;
+        background: transparent;
+        border-top-right-radius: 58px;
+        box-shadow: 7px -18px 0 0 $theme-color--white;
+      }
+
+      &:after {
+        content: "";
+        position: absolute;
+        top: 15%;
+        right: -34px;
+        width: 26px;
+        height: 44px;
+        background: transparent;
+        border-top-left-radius: 58px;
+        box-shadow: -7px -18px 0 0 $theme-color--white;
+      }
+    }
+  }
+}
