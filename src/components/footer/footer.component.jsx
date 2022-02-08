@@ -1,4 +1,7 @@
 import React from "react";
+
+import { NavLink } from "react-router-dom";
+
 import { ReactComponent as LeaderBoardLogo } from "../../assets/images/footer/leader-board.svg";
 import { ReactComponent as GamesLogo } from "../../assets/images/footer/games.svg";
 import { ReactComponent as WheelLogo } from "../../assets/images/footer/wheel.svg";
@@ -13,44 +16,59 @@ const Footer = () => (
     <div className="navigation">
       <ul>
         <li className="list">
-          <a href="#">
+          <NavLink
+            to="/profile"
+            className={({ isActive }) => (isActive ? "selected" : "")}
+          >
             <span className="icon">
               <ProfileLogo />
             </span>
             <span className="text">پروفایل</span>
-          </a>
+          </NavLink>
         </li>
         <li className="list">
-          <a href="#">
+          <NavLink
+            to="/shop"
+            className={({ isActive }) => (isActive ? "selected" : "")}
+          >
             <span className="icon">
               <ShopLogo />
             </span>
             <span className="text">فروشگاه</span>
-          </a>
+          </NavLink>
         </li>
         <li className="list active">
-          <a href="#">
+          <NavLink
+            to="/lucky-wheel"
+            className={({ isActive }) => (isActive ? "selected" : "")}
+          >
             <span className="icon">
               <WheelLogo />
             </span>
             <span className="text">گردونه</span>
-          </a>
+          </NavLink>
         </li>
         <li className="list">
-          <a href="#">
+          <NavLink
+            to="/games"
+            className={({ isActive }) => (isActive ? "selected" : "")}
+          >
             <span className="icon">
               <GamesLogo />
             </span>
             <span className="text">بازیها</span>
-          </a>
+          </NavLink>
         </li>
         <li className="list">
-          <a href="#">
+          <NavLink
+            to="/leaderboard"
+            className={({ isActive }) => (isActive ? "selected" : "")}
+          >
             <span className="icon">
               <LeaderBoardLogo />
             </span>
             <span className="text">رده بندی</span>
-          </a>
+          </NavLink>
         </li>
         <div className="indicator"></div>
       </ul>

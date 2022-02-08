@@ -12,6 +12,13 @@ function App() {
       <Header />
       <Routes>
         <Route path="/lucky-wheel" element={<LuckyWheelPage />} />
+        <Route path="/profile" element={<LuckyWheelPage />} />
+        <Route path="/shop" element={<LuckyWheelPage />} />
+        <Route path="/games" element={<LuckyWheelPage />} />
+        <Route path="/leaderboard" element={<LuckyWheelPage />} />
+        <Route path="/home" element={<LuckyWheelPage />} />
+        <Route path="/about-us" element={<LuckyWheelPage />} />
+        <Route path="/contact-us" element={<LuckyWheelPage />} />
         <Route path="/" element={<Navigate replace to="/lucky-wheel" />} />
       </Routes>
       <Footer />

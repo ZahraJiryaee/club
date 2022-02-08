@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 
+import { NavLink } from "react-router-dom";
+
 import { ReactComponent as StarLogo } from "../../assets/images/header/star.svg";
 import { ReactComponent as BurgerIcon } from "../../assets/images/header/burger-icon.svg";
 import { ReactComponent as CloseIcon } from "../../assets/images/header/close.svg";
@@ -20,20 +22,41 @@ const Header = () => {
         <CloseIcon className="toggle-icon" />
       </div>
       <div className="logo">
-        <a href="#">
-          <img src={Logo} />
-        </a>
+        <NavLink to="/home">
+          <img src={Logo} alt="navbar-logo" />
+        </NavLink>
       </div>
       <div className="group">
         <ul className={`${toggleMenu ? "active" : ""} navigat`}>
           <li>
-            <a href="#">Home</a>
+            <NavLink
+              to="/home"
+              className={({ isActive }) =>
+                isActive ? "header-nav-selected" : ""
+              }
+            >
+              Home
+            </NavLink>
           </li>
           <li>
-            <a href="#">About Us</a>
+            <NavLink
+              to="/about-us"
+              className={({ isActive }) =>
+                isActive ? "header-nav-selected" : ""
+              }
+            >
+              About Us
+            </NavLink>
           </li>
           <li>
-            <a href="#">Contact Us</a>
+            <NavLink
+              to="/contact-us"
+              className={({ isActive }) =>
+                isActive ? "header-nav-selected" : ""
+              }
+            >
+              Contact Us
+            </NavLink>
           </li>
         </ul>
 

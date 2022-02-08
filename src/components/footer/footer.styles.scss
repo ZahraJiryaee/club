@@ -60,6 +60,10 @@
   transform: translateY(-4px);
 }
 
+.navigation ul li .selected .text {
+  color: $theme-color--orange;
+}
+
 .navigation ul li a .text {
   position: absolute;
   color: $theme-color--dark;
