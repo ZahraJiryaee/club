@@ -27,7 +27,7 @@ const Header = () => {
         </NavLink>
       </div>
       <div className="group">
-        <ul className={`${toggleMenu ? "active" : ""} navigat`}>
+        <ul className={`${toggleMenu ? "active" : ""} header-navigation`}>
           <li>
             <NavLink
               to="/home"

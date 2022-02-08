@@ -13,7 +13,7 @@ import "./footer.styles.scss";
 const Footer = () => (
   <>
     <p className="divider"></p>
-    <div className="navigation">
+    <div className="footer-navigation">
       <ul>
         <li className="list">
           <NavLink
