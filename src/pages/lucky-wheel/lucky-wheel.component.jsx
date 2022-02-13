@@ -1,121 +1,85 @@
-import React from "react";
-// import SpinningWheel from "../../components/spinning-wheel/spinning-wheel.component";
+import React, { useState } from "react";
+import SpinningWheel from "../../components/spinning-wheel/spinning-wheel.component";
+import Wheel from "../../components/spinning-wheel2/spinning-wheel2.component";
 
-const LuckyWheelPage = () => (
-  <div style={{ marginBottom: "120px" }}>
-    <h2>چرخونه</h2>
-    {/* <SpinningWheel /> */}
-    <p>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut pellentesque
-      mi vel felis lacinia, eu varius est accumsan. Cras lacus orci, vulputate
-      et risus sed, mattis mattis nibh. Pellentesque luctus ex sapien, non
-      mollis ex hendrerit sit amet. Vivamus sit amet risus fermentum, molestie
-      massa sit amet, porta arcu. Quisque ac commodo ex. Pellentesque volutpat,
-      nunc sit amet dictum mollis, lacus turpis rutrum orci, in rhoncus elit
-      eros ac libero. Quisque facilisis mollis elit, sed consequat orci ornare
-      ac. In aliquet porttitor tortor quis vehicula. Donec diam eros, pharetra
-      non vehicula ut, dictum a risus.
-    </p>
-    <p>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut pellentesque
-      mi vel felis lacinia, eu varius est accumsan. Cras lacus orci, vulputate
-      et risus sed, mattis mattis nibh. Pellentesque luctus ex sapien, non
-      mollis ex hendrerit sit amet. Vivamus sit amet risus fermentum, molestie
-      massa sit amet, porta arcu. Quisque ac commodo ex. Pellentesque volutpat,
-      nunc sit amet dictum mollis, lacus turpis rutrum orci, in rhoncus elit
-      eros ac libero. Quisque facilisis mollis elit, sed consequat orci ornare
-      ac. In aliquet porttitor tortor quis vehicula. Donec diam eros, pharetra
-      non vehicula ut, dictum a risus.
-    </p>{" "}
-    <p>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut pellentesque
-      mi vel felis lacinia, eu varius est accumsan. Cras lacus orci, vulputate
-      et risus sed, mattis mattis nibh. Pellentesque luctus ex sapien, non
-      mollis ex hendrerit sit amet. Vivamus sit amet risus fermentum, molestie
-      massa sit amet, porta arcu. Quisque ac commodo ex. Pellentesque volutpat,
-      nunc sit amet dictum mollis, lacus turpis rutrum orci, in rhoncus elit
-      eros ac libero. Quisque facilisis mollis elit, sed consequat orci ornare
-      ac. In aliquet porttitor tortor quis vehicula. Donec diam eros, pharetra
-      non vehicula ut, dictum a risus.
-    </p>{" "}
-    <p>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut pellentesque
-      mi vel felis lacinia, eu varius est accumsan. Cras lacus orci, vulputate
-      et risus sed, mattis mattis nibh. Pellentesque luctus ex sapien, non
-      mollis ex hendrerit sit amet. Vivamus sit amet risus fermentum, molestie
-      massa sit amet, porta arcu. Quisque ac commodo ex. Pellentesque volutpat,
-      nunc sit amet dictum mollis, lacus turpis rutrum orci, in rhoncus elit
-      eros ac libero. Quisque facilisis mollis elit, sed consequat orci ornare
-      ac. In aliquet porttitor tortor quis vehicula. Donec diam eros, pharetra
-      non vehicula ut, dictum a risus.
-    </p>{" "}
-    <p>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut pellentesque
-      mi vel felis lacinia, eu varius est accumsan. Cras lacus orci, vulputate
-      et risus sed, mattis mattis nibh. Pellentesque luctus ex sapien, non
-      mollis ex hendrerit sit amet. Vivamus sit amet risus fermentum, molestie
-      massa sit amet, porta arcu. Quisque ac commodo ex. Pellentesque volutpat,
-      nunc sit amet dictum mollis, lacus turpis rutrum orci, in rhoncus elit
-      eros ac libero. Quisque facilisis mollis elit, sed consequat orci ornare
-      ac. In aliquet porttitor tortor quis vehicula. Donec diam eros, pharetra
-      non vehicula ut, dictum a risus.
-    </p>{" "}
-    <p>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut pellentesque
-      mi vel felis lacinia, eu varius est accumsan. Cras lacus orci, vulputate
-      et risus sed, mattis mattis nibh. Pellentesque luctus ex sapien, non
-      mollis ex hendrerit sit amet. Vivamus sit amet risus fermentum, molestie
-      massa sit amet, porta arcu. Quisque ac commodo ex. Pellentesque volutpat,
-      nunc sit amet dictum mollis, lacus turpis rutrum orci, in rhoncus elit
-      eros ac libero. Quisque facilisis mollis elit, sed consequat orci ornare
-      ac. In aliquet porttitor tortor quis vehicula. Donec diam eros, pharetra
-      non vehicula ut, dictum a risus.
-    </p>{" "}
-    <p>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut pellentesque
-      mi vel felis lacinia, eu varius est accumsan. Cras lacus orci, vulputate
-      et risus sed, mattis mattis nibh. Pellentesque luctus ex sapien, non
-      mollis ex hendrerit sit amet. Vivamus sit amet risus fermentum, molestie
-      massa sit amet, porta arcu. Quisque ac commodo ex. Pellentesque volutpat,
-      nunc sit amet dictum mollis, lacus turpis rutrum orci, in rhoncus elit
-      eros ac libero. Quisque facilisis mollis elit, sed consequat orci ornare
-      ac. In aliquet porttitor tortor quis vehicula. Donec diam eros, pharetra
-      non vehicula ut, dictum a risus.
-    </p>{" "}
-    <p>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut pellentesque
-      mi vel felis lacinia, eu varius est accumsan. Cras lacus orci, vulputate
-      et risus sed, mattis mattis nibh. Pellentesque luctus ex sapien, non
-      mollis ex hendrerit sit amet. Vivamus sit amet risus fermentum, molestie
-      massa sit amet, porta arcu. Quisque ac commodo ex. Pellentesque volutpat,
-      nunc sit amet dictum mollis, lacus turpis rutrum orci, in rhoncus elit
-      eros ac libero. Quisque facilisis mollis elit, sed consequat orci ornare
-      ac. In aliquet porttitor tortor quis vehicula. Donec diam eros, pharetra
-      non vehicula ut, dictum a risus.
-    </p>{" "}
-    <p>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut pellentesque
-      mi vel felis lacinia, eu varius est accumsan. Cras lacus orci, vulputate
-      et risus sed, mattis mattis nibh. Pellentesque luctus ex sapien, non
-      mollis ex hendrerit sit amet. Vivamus sit amet risus fermentum, molestie
-      massa sit amet, porta arcu. Quisque ac commodo ex. Pellentesque volutpat,
-      nunc sit amet dictum mollis, lacus turpis rutrum orci, in rhoncus elit
-      eros ac libero. Quisque facilisis mollis elit, sed consequat orci ornare
-      ac. In aliquet porttitor tortor quis vehicula. Donec diam eros, pharetra
-      non vehicula ut, dictum a risus.
-    </p>{" "}
-    <p>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut pellentesque
-      mi vel felis lacinia, eu varius est accumsan. Cras lacus orci, vulputate
-      et risus sed, mattis mattis nibh. Pellentesque luctus ex sapien, non
-      mollis ex hendrerit sit amet. Vivamus sit amet risus fermentum, molestie
-      massa sit amet, porta arcu. Quisque ac commodo ex. Pellentesque volutpat,
-      nunc sit amet dictum mollis, lacus turpis rutrum orci, in rhoncus elit
-      eros ac libero. Quisque facilisis mollis elit, sed consequat orci ornare
-      ac. In aliquet porttitor tortor quis vehicula. Donec diam eros, pharetra
-      non vehicula ut, dictum a risus.
-    </p>
-  </div>
-);
+import "./lucky-wheel.component.scss";
+
+const LuckyWheelPage = () => {
+  const [selectedItem, setSelectedItem] = useState(6);
+  const [wheelItem, setWheelItem] = useState(6);
+  const items = [
+    {
+      color: "red",
+      gradient: "linear-gradient(to left, #743ad5, #d53a9d)",
+      content: "جایزه 1",
+    },
+
+    {
+      color: "yellow",
+      gradient: "linear-gradient(to left, #743ad5, #d53a9d)",
+      content: "جایزه 2",
+    },
+
+    {
+      color: "red",
+      gradient: "linear-gradient(to left, #743ad5, #d53a9d)",
+      content: "جایزه 3",
+    },
+
+    {
+      color: "yellow",
+      gradient: "linear-gradient(to left, #743ad5, #d53a9d)",
+      content: "جایزه 4",
+    },
+
+    {
+      color: "red",
+      gradient: "linear-gradient(to left, #743ad5, #d53a9d)",
+      content: "جایزه 5",
+    },
+
+    {
+      color: "yellow",
+      gradient: "linear-gradient(to left, #743ad5, #d53a9d)",
+      content: "جایزه 6",
+    },
+
+    {
+      color: "red",
+      gradient: "linear-gradient(to left, #743ad5, #d53a9d)",
+      content: "جایزه 7",
+    },
+
+    {
+      color: "yellow",
+      gradient: "linear-gradient(to left, #743ad5, #d53a9d)",
+      content: "جایزه 8",
+    },
+  ];
+  return (
+    <div className="outer-box">
+      <div className="main-header">
+        <h2>گردونه شانس مدریک</h2>
+        <p>
+          در گردونه مدریک شانس خود را جهت برنده شدن جوایز ارزنده امتحان کنید
+        </p>
+      </div>
+      <div style={{ position: "absolute", top: "30%" }}>
+        <SpinningWheel
+          items={items}
+          wheelItem={wheelItem}
+          setWheelItem={(e) => setWheelItem(e)}
+        />
+      </div>
+      {/* <div className="wheel-component">
+        <Wheel
+          items={items}
+          selectedItem={selectedItem}
+          setSelectedItem={setSelectedItem}
+        />
+      </div> */}
+    </div>
+  );
+};
 
 export default LuckyWheelPage;
