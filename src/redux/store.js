@@ -13,3 +13,7 @@ export const store = createStore(
   rootReducer,
   compose(applyMiddleware(...middleware), reduxDevTools)
 );
+
+//Initialize
+// store.dispatch(getAllGames());
+// store.dispatch(getAllGenres());

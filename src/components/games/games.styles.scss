@@ -1,0 +1,28 @@
+@import "../../assets/scss/variables";
+
+.games-page {
+  padding: 18.5px 17.5px 0 10px;
+  //   padding-top: ;
+  direction: rtl;
+
+  .game-title {
+    font-size: 17px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 0.71;
+    letter-spacing: -0.41px;
+    text-align: center;
+  }
+
+  .more {
+    color: $theme-color--medium-blue;
+    font-size: 12px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 0.71;
+    letter-spacing: -0.41px;
+    text-align: center;
+  }
+}
