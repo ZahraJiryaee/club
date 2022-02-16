@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import SpinningWheel from "../../components/spinning-wheel/spinning-wheel.component";
-import Wheel from "../../components/spinning-wheel2/spinning-wheel2.component";
 
 import "./lucky-wheel.component.scss";
 
@@ -71,13 +70,6 @@ const LuckyWheelPage = () => {
           setWheelItem={(e) => setWheelItem(e)}
         />
       </div>
-      {/* <div className="wheel-component">
-        <Wheel
-          items={items}
-          selectedItem={selectedItem}
-          setSelectedItem={setSelectedItem}
-        />
-      </div> */}
     </div>
   );
 };

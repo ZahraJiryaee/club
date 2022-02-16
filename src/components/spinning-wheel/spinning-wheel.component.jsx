@@ -34,9 +34,9 @@ const SpinningWheel = ({ items }) => {
         Spin
       </button>
       <span className="arrow"></span>
-      <div className="wheeel-container">
+      <div className="wheel-container">
         <div
-          className={`wheeel ${wheelItem !== null ? "spinning-wheel" : ""}`}
+          className={`wheel ${wheelItem !== null ? "spinning-wheel" : ""}`}
           style={wheelvars}
         >
           {items.map((item, index) => (
