@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 import "./spinning-wheel.styles.scss";
 
@@ -27,6 +27,7 @@ const SpinningWheel = ({ items }) => {
   const wheelvars = {
     "--wheel-items-length": items.length,
     "--selectedd-item": 2,
+    "--item-width": "",
   };
   return (
     <>
@@ -34,23 +35,25 @@ const SpinningWheel = ({ items }) => {
         Spin
       </button>
       <span className="arrow"></span>
-      <div className="wheel-container">
-        <div
-          className={`wheel ${wheelItem !== null ? "spinning-wheel" : ""}`}
-          style={wheelvars}
-        >
-          {items.map((item, index) => (
-            <div
-              className="item"
-              key={index}
-              style={{
-                "--wheel-item-number": index,
-                "--wheel-item-color": index % 2 ? colors[0] : colors[1],
-              }}
-            >
-              <p>{item.content}</p>
-            </div>
-          ))}
+      <div className="wheel-outer-container">
+        <div className="wheel-inner-container">
+          <div
+            className={`wheel ${wheelItem !== null ? "spinning-wheel" : ""}`}
+            style={wheelvars}
+          >
+            {items.map((item, index) => (
+              <div
+                className="item"
+                key={index}
+                style={{
+                  "--wheel-item-number": index,
+                  "--wheel-item-color": index % 2 ? colors[0] : colors[1],
+                }}
+              >
+                <p>{item.content}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </>

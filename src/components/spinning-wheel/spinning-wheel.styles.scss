@@ -5,21 +5,24 @@
   --wheel-border-size: 5px;
   --wheel-items-length: 8;
   --wheel-item-number: 0;
-  --spinningg-duration: 4s;
+  --spinning-duration: 4s;
   --wheel-reset-duration: 0.3s;
   --number-of-turns: 5;
-  --wheel-item-color: red;
+  --wheel-item-color: $white;
   --PI: 3.14159265358979;
 }
 
-.wheel-container {
-  width: calc(var(--wheel-size) + 2 + var(--wheel-border-size));
-  height: calc(var(--wheel-size) + 2 + var(--wheel-border-size));
+.wheel-outer-container {
+  display: block;
+  position: relative;
+  box-sizing: content-box;
+  width: calc(var(--wheel-size) + 50px);
+  height: calc(var(--wheel-size) + 50px);
   border-radius: 50%;
-  padding: 3px;
+  padding: 0px;
   margin: auto;
 
-  background-image: linear-gradient(
+  background: linear-gradient(
     135deg,
     #fffb90 14%,
     #fbe978 25%,
@@ -38,63 +41,127 @@
     #fbe878 77%,
     #a4631b 90%
   );
-  border: solid transparent 10px;
+  // border: solid transparent 15px;
 
-  .wheel {
-    user-select: none;
+  .wheel-inner-container {
     width: var(--wheel-size);
     height: var(--wheel-size);
-    border: var(--wheel-border-size) solid white;
-    background-color: white;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
     border-radius: 50%;
-    position: relative;
-    overflow: hidden;
-    transition: 5s;
-    transition: transform var(--wheel-reset-duration);
-    transform: rotate(0deg);
-    cursor: pointer;
+    // padding: 3px;
+    // border: solid transparent 1px;
+    margin: auto;
+    background: conic-gradient(
+      #ac832f 0deg,
+      #e6c758 22.5deg,
+      white 22.5deg 67.5deg,
+      #ac832f 67.5deg 90deg,
+      #e6c758 112.5deg,
+      white 112.5deg 157deg,
+      #ac832f 157deg 180deg,
+      #e6c758 202.5deg,
+      white 202.5deg 247.5deg,
+      #ac832f 247.5deg 270deg,
+      #e6c758 292.5deg,
+      white 292.5deg 337.5deg,
+      #ac832f 337.5deg 365deg
+    );
 
-    &.spinning-wheel {
-      // rotation animation
+    .wheel {
       user-select: none;
-      transition: transform var(--spinningg-duration);
-      transform: rotate(
-        calc(
-          var(--number-of-turns) * 360deg +
-            (360deg * var(--selectedd-item) / var(--wheel-items-length, 1))
-        )
-      );
-    }
-
-    div.item {
-      height: 50%;
-      // width: 196px;
-      width: calc((var(--PI) * var(--wheel-size)) / var(--wheel-items-length));
       position: absolute;
-      clip-path: polygon(100% 0, 50% 100%, 0 0);
-      transform: translateX(-50%);
-      transform-origin: bottom;
-      text-align: center;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 20px;
-      font-weight: bold;
-      color: #fff;
-      left: 0;
+      top: 0;
+      bottom: 0;
       right: 0;
-      margin: 0 auto;
+      left: 0;
+      margin: auto;
+      width: calc(var(--wheel-size) - 15px);
+      height: calc(var(--wheel-size) - 15px);
+      // border: var(--wheel-border-size) solid white;
+      //** background-color: white;
+      // position: relative;
+      background-color: white;
+      border-radius: 50%;
+      overflow: hidden;
+      transition: 5s;
+      transition: transform var(--wheel-reset-duration);
+      transform: rotate(0deg);
+      cursor: pointer;
 
-      // dynamic styling
-      background-image: var(--wheel-item-color);
-      transform: rotate(
-        calc(
-          var(--wheel-item-number) * (-360deg / var(--wheel-items-length, 1))
-        )
-      );
+      &.spinning-wheel {
+        /* rotation animation */
+        user-select: none;
+        transition: transform var(--spinning-duration);
+        transform: rotate(
+          calc(
+            var(--number-of-turns) * 360deg +
+              (360deg * var(--selectedd-item) / var(--wheel-items-length, 1))
+          )
+        );
+      }
 
-      p {
-        transform: rotate(-90deg);
+      div.item {
+        height: 50%;
+        width: calc(
+          (var(--PI) * var(--wheel-size)) / var(--wheel-items-length) - 2px
+        );
+        position: absolute;
+        clip-path: polygon(100% 0, 50% 97.5%, 0 0);
+        transform: translateX(-50%);
+        transform-origin: bottom;
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 20px;
+        font-weight: bold;
+        color: $white;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+
+        /* dynamic styling */
+        background-image: var(--wheel-item-color);
+        transform: rotate(
+          calc(
+            var(--wheel-item-number) * (-360deg / var(--wheel-items-length, 1))
+          )
+        );
+
+        // borders
+        // border: 10px solid;
+        // border-radius: 20%/75%;
+        // border-image-slice: 1;
+        // border-width: 25px;
+        // border-image-source: linear-gradient(to left, #743ad5, #d53a9d);
+
+        //
+        /*
+      &::after {
+        content: "";
+        position: absolute;
+        top: 6px;
+        bottom: 0px;
+        left: 0px;
+        right: -2px;
+        width: calc(
+          (var(--PI) * var(--wheel-size)) / var(--wheel-items-length)
+        );
+        clip-path: polygon(100% 0, 50% 100%, 0 0);
+
+        background: var(--wheel-item-color);
+        z-index: -1;
+        border-radius: 87%/22%;
+      }
+      */
+
+        p {
+          transform: rotate(-90deg);
+        }
       }
     }
   }
@@ -104,7 +171,7 @@
   top: 0;
   left: 50%;
   transform: translateX(-50%);
-  color: #fff;
+  color: $white;
 }
 
 .arrow::before {
@@ -120,7 +187,7 @@
   z-index: 10;
   background-color: #e2e2e2;
   text-transform: uppercase;
-  border: 8px solid #fff;
+  border: 8px solid $white;
   font-weight: bold;
   font-size: 20px;
   color: #a2a2a2;
@@ -133,45 +200,33 @@
 }
 
 @media #{$tablet-device,$large-mobile} {
-  .wheel-container {
+  .wheel-outer-container {
     .wheel {
-      width: 450px;
-      height: 450px;
-
-      // div.item {width: 172px;}
+      --wheel-size: 500px;
     }
   }
 }
 
 @media #{$small-mobile} {
-  .wheel-container {
+  .wheel-outer-container {
     .wheel {
-      width: 400px;
-      height: 400px;
-
-      // div.item {width: 150px;}
+      --wheel-size: 400px;
     }
   }
 }
 
 @media #{$extra-small-mobile} {
-  .wheel-container {
+  .wheel-outer-container {
     .wheel {
-      width: 350px;
-      height: 350px;
-
-      // div.item {width: 130px;}
+      --wheel-size: 350px;
     }
   }
 }
 
 @media only screen and (max-width: 380px) {
-  .wheel-container {
+  .wheel-outer-container {
     .wheel {
-      width: 250px;
-      height: 250px;
-
-      // div.item {width: 120px;}
+      --wheel-size: 250px;
     }
   }
 }
