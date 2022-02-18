@@ -1,7 +1,7 @@
 import { createStore, compose, applyMiddleware } from "redux";
 import logger from "redux-logger";
 import thunk from "redux-thunk";
-
+import { getAllGames } from "./games/games.action";
 import { rootReducer } from "./root-reducer";
 
 const reduxDevTools =
@@ -15,5 +15,5 @@ export const store = createStore(
 );
 
 //Initialize
-// store.dispatch(getAllGames());
+store.dispatch(getAllGames());
 // store.dispatch(getAllGenres());

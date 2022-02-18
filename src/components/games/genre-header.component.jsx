@@ -6,9 +6,6 @@ import "./genre-header.styles.scss";
 const GenreHeader = () => {
   const genres = useSelector((state) => state.genres.allGenres);
 
-  console.log("genres");
-  console.log(genres);
-
   return (
     <div>
       <div className="game-header">
