@@ -27,7 +27,7 @@ const Games = () => {
         {genre === "همه"
           ? games.map((category) => {
               return category.enumerate_type === 1 ? (
-                <>
+                <div key={category.id}>
                   <div className="category-container">
                     <span className="category-title">{category.title}</span>
                     <div>
@@ -37,15 +37,15 @@ const Games = () => {
                       </span>
                     </div>
                   </div>
-                  <RowGames key={category.id} category={category} />
-                </>
+                  <RowGames category={category} />
+                </div>
               ) : (
-                <>
+                <div key={category.id}>
                   <div className="category-container">
                     <span className="category-title">{category.title}</span>
                   </div>
-                  <BannerGames key={category.id} category={category} />
-                </>
+                  <BannerGames category={category} />
+                </div>
               );
             })
           : null}
