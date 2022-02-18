@@ -9,25 +9,27 @@ function Column({ data }) {
     <div>
       {data.map((application, index) => {
         return (
-          <div key={index} className="application-container">
-            <div className="application-details">
-              <img className="icon" src={application.source.icon} />
-              <div className="description">
-                <span className="title">{application.name}</span>
-                <span className="short-description">
-                  {application.short_description}
-                </span>
-                <span className="install-score">{`${application.install_score_counter} امتیاز با نصب این بازی دریافت کنید.`}</span>
+          <div key={index}>
+            <div className="application-container">
+              <div className="application-details">
+                <img className="icon" src={application.source.icon} />
+                <div className="description">
+                  <span className="title">{application.name}</span>
+                  <span className="short-description">
+                    {application.short_description}
+                  </span>
+                  <span className="install-score">{`${application.install_score_counter} امتیاز با نصب این بازی دریافت کنید.`}</span>
+                </div>
+              </div>
+              <div className="application-rate">
+                <br />
+                <div>
+                  <span className="rate-text">{application.rate}</span>
+                </div>
+                <StarLogo className="rate-icon" />
               </div>
             </div>
-
-            <div className="application-rate">
-              <br />
-              <div>
-                <span className="rate-text">{application.rate}</span>
-              </div>
-              <StarLogo className="rate-icon" />
-            </div>
+            {index !== 2 ? <hr className="application-divider" /> : null}
           </div>
         );
       })}

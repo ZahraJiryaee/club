@@ -64,7 +64,7 @@
       .application-container {
         display: flex;
         justify-content: space-between;
-        width: 88vw;
+        width: 87vw;
 
         .application-details {
           display: flex;
@@ -118,6 +118,10 @@
             margin: 0px 4px 3px 0;
           }
         }
+      }
+      .application-divider {
+        width: 67vw;
+        margin: 0 20vw 8px 0;
       }
     }
   }
