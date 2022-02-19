@@ -12,7 +12,6 @@ import "./games.styles.scss";
 const Games = () => {
   const dispatch = useDispatch();
   const games = useSelector((state) => state.games.allGames);
-  games.sort((a, b) => (a.priority < b.priority ? -1 : 1));
 
   //Mock
   let genre = "همه";
