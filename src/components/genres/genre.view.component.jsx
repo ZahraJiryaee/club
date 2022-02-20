@@ -32,7 +32,11 @@ const GenreView = ({ title }) => {
           <div key={application.id}>
             <div className="application-container">
               <div className="application-details">
-                <img className="icon" src={application.source.icon} />
+                <img
+                  className="icon"
+                  src={application.source.icon}
+                  alt="icon"
+                />
                 <div className="description">
                   <span className="title">{application.name}</span>
                   <span className="install-score">{`${application.install_score_counter} امتیاز با نصب این بازی دریافت کنید.`}</span>
@@ -48,7 +52,14 @@ const GenreView = ({ title }) => {
             </div>
             <div className="banner-container">
               {application.source.screenshots.map((screenshot, index) => {
-                return <img className="banner" key={index} src={screenshot} />;
+                return (
+                  <img
+                    className="banner"
+                    key={index}
+                    src={screenshot}
+                    alt="banner"
+                  />
+                );
               })}
             </div>
           </div>

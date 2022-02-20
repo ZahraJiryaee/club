@@ -33,6 +33,7 @@ const GenreHeader = () => {
             {genres.map((genre) => {
               return (
                 <NavLink
+                  key={genre.id}
                   to={`/genre/${genre.id}`}
                   className={({ isActive }) =>
                     isActive ? "selected" : "not-selected"
