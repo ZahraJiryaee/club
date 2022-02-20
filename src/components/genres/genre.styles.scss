@@ -1,7 +1,9 @@
 @import "../../assets/scss/variables";
 
 .genre-container {
-  width: 100%;
+  direction: rtl;
+  padding: 18.5px 17.5px 0 10px;
+
   .application-container {
     display: flex;
     justify-content: space-between;

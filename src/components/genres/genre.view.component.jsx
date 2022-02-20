@@ -3,11 +3,8 @@ import { useSelector } from "react-redux";
 
 import { ReactComponent as StarLogo } from "../../assets/images/icon/star.svg";
 
-import "./games.genre.styles.scss";
-
-const GenrePage = () => {
+const GenreView = () => {
   const filteredGames = useSelector((state) => state.genres.filteredGenre);
-
   return (
     <div>
       {filteredGames.map((application) => {
@@ -41,4 +38,4 @@ const GenrePage = () => {
   );
 };
 
-export default GenrePage;
+export default GenreView;

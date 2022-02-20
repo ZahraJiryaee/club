@@ -64,9 +64,11 @@
         font-weight: 600;
         line-height: 1.58;
 
-        &.current {
+        .current {
           background-color: #ff9f0a;
           color: $white;
+          text-decoration: none;
+          color: #182737;
         }
       }
     }
