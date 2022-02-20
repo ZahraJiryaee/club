@@ -4,6 +4,17 @@
   direction: rtl;
   padding: 18.5px 17.5px 0 10px;
 
+  .category-container {
+    margin-bottom: 20px;
+
+    .category-title {
+      font-size: 17px;
+      font-weight: bold;
+      letter-spacing: -0.41px;
+      text-align: center;
+    }
+  }
+
   .application-container {
     display: flex;
     justify-content: space-between;

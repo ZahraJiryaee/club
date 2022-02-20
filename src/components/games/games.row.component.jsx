@@ -58,7 +58,7 @@ const RowGames = ({ category }) => {
       {data.map((columnData, index) => {
         return (
           <div key={index} className="column-container">
-            <Column data={columnData} />
+            {index !== 2 ? <Column data={columnData} /> : null}
           </div>
         );
       })}

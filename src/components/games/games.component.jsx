@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 import { getAllGenres } from "../../redux/genres/genres.action";
 
@@ -27,10 +28,14 @@ const GamesPage = () => {
               <div className="category-container">
                 <span className="category-title">{category.title}</span>
                 <div>
-                  <span className="more-button">بیشتر</span>
-                  <span className="more-icon">
-                    <i className="fa fa-solid fa-chevron-left" />
-                  </span>
+                  <Link className="more-button" to={`/category/${category.id}`}>
+                    <span>بیشتر</span>
+                  </Link>
+                  <Link to={`/category/${category.id}`}>
+                    <span className="more-icon">
+                      <i className="fa fa-solid fa-chevron-left" />
+                    </span>
+                  </Link>
                 </div>
               </div>
               <RowGames category={category} />

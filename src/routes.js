@@ -17,6 +17,7 @@ const routes = [
       { path: "shop", element: <LuckyWheelPage /> },
       { path: "games", element: <GamesPage /> },
       { path: "genre/:id", element: <GenrePage /> },
+      { path: "category/:id", element: <GenrePage /> },
       { path: "leaderboard", element: <LuckyWheelPage /> },
       { path: "home", element: <LuckyWheelPage /> },
       { path: "about-us", element: <LuckyWheelPage /> },

@@ -13,9 +13,6 @@ export const getAllGenres = () => async (dispatch) => {
 export const getSelectedGenre = (id) => async (dispatch) => {
   const { data } = await getFilteredGenre(id);
 
-  console.log("data");
-  console.log(data);
-
   await dispatch({
     type: GenresActionTypes.GET_FILTERED_GENRE,
     payload: data,

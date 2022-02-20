@@ -2,6 +2,7 @@ import { GamesActionTypes } from "./games.types";
 
 const INITIAL_STATE = {
   allGames: [],
+  filteredCategory: [],
 };
 
 const gamesReducer = (state = INITIAL_STATE, action) => {
@@ -10,6 +11,11 @@ const gamesReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         allGames: action.payload,
+      };
+    case GamesActionTypes.GET_FILTERED_CATEGORY:
+      return {
+        ...state,
+        filteredCategory: action.payload,
       };
     default:
       return state;
