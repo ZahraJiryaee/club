@@ -21,27 +21,25 @@ const GenreHeader = () => {
           </div>
         </div>
         <div className="genres-container">
-          <ul>
-            <li>
-              <NavLink
-                to="/games"
-                // style={{ textDecoration: "none", color: "#182737" }}
-                className={({ isActive }) => (isActive ? "current" : "")}
-              >
-                همه
-              </NavLink>
-            </li>
+          <ul className="genre-title">
+            <NavLink
+              to="/games"
+              className={({ isActive }) =>
+                isActive ? "selected" : "not-selected"
+              }
+            >
+              <li>همه</li>
+            </NavLink>
             {genres.map((genre) => {
               return (
-                <li key={genre.id}>
-                  <NavLink
-                    to={`/genre/${genre.id}`}
-                    // style={{ textDecoration: "none", color: "#182737" }}
-                    className={({ isActive }) => (isActive ? "current" : "")}
-                  >
-                    {genre.title}
-                  </NavLink>
-                </li>
+                <NavLink
+                  to={`/genre/${genre.id}`}
+                  className={({ isActive }) =>
+                    isActive ? "selected" : "not-selected"
+                  }
+                >
+                  <li>{genre.title}</li>
+                </NavLink>
               );
             })}
           </ul>
