@@ -55,7 +55,7 @@ const LuckyWheelPage = () => {
     },
   ];
   return (
-    <div className="outer-box">
+    <div className="blue-bg outer-box">
       <div className="main-header">
         <h2>گردونه شانس مدریک</h2>
         <p>

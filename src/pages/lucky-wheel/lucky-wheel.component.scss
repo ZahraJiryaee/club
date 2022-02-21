@@ -1,3 +1,19 @@
+@import "./../../style.scss";
+
+.blue-bg {
+  background-image: url("./../../assets/images/lucky-wheel/background/blueback-desktop.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+
+  @media #{$tablet-device} {
+    background-image: url("./../../assets/images/lucky-wheel/background/blue-back-ipad.png");
+  }
+  @media #{$large-mobile} {
+    background-image: url("./../../assets/images/lucky-wheel/background/blueback-mobile.png");
+  }
+}
+
 .outer-box {
   text-align: center;
   display: flex;
