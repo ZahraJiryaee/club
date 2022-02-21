@@ -4,8 +4,8 @@ import "./spinning-wheel.styles.scss";
 
 const SpinningWheel = ({ items }) => {
   const colors = [
-    "linear-gradient(to bottom, #003069, #007aff)",
     "linear-gradient(180deg, #fe8816, #f4c446)",
+    "linear-gradient(to bottom, #003069, #007aff)",
   ];
   const [wheelItem, setWheelItem] = useState(null);
   let isSpinning = false;
@@ -37,22 +37,24 @@ const SpinningWheel = ({ items }) => {
       <span className="arrow"></span>
       <div className="wheel-outer-container">
         <div className="wheel-inner-container">
-          <div
-            className={`wheel ${wheelItem !== null ? "spinning-wheel" : ""}`}
-            style={wheelvars}
-          >
-            {items.map((item, index) => (
-              <div
-                className="item"
-                key={index}
-                style={{
-                  "--wheel-item-number": index,
-                  "--wheel-item-color": index % 2 ? colors[0] : colors[1],
-                }}
-              >
-                <p>{item.content}</p>
-              </div>
-            ))}
+          <div className="inner-border">
+            <div
+              className={`wheel ${wheelItem !== null ? "spinning-wheel" : ""}`}
+              style={wheelvars}
+            >
+              {items.map((item, index) => (
+                <div
+                  className="item"
+                  key={index}
+                  style={{
+                    "--wheel-item-number": index,
+                    "--wheel-item-color": index % 2 ? colors[0] : colors[1],
+                  }}
+                >
+                  <p>{item.content}</p>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>

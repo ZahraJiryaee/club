@@ -42,7 +42,6 @@ const LuckyWheelPage = () => {
       gradient: "linear-gradient(to left, #743ad5, #d53a9d)",
       content: "جایزه 6",
     },
-
     {
       color: "red",
       gradient: "linear-gradient(to left, #743ad5, #d53a9d)",
