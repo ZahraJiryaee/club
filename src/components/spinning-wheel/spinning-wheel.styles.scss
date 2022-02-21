@@ -1,8 +1,10 @@
 @import "./../../style.scss";
 
 :root {
-  --wheel-size: 500px;
+  --wheel-size: 480px;
   --wheel-border-size: 5px;
+  --wheel-outer-container-border-size: 50px;
+  --wheel-inner-container-border-size: 11px;
   --wheel-items-length: 8;
   --wheel-item-number: 0;
   --spinning-duration: 4s;
@@ -20,8 +22,8 @@
   display: block;
   position: relative;
   box-sizing: content-box;
-  width: calc(var(--wheel-size) + 50px);
-  height: calc(var(--wheel-size) + 50px);
+  width: calc(var(--wheel-size) + var(--wheel-outer-container-border-size));
+  height: calc(var(--wheel-size) + var(--wheel-outer-container-border-size));
   border-radius: 50%;
   padding: 0px;
   margin: auto;
@@ -46,8 +48,8 @@
   );
 
   .wheel-inner-container {
-    width: calc(var(--wheel-size) + 11px);
-    height: calc(var(--wheel-size) + 11px);
+    width: calc(var(--wheel-size) + var(--wheel-inner-container-border-size));
+    height: calc(var(--wheel-size) + var(--wheel-inner-container-border-size));
     position: absolute;
     top: 0;
     bottom: 0;
@@ -78,8 +80,10 @@
     );
 
     .inner-border {
-      width: calc(var(--wheel-size) + 11px);
-      height: calc(var(--wheel-size) + 11px);
+      width: calc(var(--wheel-size) + var(--wheel-inner-container-border-size));
+      height: calc(
+        var(--wheel-size) + var(--wheel-inner-container-border-size)
+      );
       border-radius: 50%;
       background-image: repeating-conic-gradient(
         white 0deg,
@@ -207,9 +211,10 @@
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 10;
-  background-color: #e2e2e2;
+  background-color: #efeff4;
+  box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
   text-transform: uppercase;
-  border: 8px solid $white;
+  border: 1px solid #efeff4;
   font-weight: bold;
   font-size: 20px;
   color: #a2a2a2;
@@ -224,10 +229,18 @@
 @media #{$tablet-device,$large-mobile} {
   .wheel-outer-container {
     --wheel-size: 400px;
+    --wheel-outer-container-border-size: 45px;
+    --wheel-inner-container-border-size: 10px;
 
     div.item p {
       font-size: 16px;
     }
+  }
+
+  #spin {
+    width: 60px;
+    height: 60px;
+    font-size: 15px;
   }
 }
 

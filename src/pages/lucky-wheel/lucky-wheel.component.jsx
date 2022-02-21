@@ -4,7 +4,7 @@ import SpinningWheel from "../../components/spinning-wheel/spinning-wheel.compon
 import "./lucky-wheel.component.scss";
 
 const LuckyWheelPage = () => {
-  const [selectedItem, setSelectedItem] = useState(6);
+  // const [selectedItem, setSelectedItem] = useState(6);
   const [wheelItem, setWheelItem] = useState(6);
   const items = [
     {
