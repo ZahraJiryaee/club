@@ -12,6 +12,10 @@
   --PI: 3.14159265358979;
 }
 
+.spinning-wheel {
+  position: relative;
+}
+
 .wheel-outer-container {
   display: block;
   position: relative;
@@ -185,15 +189,15 @@
 }
 .arrow {
   position: absolute;
-  top: 0;
+  top: 18px;
   left: 50%;
   transform: translateX(-50%);
   color: $white;
+  z-index: 10;
 }
 
 .arrow::before {
-  content: "\1F817";
-  font-size: 50px;
+  content: url("./../../assets/images/lucky-wheel/arrow/arrow.png");
 }
 
 #spin {

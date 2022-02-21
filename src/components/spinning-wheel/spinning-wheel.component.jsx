@@ -30,7 +30,7 @@ const SpinningWheel = ({ items }) => {
     "--item-width": "",
   };
   return (
-    <>
+    <div className="spinning-wheel">
       <button id="spin" onClick={spinHandler}>
         Spin
       </button>
@@ -58,7 +58,7 @@ const SpinningWheel = ({ items }) => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
