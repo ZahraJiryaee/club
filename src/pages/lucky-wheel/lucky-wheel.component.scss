@@ -1,0 +1,89 @@
+@import "./../../style.scss";
+
+.blue-bg {
+  background-image: url("./../../assets/images/lucky-wheel/background/blueback-desktop.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+
+  @media #{$tablet-device} {
+    background-image: url("./../../assets/images/lucky-wheel/background/blue-back-ipad.png");
+  }
+  @media #{$large-mobile} {
+    background-image: url("./../../assets/images/lucky-wheel/background/blueback-mobile.png");
+  }
+}
+
+.spacing {
+  padding: 85px 0 100px;
+}
+
+.outer-box {
+  text-align: center;
+  // display: grid;
+
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+
+  .main-header {
+    position: relative;
+    padding: 0;
+    top: 12%;
+    padding: 0 10px;
+    .header-txt {
+      margin: 0 0 20px;
+      color: $white;
+      font-size: 36px;
+      @media #{$large-mobile} {
+        font-size: 30px;
+      }
+      @media #{$small-mobile} {
+        font-size: 25px;
+      }
+      @media #{$extra-small-mobile} {
+        font-size: 20px;
+      }
+    }
+    .subheader-txt {
+      margin: 5px 0;
+      color: $theme-color--manilla;
+      margin-bottom: 2rem;
+      direction: rtl;
+      @media #{$large-mobile} {
+        padding: 0.5rem 3rem 1rem;
+      }
+      @media #{$extra-small-mobile} {
+        padding: 0.2rem 1rem 1rem;
+      }
+    }
+  }
+
+  .wheel-component {
+    margin: 2rem 0;
+  }
+
+  .lucky-wheel-page-btn {
+    color: $white;
+    width: 180px;
+    height: 50px;
+    padding: 8px 50px 8px 52px;
+    opacity: 0.91;
+    font-size: 15px;
+    font-weight: bold;
+    background-color: $theme-color--tangerine;
+    border: 1px solid $theme-color--tangerine;
+    border-radius: 25px;
+    font-family: IranSans;
+    line-height: 0.8;
+    letter-spacing: -0.36px;
+  }
+
+  .want-more-chance {
+    color: $white;
+  }
+
+  .click-here {
+    color: #fabb51;
+  }
+}
