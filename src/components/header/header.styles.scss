@@ -4,14 +4,16 @@ header {
   position: fixed;
   top: 0;
   width: 100%;
+  height: $theme-color--navbar-height;
   padding: 15px 100px;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  background-color: $theme-color--navbar-medium-blue;
   background-image: linear-gradient(
     to bottom,
-    $theme-color--dark-blue,
-    $theme-color--test-blue
+    $theme-color--navbar-dark-blue,
+    $theme-color--navbar-medium-blue
   );
   z-index: 10;
 
@@ -116,11 +118,7 @@ header {
 
       ul {
         direction: rtl;
-        li {
-          a {
-            // margin-left: 20px;
-          }
-        }
+        // li {a {margin-left: 20px;}}
         &.header-navigation {
           display: none;
 
