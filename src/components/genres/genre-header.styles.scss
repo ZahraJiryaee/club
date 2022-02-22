@@ -37,7 +37,7 @@
 
       .search-icon {
         margin-right: 16px;
-        color: #9f9f9f;
+        color: $theme-color--brown-grey;
       }
     }
   }
@@ -75,7 +75,7 @@
         text-decoration: none;
         color: $white;
         padding: 5px 16px;
-        background-color: #ff9f0a;
+        background-color: $theme-color--tangerine;
         border-radius: 15px;
         cursor: pointer;
         margin: 0 8px;

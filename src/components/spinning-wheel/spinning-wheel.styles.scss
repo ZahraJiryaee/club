@@ -27,25 +27,7 @@
   border-radius: 50%;
   padding: 0px;
   margin: auto;
-  background: linear-gradient(
-    135deg,
-    #fffb90 14%,
-    #fbe978 25%,
-    #f8dc65 32%,
-    #e6c758 35%,
-    #c49f40 40%,
-    #ac832f 44%,
-    #9e7225 48%,
-    #996c22 51%,
-    #9d7125 54%,
-    #a98030 57%,
-    #bd9a42 60%,
-    #d9be5a 63%,
-    #fbe878 66%,
-    #ffa 73%,
-    #fbe878 77%,
-    #a4631b 90%
-  );
+  background: $lucky-wheel-outer-border-gradient;
 
   .wheel-inner-container {
     width: calc(var(--wheel-size) + var(--wheel-inner-container-border-size));
@@ -59,25 +41,7 @@
     margin: auto;
     background-color: white;
 
-    background-image: linear-gradient(
-      224deg,
-      #fffb90 14%,
-      #fbe978 25%,
-      #f8dc65 32%,
-      #e6c758 35%,
-      #c49f40 40%,
-      #ac832f 44%,
-      #9e7225 48%,
-      #996c22 51%,
-      #9d7125 54%,
-      #a98030 57%,
-      #bd9a42 60%,
-      #d9be5a 63%,
-      #fbe878 66%,
-      #ffa 73%,
-      #fbe878 77%,
-      #a4631b 90%
-    );
+    background-image: $lucky-wheel-inner-border-gradient;
 
     .inner-border {
       width: calc(var(--wheel-size) + var(--wheel-inner-container-border-size));
@@ -211,13 +175,13 @@
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 10;
-  background-color: #efeff4;
+  background-color: $theme-color--lucky-wheel-chance-background;
   box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
   text-transform: uppercase;
-  border: 1px solid #efeff4;
+  border: 1px solid $theme-color--lucky-wheel-chance-background;
   font-weight: bold;
   font-size: 20px;
-  color: #ff3500;
+  color: $theme-color--lucky-wheel-chance-text;
   line-height: 1.5rem;
   width: 80px;
   height: 80px;
