@@ -14,7 +14,7 @@
   --PI: 3.14159265358979;
 }
 
-.spinning-wheel {
+.spinning-wheel-component {
   position: relative;
 }
 
@@ -217,13 +217,18 @@
   border: 1px solid #efeff4;
   font-weight: bold;
   font-size: 20px;
-  color: #a2a2a2;
+  color: #ff3500;
+  line-height: 1.5rem;
   width: 80px;
   height: 80px;
   border-radius: 50%;
   cursor: pointer;
   outline: none;
   letter-spacing: 1px;
+  font-family: IranSans;
+  .chance-number {
+    font-weight: 900;
+  }
 }
 
 @media #{$tablet-device,$large-mobile} {
@@ -238,15 +243,31 @@
   }
 
   #spin {
-    width: 60px;
-    height: 60px;
-    font-size: 15px;
+    width: 63px;
+    height: 63px;
+    font-size: 14px;
+    line-height: 1.3rem;
+    .chance-number {
+      font-weight: 900;
+      font-size: 16px;
+    }
   }
 }
 
 @media #{$small-mobile} {
   .wheel-outer-container {
     --wheel-size: 350px;
+  }
+
+  #spin {
+    width: 52px;
+    height: 52px;
+    font-size: 10px;
+    line-height: 1rem;
+    .chance-number {
+      font-weight: 700;
+      font-size: 14px;
+    }
   }
 }
 

@@ -30,9 +30,11 @@ const SpinningWheel = ({ items }) => {
     "--item-width": "",
   };
   return (
-    <div className="spinning-wheel">
+    <div className="spinning-wheel-component">
       <button id="spin" onClick={spinHandler}>
-        Spin
+        <span className="chance-number">3</span>
+        <br />
+        <span className="chance-text">شانس</span>
       </button>
       <span className="arrow"></span>
       <div className="wheel-outer-container">
