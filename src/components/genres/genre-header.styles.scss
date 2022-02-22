@@ -1,11 +1,11 @@
 @import "../../assets/scss/variables";
 
 .game-header {
-  z-index: 1;
-  padding-top: 80px;
+  z-index: 2;
+  margin-top: 70px;
   direction: rtl;
   background-image: linear-gradient(
-    $theme-color--dark-blue,
+    $theme-color--test-blue,
     $theme-color--light-blue
   );
 
@@ -45,6 +45,7 @@
   .genres-container {
     overflow-x: auto;
     white-space: nowrap;
+    // position: fixed;
 
     &::-webkit-scrollbar {
       display: none;

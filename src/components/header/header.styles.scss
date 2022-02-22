@@ -8,7 +8,11 @@ header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: $theme-color--yellow;
+  background-image: linear-gradient(
+    to bottom,
+    $theme-color--dark-blue,
+    $theme-color--test-blue
+  );
   z-index: 10;
 
   .logo {
@@ -111,9 +115,10 @@ header {
       }
 
       ul {
+        direction: rtl;
         li {
           a {
-            margin-left: 20px;
+            // margin-left: 20px;
           }
         }
         &.header-navigation {
@@ -122,25 +127,29 @@ header {
           &.active {
             position: fixed;
             top: 0;
-            left: 0;
+            // left: 0;
+            right: 0;
             padding: 0;
             margin: 0;
-            width: 100%;
+            width: 75%;
             height: 100%;
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            //justify-content: space-between;
             align-items: center;
             background: $white;
+            border-radius: 15px 0 0 15px;
             z-index: 999;
           }
 
           li {
             a {
-              font-size: 1.5em;
-              margin-left: 0;
+              display: flex;
+              justify-content: space-between;
+              font-size: 13px;
+              font-weight: 500;
+              //margin-right: 0;
               margin: 10px 0;
-              display: inline-block;
             }
           }
         }
@@ -149,7 +158,7 @@ header {
 
     .menu-toggle {
       display: flex;
-      justify-content: center;
+      justify-content: right;
       align-items: center;
       font-size: 2em;
       cursor: pointer;

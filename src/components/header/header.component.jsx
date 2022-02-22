@@ -14,18 +14,6 @@ const Header = () => {
 
   return (
     <header>
-      <div
-        className={`${toggleMenu ? "active" : ""} menu-toggle`}
-        onClick={() => setToggleMenu(!toggleMenu)}
-      >
-        <BurgerIcon className="toggle-icon" />
-        <CloseIcon className="toggle-icon" />
-      </div>
-      <div className="logo">
-        <NavLink to="/home">
-          <img src={Logo} alt="navbar-logo" />
-        </NavLink>
-      </div>
       <div className="group">
         <ul className={`${toggleMenu ? "active" : ""} header-navigation`}>
           <li>
@@ -35,7 +23,13 @@ const Header = () => {
                 isActive ? "header-nav-selected" : ""
               }
             >
-              Home
+              <div style={{ display: "flex", justifyContent: "space-between" }}>
+                <span>اتصال به بازی‌ها</span>
+                <span>
+                  <i className="fa fa-solid fa-chevron-left" />
+                </span>
+              </div>
+              <hr />
             </NavLink>
           </li>
           <li>
@@ -45,7 +39,7 @@ const Header = () => {
                 isActive ? "header-nav-selected" : ""
               }
             >
-              About Us
+              راهنمای استفاده از کدهای جایزه مدریک
             </NavLink>
           </li>
           <li>
@@ -55,17 +49,51 @@ const Header = () => {
                 isActive ? "header-nav-selected" : ""
               }
             >
-              Contact Us
+              تماس با ما
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/contact-us"
+              className={({ isActive }) =>
+                isActive ? "header-nav-selected" : ""
+              }
+            >
+              درباره ما
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/contact-us"
+              className={({ isActive }) =>
+                isActive ? "header-nav-selected" : ""
+              }
+            >
+              سوالات متداول
             </NavLink>
           </li>
         </ul>
 
         <div className="action">
           <div className="score">
-            <span className="score-text">500</span>
             <StarLogo />
+            <span className="score-text">500</span>
           </div>
         </div>
+      </div>
+
+      <div className="logo">
+        <NavLink to="/home">
+          <img src={Logo} alt="navbar-logo" />
+        </NavLink>
+      </div>
+
+      <div
+        className={`${toggleMenu ? "active" : ""} menu-toggle`}
+        onClick={() => setToggleMenu(!toggleMenu)}
+      >
+        <BurgerIcon className="toggle-icon" />
+        <CloseIcon className="toggle-icon" />
       </div>
     </header>
   );
