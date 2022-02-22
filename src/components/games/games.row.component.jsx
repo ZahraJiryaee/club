@@ -12,7 +12,11 @@ function Column({ data }) {
           <div key={index}>
             <div className="application-container">
               <div className="application-details">
-                <img className="icon" src={application.source.icon} />
+                <img
+                  className="icon"
+                  src={application.source.icon}
+                  alt="icon"
+                />
                 <div className="description">
                   <span className="title">{application.name}</span>
                   <span className="short-description">
@@ -58,7 +62,7 @@ const RowGames = ({ category }) => {
       {data.map((columnData, index) => {
         return (
           <div key={index} className="column-container">
-            <Column data={columnData} />
+            {index !== 2 ? <Column data={columnData} /> : null}
           </div>
         );
       })}

@@ -11,6 +11,7 @@ const BannerGames = ({ category }) => {
             key={application.id}
             className="banner"
             src={application.source.banner}
+            alt="banner"
           />
         );
       })}

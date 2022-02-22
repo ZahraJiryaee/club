@@ -1,5 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import { NavLink } from "react-router-dom";
 
 import "./genre-header.styles.scss";
 
@@ -20,13 +21,26 @@ const GenreHeader = () => {
           </div>
         </div>
         <div className="genres-container">
-          <ul>
-            <li className="current">همه</li>
+          <ul className="genre-title">
+            <NavLink
+              to="/games"
+              className={({ isActive }) =>
+                isActive ? "selected" : "not-selected"
+              }
+            >
+              <li>همه</li>
+            </NavLink>
             {genres.map((genre) => {
               return (
-                <li key={genre.id}>
-                  <a>{genre.title}</a>
-                </li>
+                <NavLink
+                  key={genre.id}
+                  to={`/genre/${genre.id}`}
+                  className={({ isActive }) =>
+                    isActive ? "selected" : "not-selected"
+                  }
+                >
+                  <li>{genre.title}</li>
+                </NavLink>
               );
             })}
           </ul>

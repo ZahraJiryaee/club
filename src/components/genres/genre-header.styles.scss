@@ -1,6 +1,7 @@
 @import "../../assets/scss/variables";
 
 .game-header {
+  z-index: 1;
   padding-top: 80px;
   direction: rtl;
   background-image: linear-gradient(
@@ -53,20 +54,37 @@
       display: flex;
       padding: 0;
 
-      li {
-        list-style: none;
+      .not-selected {
+        text-decoration: none;
+        color: $theme-color--dark;
         padding: 5px 16px;
         background-color: $white;
         border-radius: 15px;
         cursor: pointer;
         margin: 0 8px;
-        font-size: 12px;
-        font-weight: 600;
-        line-height: 1.58;
 
-        &.current {
-          background-color: #ff9f0a;
-          color: $white;
+        li {
+          list-style: none;
+          font-size: 12px;
+          font-weight: 600;
+          line-height: 1.58;
+        }
+      }
+
+      .selected {
+        text-decoration: none;
+        color: $white;
+        padding: 5px 16px;
+        background-color: #ff9f0a;
+        border-radius: 15px;
+        cursor: pointer;
+        margin: 0 8px;
+
+        li {
+          list-style: none;
+          font-size: 12px;
+          font-weight: 600;
+          line-height: 1.58;
         }
       }
     }

@@ -1,3 +1,4 @@
 export const GamesActionTypes = {
   GET_ALL_GAMES: "GET_ALL_GAMES",
+  GET_FILTERED_CATEGORY: "GET_FILTERED_CATEGORY",
 };

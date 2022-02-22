@@ -1,7 +1,7 @@
 @import "../../assets/scss/variables";
 
 .games-page {
-  padding: 18.5px 17.5px 0 10px;
+  padding: 18.5px 17.5px 0 0;
   direction: rtl;
 
   .category-container {
@@ -23,6 +23,7 @@
       line-height: 20px;
       color: #292a73;
       padding-bottom: 5px;
+      text-decoration: none;
     }
 
     .more-icon {
@@ -59,12 +60,12 @@
     }
 
     .column-container {
-      margin-left: 4vw;
+      margin-left: 2vw;
 
       .application-container {
         display: flex;
         justify-content: space-between;
-        width: 87vw;
+        width: 90vw;
 
         .application-details {
           display: flex;

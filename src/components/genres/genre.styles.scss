@@ -1,0 +1,88 @@
+@import "../../assets/scss/variables";
+
+.genre-container {
+  direction: rtl;
+  padding: 18.5px 17.5px 0 0;
+
+  .category-container {
+    margin-bottom: 20px;
+
+    .category-title {
+      font-size: 17px;
+      font-weight: bold;
+      letter-spacing: -0.41px;
+      text-align: center;
+    }
+  }
+
+  .application-container {
+    display: flex;
+    justify-content: space-between;
+    padding-left: 17.5px;
+
+    .application-details {
+      display: flex;
+      justify-content: space-between;
+
+      .icon {
+        width: 65px;
+        height: 60px;
+        border-radius: 10px;
+        box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+        margin: 0 0 17.5px;
+      }
+
+      .description {
+        margin-right: 10px;
+        display: inline-grid;
+        height: 60px;
+        row-gap: 15px;
+
+        .title {
+          font-size: 15px;
+          font-weight: 500;
+        }
+
+        .install-score {
+          font-size: 10px;
+          font-weight: 500;
+        }
+      }
+    }
+    .application-rate {
+      align-items: center;
+      display: flex;
+      padding-bottom: 10px;
+
+      .rate-text {
+        font-size: 12px;
+        font-weight: 500;
+        color: #707070;
+      }
+
+      .rate-icon {
+        width: 16px;
+        height: 14.9px;
+        margin: 0px 4px 3px 0;
+      }
+    }
+  }
+
+  .banner-container {
+    margin-bottom: 20px;
+    display: flex;
+    overflow-x: auto;
+    white-space: nowrap;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    .banner {
+      width: 93%;
+      height: auto;
+      border-radius: 10px;
+      margin-left: 16px;
+    }
+  }
+}
