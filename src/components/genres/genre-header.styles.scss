@@ -1,6 +1,7 @@
 @import "../../assets/scss/variables";
 
 .game-header {
+  z-index: 1;
   padding-top: 80px;
   direction: rtl;
   background-image: linear-gradient(
