@@ -29,7 +29,7 @@ header {
         right: -5px;
         padding: 20vh 0 0;
         margin: 0;
-        width: 42%;
+        width: 35%;
         height: 100vh;
         display: flex;
         flex-direction: column;
@@ -37,6 +37,13 @@ header {
         border-radius: 15px 0 0 15px;
         z-index: 999;
         transform: translate(100vw);
+        @media #{$tablet-device} {
+          width: 42%;
+        }
+
+        @media #{$large-mobile} {
+          width: 75%;
+        }
 
         &.active {
           transform: translate(0.2vw);
@@ -182,7 +189,10 @@ header {
           }
 
           &:nth-child(2) {
-            transform: translate(7vw);
+            transform: translate(80px);
+            @media #{$tablet-device,$large-mobile} {
+              transform: translate(0px);
+            }
           }
         }
       }
@@ -226,16 +236,6 @@ header {
 @media #{$tablet-device,$large-mobile} {
   header {
     padding: 20px;
-
-    .sidebar-group {
-      ul {
-        &.sidebar-navigation {
-          &.active {
-            width: 75%;
-          }
-        }
-      }
-    }
 
     .logo {
       margin: auto;
