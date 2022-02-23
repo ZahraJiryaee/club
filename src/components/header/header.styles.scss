@@ -21,24 +21,26 @@ header {
   .sidebar-group {
     ul {
       direction: rtl;
+      transition: all 0.5s ease;
 
       &.sidebar-navigation {
-        display: none;
+        position: fixed;
+        top: 0;
+        right: -5px;
+        padding: 10% 0 0;
+        margin: 0;
+        width: 30%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background: $white;
+        border-radius: 15px 0 0 15px;
+        z-index: 999;
+        transform: translate(100vw);
 
         &.active {
-          position: fixed;
-          top: 0;
-          right: -5px;
-          padding: 10% 0 0;
-          margin: 0;
-          width: 30%;
-          height: 100%;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          background: $white;
-          border-radius: 15px 0 0 15px;
-          z-index: 999;
+          transform: translate(1vw);
         }
 
         li {
@@ -129,17 +131,17 @@ header {
 
       .toggle-icon {
         position: absolute;
-        display: none;
         top: 0;
         bottom: 0;
         margin: auto;
+        transition: all 0.5s ease;
 
         &:nth-child(1) {
           display: block;
         }
 
         &:nth-child(2) {
-          display: none;
+          transform: translate(97vw);
         }
       }
 
@@ -150,8 +152,7 @@ header {
           }
 
           &:nth-child(2) {
-            display: block;
-            right: 1rem;
+            transform: translate(7vw);
           }
         }
       }
