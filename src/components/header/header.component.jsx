@@ -6,6 +6,9 @@ import { ReactComponent as StarLogo } from "../../assets/images/header/star.svg"
 import { ReactComponent as BurgerIcon } from "../../assets/images/header/burger-icon.svg";
 import { ReactComponent as CloseIcon } from "../../assets/images/header/close.svg";
 import Logo from "../../assets/images/header/logo.png";
+import ArrowBack from "../../assets/images/icon/arrow-back.png";
+
+import { sidebarNavigation, headerNavigation } from "../../model/header.model";
 
 import "./header.styles.scss";
 
@@ -17,62 +20,25 @@ const Header = () => {
       {/* ---------------------- Sidebar --------------------------- */}
       <div className="sidebar-group">
         <ul className={`${toggleMenu ? "active" : ""} sidebar-navigation`}>
-          <li>
-            <NavLink
-              to="/home"
-              className={({ isActive }) =>
-                isActive ? "sidebar-nav-selected" : ""
-              }
-            >
-              <div style={{ display: "flex", justifyContent: "space-between" }}>
-                <span>اتصال به بازی‌ها</span>
-                <span>
-                  <i className="fa fa-solid fa-chevron-left" />
-                </span>
-              </div>
+          {sidebarNavigation.map((sn) => (
+            <li key={sn.id}>
+              <NavLink
+                to={`/${sn.link}`}
+                className={({ isActive }) =>
+                  isActive ? "sidebar-nav-selected" : ""
+                }
+              >
+                <span className="sidebar-text">{sn.title}</span>
+                <img
+                  className="sidebar-arrow-icon"
+                  src={ArrowBack}
+                  alt="arrow-back"
+                />
+              </NavLink>
               <hr />
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="/about-us"
-              className={({ isActive }) =>
-                isActive ? "sidebar-nav-selected" : ""
-              }
-            >
-              راهنمای استفاده از کدهای جایزه مدریک
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="/contact-us"
-              className={({ isActive }) =>
-                isActive ? "sidebar-nav-selected" : ""
-              }
-            >
-              تماس با ما
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="/contact-us"
-              className={({ isActive }) =>
-                isActive ? "sidebar-nav-selected" : ""
-              }
-            >
-              درباره ما
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="/contact-us"
-              className={({ isActive }) =>
-                isActive ? "sidebar-nav-selected" : ""
-              }
-            >
-              سوالات متداول
-            </NavLink>
-          </li>
+            </li>
+          ))}
+          <p className="version">نسخه 1.1.1</p>
         </ul>
       </div>
       {/* ---------------------- Logo --------------------------- */}

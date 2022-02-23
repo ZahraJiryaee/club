@@ -24,44 +24,74 @@ header {
       transition: all 0.5s ease;
 
       &.sidebar-navigation {
-        position: fixed;
+        position: absolute;
         top: 0;
         right: -5px;
-        padding: 10% 0 0;
+        padding: 20vh 0 0;
         margin: 0;
-        width: 30%;
-        height: 100%;
+        width: 42%;
+        height: 100vh;
         display: flex;
         flex-direction: column;
-        align-items: center;
         background: $white;
         border-radius: 15px 0 0 15px;
         z-index: 999;
         transform: translate(100vw);
 
         &.active {
-          transform: translate(1vw);
+          transform: translate(0.2vw);
         }
 
         li {
           list-style: none;
           a {
-            color: $theme-color--dark;
-            text-decoration: none;
             display: flex;
             justify-content: space-between;
-            font-size: 13px;
+            align-items: center;
+            padding: 0 2.5rem;
+            color: $theme-color--dark;
+            text-decoration: none;
+            font-size: 15px;
             font-weight: 500;
             margin: 10px 0;
+
+            .sidebar-text {
+              width: 80%;
+            }
+
+            .sidebar-arrow-icon {
+              width: 9px;
+              height: 14px;
+            }
 
             &:hover {
               color: $brown;
             }
           }
+
+          hr {
+            margin: 1rem 2.5rem;
+            background-color: rgba(60, 60, 67, 0.15);
+            border-color: transparent;
+          }
           .sidebar-nav-selected {
             color: $brown;
           }
+          &:last-child {
+            color: red;
+          }
         }
+      }
+
+      .version {
+        color: $theme-color--brown-grey;
+        font-size: 12px;
+        line-height: 1.83;
+        letter-spacing: -0.29px;
+        text-align: center;
+        align-items: center;
+        justify-content: center;
+        display: flex;
       }
     }
   }
