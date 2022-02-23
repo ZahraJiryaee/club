@@ -17,11 +17,57 @@ header {
   );
   z-index: 10;
 
+  /* ---------------------- Sidebar --------------------------- */
+  .sidebar-group {
+    ul {
+      direction: rtl;
+
+      &.sidebar-navigation {
+        display: none;
+
+        &.active {
+          position: fixed;
+          top: 0;
+          right: -5px;
+          padding: 10% 0 0;
+          margin: 0;
+          width: 30%;
+          height: 100%;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          background: $white;
+          border-radius: 15px 0 0 15px;
+          z-index: 999;
+        }
+
+        li {
+          list-style: none;
+          a {
+            color: $theme-color--dark;
+            text-decoration: none;
+            display: flex;
+            justify-content: space-between;
+            font-size: 13px;
+            font-weight: 500;
+            margin: 10px 0;
+
+            &:hover {
+              color: $brown;
+            }
+          }
+          .sidebar-nav-selected {
+            color: $brown;
+          }
+        }
+      }
+    }
+  }
+
+  /* ---------------------- Logo --------------------------- */
   .logo {
-    // display: flex;
-    justify-content: left;
-    //justify-content: left;
     position: absolute;
+    justify-content: left;
 
     a {
       img {
@@ -31,6 +77,17 @@ header {
     }
   }
 
+  /* ---------------------- Divider --------------------------- */
+  .header-divider {
+    position: absolute;
+    margin-left: 85px;
+    width: 0.5px;
+    height: 40px;
+    background-color: white;
+    border-color: white;
+  }
+
+  /* ---------------------- Score --------------------------- */
   .action {
     display: flex;
     justify-content: left;
@@ -55,120 +112,8 @@ header {
     }
   }
 
-  .sidebar-group {
-    ul {
-      direction: rtl;
-      // li {a {margin-left: 20px;}}
-      &.sidebar-navigation {
-        display: none;
-
-        &.active {
-          position: fixed;
-          top: 0;
-          // left: 0;
-          right: 0;
-          padding: 0;
-          margin: 0;
-          width: 30%;
-          height: 100%;
-          display: flex;
-          flex-direction: column;
-          //justify-content: space-between;
-          align-items: center;
-          background: $white;
-          border-radius: 15px 0 0 15px;
-          z-index: 999;
-        }
-
-        li {
-          list-style: none;
-          a {
-            color: $theme-color--dark;
-            text-decoration: none;
-            display: flex;
-            justify-content: space-between;
-            font-size: 13px;
-            font-weight: 500;
-            //margin-right: 0;
-            margin: 10px 0;
-
-            &:hover {
-              color: $brown;
-            }
-          }
-          .sidebar-nav-selected {
-            color: $brown;
-          }
-        }
-      }
-    }
-  }
-
-  .header-divider {
-    position: absolute;
-    margin-left: 85px;
-    width: 0.5px;
-    height: 40px;
-    background-color: white;
-    border-color: white;
-  }
-
-  // .sidebar-group {
-  //   position: relative;
-  //   display: flex;
-
-  //   ul {
-  //     li {
-  //       list-style: none;
-
-  //       a {
-  //         color: $theme-color--dark;
-  //         text-decoration: none;
-  //         margin-left: 30px;
-
-  //         &:hover {
-  //           color: $brown;
-  //         }
-  //       }
-
-  //       .sidebar-nav-selected {
-  //         color: $brown;
-  //       }
-  //     }
-  //   }
-
-  //   .action {
-  //     margin-left: 20px;
-
-  //     li {
-  //       a {
-  //         font-size: 1.25em;
-  //       }
-  //     }
-
-  //     .score {
-  //       width: auto;
-  //       height: 22px;
-  //       background-color: $white;
-  //       border-radius: 11px;
-  //       display: flex;
-  //       justify-content: space-between;
-  //       align-items: center;
-
-  //       .score-text {
-  //         padding: 5px;
-  //       }
-  //     }
-  //   }
-
-  //   .sidebar-navigation,
-  //   .action {
-  //     display: flex;
-  //     justify-content: center;
-  //     align-items: center;
-  //   }
-  // }
-  .test {
+  /* ---------------------- Navbar - Menu Toggle --------------------------- */
+  .header-nav-toggle-container {
     padding-right: 10px;
     display: flex;
     justify-content: right;
@@ -184,8 +129,10 @@ header {
 
       .toggle-icon {
         position: absolute;
-        stroke-width: 20px;
         display: none;
+        top: 0;
+        bottom: 0;
+        margin: auto;
 
         &:nth-child(1) {
           display: block;
@@ -197,10 +144,6 @@ header {
       }
 
       &.active {
-        position: fixed;
-        top: 20px;
-        right: 20px;
-
         .toggle-icon {
           &:nth-child(1) {
             display: none;
@@ -208,6 +151,7 @@ header {
 
           &:nth-child(2) {
             display: block;
+            right: 1rem;
           }
         }
       }
@@ -262,10 +206,6 @@ header {
       }
     }
 
-    .header-group {
-      display: none;
-    }
-
     .logo {
       margin: auto;
       left: 0;
@@ -280,6 +220,10 @@ header {
       }
     }
 
+    .header-divider {
+      display: none;
+    }
+
     .action {
       display: flex;
       justify-content: left;
@@ -287,7 +231,6 @@ header {
       padding: 0;
       text-align: left;
       position: absolute;
-      // margin-left: 100px;
 
       .score {
         width: auto;
@@ -304,8 +247,10 @@ header {
       }
     }
 
-    .header-divider {
-      display: none;
+    .header-nav-toggle-container {
+      .header-group {
+        display: none;
+      }
     }
   }
 }

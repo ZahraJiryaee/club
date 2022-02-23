@@ -14,6 +14,7 @@ const Header = () => {
 
   return (
     <header>
+      {/* ---------------------- Sidebar --------------------------- */}
       <div className="sidebar-group">
         <ul className={`${toggleMenu ? "active" : ""} sidebar-navigation`}>
           <li>
@@ -74,21 +75,23 @@ const Header = () => {
           </li>
         </ul>
       </div>
-
+      {/* ---------------------- Logo --------------------------- */}
       <div className="logo">
         <NavLink to="/home">
           <img src={Logo} alt="navbar-logo" />
         </NavLink>
       </div>
+      {/* ---------------------- Divider --------------------------- */}
       <hr className="header-divider" />
+      {/* ---------------------- Score --------------------------- */}
       <div className="action">
         <div className="score">
           <StarLogo />
           <span className="score-text">500</span>
         </div>
       </div>
-
-      <div className="test">
+      {/* ---------------------- Navbar - Menu Toggle --------------------------- */}
+      <div className="header-nav-toggle-container">
         <div className="header-group">
           <ul className={`${toggleMenu ? "active" : ""} header-navigation`}>
             <li>
