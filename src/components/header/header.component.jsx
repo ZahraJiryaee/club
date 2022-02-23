@@ -60,56 +60,18 @@ const Header = () => {
       <div className="header-nav-toggle-container">
         <div className="header-group">
           <ul className={`${toggleMenu ? "active" : ""} header-navigation`}>
-            <li>
-              <NavLink
-                to="/about-us"
-                className={({ isActive }) =>
-                  isActive ? "header-nav-selected" : ""
-                }
-              >
-                گردونه
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                to="/contact-us"
-                className={({ isActive }) =>
-                  isActive ? "header-nav-selected" : ""
-                }
-              >
-                بازی ها
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                to="/contact-us"
-                className={({ isActive }) =>
-                  isActive ? "header-nav-selected" : ""
-                }
-              >
-                فروشگاه
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                to="/contact-us"
-                className={({ isActive }) =>
-                  isActive ? "header-nav-selected" : ""
-                }
-              >
-                رده‌بندی
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                to="/contact-us"
-                className={({ isActive }) =>
-                  isActive ? "header-nav-selected" : ""
-                }
-              >
-                پروفایل
-              </NavLink>
-            </li>
+            {headerNavigation.map((hn) => (
+              <li key={hn.id}>
+                <NavLink
+                  to={`/${hn.link}`}
+                  className={({ isActive }) =>
+                    isActive ? "header-nav-selected" : ""
+                  }
+                >
+                  {hn.title}
+                </NavLink>
+              </li>
+            ))}
           </ul>
         </div>
         <div
