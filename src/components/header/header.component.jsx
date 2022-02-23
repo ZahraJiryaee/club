@@ -14,13 +14,13 @@ const Header = () => {
 
   return (
     <header>
-      <div className="group">
-        <ul className={`${toggleMenu ? "active" : ""} header-navigation`}>
+      <div className="sidebar-group">
+        <ul className={`${toggleMenu ? "active" : ""} sidebar-navigation`}>
           <li>
             <NavLink
               to="/home"
               className={({ isActive }) =>
-                isActive ? "header-nav-selected" : ""
+                isActive ? "sidebar-nav-selected" : ""
               }
             >
               <div style={{ display: "flex", justifyContent: "space-between" }}>
@@ -36,7 +36,7 @@ const Header = () => {
             <NavLink
               to="/about-us"
               className={({ isActive }) =>
-                isActive ? "header-nav-selected" : ""
+                isActive ? "sidebar-nav-selected" : ""
               }
             >
               راهنمای استفاده از کدهای جایزه مدریک
@@ -46,7 +46,7 @@ const Header = () => {
             <NavLink
               to="/contact-us"
               className={({ isActive }) =>
-                isActive ? "header-nav-selected" : ""
+                isActive ? "sidebar-nav-selected" : ""
               }
             >
               تماس با ما
@@ -56,7 +56,7 @@ const Header = () => {
             <NavLink
               to="/contact-us"
               className={({ isActive }) =>
-                isActive ? "header-nav-selected" : ""
+                isActive ? "sidebar-nav-selected" : ""
               }
             >
               درباره ما
@@ -66,20 +66,13 @@ const Header = () => {
             <NavLink
               to="/contact-us"
               className={({ isActive }) =>
-                isActive ? "header-nav-selected" : ""
+                isActive ? "sidebar-nav-selected" : ""
               }
             >
               سوالات متداول
             </NavLink>
           </li>
         </ul>
-
-        <div className="action">
-          <div className="score">
-            <StarLogo />
-            <span className="score-text">500</span>
-          </div>
-        </div>
       </div>
 
       <div className="logo">
@@ -87,13 +80,76 @@ const Header = () => {
           <img src={Logo} alt="navbar-logo" />
         </NavLink>
       </div>
+      <hr className="header-divider" />
+      <div className="action">
+        <div className="score">
+          <StarLogo />
+          <span className="score-text">500</span>
+        </div>
+      </div>
 
-      <div
-        className={`${toggleMenu ? "active" : ""} menu-toggle`}
-        onClick={() => setToggleMenu(!toggleMenu)}
-      >
-        <BurgerIcon className="toggle-icon" />
-        <CloseIcon className="toggle-icon" />
+      <div className="test">
+        <div className="header-group">
+          <ul className={`${toggleMenu ? "active" : ""} header-navigation`}>
+            <li>
+              <NavLink
+                to="/about-us"
+                className={({ isActive }) =>
+                  isActive ? "header-nav-selected" : ""
+                }
+              >
+                گردونه
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/contact-us"
+                className={({ isActive }) =>
+                  isActive ? "header-nav-selected" : ""
+                }
+              >
+                بازی ها
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/contact-us"
+                className={({ isActive }) =>
+                  isActive ? "header-nav-selected" : ""
+                }
+              >
+                فروشگاه
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/contact-us"
+                className={({ isActive }) =>
+                  isActive ? "header-nav-selected" : ""
+                }
+              >
+                رده‌بندی
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/contact-us"
+                className={({ isActive }) =>
+                  isActive ? "header-nav-selected" : ""
+                }
+              >
+                پروفایل
+              </NavLink>
+            </li>
+          </ul>
+        </div>
+        <div
+          className={`${toggleMenu ? "active" : ""} menu-toggle`}
+          onClick={() => setToggleMenu(!toggleMenu)}
+        >
+          <BurgerIcon className="toggle-icon" />
+          <CloseIcon className="toggle-icon" />
+        </div>
       </div>
     </header>
   );
