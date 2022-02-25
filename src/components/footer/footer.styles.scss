@@ -1,11 +1,13 @@
 @import "../../assets/scss/variables";
 
-.footer-navigation {
+.footer-navigation,
+.divider {
   display: none;
 }
 
 @media #{$tablet-device,$large-mobile} {
   .divider {
+    display: block;
     position: fixed;
     bottom: 70px;
     background-color: $theme-color--white;

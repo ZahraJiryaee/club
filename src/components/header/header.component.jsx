@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 
 import { ReactComponent as StarLogo } from "../../assets/images/header/star.svg";
@@ -13,10 +13,11 @@ import { sidebarNavigation, headerNavigation } from "../../model/header.model";
 import "./header.styles.scss";
 
 const Header = () => {
+  const headerMode = useSelector((state) => state.header.headerMode);
   const [toggleMenu, setToggleMenu] = useState(false);
 
   return (
-    <header>
+    <header className={headerMode}>
       {/* ---------------------- Sidebar --------------------------- */}
       <div className="sidebar-group">
         <ul className={`${toggleMenu ? "active" : ""} sidebar-navigation`}>

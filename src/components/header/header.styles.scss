@@ -9,13 +9,26 @@ header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: $theme-color--navbar-medium-blue;
-  background-image: linear-gradient(
-    to bottom,
-    $theme-color--navbar-dark-blue,
-    $theme-color--navbar-medium-blue
-  );
   z-index: 10;
+
+  &.transparent {
+    background-color: transparent;
+  }
+  &.games {
+    background-color: $theme-color--navbar-medium-blue;
+    background-image: linear-gradient(
+      to bottom,
+      $theme-color--navbar-dark-blue,
+      $theme-color--navbar-medium-blue
+    );
+  }
+  &.simple {
+    background-image: linear-gradient(
+      to bottom,
+      $theme-color--navbar-dark-blue,
+      $theme-color--navbar-light-blue
+    );
+  }
 
   /* ---------------------- Sidebar --------------------------- */
   .sidebar-group {
