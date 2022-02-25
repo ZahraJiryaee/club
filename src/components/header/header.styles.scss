@@ -10,25 +10,7 @@ header {
   align-items: center;
   justify-content: space-between;
   z-index: 10;
-
-  &.transparent {
-    background-color: transparent;
-  }
-  &.games {
-    background-color: $theme-color--navbar-medium-blue;
-    background-image: linear-gradient(
-      to bottom,
-      $theme-color--navbar-dark-blue,
-      $theme-color--navbar-medium-blue
-    );
-  }
-  &.simple {
-    background-image: linear-gradient(
-      to bottom,
-      $theme-color--navbar-dark-blue,
-      $theme-color--navbar-light-blue
-    );
-  }
+  background-color: $theme-color--white;
 
   /* ---------------------- Sidebar --------------------------- */
   .sidebar-group {
@@ -135,8 +117,8 @@ header {
     margin-left: 85px;
     width: 0.5px;
     height: 40px;
-    background-color: white;
-    border-color: white;
+    background-color: $theme-color--light-grey;
+    border-color: $theme-color--light-grey;
   }
 
   /* ---------------------- Score --------------------------- */
@@ -221,17 +203,19 @@ header {
           list-style: none;
 
           a {
-            color: $theme-color--dark;
+            color: $theme-color--marine-blue;
+            font-size: 15px;
+            font-weight: 500;
             text-decoration: none;
             margin-left: 30px;
 
             &:hover {
-              color: $brown;
+              color: $theme-color--tangerine;
             }
           }
 
           .header-nav-selected {
-            color: $brown;
+            color: $theme-color--tangerine;
           }
         }
       }
@@ -249,6 +233,25 @@ header {
 @media #{$tablet-device,$large-mobile} {
   header {
     padding: 20px;
+
+    &.transparent {
+      background-color: transparent;
+    }
+    &.games {
+      background-color: $theme-color--navbar-medium-blue;
+      background-image: linear-gradient(
+        to bottom,
+        $theme-color--navbar-dark-blue,
+        $theme-color--navbar-medium-blue
+      );
+    }
+    &.simple {
+      background-image: linear-gradient(
+        to bottom,
+        $theme-color--navbar-dark-blue,
+        $theme-color--navbar-light-blue
+      );
+    }
 
     .logo {
       margin: auto;
