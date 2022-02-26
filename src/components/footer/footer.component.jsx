@@ -43,6 +43,11 @@ const Footer = () => {
         className="footer-wrapper"
         style={{ "--footer-indicator-number": MapUrlToIndicatorNum() }}
       >
+        <div className="footer-filler">
+          <div className="left"></div>
+          <div className="middle"></div>
+          <div className="right"></div>
+        </div>
         <div className="footer-container"></div>
         <div className="footer-navigation">
           <ul>
