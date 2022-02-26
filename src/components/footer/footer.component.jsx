@@ -20,80 +20,106 @@ import "./footer.styles.scss";
 const Footer = () => {
   const { pathname } = useLocation();
 
+  const MapUrlToIndicatorNum = () => {
+    switch (pathname) {
+      case "/profile":
+        return -2;
+      case "/shop":
+        return -1;
+      case "/lucky-wheel":
+        return 0;
+      case "/games":
+        return 1;
+      case "/leaderboard":
+        return 2;
+      default:
+      // code block
+    }
+  };
+
   return (
     <>
-      <p className="divider"></p>
-      <div className="footer-navigation">
-        <ul>
-          <li className="list">
-            <NavLink
-              to="/profile"
-              className={({ isActive }) => (isActive ? "selected" : "")}
+      <div
+        className="footer-wrapper"
+        style={{ "--footer-indicator-number": MapUrlToIndicatorNum() }}
+      >
+        <div className="footer-container"></div>
+        <div className="footer-navigation">
+          <ul>
+            <li className={`list ${pathname === "/profile" ? "active" : ""}`}>
+              <NavLink
+                to="/profile"
+                className={({ isActive }) => (isActive ? "selected" : "")}
+              >
+                <span className="icon">
+                  {pathname === "/profile" ? (
+                    <ActiveProfileLogo />
+                  ) : (
+                    <ProfileLogo />
+                  )}
+                </span>
+                <span className="text">پروفایل</span>
+              </NavLink>
+            </li>
+            <li className={`list ${pathname === "/shop" ? "active" : ""}`}>
+              <NavLink
+                to="/shop"
+                className={({ isActive }) => (isActive ? "selected" : "")}
+              >
+                <span className="icon">
+                  {pathname === "/shop" ? <ActiveShopLogo /> : <ShopLogo />}
+                </span>
+                <span className="text">فروشگاه</span>
+              </NavLink>
+            </li>
+            <li
+              className={`list ${pathname === "/lucky-wheel" ? "active" : ""}`}
             >
-              <span className="icon">
-                {pathname === "/profile" ? (
-                  <ActiveProfileLogo />
-                ) : (
-                  <ProfileLogo />
-                )}
-              </span>
-              <span className="text">پروفایل</span>
-            </NavLink>
-          </li>
-          <li className="list">
-            <NavLink
-              to="/shop"
-              className={({ isActive }) => (isActive ? "selected" : "")}
+              <NavLink
+                to="/lucky-wheel"
+                className={({ isActive }) => (isActive ? "selected" : "")}
+              >
+                <span className="icon">
+                  {pathname === "/lucky-wheel" ? (
+                    <ActiveWheelLogo />
+                  ) : (
+                    <WheelLogo />
+                  )}
+                </span>
+                <span className="text">گردونه</span>
+              </NavLink>
+            </li>
+            <li className={`list ${pathname === "/games" ? "active" : ""}`}>
+              <NavLink
+                to="/games"
+                className={({ isActive }) => (isActive ? "selected" : "")}
+              >
+                <span className="icon">
+                  {pathname === "/games" ? <ActiveGamesLogo /> : <GamesLogo />}
+                </span>
+                <span className="text">بازی‌ها</span>
+              </NavLink>
+            </li>
+            <li
+              className={`list ${pathname === "/leaderboard" ? "active" : ""}`}
             >
-              <span className="icon">
-                {pathname === "/shop" ? <ActiveShopLogo /> : <ShopLogo />}
-              </span>
-              <span className="text">فروشگاه</span>
-            </NavLink>
-          </li>
-          <li className="list active">
-            <NavLink
-              to="/lucky-wheel"
-              className={({ isActive }) => (isActive ? "selected" : "")}
-            >
-              <span className="icon">
-                {pathname === "/lucky-wheel" ? (
-                  <ActiveWheelLogo />
-                ) : (
-                  <WheelLogo />
-                )}
-              </span>
-              <span className="text">گردونه</span>
-            </NavLink>
-          </li>
-          <li className="list">
-            <NavLink
-              to="/games"
-              className={({ isActive }) => (isActive ? "selected" : "")}
-            >
-              <span className="icon">
-                {pathname === "/games" ? <ActiveGamesLogo /> : <GamesLogo />}
-              </span>
-              <span className="text">بازی‌ها</span>
-            </NavLink>
-          </li>
-          <li className="list">
-            <NavLink
-              to="/leaderboard"
-              className={({ isActive }) => (isActive ? "selected" : "")}
-            >
-              <span className="icon">
-                {pathname === "/leaderboard" ? (
-                  <ActiveLeaderBoardLogo />
-                ) : (
-                  <LeaderBoardLogo />
-                )}
-              </span>
-              <span className="text">رده‌بندی</span>
-            </NavLink>
-          </li>
-          <div className="indicator"></div>
-        </ul>
+              <NavLink
+                to="/leaderboard"
+                className={({ isActive }) => (isActive ? "selected" : "")}
+              >
+                <span className="icon">
+                  {pathname === "/leaderboard" ? (
+                    <ActiveLeaderBoardLogo />
+                  ) : (
+                    <LeaderBoardLogo />
+                  )}
+                </span>
+                <span className="text">رده‌بندی</span>
+              </NavLink>
+            </li>
+            <div className="indicator"></div>
+          </ul>
+        </div>
       </div>
     </>
   );
