@@ -1,6 +1,7 @@
 $theme-color--orange: #fe8017;
 $theme-color--manilla: #fffb90;
 $theme-color--yellow: #f2c94c;
+$theme-color--meduim-yellow: #fabb51;
 $theme-color--tangerine: #ff9f0a;
 $theme-color--orange-light: rgba(254, 128, 23, 0.53);
 $theme-color--green: #12b174;
@@ -10,12 +11,21 @@ $theme-color--marine-blue: #003069;
 $theme-color--marine-deep-sky-blue: #007aff;
 $theme-color--gunmetal: #46525f;
 $theme-color--vermillion: #e84218;
-$theme-color--brown-grey: #838383;
-$theme-color--footer-navigation: #eeeeee;
-
-$theme-color--dark-blue: #1a416e;
+$theme-color--light-grey: #c9c9c9;
+$theme-color--brown-grey: #9f9f9f;
+$theme-color--brownish-grey: #707070;
 $theme-color--medium-blue: #292a73;
-$theme-color--light-blue: #3399de;
+
+$theme-color--navbar-dark-blue: #1a416e;
+$theme-color--navbar-medium-blue: #2569a1;
+$theme-color--navbar-light-blue: #3399de;
+$navbar-height: 9vh;
+
+$theme-color--footer-navigation: #eeeeee;
+$footer-transition: 0.5s;
+
+$theme-color--lucky-wheel-chance-background: #efeff4;
+$theme-color--lucky-wheel-chance-text: #ff3500;
 
 // Other Colors
 $primary: #004395;
@@ -29,9 +39,49 @@ $white: #ffffff;
 $black: #000000;
 $brown: #af880f;
 
+//Lucky wheel gradient boarder
+$lucky-wheel-outer-border-gradient: linear-gradient(
+  135deg,
+  #fffb90 14%,
+  #fbe978 25%,
+  #f8dc65 32%,
+  #e6c758 35%,
+  #c49f40 40%,
+  #ac832f 44%,
+  #9e7225 48%,
+  #996c22 51%,
+  #9d7125 54%,
+  #a98030 57%,
+  #bd9a42 60%,
+  #d9be5a 63%,
+  #fbe878 66%,
+  #ffa 73%,
+  #fbe878 77%,
+  #a4631b 90%
+);
+
+$lucky-wheel-inner-border-gradient: linear-gradient(
+  224deg,
+  #fffb90 14%,
+  #fbe978 25%,
+  #f8dc65 32%,
+  #e6c758 35%,
+  #c49f40 40%,
+  #ac832f 44%,
+  #9e7225 48%,
+  #996c22 51%,
+  #9d7125 54%,
+  #a98030 57%,
+  #bd9a42 60%,
+  #d9be5a 63%,
+  #fbe878 66%,
+  #ffa 73%,
+  #fbe878 77%,
+  #a4631b 90%
+);
+
 // Font Family
 $font-family-iransans: "IranSans", "Roboto", sans-serif;
-$font-family-iransans-medium: "IranSans-Medium", "Roboto", sans-serif;
 
 // Font Size
 $font-size-base: 14px;
@@ -65,6 +115,6 @@ $line-height-lg: 54px;
 $laptop-device: "only screen and (min-width: 1200px) and (max-width: 1499px)";
 $desktop-device: "only screen and (min-width: 992px) and (max-width: 1199px)";
 $tablet-device: "only screen and (min-width: 768px) and (max-width: 991px)";
-$large-mobile: "only screen and (max-width: 767px)";
+$large-mobile: "only screen and (max-width: 768px)";
 $small-mobile: "only screen and (max-width: 575px)";
 $extra-small-mobile: "only screen and (max-width: 479px)";

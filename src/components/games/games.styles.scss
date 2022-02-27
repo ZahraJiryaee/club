@@ -21,7 +21,7 @@
       font-size: 12px;
       font-weight: bold;
       line-height: 20px;
-      color: #292a73;
+      color: $theme-color--medium-blue;
       padding-bottom: 5px;
       text-decoration: none;
     }
@@ -29,7 +29,7 @@
     .more-icon {
       padding: 10px 10px 10px 0;
       font-size: 10px;
-      color: #292a73;
+      color: $theme-color--medium-blue;
     }
   }
 
@@ -92,7 +92,7 @@
             .short-description {
               font-size: 10px;
               font-weight: 500;
-              color: #707070;
+              color: $theme-color--brownish-grey;
             }
 
             .install-score {
@@ -110,7 +110,7 @@
           .rate-text {
             font-size: 12px;
             font-weight: 500;
-            color: #707070;
+            color: $theme-color--brownish-grey;
           }
 
           .rate-icon {

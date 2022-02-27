@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 
@@ -6,10 +6,33 @@ import "./genre-header.styles.scss";
 
 const GenreHeader = () => {
   const genres = useSelector((state) => state.genres.allGenres);
+  const [navbarGenreFixed, setNavbarGenreFixed] = React.useState("");
+
+  useEffect(() => {
+    const updateNavbarGenreFixed = () => {
+      if (
+        document.documentElement.scrollTop >= 30 ||
+        document.body.scrollTop >= 30
+      ) {
+        setNavbarGenreFixed("genre-fixed");
+      } else if (
+        document.documentElement.scrollTop < 30 ||
+        document.body.scrollTop < 30
+      ) {
+        setNavbarGenreFixed("");
+      }
+    };
+
+    window.addEventListener("scroll", updateNavbarGenreFixed);
+
+    return function cleanup() {
+      window.removeEventListener("scroll", updateNavbarGenreFixed);
+    };
+  });
 
   return (
-    <div>
-      <div className="game-header">
+    <>
+      <div className={`genre-header ${navbarGenreFixed}`}>
         <div className="search-box-container">
           <div className="search-box">
             <i className="fa fa-search search-icon" />
@@ -46,7 +69,10 @@ const GenreHeader = () => {
           </ul>
         </div>
       </div>
-    </div>
+      {navbarGenreFixed === "genre-fixed" && (
+        <div className="spacer">&nbsp;</div>
+      )}
+    </>
   );
 };
 

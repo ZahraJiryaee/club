@@ -1,8 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useLocation } from "react-router";
+import { useDispatch } from "react-redux";
+
+import { setHeaderMode } from "../../redux/header/header.action";
 
 import "./spinning-wheel.styles.scss";
 
 const SpinningWheel = ({ items }) => {
+  const { pathname } = useLocation();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(setHeaderMode(pathname));
+  }, [pathname]);
+
   const colors = [
     "linear-gradient(180deg, #fe8816, #f4c446)",
     "linear-gradient(to bottom, #003069, #007aff)",
