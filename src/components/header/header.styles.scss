@@ -4,7 +4,7 @@ header {
   position: fixed;
   top: 0;
   width: 100%;
-  height: $theme-color--navbar-height;
+  height: $navbar-height;
   padding: 15px 100px;
   display: flex;
   align-items: center;
@@ -105,8 +105,10 @@ header {
 
     a {
       img {
-        width: 4rem;
-        height: auto;
+        height: 6vh;
+        width: auto;
+        display: block;
+        margin: auto;
       }
     }
   }

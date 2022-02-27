@@ -17,7 +17,7 @@
 }
 
 .genre-header {
-  padding-top: calc($theme-color--navbar-height - 0.1vh);
+  padding-top: calc($navbar-height - 0.1vh);
   // padding-top: 9.9vh;
   direction: rtl;
   background-color: $theme-color--navbar-medium-blue;

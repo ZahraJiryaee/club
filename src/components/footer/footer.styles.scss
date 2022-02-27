@@ -3,6 +3,8 @@
 :root {
   --footer-indicator-number: 0;
   --filler-left-width: 0%;
+  --filler-middle-width: 60vw;
+  --footer-height: 71px;
 }
 
 .footer-wrapper {
@@ -13,10 +15,9 @@
   /*----------------- Footer Filler ------------------*/
   .footer-filler {
     position: fixed;
-    bottom: 0;
+    bottom: -1px;
     width: 100%;
-    height: 69px;
-    // z-index: 20;
+    height: calc(var(--footer-height) - 1px);
     display: flex;
     --filler-left-width: calc(10vw * (var(--footer-indicator-number) + 2));
 
@@ -24,20 +25,21 @@
     .middle,
     .left {
       display: inline-block;
+      transition: width $footer-transition ease;
+      background-color: $theme-color--white;
     }
 
     .middle {
-      width: 60vw;
+      width: var(--filler-middle-width);
       background-color: transparent;
     }
     .left {
       width: var(--filler-left-width);
-      background-color: $theme-color--white;
     }
-
     .right {
-      width: calc(40vw - var(--filler-left-width));
-      background-color: $theme-color--white;
+      width: calc(
+        100vw - var(--filler-middle-width) - var(--filler-left-width)
+      );
     }
   }
 
@@ -48,14 +50,14 @@
       position: fixed;
       bottom: 0;
       width: 100%;
-      height: 69px;
-      background-image: url("./../../assets/images/footer/footer-835-71.png");
+      height: var(--footer-height);
+      background-image: url("./../../assets/images/footer/footer-835-71-without-side-border.png");
       background-repeat: no-repeat;
       background-position: center;
       display: flex;
       justify-content: center;
       align-items: center;
-      transition: 0.5s;
+      transition: $footer-transition;
       transform: translateX(calc(70px * var(--footer-indicator-number)));
     }
 
@@ -131,7 +133,7 @@
             font-weight: 500;
             font-size: 10px;
             letter-spacing: -0.24px;
-            transition: 0.5s;
+            transition: $footer-transition;
             opacity: 1;
             transform: translateY(17px);
           }
@@ -142,7 +144,7 @@
             line-height: 45px;
             font-size: 1.5em;
             text-align: center;
-            transition: 0.5s;
+            transition: $footer-transition;
             color: $theme-color--white;
           }
         }
@@ -155,7 +157,7 @@
         height: 70px;
         background: $theme-color--white;
         border-radius: 50%;
-        transition: 0.5s;
+        transition: $footer-transition;
       }
     }
   }
