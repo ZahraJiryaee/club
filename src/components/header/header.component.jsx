@@ -3,8 +3,6 @@ import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 
 import { ReactComponent as StarLogo } from "../../assets/images/header/star.svg";
-import { ReactComponent as BurgerIcon } from "../../assets/images/header/burger-icon.svg";
-import { ReactComponent as CloseIcon } from "../../assets/images/header/close.svg";
 import Logo from "../../assets/images/header/logo.png";
 import ArrowBack from "../../assets/images/icon/arrow-back.png";
 
@@ -79,8 +77,8 @@ const Header = () => {
           className={`${toggleMenu ? "active" : ""} menu-toggle`}
           onClick={() => setToggleMenu(!toggleMenu)}
         >
-          <BurgerIcon className="toggle-icon" />
-          <CloseIcon className="toggle-icon" />
+          <div className="toggle-icon burgur-icon"></div>
+          <div className="toggle-icon close-icon"></div>
         </div>
       </div>
     </header>

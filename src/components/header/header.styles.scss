@@ -163,6 +163,25 @@ header {
       height: 30px;
       z-index: 1000;
 
+      .burgur-icon {
+        background-image: url("./../../assets/images/header/Icon-burger-black.png");
+        background-repeat: no-repeat;
+        background-position: center;
+        width: 25px;
+        height: 20px;
+        @media #{$tablet-device,$large-mobile} {
+          background-image: url("./../../assets/images/header/Icon-burger-white.png");
+        }
+      }
+
+      .close-icon {
+        background-image: url("./../../assets/images/header/close-icon.png");
+        background-repeat: no-repeat;
+        background-position: center;
+        width: 20px;
+        height: 20px;
+      }
+
       .toggle-icon {
         position: absolute;
         top: 0;
