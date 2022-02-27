@@ -15,7 +15,8 @@
 }
 
 .spacing {
-  padding: 85px 0 100px;
+  // padding: 85px 0 100px;
+  padding: $navbar-height 0 0;
 }
 
 .outer-box {
@@ -27,16 +28,17 @@
   min-height: 100vh;
 
   .main-header {
-    position: relative;
+    // position: relative;
     padding: 0;
     top: 12%;
     padding: 0 10px;
     .header-txt {
-      margin: 0 0 20px;
+      margin: 18px 0 0;
       color: $white;
-      font-size: 36px;
+      font-size: 30px;
       @media #{$large-mobile} {
-        font-size: 30px;
+        margin: 10px 0 0;
+        font-size: 28px;
       }
       @media #{$small-mobile} {
         font-size: 25px;
@@ -46,30 +48,30 @@
       }
     }
     .subheader-txt {
-      margin: 5px 0;
+      font-size: 18px;
+      margin: 10px 0;
       color: $theme-color--manilla;
-      margin-bottom: 2rem;
       direction: rtl;
       @media #{$large-mobile} {
-        padding: 0.5rem 3rem 1rem;
+        font-size: 16px;
+        margin: 0;
       }
       @media #{$extra-small-mobile} {
-        padding: 0.2rem 1rem 1rem;
+        font-size: 12px;
       }
     }
   }
 
   .wheel-component {
-    margin: 2rem 0;
+    margin: 1.2rem 0;
   }
 
   .lucky-wheel-page-btn {
     color: $white;
-    width: 180px;
-    height: 50px;
-    padding: 8px 50px 8px 52px;
+    width: 150px;
+    height: 35px;
     opacity: 0.91;
-    font-size: 15px;
+    font-size: 18px;
     font-weight: bold;
     background-color: $theme-color--tangerine;
     border: 1px solid $theme-color--tangerine;
@@ -81,9 +83,19 @@
 
   .want-more-chance {
     color: $white;
+    font-size: 15px;
+    margin: 0;
+    @media #{$extra-small-mobile} {
+      font-size: 12px;
+    }
   }
 
   .click-here {
     color: $theme-color--meduim-yellow;
+    font-size: 18px;
+    margin: 0;
+    @media #{$extra-small-mobile} {
+      font-size: 13px;
+    }
   }
 }

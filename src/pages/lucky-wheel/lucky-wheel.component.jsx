@@ -58,9 +58,13 @@ const LuckyWheelPage = () => {
     <div className="blue-bg outer-box spacing">
       <div className="main-header">
         <h2 className="header-txt">گـــردونه شــانــس مـدریــک</h2>
+        <hr />
         <p className="subheader-txt">
-          در گردونه مدریک شانس خود را جهت برنده شدن جوایز ارزنده امتحان کنید.
+          در گردونه مدریک شانس خود را جهت برنده شدن جوایز
+          <br />
+          ارزنده امتحان کنید.
         </p>
+        <hr />
       </div>
       <div className="wheel-component">
         <SpinningWheel
@@ -69,12 +73,15 @@ const LuckyWheelPage = () => {
           setWheelItem={(e) => setWheelItem(e)}
         />
       </div>
-      <div>
-        <button className="lucky-wheel-page-btn">بچرخون</button>
-      </div>
+      <hr />
+
+      <button className="lucky-wheel-page-btn">بچرخون</button>
+
+      <hr />
       <p className="want-more-chance">
         شــانـس بیشتری برای چـرخونـدن گـردونه می‌خـوای؟
       </p>
+      <hr />
       <p className="click-here">اینجا را کلیک کن</p>
     </div>
   );

@@ -1,8 +1,7 @@
 @import "./../../style.scss";
 
 :root {
-  --wheel-size: 480px;
-  --wheel-border-size: 5px;
+  --wheel-size: 32vh;
   --wheel-outer-container-border-size: 50px;
   --wheel-inner-container-border-size: 11px;
   --wheel-items-length: 8;
@@ -68,9 +67,6 @@
         margin: auto;
         width: var(--wheel-size);
         height: var(--wheel-size);
-        // border: var(--wheel-border-size) solid white;
-        //** background-color: white;
-        // position: relative;
         background-color: white;
         border-radius: 50%;
         overflow: hidden;
@@ -197,7 +193,7 @@
 
 @media #{$tablet-device,$large-mobile} {
   .wheel-outer-container {
-    --wheel-size: 400px;
+    --wheel-size: 30vh;
     --wheel-outer-container-border-size: 45px;
     --wheel-inner-container-border-size: 10px;
 
@@ -220,7 +216,7 @@
 
 @media #{$small-mobile} {
   .wheel-outer-container {
-    --wheel-size: 350px;
+    --wheel-size: 28vh;
   }
 
   #spin {
@@ -237,16 +233,12 @@
 
 @media #{$extra-small-mobile} {
   .wheel-outer-container {
-    --wheel-size: 290px;
+    --wheel-size: 30vh;
+    --wheel-outer-container-border-size: 30px;
+    --wheel-inner-container-border-size: 7px;
 
     div.item p {
       font-size: 12px;
     }
-  }
-}
-
-@media only screen and (max-width: 380px) {
-  .wheel-outer-container {
-    --wheel-size: 250px;
   }
 }
