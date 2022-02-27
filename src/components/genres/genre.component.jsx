@@ -31,6 +31,8 @@ const GenrePage = () => {
         if (allCategories[i]["id"] === id)
           setCategoryTitle(allCategories[i]["title"]);
       }
+    } else if (type === "search") {
+      setCategoryTitle("نتیجه جستجو");
     }
   });
 

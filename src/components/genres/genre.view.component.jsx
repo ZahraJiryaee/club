@@ -16,9 +16,11 @@ const GenreView = ({ title }) => {
 
   const filteredGenre = useSelector((state) => state.genres.filteredGenre);
   const filteredCategory = useSelector((state) => state.games.filteredCategory);
+  const filteredItems = useSelector((state) => state.games.searchedItem);
 
   if (type === "genre") filteredData = filteredGenre;
   else if (type === "category") filteredData = filteredCategory;
+  else if (type === "search") filteredData = filteredItems;
 
   return (
     <div className="genre-container">

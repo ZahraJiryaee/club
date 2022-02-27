@@ -1,12 +1,20 @@
 import React, { useEffect } from "react";
-import { useSelector } from "react-redux";
-import { NavLink } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { NavLink, Link } from "react-router-dom";
+
+import { getSearchedItem } from "../../redux/games/games.action";
 
 import "./genre-header.styles.scss";
 
 const GenreHeader = () => {
+  const dispatch = useDispatch();
   const genres = useSelector((state) => state.genres.allGenres);
   const [navbarGenreFixed, setNavbarGenreFixed] = React.useState("");
+  const [searchField, setSearchField] = React.useState("");
+
+  const handelSearch = async () => {
+    dispatch(getSearchedItem(searchField));
+  };
 
   useEffect(() => {
     const updateNavbarGenreFixed = () => {
@@ -35,11 +43,14 @@ const GenreHeader = () => {
       <div className={`genre-header ${navbarGenreFixed}`}>
         <div className="search-box-container">
           <div className="search-box">
-            <i className="fa fa-search search-icon" />
+            <Link onClick={handelSearch} to={`/search/${searchField}`}>
+              <i className="fa fa-search search-icon" />
+            </Link>
             <input
               className="search-text"
               type="text"
               placeholder="جستجو بازی‌ها"
+              onChange={(e) => setSearchField(e.target.value)}
             />
           </div>
         </div>

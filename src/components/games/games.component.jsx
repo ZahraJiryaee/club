@@ -26,7 +26,7 @@ const GamesPage = () => {
     <div>
       <GenreHeader />
       <div className="games-page">
-        <p>
+        {/* <p>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto magnam
           excepturi ipsum explicabo beatae voluptate reprehenderit amet magni,
           vel deserunt blanditiis quibusdam? Rem, vel? Nobis vero veniam
@@ -265,7 +265,7 @@ const GamesPage = () => {
             magni, vel deserunt blanditiis quibusdam? Rem, vel? Nobis vero
             veniam veritatis vitae eaque!
           </p>
-        </p>
+        </p> */}
         {games.map((category) => {
           return category.enumerate_type === 1 ? (
             <div key={category.id}>
