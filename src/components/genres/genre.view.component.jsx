@@ -28,6 +28,12 @@ const GenreView = ({ title }) => {
         <div className="category-container">
           <span className="category-title">{title}</span>
         </div>
+      ) : type === "search" ? (
+        <div className="category-container">
+          <span className="category-title">
+            {filteredItems.length === 0 ? "نتیجه‌ای یافت نشد!" : title}
+          </span>
+        </div>
       ) : null}
       {filteredData.map((application) => {
         return (

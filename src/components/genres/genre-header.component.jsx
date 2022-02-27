@@ -14,6 +14,7 @@ const GenreHeader = () => {
 
   const handelSearch = async () => {
     dispatch(getSearchedItem(searchField));
+    setSearchField("");
   };
 
   useEffect(() => {
@@ -47,6 +48,7 @@ const GenreHeader = () => {
               <i className="fa fa-search search-icon" />
             </Link>
             <input
+              value={searchField}
               className="search-text"
               type="text"
               placeholder="جستجو بازی‌ها"
