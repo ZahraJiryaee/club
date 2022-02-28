@@ -1,9 +1,9 @@
 @import "./../../style.scss";
 
 :root {
-  --wheel-size: 32vh;
-  --wheel-outer-container-border-size: 50px;
-  --wheel-inner-container-border-size: 11px;
+  --wheel-size: 34vh;
+  --wheel-outer-container-border-size: 35px;
+  --wheel-inner-container-border-size: 8px;
   --wheel-items-length: 8;
   --wheel-item-number: 0;
   --spinning-duration: 4s;
@@ -193,9 +193,9 @@
 
 @media #{$tablet-device,$large-mobile} {
   .wheel-outer-container {
-    --wheel-size: 30vh;
-    --wheel-outer-container-border-size: 45px;
-    --wheel-inner-container-border-size: 10px;
+    --wheel-size: 32vh;
+    --wheel-outer-container-border-size: 30px;
+    --wheel-inner-container-border-size: 8px;
 
     div.item p {
       font-size: 16px;
@@ -216,7 +216,9 @@
 
 @media #{$small-mobile} {
   .wheel-outer-container {
-    --wheel-size: 28vh;
+    --wheel-size: 33vh;
+    --wheel-outer-container-border-size: 30px;
+    --wheel-inner-container-border-size: 8px;
   }
 
   #spin {
@@ -233,7 +235,7 @@
 
 @media #{$extra-small-mobile} {
   .wheel-outer-container {
-    --wheel-size: 30vh;
+    --wheel-size: 33vh;
     --wheel-outer-container-border-size: 30px;
     --wheel-inner-container-border-size: 7px;
 
