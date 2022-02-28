@@ -4,6 +4,8 @@ import { useDispatch } from "react-redux";
 
 import { setHeaderMode } from "../../redux/header/header.action";
 
+import Arrow from "./../../assets/images/lucky-wheel/arrow/arrow.png";
+
 import "./spinning-wheel.styles.scss";
 
 const SpinningWheel = ({ items }) => {
@@ -47,7 +49,7 @@ const SpinningWheel = ({ items }) => {
         <br />
         <span className="chance-text">شانس</span>
       </button>
-      <span className="arrow"></span>
+      <img className="arrow" src={Arrow} alt="lucky-wheel-pointer" />
       <div className="wheel-outer-container">
         <div className="wheel-inner-container">
           <div className="inner-border">

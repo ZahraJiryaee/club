@@ -36,12 +36,12 @@
     text-align: center;
 
     .header-txt {
-      top: 16vh;
+      top: 14vh;
 
       color: $white;
       line-height: 0.4;
       letter-spacing: -0.72px;
-      font-size: 30px;
+      font-size: 28px;
       width: 100vw;
       @media #{$tablet-device} {
         top: 16vh;
@@ -61,7 +61,7 @@
     .subheader-txt {
       top: 21vh;
 
-      font-size: 18px;
+      font-size: 16px;
       color: $theme-color--manilla;
       line-height: 1.67;
       letter-spacing: -0.43px;
@@ -85,7 +85,7 @@
   }
 
   .lucky-wheel-page-btn {
-    top: 77vh;
+    top: 80vh;
 
     color: $white;
     width: 160px;
@@ -116,7 +116,7 @@
   }
 
   .want-more-chance {
-    top: 84vh;
+    top: 88vh;
 
     width: 100vw;
     color: $white;
@@ -135,7 +135,7 @@
   }
 
   .click-here {
-    top: 90vh;
+    top: 94vh;
 
     width: 100vw;
     color: $theme-color--meduim-yellow;
