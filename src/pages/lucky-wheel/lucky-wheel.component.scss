@@ -141,6 +141,40 @@
     color: $theme-color--meduim-yellow;
     font-size: 18px;
     margin: 0;
+    direction: rtl;
+    cursor: pointer;
+
+    .click-here--text,
+    .click-here--icon {
+      display: inline-block;
+      padding: 0 0.5rem;
+      vertical-align: middle;
+      margin: 0;
+
+      @media #{$tablet-device, $large-mobile} {
+        padding: 0 0.35rem;
+      }
+
+      @media #{$small-mobile} {
+        padding: 0 0.2rem;
+      }
+    }
+
+    .click-here--icon {
+      height: 22px;
+      width: auto;
+
+      @media #{$tablet-device, $large-mobile} {
+        height: 20px;
+        width: auto;
+      }
+
+      @media #{$small-mobile} {
+        height: 15px;
+        width: auto;
+      }
+    }
+
     @media #{$tablet-device} {
       top: 85vh;
     }

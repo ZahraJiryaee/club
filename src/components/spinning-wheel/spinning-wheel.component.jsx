@@ -14,7 +14,7 @@ const SpinningWheel = ({ items }) => {
 
   useEffect(() => {
     dispatch(setHeaderMode(pathname));
-  }, [pathname]);
+  }, [pathname, dispatch]);
 
   const colors = [
     "linear-gradient(180deg, #fe8816, #f4c446)",
@@ -50,6 +50,7 @@ const SpinningWheel = ({ items }) => {
         <span className="chance-text">شانس</span>
       </button>
       <img className="arrow" src={Arrow} alt="lucky-wheel-pointer" />
+
       <div className="wheel-outer-container">
         <div className="wheel-inner-container">
           <div className="inner-border">

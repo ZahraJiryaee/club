@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import SpinningWheel from "../../components/spinning-wheel/spinning-wheel.component";
 
+import HandPointUp from "./../../assets/images/icon/hand-point-up.png";
+
 import "./lucky-wheel.component.scss";
 
 const LuckyWheelPage = () => {
@@ -81,7 +83,18 @@ const LuckyWheelPage = () => {
       <p className="want-more-chance center-absolute">
         شــانـس بیشتری برای چـرخونـدن گـردونه می‌خـوای؟
       </p>
-      <p className="click-here center-absolute">اینجا را کلیک کن</p>
+      <div className="click-here center-absolute">
+        {/* <i
+          className="fa fa-hand-pointer-o click-here--icon"
+          aria-hidden="true"          
+          ></i> */}
+        <img
+          className="click-here--icon"
+          src={HandPointUp}
+          alt="hand-point-up"
+        />
+        <p className="click-here--text">اینجا را کلیک کن</p>
+      </div>
     </div>
   );
 };
