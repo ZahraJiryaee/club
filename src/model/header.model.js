@@ -7,8 +7,8 @@ export const sidebarNavigation = [
 ];
 
 export const headerNavigation = [
-  { id: "hn1", title: "گردونه", link: "home" },
-  { id: "hn2", title: "بازی‌ها", link: "home" },
+  { id: "hn1", title: "گردونه", link: "lucky-wheel" },
+  { id: "hn2", title: "بازی‌ها", link: "games/genre/all" },
   { id: "hn3", title: "فروشگاه", link: "home" },
   { id: "hn4", title: "رده‌بندی", link: "home" },
   { id: "hn5", title: "پروفایل", link: "home" },
