@@ -4,6 +4,8 @@ import { useLocation } from "react-router";
 
 import { ReactComponent as StarLogo } from "../../assets/images/icon/star.svg";
 
+import "./genre.styles.scss";
+
 const GenreView = ({ title }) => {
   const { pathname } = useLocation();
 
@@ -16,23 +18,15 @@ const GenreView = ({ title }) => {
 
   const filteredGenre = useSelector((state) => state.genres.filteredGenre);
   const filteredCategory = useSelector((state) => state.games.filteredCategory);
-  const filteredItems = useSelector((state) => state.games.searchedItem);
 
   if (type === "genre") filteredData = filteredGenre;
   else if (type === "category") filteredData = filteredCategory;
-  else if (type === "search") filteredData = filteredItems;
 
   return (
     <div className="genre-container">
       {type === "category" ? (
         <div className="category-container">
           <span className="category-title">{title}</span>
-        </div>
-      ) : type === "search" ? (
-        <div className="category-container">
-          <span className="category-title">
-            {filteredItems.length === 0 ? "نتیجه‌ای یافت نشد!" : title}
-          </span>
         </div>
       ) : null}
       {filteredData.map((application) => {

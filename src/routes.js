@@ -4,8 +4,9 @@ import { Navigate } from "react-router-dom";
 import MainLayout from "./layouts/main-layout/main-layout.component";
 
 import LuckyWheelPage from "./pages/lucky-wheel/lucky-wheel.component";
-import GamesPage from "./components/games/games.component";
-import GenrePage from "./components/genres/genre.component";
+import GamesPage from "../src/pages/games/games.component";
+import GenrePage from "../src/pages/genre/genre.component";
+import SearchPage from "./pages/search/search.component";
 
 const routes = [
   {
@@ -18,7 +19,7 @@ const routes = [
       { path: "games", element: <GamesPage /> },
       { path: "genre/:id", element: <GenrePage /> },
       { path: "category/:id", element: <GenrePage /> },
-      { path: "search/:id", element: <GenrePage /> },
+      { path: "search/:id", element: <SearchPage /> },
       { path: "leaderboard", element: <LuckyWheelPage /> },
       { path: "home", element: <LuckyWheelPage /> },
       { path: "about-us", element: <LuckyWheelPage /> },

@@ -1,6 +1,6 @@
 import React from "react";
 
-import "./games.styles.scss";
+import "../../pages/games/games.styles.scss";
 
 const BannerGames = ({ category }) => {
   return (

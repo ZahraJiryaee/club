@@ -5,10 +5,8 @@ import { useLocation } from "react-router";
 import { getSelectedGenre } from "../../redux/genres/genres.action";
 import { getSelectedCategory } from "../../redux/games/games.action";
 
-import GenreHeader from "./genre-header.component";
-import GenreView from "./genre.view.component";
-
-import "./genre.styles.scss";
+import GenreHeader from "../../components/genres/genre-header.component";
+import GenreView from "../../components/genres/genre.view.component";
 
 const GenrePage = () => {
   const dispatch = useDispatch();
