@@ -14,62 +14,76 @@
   }
 }
 
-.spacing {
-  padding: 85px 0 100px;
-}
-
 .outer-box {
   text-align: center;
-  // display: grid;
+  position: relative;
 
   align-items: center;
   justify-content: center;
   min-height: 100vh;
 
   .main-header {
-    position: relative;
-    padding: 0;
-    top: 12%;
-    padding: 0 10px;
+    font-weight: bold;
+    direction: rtl;
+    text-align: center;
+
     .header-txt {
-      margin: 0 0 20px;
+      top: 14vh;
+
       color: $white;
-      font-size: 36px;
-      @media #{$large-mobile} {
-        font-size: 30px;
+      line-height: 0.4;
+      letter-spacing: -0.72px;
+      font-size: 28px;
+      width: 100vw;
+      @media #{$tablet-device} {
+        top: 16vh;
+        font-size: 28px;
+        line-height: 0.4;
+        letter-spacing: -0.72px;
       }
       @media #{$small-mobile} {
         font-size: 25px;
       }
       @media #{$extra-small-mobile} {
-        font-size: 20px;
+        font-size: 22px;
+        line-height: 1;
+        letter-spacing: -0.29px;
       }
     }
     .subheader-txt {
-      margin: 5px 0;
+      top: 21vh;
+
+      font-size: 16px;
       color: $theme-color--manilla;
-      margin-bottom: 2rem;
-      direction: rtl;
-      @media #{$large-mobile} {
-        padding: 0.5rem 3rem 1rem;
+      line-height: 1.67;
+      letter-spacing: -0.43px;
+      width: 100vw;
+      @media #{$tablet-device} {
+        top: 22vh;
+        font-size: 16px;
+        line-height: 1.67;
+        letter-spacing: -0.43px;
       }
       @media #{$extra-small-mobile} {
-        padding: 0.2rem 1rem 1rem;
+        top: 22.5vh;
+        font-size: 12px;
+        letter-spacing: -0.29px;
       }
     }
   }
 
   .wheel-component {
-    margin: 2rem 0;
+    top: 50%;
   }
 
   .lucky-wheel-page-btn {
+    top: 80vh;
+
     color: $white;
-    width: 180px;
-    height: 50px;
-    padding: 8px 50px 8px 52px;
+    width: 160px;
+    height: 44px;
     opacity: 0.91;
-    font-size: 15px;
+    font-size: 18px;
     font-weight: bold;
     background-color: $theme-color--tangerine;
     border: 1px solid $theme-color--tangerine;
@@ -77,13 +91,91 @@
     font-family: IranSans;
     line-height: 0.8;
     letter-spacing: -0.36px;
+    cursor: pointer;
+
+    @media #{$tablet-device} {
+      top: 75vh;
+    }
+    @media #{$large-mobile} {
+      top: 75vh;
+    }
+    @media #{$extra-small-mobile} {
+      top: 74vh;
+      width: 140px;
+      height: 35px;
+      font-size: 15px;
+    }
   }
 
   .want-more-chance {
+    top: 88vh;
+
+    width: 100vw;
     color: $white;
+    font-size: 15px;
+    margin: 0;
+    @media #{$tablet-device} {
+      top: 81vh;
+    }
+    @media #{$large-mobile} {
+      top: 81vh;
+    }
+    @media #{$extra-small-mobile} {
+      top: 80vh;
+      font-size: 12px;
+    }
   }
 
   .click-here {
+    top: 94vh;
+
+    width: 100vw;
     color: $theme-color--meduim-yellow;
+    font-size: 18px;
+    margin: 0;
+    direction: rtl;
+    cursor: pointer;
+
+    .click-here--text,
+    .click-here--icon {
+      display: inline-block;
+      padding: 0 0.5rem;
+      vertical-align: middle;
+      margin: 0;
+
+      @media #{$tablet-device, $large-mobile} {
+        padding: 0 0.35rem;
+      }
+
+      @media #{$small-mobile} {
+        padding: 0 0.2rem;
+      }
+    }
+
+    .click-here--icon {
+      height: 22px;
+      width: auto;
+
+      @media #{$tablet-device, $large-mobile} {
+        height: 20px;
+        width: auto;
+      }
+
+      @media #{$small-mobile} {
+        height: 15px;
+        width: auto;
+      }
+    }
+
+    @media #{$tablet-device} {
+      top: 85vh;
+    }
+    @media #{$large-mobile} {
+      top: 85vh;
+    }
+    @media #{$extra-small-mobile} {
+      top: 84vh;
+      font-size: 13px;
+    }
   }
 }
