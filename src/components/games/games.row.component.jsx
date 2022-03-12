@@ -2,7 +2,7 @@ import React from "react";
 
 import { ReactComponent as StarLogo } from "../../assets/images/icon/star.svg";
 
-import "./games.styles.scss";
+import "../../pages/games/games.styles.scss";
 
 function Column({ data }) {
   return (

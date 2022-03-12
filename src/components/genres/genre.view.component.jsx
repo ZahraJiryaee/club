@@ -4,6 +4,8 @@ import { useLocation } from "react-router";
 
 import { ReactComponent as StarLogo } from "../../assets/images/icon/star.svg";
 
+import "./genre.styles.scss";
+
 const GenreView = ({ title }) => {
   const { pathname } = useLocation();
 

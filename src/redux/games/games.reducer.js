@@ -3,6 +3,7 @@ import { GamesActionTypes } from "./games.types";
 const INITIAL_STATE = {
   allGames: [],
   filteredCategory: [],
+  searchedItem: [],
 };
 
 const gamesReducer = (state = INITIAL_STATE, action) => {
@@ -16,6 +17,11 @@ const gamesReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         filteredCategory: action.payload,
+      };
+    case GamesActionTypes.GET_SEARCHED_ITEM:
+      return {
+        ...state,
+        searchedItem: action.payload,
       };
     default:
       return state;
