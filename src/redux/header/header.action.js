@@ -5,7 +5,7 @@ export const setHeaderMode = (pathname) => async (dispatch) => {
   let headerMode = "";
 
   if (pathname === "/lucky-wheel") headerMode = "transparent";
-  else if (pathname === "/games") headerMode = "games";
+  else if (pathname.includes("games")) headerMode = "games";
   else headerMode = "simple";
 
   await dispatch({

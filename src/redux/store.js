@@ -11,7 +11,7 @@ const middleware = [thunk, logger];
 
 export const store = createStore(
   rootReducer,
-  compose(applyMiddleware(...middleware), reduxDevTools)
+  compose(applyMiddleware(...middleware))
 );
 
 //Initialize

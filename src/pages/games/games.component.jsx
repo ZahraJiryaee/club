@@ -32,7 +32,10 @@ const GamesPage = () => {
               <div className="category-container">
                 <span className="category-title">{category.title}</span>
                 <div>
-                  <Link className="more-button" to={`/category/${category.id}`}>
+                  <Link
+                    className="more-button"
+                    to={`/games/category/${category.id}`}
+                  >
                     <span>بیشتر</span>
                   </Link>
                   <Link to={`/category/${category.id}`}>

@@ -10,9 +10,11 @@ const GenreView = ({ title }) => {
   const { pathname } = useLocation();
 
   const type = pathname.substring(
-    pathname.indexOf("/") + 1,
+    pathname.indexOf("/") + 7,
     pathname.lastIndexOf("/")
   );
+
+  console.log("type", type);
 
   let filteredData;
 
