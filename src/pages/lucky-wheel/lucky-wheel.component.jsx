@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import SpinningWheel from "../../components/spinning-wheel/spinning-wheel.component";
+import Modal from "../../components/lucky-wheel-modal/modal.component";
 
 import HandPointUp from "./../../assets/images/icon/hand-point-up.png";
 
@@ -56,6 +57,16 @@ const LuckyWheelPage = () => {
       content: "جایزه 8",
     },
   ];
+  const [modal, setModal] = useState(false);
+
+  const toggleModal = () => {
+    setModal(true);
+  };
+
+  const handlePopupClose = () => {
+    setModal(false);
+  };
+
   return (
     <div className="blue-bg outer-box">
       {/* ---------------- Page Upper Txt ------------------ */}
@@ -78,16 +89,17 @@ const LuckyWheelPage = () => {
         />
       </div>
       {/* ---------------- Spin Btn ------------------ */}
-      <button className="lucky-wheel-page-btn center-absolute">بچرخون</button>
+      <button
+        className="lucky-wheel-page-btn center-absolute"
+        onClick={toggleModal}
+      >
+        بچرخون
+      </button>
       {/* ---------------- Page Lower Txt ------------------ */}
       <p className="want-more-chance center-absolute">
         شــانـس بیشتری برای چـرخونـدن گـردونه می‌خـوای؟
       </p>
       <div className="click-here center-absolute">
-        {/* <i
-          className="fa fa-hand-pointer-o click-here--icon"
-          aria-hidden="true"          
-          ></i> */}
         <img
           className="click-here--icon"
           src={HandPointUp}
@@ -95,6 +107,16 @@ const LuckyWheelPage = () => {
         />
         <p className="click-here--text">اینجا را کلیک کن</p>
       </div>
+      {/* ---------------- modal ------------------ */}
+      {/* prizetype can either be coin or physical-item */}
+      {modal && (
+        <Modal
+          title="50 سکه گلمراد"
+          // prizeType="coin"
+          prizeType="physical-item"
+          onClosePopup={handlePopupClose}
+        />
+      )}
     </div>
   );
 };

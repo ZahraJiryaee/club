@@ -1,0 +1,267 @@
+@import "./../../style.scss";
+
+:root {
+  --popup-width: 37vw;
+  --popup-height: 65vh;
+  --popup-textarea-padding: 20px;
+}
+
+.overlay {
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(3px);
+
+  .popup {
+    position: absolute;
+    top: 50vh;
+    left: 50%;
+    -moz-transform: translateX(-50%) translateY(-50%);
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+
+    width: var(--popup-width);
+    height: var(--popup-height);
+    background-color: white;
+    border-radius: 10px;
+    z-index: 200;
+
+    @media #{$desktop-device} {
+      --popup-width: 45vw;
+      --popup-height: 55vh;
+    }
+    @media #{$tablet-device} {
+      --popup-width: 50vw;
+      --popup-height: 55vh;
+    }
+    @media #{$large-mobile} {
+      --popup-width: 70vw;
+      --popup-height: 60vh;
+    }
+    @media #{$small-mobile} {
+      --popup-width: 100vw;
+      --popup-height: 55vh;
+    }
+    @media #{$extra-small-mobile} {
+      --popup-width: 100vw;
+      --popup-height: 45vh;
+    }
+
+    .bg-hooray {
+      position: absolute;
+      top: 0;
+      background-image: url("./../../assets/images/lucky-wheel/popup/hooray.png");
+      background-position: bottom center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      border-radius: 10px;
+      width: var(--popup-width);
+      height: calc(var(--popup-height) - 10vh);
+
+      &.bg-hooray-coin {
+        height: calc(var(--popup-height) - 10vh);
+      }
+      &.bg-hooray-physical-item {
+        height: calc(var(--popup-height) - 25%);
+      }
+    }
+
+    .ttt {
+      position: relative;
+      width: var(--popup-width);
+      height: var(--popup-height);
+      // background-color: red;
+    }
+
+    .popup-close {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      width: 20px;
+      height: 20px;
+      cursor: pointer;
+
+      @media #{$extra-small-mobile} {
+        width: 15px;
+        height: 15px;
+      }
+    }
+
+    .popup-title {
+      top: 35%;
+
+      direction: rtl;
+      font-size: 34px;
+      font-weight: bold;
+      letter-spacing: -0.82px;
+      color: $theme-color--vermillion;
+      width: 100%;
+      padding: 0 10px;
+
+      &.popup-title-coin {
+        top: 35%;
+      }
+      &.popup-title-coin-prize-received-true {
+        top: 35%;
+      }
+      &.popup-title-physical-item {
+        top: 10%;
+      }
+      &.popup-title-physical-item-prize-received-true {
+        top: 15%;
+      }
+
+      @media #{$extra-small-mobile} {
+        font-size: 25px;
+        line-height: 0.48;
+        letter-spacing: -0.6px;
+      }
+    }
+
+    /*---------------- Prize -----------------*/
+    .popup-prize-btn {
+      top: 42%;
+
+      width: 168px;
+      height: 45px;
+      background-color: $theme-color--marine-blue;
+      color: $theme-color--white;
+      border: none;
+      border-radius: 25px;
+
+      font-family: $font-family-iransans;
+      font-size: 18px;
+      font-weight: 500;
+      line-height: 0.67;
+      letter-spacing: -0.43px;
+
+      cursor: pointer;
+
+      &.popup-prize-btn-coin {
+        top: 70%;
+      }
+      &.popup-prize-btn-coin-prize-received-true {
+        background-color: $theme-color--marine-deep-sky-blue;
+      }
+      &.popup-prize-btn-physical-item {
+        top: 90%;
+        background-color: $theme-color--cool-green;
+      }
+      &.popup-prize-btn-physical-item-prize-received-true {
+        top: 72%;
+        background-color: $theme-color--marine-deep-sky-blue;
+      }
+
+      &:disabled {
+        background-color: $theme-color--brown-grey;
+      }
+
+      @media #{$extra-small-mobile} {
+        width: 150px;
+        height: 40px;
+        font-size: 15px;
+        line-height: 0.8;
+        letter-spacing: -0.36px;
+      }
+    }
+
+    .coin-prize-received-hint {
+      top: 80%;
+
+      direction: rtl;
+      font-size: 12px;
+      font-weight: bold;
+      line-height: 1;
+      letter-spacing: -0.19px;
+      color: $theme-color--dark;
+      width: 100%;
+      padding: 0 10px;
+    }
+
+    .user-address-container {
+      direction: rtl;
+
+      .user-address-label {
+        top: 25%;
+        width: 100%;
+
+        text-align: right;
+        padding-right: calc(var(--popup-textarea-padding) / 2);
+
+        & span:nth-child(2) {
+          color: $theme-color--vermillion;
+          padding-right: 10px;
+        }
+
+        @media #{$extra-small-mobile} {
+          top: 23%;
+        }
+      }
+
+      .user-address {
+        top: 55%;
+
+        background-color: $theme-color--white;
+        border-radius: 10px;
+        // width: calc(var(--popup-width) - var(--popup-textarea-padding));
+        width: calc(100% - var(--popup-textarea-padding));
+        height: calc(var(--popup-height) / 2.4);
+        font-family: $font-family-iransans;
+        text-align: right;
+        padding: 10px 15px;
+
+        border: none;
+        overflow: auto;
+        outline: none;
+        -webkit-box-shadow: none;
+        -moz-box-shadow: none;
+        box-shadow: none;
+        resize: none;
+
+        // @media #{$tablet-device} {
+        //   height: 135px;
+        // }
+      }
+
+      .send-to-user-address {
+        top: 40%;
+
+        font-size: 18px;
+        font-weight: 500;
+        line-height: 1.67;
+        letter-spacing: -0.29px;
+        color: $theme-color--dark;
+        width: 80%;
+
+        & span:nth-child(2) {
+          padding-right: 10px;
+        }
+
+        @media #{$extra-small-mobile} {
+          font-size: 12px;
+          line-height: 1.5;
+          letter-spacing: -0.19px;
+        }
+      }
+
+      .support-number {
+        top: 85%;
+
+        font-size: 13px;
+        font-weight: 500;
+        line-height: 0.92;
+        letter-spacing: -0.21px;
+
+        & span:nth-child(2) {
+          padding-right: 10px;
+        }
+
+        @media #{$extra-small-mobile} {
+          font-size: 10px;
+          line-height: 1.2;
+          letter-spacing: -0.16px;
+        }
+      }
+    }
+  }
+}

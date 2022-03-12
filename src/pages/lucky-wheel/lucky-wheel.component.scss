@@ -14,14 +14,6 @@
   }
 }
 
-.center-absolute {
-  position: absolute;
-  left: 50%;
-  -moz-transform: translateX(-50%) translateY(-50%);
-  -webkit-transform: translateX(-50%) translateY(-50%);
-  transform: translateX(-50%) translateY(-50%);
-}
-
 .outer-box {
   text-align: center;
   position: relative;
