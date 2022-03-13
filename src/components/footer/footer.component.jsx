@@ -19,7 +19,6 @@ import "./footer.styles.scss";
 
 const Footer = () => {
   const { pathname } = useLocation();
-  console.log("path", pathname);
   const MapUrlToIndicatorNum = () => {
     if (pathname.includes("profile")) return -2;
     else if (pathname.includes("shop")) return -1;

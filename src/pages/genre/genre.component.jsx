@@ -14,12 +14,6 @@ const GenrePage = () => {
   const allCategories = useSelector((state) => state.games.allGames);
   const [categoryTitle, setCategoryTitle] = useState("");
 
-  // const type = pathname.substring(
-  //   pathname.indexOf("/") + 7,
-  //   pathname.lastIndexOf("/")
-  // );
-  // const id = pathname.substring(pathname.lastIndexOf("/") + 1);
-
   useEffect(() => {
     if (type === "genre") {
       dispatch(getSelectedGenre(id));
@@ -29,8 +23,6 @@ const GenrePage = () => {
         if (allCategories[i]["id"] === id)
           setCategoryTitle(allCategories[i]["title"]);
       }
-    } else if (type === "search") {
-      setCategoryTitle("نتیجه جستجو");
     }
   });
 

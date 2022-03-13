@@ -18,7 +18,6 @@ const routes = [
       { path: "shop", element: <LuckyWheelPage /> },
       { path: "games/genre/all", element: <GamesPage /> },
       { path: "games/:type/:id", element: <GenrePage /> },
-      { path: "games/category/:id", element: <GenrePage /> },
       { path: "games/search/:id", element: <SearchPage /> },
       { path: "leaderboard", element: <LuckyWheelPage /> },
       { path: "home", element: <LuckyWheelPage /> },

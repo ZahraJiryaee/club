@@ -1,128 +1,130 @@
 @import "../../assets/scss/variables";
 
-.games-page {
-  padding: 18.5px 17.5px 0 0;
-  direction: rtl;
+@media #{$tablet-device,$large-mobile} {
+  .games-page {
+    padding: 18.5px 17.5px 0 0;
+    direction: rtl;
 
-  .category-container {
-    display: flex;
-    width: 95%;
-    justify-content: space-between;
-    margin-bottom: 20px;
-
-    .category-title {
-      font-size: 17px;
-      font-weight: bold;
-      letter-spacing: -0.41px;
-      text-align: center;
-    }
-
-    .more-button {
-      font-size: 12px;
-      font-weight: bold;
-      line-height: 20px;
-      color: $theme-color--medium-blue;
-      padding-bottom: 5px;
-      text-decoration: none;
-    }
-
-    .more-icon {
-      padding: 10px 10px 10px 0;
-      font-size: 10px;
-      color: $theme-color--medium-blue;
-    }
-  }
-
-  .banner-container {
-    margin-bottom: 20px;
-    display: flex;
-    overflow-x: auto;
-    white-space: nowrap;
-
-    &::-webkit-scrollbar {
-      display: none;
-    }
-
-    .banner {
+    .category-container {
+      display: flex;
       width: 95%;
-      height: auto;
-      border-radius: 10px;
-      margin-left: 5px;
+      justify-content: space-between;
+      margin-bottom: 20px;
+
+      .category-title {
+        font-size: 17px;
+        font-weight: bold;
+        letter-spacing: -0.41px;
+        text-align: center;
+      }
+
+      .more-button {
+        font-size: 12px;
+        font-weight: bold;
+        line-height: 20px;
+        color: $theme-color--medium-blue;
+        padding-bottom: 5px;
+        text-decoration: none;
+      }
+
+      .more-icon {
+        padding: 10px 10px 10px 0;
+        font-size: 10px;
+        color: $theme-color--medium-blue;
+      }
     }
-  }
 
-  .row-container {
-    overflow-x: auto;
-    display: flex;
+    .banner-container {
+      margin-bottom: 20px;
+      display: flex;
+      overflow-x: auto;
+      white-space: nowrap;
 
-    &::-webkit-scrollbar {
-      display: none;
+      &::-webkit-scrollbar {
+        display: none;
+      }
+
+      .banner {
+        width: 95%;
+        height: auto;
+        border-radius: 10px;
+        margin-left: 5px;
+      }
     }
 
-    .column-container {
-      margin-left: 2vw;
+    .row-container {
+      overflow-x: auto;
+      display: flex;
 
-      .application-container {
-        display: flex;
-        justify-content: space-between;
-        width: 90vw;
+      &::-webkit-scrollbar {
+        display: none;
+      }
 
-        .application-details {
+      .column-container {
+        margin-left: 2vw;
+
+        .application-container {
           display: flex;
           justify-content: space-between;
+          width: 90vw;
 
-          .icon {
-            width: 65px;
-            height: 60px;
-            border-radius: 10px;
-            box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
-            margin: 0 0 17.5px;
-          }
+          .application-details {
+            display: flex;
+            justify-content: space-between;
 
-          .description {
-            margin-right: 10px;
-            display: inline-grid;
-            height: 60px;
-
-            .title {
-              font-size: 15px;
-              font-weight: 500;
+            .icon {
+              width: 65px;
+              height: 60px;
+              border-radius: 10px;
+              box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+              margin: 0 0 17.5px;
             }
 
-            .short-description {
-              font-size: 10px;
+            .description {
+              margin-right: 10px;
+              display: inline-grid;
+              height: 60px;
+
+              .title {
+                font-size: 15px;
+                font-weight: 500;
+              }
+
+              .short-description {
+                font-size: 10px;
+                font-weight: 500;
+                color: $theme-color--brownish-grey;
+              }
+
+              .install-score {
+                font-size: 10px;
+                font-weight: 500;
+              }
+            }
+          }
+
+          .application-rate {
+            align-items: center;
+            display: flex;
+            padding-bottom: 10px;
+
+            .rate-text {
+              font-size: 12px;
               font-weight: 500;
               color: $theme-color--brownish-grey;
             }
 
-            .install-score {
-              font-size: 10px;
-              font-weight: 500;
+            .rate-icon {
+              width: 16px;
+              height: 14.9px;
+              margin: 0px 4px 3px 0;
             }
           }
         }
-
-        .application-rate {
-          align-items: center;
-          display: flex;
-          padding-bottom: 10px;
-
-          .rate-text {
-            font-size: 12px;
-            font-weight: 500;
-            color: $theme-color--brownish-grey;
-          }
-
-          .rate-icon {
-            width: 16px;
-            height: 14.9px;
-            margin: 0px 4px 3px 0;
-          }
+        .application-divider {
+          width: 67vw;
+          margin: 0 20vw 8px 0;
         }
-      }
-      .application-divider {
-        width: 67vw;
-        margin: 0 20vw 8px 0;
       }
     }
   }

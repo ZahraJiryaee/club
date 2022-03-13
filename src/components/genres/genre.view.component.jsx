@@ -1,20 +1,13 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { useLocation } from "react-router";
+import { useParams } from "react-router";
 
 import { ReactComponent as StarLogo } from "../../assets/images/icon/star.svg";
 
 import "./genre.styles.scss";
 
 const GenreView = ({ title }) => {
-  const { pathname } = useLocation();
-
-  const type = pathname.substring(
-    pathname.indexOf("/") + 7,
-    pathname.lastIndexOf("/")
-  );
-
-  console.log("type", type);
+  const { type } = useParams();
 
   let filteredData;
 
