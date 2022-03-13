@@ -44,7 +44,7 @@ const GenreHeader = () => {
       <div className={`genre-header ${navbarGenreFixed}`}>
         <div className="search-box-container">
           <div className="search-box">
-            <Link onClick={handelSearch} to={`/search/${searchField}`}>
+            <Link onClick={handelSearch} to={`/games/search/${searchField}`}>
               <i className="fa fa-search search-icon" />
             </Link>
             <input
@@ -59,7 +59,7 @@ const GenreHeader = () => {
         <div className="genres-container">
           <ul className="genre-title">
             <NavLink
-              to="/games"
+              to="/games/genre/all"
               className={({ isActive }) =>
                 isActive ? "selected" : "not-selected"
               }
@@ -70,7 +70,7 @@ const GenreHeader = () => {
               return (
                 <NavLink
                   key={genre.id}
-                  to={`/genre/${genre.id}`}
+                  to={`/games/genre/${genre.id}`}
                   className={({ isActive }) =>
                     isActive ? "selected" : "not-selected"
                   }

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useLocation } from "react-router";
+import { useParams } from "react-router";
 
 import { getSelectedGenre } from "../../redux/genres/genres.action";
 import { getSelectedCategory } from "../../redux/games/games.action";
@@ -10,15 +10,9 @@ import GenreView from "../../components/genres/genre.view.component";
 
 const GenrePage = () => {
   const dispatch = useDispatch();
-  const { pathname } = useLocation();
+  const { type, id } = useParams();
   const allCategories = useSelector((state) => state.games.allGames);
   const [categoryTitle, setCategoryTitle] = useState("");
-
-  const type = pathname.substring(
-    pathname.indexOf("/") + 1,
-    pathname.lastIndexOf("/")
-  );
-  const id = pathname.substring(pathname.lastIndexOf("/") + 1);
 
   useEffect(() => {
     if (type === "genre") {
@@ -29,8 +23,6 @@ const GenrePage = () => {
         if (allCategories[i]["id"] === id)
           setCategoryTitle(allCategories[i]["title"]);
       }
-    } else if (type === "search") {
-      setCategoryTitle("نتیجه جستجو");
     }
   });
 

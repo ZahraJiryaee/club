@@ -42,7 +42,7 @@ const Header = () => {
       </div>
       {/* ---------------------- Logo --------------------------- */}
       <div className="logo">
-        <NavLink to="/home">
+        <NavLink to="/lucky-wheel">
           <img src={Logo} alt="navbar-logo" />
         </NavLink>
       </div>

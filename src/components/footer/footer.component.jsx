@@ -19,22 +19,12 @@ import "./footer.styles.scss";
 
 const Footer = () => {
   const { pathname } = useLocation();
-
   const MapUrlToIndicatorNum = () => {
-    switch (pathname) {
-      case "/profile":
-        return -2;
-      case "/shop":
-        return -1;
-      case "/lucky-wheel":
-        return 0;
-      case "/games":
-        return 1;
-      case "/leaderboard":
-        return 2;
-      default:
-      // code block
-    }
+    if (pathname.includes("profile")) return -2;
+    else if (pathname.includes("shop")) return -1;
+    else if (pathname.includes("lucky-wheel")) return 0;
+    else if (pathname.includes("games")) return 1;
+    else if (pathname.includes("leaderboard")) return 2;
   };
 
   return (
@@ -51,11 +41,10 @@ const Footer = () => {
         <div className="footer-container"></div>
         <div className="footer-navigation">
           <ul>
-            <li className={`list ${pathname === "/profile" ? "active" : ""}`}>
-              <NavLink
-                to="/profile"
-                className={({ isActive }) => (isActive ? "selected" : "")}
-              >
+            <li
+              className={`list ${pathname.includes("profile") ? "active" : ""}`}
+            >
+              <NavLink to="/profile">
                 <span className="icon">
                   {pathname === "/profile" ? (
                     <ActiveProfileLogo />
@@ -66,11 +55,8 @@ const Footer = () => {
                 <span className="text">پروفایل</span>
               </NavLink>
             </li>
-            <li className={`list ${pathname === "/shop" ? "active" : ""}`}>
-              <NavLink
-                to="/shop"
-                className={({ isActive }) => (isActive ? "selected" : "")}
-              >
+            <li className={`list ${pathname.includes("shop") ? "active" : ""}`}>
+              <NavLink to="/shop">
                 <span className="icon">
                   {pathname === "/shop" ? <ActiveShopLogo /> : <ShopLogo />}
                 </span>
@@ -78,12 +64,11 @@ const Footer = () => {
               </NavLink>
             </li>
             <li
-              className={`list ${pathname === "/lucky-wheel" ? "active" : ""}`}
+              className={`list ${
+                pathname.includes("lucky-wheel") ? "active" : ""
+              }`}
             >
-              <NavLink
-                to="/lucky-wheel"
-                className={({ isActive }) => (isActive ? "selected" : "")}
-              >
+              <NavLink to="/lucky-wheel">
                 <span className="icon">
                   {pathname === "/lucky-wheel" ? (
                     <ActiveWheelLogo />
@@ -94,24 +79,26 @@ const Footer = () => {
                 <span className="text">گردونه</span>
               </NavLink>
             </li>
-            <li className={`list ${pathname === "/games" ? "active" : ""}`}>
-              <NavLink
-                to="/games"
-                className={({ isActive }) => (isActive ? "selected" : "")}
-              >
+            <li
+              className={`list ${pathname.includes("games") ? "active" : ""}`}
+            >
+              <NavLink to="/games/genre/all">
                 <span className="icon">
-                  {pathname === "/games" ? <ActiveGamesLogo /> : <GamesLogo />}
+                  {pathname.includes("games") ? (
+                    <ActiveGamesLogo />
+                  ) : (
+                    <GamesLogo />
+                  )}
                 </span>
                 <span className="text">بازی‌ها</span>
               </NavLink>
             </li>
             <li
-              className={`list ${pathname === "/leaderboard" ? "active" : ""}`}
+              className={`list ${
+                pathname.includes("leaderboard") ? "active" : ""
+              }`}
             >
-              <NavLink
-                to="/leaderboard"
-                className={({ isActive }) => (isActive ? "selected" : "")}
-              >
+              <NavLink to="/leaderboard">
                 <span className="icon">
                   {pathname === "/leaderboard" ? (
                     <ActiveLeaderBoardLogo />

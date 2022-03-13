@@ -107,13 +107,8 @@
             .text {
               opacity: 1;
               transform: translateY(12px);
+              color: $theme-color--orange;
             }
-          }
-        }
-
-        .selected {
-          .text {
-            color: $theme-color--orange;
           }
         }
 
