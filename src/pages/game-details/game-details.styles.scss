@@ -1,0 +1,71 @@
+@import "./../../style.scss";
+
+.game-details-container {
+  width: 100%;
+  height: auto;
+  padding-top: 50vh;
+  direction: rtl;
+
+  .game-details-icons-container {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 16px;
+
+    .game-details-gameicon-names-container {
+      display: flex;
+      flex-direction: row;
+
+      .gameicon {
+        width: 85px;
+        height: 78px;
+        border-radius: 15px;
+      }
+      .names {
+        padding: 0 10px;
+      }
+    }
+
+    .game-details-shareicon-container {
+      display: flex;
+      margin-top: 40px;
+      .instagramicon {
+        width: 19px;
+        height: 19px;
+      }
+    }
+  }
+
+  .game-detail-list-info-container {
+    ul {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      vertical-align: middle;
+      text-align: center;
+      list-style: none;
+      padding: 0 32px;
+
+      hr {
+        width: 1px;
+        height: 20px;
+        border: solid 1px rgba(131, 131, 131, 0.6);
+      }
+      li {
+        & span:nth-child(1) {
+          font-size: 15px;
+          font-weight: 500;
+          line-height: 1.33;
+          letter-spacing: -0.24px;
+          color: $theme-color--marine-blue;
+        }
+        & span:nth-child(3) {
+          font-size: 12px;
+          font-weight: 500;
+          line-height: 1.67;
+          letter-spacing: -0.19px;
+          color: #838383;
+        }
+      }
+    }
+  }
+}

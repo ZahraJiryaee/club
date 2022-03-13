@@ -1,5 +1,10 @@
 @import "./../../style.scss";
 
+:root {
+  --game-details-header-screenshot-width: 327px;
+  --game-details-header-screenshot-height: 184px;
+}
+
 .game-detail-header-container {
   width: 100%;
   height: auto;
@@ -19,9 +24,24 @@
     border-radius: 0px 0px 10px 10px;
 
     .game-detail-header-swiper {
-      width: 75%;
+      width: 70%;
       padding: 0 8px 40px;
 
+      @media only screen and (max-width: 1490px) {
+        width: 75%;
+      }
+      @media only screen and (max-width: 1390px) {
+        width: 80%;
+      }
+      @media only screen and (max-width: 1290px) {
+        width: 85%;
+      }
+      @media only screen and (max-width: 1190px) {
+        width: 90%;
+      }
+      @media only screen and (max-width: 1090px) {
+        width: 95%;
+      }
       @media #{$tablet-device,$large-mobile} {
         width: 100%;
       }
@@ -32,15 +52,18 @@
       .swiper-slide {
         display: grid;
         justify-content: center;
-        width: 327px !important;
-        height: 184px;
-        margin: 0 8px;
+        width: calc(
+          var(--game-details-header-screenshot-width) + 16px
+        ) !important;
+        height: var(--game-details-header-screenshot-height);
+        margin: auto;
       }
 
       img {
         border-radius: 10px;
-        width: 327px !important;
-        height: 184px;
+        width: var(--game-details-header-screenshot-width) !important;
+        height: var(--game-details-header-screenshot-height);
+        margin: 0 8px;
 
         @media #{$small-mobile} {
           -webkit-backdrop-filter: blur(30px);

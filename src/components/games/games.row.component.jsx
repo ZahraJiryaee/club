@@ -8,8 +8,8 @@ import "../../pages/games/games.styles.scss";
 function Column({ data }) {
   let navigate = useNavigate();
 
-  const navigateToGameDetails = (id) => {
-    return navigate(`/games/detail/${id}`);
+  const navigateToGameDetails = (application) => {
+    return navigate(`/games/detail/${application.id}`, { state: application });
   };
 
   return (
@@ -23,12 +23,12 @@ function Column({ data }) {
                   className="icon"
                   src={application.source.icon}
                   alt="icon"
-                  onClick={() => navigateToGameDetails(application.id)}
+                  onClick={() => navigateToGameDetails(application)}
                 />
                 <div className="description">
                   <span
                     className="title"
-                    onClick={() => navigateToGameDetails(application.id)}
+                    onClick={() => navigateToGameDetails(application)}
                   >
                     {application.name}
                   </span>
