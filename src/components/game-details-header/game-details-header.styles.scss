@@ -1,0 +1,53 @@
+@import "./../../style.scss";
+
+.game-detail-header-container {
+  width: 100%;
+  height: auto;
+  background-color: $theme-color--navbar-medium-blue;
+
+  .game-detail-header {
+    position: fixed;
+    margin-top: calc($navbar-height - 0.1vh);
+    background-image: linear-gradient(
+      to bottom,
+      $theme-color--navbar-medium-blue,
+      $theme-color--navbar-light-blue
+    );
+    width: 100%;
+    height: auto;
+    padding: 30px 0 0px;
+    border-radius: 0px 0px 10px 10px;
+
+    .game-detail-header-swiper {
+      width: 75%;
+      padding: 0 8px 40px;
+
+      @media #{$tablet-device,$large-mobile} {
+        width: 100%;
+      }
+      @media #{$small-mobile} {
+        padding: 0 8px 50px;
+      }
+
+      .swiper-slide {
+        display: grid;
+        justify-content: center;
+        width: 327px !important;
+        height: 184px;
+        margin: 0 8px;
+      }
+
+      img {
+        border-radius: 10px;
+        width: 327px !important;
+        height: 184px;
+
+        @media #{$small-mobile} {
+          -webkit-backdrop-filter: blur(30px);
+          backdrop-filter: blur(30px);
+          box-shadow: -3px 3px 6px 0 rgba(0, 0, 0, 0.33);
+        }
+      }
+    }
+  }
+}

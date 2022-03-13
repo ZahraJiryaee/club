@@ -10,6 +10,7 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 
 import "./style.scss";
+import "swiper/css/bundle";
 
 ReactDOM.render(
   <React.StrictMode>

@@ -1,10 +1,17 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 import { ReactComponent as StarLogo } from "../../assets/images/icon/star.svg";
 
 import "../../pages/games/games.styles.scss";
 
 function Column({ data }) {
+  let navigate = useNavigate();
+
+  const navigateToGameDetails = (id) => {
+    return navigate(`/games/detail/${id}`);
+  };
+
   return (
     <div>
       {data.map((application, index) => {
@@ -16,9 +23,15 @@ function Column({ data }) {
                   className="icon"
                   src={application.source.icon}
                   alt="icon"
+                  onClick={() => navigateToGameDetails(application.id)}
                 />
                 <div className="description">
-                  <span className="title">{application.name}</span>
+                  <span
+                    className="title"
+                    onClick={() => navigateToGameDetails(application.id)}
+                  >
+                    {application.name}
+                  </span>
                   <span className="short-description">
                     {application.short_description}
                   </span>
