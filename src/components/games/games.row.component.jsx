@@ -3,13 +3,15 @@ import { useNavigate } from "react-router-dom";
 
 import { ReactComponent as StarLogo } from "../../assets/images/icon/star.svg";
 
-import "../../pages/games/games.styles.scss";
+import "./games.row.styles.scss";
 
-function Column({ data }) {
+function Column({ data, category }) {
   let navigate = useNavigate();
 
   const navigateToGameDetails = (application) => {
-    return navigate(`/games/detail/${application.id}`, { state: application });
+    return navigate(`/games/detail/${application.id}`, {
+      state: { application: application, category: category },
+    });
   };
 
   return (
@@ -75,7 +77,9 @@ const RowGames = ({ category }) => {
       {data.map((columnData, index) => {
         return (
           <div key={index} className="column-container">
-            {index !== 2 ? <Column data={columnData} /> : null}
+            {index !== 2 ? (
+              <Column data={columnData} category={category} />
+            ) : null}
           </div>
         );
       })}

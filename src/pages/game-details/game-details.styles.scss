@@ -4,7 +4,9 @@
   width: 100%;
   height: auto;
   padding-top: 50vh;
+  padding-bottom: calc(var(--footer-height) + 30px);
   direction: rtl;
+  background-color: $white;
 
   .game-details-icons-container {
     display: flex;
@@ -36,6 +38,7 @@
   }
 
   .game-detail-list-info-container {
+    margin-bottom: 20px;
     ul {
       display: flex;
       flex-direction: row;
@@ -57,6 +60,10 @@
           line-height: 1.33;
           letter-spacing: -0.24px;
           color: $theme-color--marine-blue;
+
+          svg {
+            padding: 0 2px;
+          }
         }
         & span:nth-child(3) {
           font-size: 12px;
@@ -66,6 +73,76 @@
           color: #838383;
         }
       }
+    }
+
+    .install-btn {
+      display: block;
+      margin: auto;
+
+      width: 225px;
+      height: 40px;
+      padding: 8px 96.5px 8px 96.5px;
+      border: 1px solid $theme-color--marine-blue;
+      border-radius: 20px;
+      background-color: $theme-color--marine-blue;
+
+      font-family: IranSans;
+      font-size: 15px;
+      font-weight: 500;
+      line-height: 0.8;
+      letter-spacing: -0.36px;
+      text-align: center;
+      color: #efeff4;
+    }
+  }
+
+  .game-detail-intro-container {
+    margin: 0 16px;
+
+    .game-detail-intro {
+      font-size: 12px;
+      font-weight: 500;
+      line-height: 1.83;
+      letter-spacing: -0.29px;
+      text-align: right;
+      color: rgba(24, 39, 55, 0.65);
+    }
+  }
+
+  .game-detail-simiral-games-container {
+    direction: rtl;
+    .game-detail-header {
+      margin: 16px 16px 0;
+    }
+  }
+}
+
+.game-detail-header {
+  display: flex;
+  justify-content: space-between;
+
+  .title {
+    font-size: 17px;
+    font-weight: bold;
+    line-height: 0.71;
+    letter-spacing: -0.41px;
+    text-align: center;
+    color: $theme-color--dark;
+  }
+
+  .more {
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1.67;
+    letter-spacing: -0.19px;
+    text-align: left;
+    color: $theme-color--marine-blue;
+
+    img {
+      width: 5.7px;
+      height: 10px;
+      margin-right: 8px;
+      vertical-align: middle;
     }
   }
 }

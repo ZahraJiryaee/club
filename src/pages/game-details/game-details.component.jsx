@@ -2,15 +2,18 @@ import React from "react";
 import { useLocation } from "react-router-dom";
 
 import GameDetailHeader from "../../components/game-details-header/game-details-header.componetnt";
+import RowGames from "../../components/games/games.row.component";
 
 import InstagramIcon from "../../assets/images/icon/instagram.png";
+import ArrowIconMB from "../../assets/images/icon/arrow-back-marineblue.png";
 import { ReactComponent as StarLogo } from "../../assets/images/icon/star.svg";
 
 import "./game-details.styles.scss";
 
 const GameDetails = () => {
-  const { state: application } = useLocation();
-  console.log("application:", application);
+  const {
+    state: { application, category },
+  } = useLocation();
 
   return (
     <div>
@@ -39,6 +42,7 @@ const GameDetails = () => {
             />
           </div>
         </div>
+        {/* lists */}
         <div className="game-detail-list-info-container">
           <ul>
             <li>
@@ -49,10 +53,8 @@ const GameDetails = () => {
             <hr />
             <li>
               <span>
-                <span>4.8 </span>
-                <span>
-                  <StarLogo style={{ marginTop: "10px" }} />
-                </span>
+                4.8
+                <StarLogo />
               </span>
               <br />
               <span>6012</span>
@@ -70,6 +72,29 @@ const GameDetails = () => {
               <span>مدریک</span>
             </li>
           </ul>
+          <button className="install-btn">نصب</button>
+        </div>
+        {/* intro */}
+        <div className="game-detail-intro-container">
+          <div className="game-detail-header">
+            <p className="title">معرفی برنامه</p>
+            <p className="more">
+              بیشتر
+              <img src={ArrowIconMB} alt="arrow-back" />
+            </p>
+          </div>
+          <div className="game-detail-intro">{application.description}</div>
+        </div>
+        {/* simiral games */}
+        <div className="game-detail-simiral-games-container">
+          <div className="game-detail-header">
+            <p className="title">بازیهای مشابه</p>
+            <p className="more">
+              بیشتر
+              <img src={ArrowIconMB} alt="arrow-back" />
+            </p>
+          </div>
+          <RowGames category={category} />
         </div>
       </div>
     </div>
