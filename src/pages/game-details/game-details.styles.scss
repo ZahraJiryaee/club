@@ -23,13 +23,31 @@
         border-radius: 15px;
       }
       .names {
-        padding: 0 10px;
+        margin: 10px 10px;
+
+        .name {
+          font-size: 17px;
+          font-weight: bold;
+          line-height: 2;
+          letter-spacing: -0.41px;
+          text-align: center;
+          color: $theme-color--dark;
+        }
+        .short-des {
+          font-size: 13px;
+          font-weight: 500;
+          line-height: 1.54;
+          letter-spacing: -0.21px;
+          text-align: left;
+          color: $theme-color--brownish-grey;
+        }
       }
     }
 
     .game-details-shareicon-container {
       display: flex;
-      margin-top: 40px;
+      margin-top: auto;
+      margin-bottom: 10px;
       .instagramicon {
         width: 19px;
         height: 19px;

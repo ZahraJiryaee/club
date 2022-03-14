@@ -14,6 +14,7 @@ const GameDetails = () => {
   const {
     state: { application, category },
   } = useLocation();
+  console.log("application:", application);
 
   return (
     <div>
@@ -29,9 +30,9 @@ const GameDetails = () => {
               alt="game-icon"
             />
             <p className="names">
-              <span>{application.name}</span>
+              <span className="name">{application.name}</span>
               <br />
-              <span>{application.short_description}</span>
+              <span className="short-des">{application.short_description}</span>
             </p>
           </div>
           <div className="game-details-shareicon-container">
@@ -46,14 +47,14 @@ const GameDetails = () => {
         <div className="game-detail-list-info-container">
           <ul>
             <li>
-              <span>30+ هزار</span>
+              <span>+30 هزار</span>
               <br />
               <span>نصب فعال</span>
             </li>
             <hr />
             <li>
               <span>
-                4.8
+                {application.rate}
                 <StarLogo />
               </span>
               <br />
