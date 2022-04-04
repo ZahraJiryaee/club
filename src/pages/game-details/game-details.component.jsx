@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
 
 import GameDetailHeader from "../../components/game-details-header/game-details-header.componetnt";
@@ -15,6 +15,7 @@ const GameDetails = () => {
     state: { application, category },
   } = useLocation();
   console.log("application:", application);
+  const [showMore, setShowMore] = useState(false);
 
   return (
     <div>
@@ -79,12 +80,25 @@ const GameDetails = () => {
         <div className="game-detail-intro-container">
           <div className="game-detail-header">
             <p className="title">معرفی برنامه</p>
-            <p className="more">
-              بیشتر
+            <p className="more" onClick={() => setShowMore(!showMore)}>
+              {showMore ? "کمتر" : "بیشتر"}
               <img src={ArrowIconMB} alt="arrow-back" />
             </p>
           </div>
-          <div className="game-detail-intro">{application.description}</div>
+          <div
+            className={`game-detail-intro-mobile ${
+              showMore ? "full-height" : ""
+            }`}
+          >
+            {showMore
+              ? application.description
+              : application.description.length > 300
+              ? `${application.description.substring(0, 300)} ...`
+              : application.description}
+          </div>
+          <div className="game-detail-intro-tabdes">
+            {application.description}
+          </div>
         </div>
         {/* simiral games */}
         <div className="game-detail-simiral-games-container">
