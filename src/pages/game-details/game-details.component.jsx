@@ -21,60 +21,65 @@ const GameDetails = () => {
     <div>
       {/* header */}
       <GameDetailHeader screenshots={application.source.screenshots} />
-      {/* icon-socal */}
+      {/* icon-social */}
+
       <div className="game-details-container">
-        <div className="game-details-icons-container">
-          <div className="game-details-gameicon-names-container">
-            <img
-              className="gameicon"
-              src={application.source.icon}
-              alt="game-icon"
-            />
-            <p className="names">
-              <span className="name">{application.name}</span>
-              <br />
-              <span className="short-des">{application.short_description}</span>
-            </p>
+        <div className="game-detail-icon-list-responsive-controller">
+          <div className="game-details-icons-container">
+            <div className="game-details-gameicon-names-container">
+              <img
+                className="gameicon"
+                src={application.source.icon}
+                alt="game-icon"
+              />
+              <p className="names">
+                <span className="name">{application.name}</span>
+                <br />
+                <span className="short-des">
+                  {application.short_description}
+                </span>
+              </p>
+            </div>
+            <div className="game-details-shareicon-container">
+              <img
+                className="instagramicon"
+                src={InstagramIcon}
+                alt="instagram-icon"
+              />
+            </div>
           </div>
-          <div className="game-details-shareicon-container">
-            <img
-              className="instagramicon"
-              src={InstagramIcon}
-              alt="instagram-icon"
-            />
+          {/* lists */}
+          <div className="game-detail-list-info-container">
+            <ul>
+              <li>
+                <span>+30 هزار</span>
+                <br />
+                <span>نصب فعال</span>
+              </li>
+              <hr />
+              <li>
+                <span>
+                  {application.rate}
+                  <StarLogo />
+                </span>
+                <br />
+                <span>6012</span>
+              </li>
+              <hr />
+              <li>
+                <span>حجم</span>
+                <br />
+                <span>2 مگابایت</span>
+              </li>
+              <hr />
+              <li>
+                <span>سازنده</span>
+                <br />
+                <span>مدریک</span>
+              </li>
+            </ul>
+            <button className="install-btn">نصب</button>
           </div>
-        </div>
-        {/* lists */}
-        <div className="game-detail-list-info-container">
-          <ul>
-            <li>
-              <span>+30 هزار</span>
-              <br />
-              <span>نصب فعال</span>
-            </li>
-            <hr />
-            <li>
-              <span>
-                {application.rate}
-                <StarLogo />
-              </span>
-              <br />
-              <span>6012</span>
-            </li>
-            <hr />
-            <li>
-              <span>حجم</span>
-              <br />
-              <span>2 مگابایت</span>
-            </li>
-            <hr />
-            <li>
-              <span>سازنده</span>
-              <br />
-              <span>مدریک</span>
-            </li>
-          </ul>
-          <button className="install-btn">نصب</button>
         </div>
         {/* intro */}
         <div className="game-detail-intro-container">
