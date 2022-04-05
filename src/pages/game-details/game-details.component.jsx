@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 import GameDetailHeader from "../../components/game-details-header/game-details-header.componetnt";
 import RowGames from "../../components/games/games.row.component";
@@ -11,6 +11,7 @@ import { ReactComponent as StarLogo } from "../../assets/images/icon/star.svg";
 import "./game-details.styles.scss";
 
 const GameDetails = () => {
+  let navigate = useNavigate();
   const {
     state: { application, category },
   } = useLocation();
@@ -107,8 +108,11 @@ const GameDetails = () => {
         </div>
         {/* simiral games */}
         <div className="game-detail-simiral-games-container">
-          <div className="game-detail-header">
-            <p className="title">بازیهای مشابه</p>
+          <div
+            className="game-detail-header"
+            onClick={() => navigate(`/games/category/${category.id}`)}
+          >
+            <p className="title">بازی‌های مشابه</p>
             <p className="more">
               بیشتر
               <img src={ArrowIconMB} alt="arrow-back" />

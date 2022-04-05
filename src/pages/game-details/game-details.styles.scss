@@ -22,6 +22,7 @@
   padding-bottom: calc(var(--footer-height) + 30px);
   direction: rtl;
   background-color: $white;
+  min-height: 100vh;
 
   .game-details-icons-container {
     display: flex;
@@ -197,13 +198,11 @@
 
       width: 270px;
       height: 50px;
-      // margin: 28px 617px 48px 165px;
       padding: 8.5px 112px 8.5px 112px;
 
       @media #{$tablet-device, $large-mobile} {
         width: 270px;
         height: 45px;
-        // margin: 15px 65.5px 53px 83px;
         padding: 8.5px 116px;
       }
       @media #{$extra-small-mobile} {
