@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 
 import GameDetailHeader from "../../components/game-details-header/game-details-header.componetnt";
 import RowGames from "../../components/games/games.row.component";
+import DownloadAppsBottomSheet from "../../components/download-apps-bottom-sheet/download-apps-bottom-sheet.component";
 
 import InstagramIcon from "../../assets/images/icon/instagram.png";
 import ArrowIconMB from "../../assets/images/icon/arrow-back-marineblue.png";
@@ -17,15 +18,17 @@ const GameDetails = () => {
   } = useLocation();
   console.log("application:", application);
   const [showMore, setShowMore] = useState(false);
+  const [openBtmSheet, setOpenBtmSheet] = useState(false);
 
   return (
     <div>
       {/* header */}
       <GameDetailHeader screenshots={application.source.screenshots} />
-      {/* icon-social */}
 
+      {/* content */}
       <div className="game-details-container">
         <div className="game-detail-icon-list-responsive-controller">
+          {/* game name,des,icons */}
           <div className="game-details-icons-container">
             <div className="game-details-gameicon-names-container">
               <img
@@ -79,7 +82,12 @@ const GameDetails = () => {
                 <span>مدریک</span>
               </li>
             </ul>
-            <button className="install-btn">نصب</button>
+            <button
+              className="install-btn"
+              onClick={() => setOpenBtmSheet(true)}
+            >
+              نصب
+            </button>
           </div>
         </div>
         {/* intro */}
@@ -121,6 +129,13 @@ const GameDetails = () => {
           <RowGames category={category} />
         </div>
       </div>
+
+      {/* Bottom Sheet */}
+      <DownloadAppsBottomSheet
+        open={openBtmSheet}
+        setOpen={(e) => setOpenBtmSheet(e)}
+        downloadLinks={application.link}
+      />
     </div>
   );
 };
