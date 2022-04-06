@@ -117,5 +117,6 @@ $laptop-device: "only screen and (min-width: 1200px) and (max-width: 1499px)";
 $desktop-device: "only screen and (min-width: 992px) and (max-width: 1199px)";
 $tablet-device: "only screen and (min-width: 768px) and (max-width: 991px)";
 $large-mobile: "only screen and (max-width: 768px)";
+$large-mobile-only: "only screen and (min-width: 576px) and (max-width: 768px)";
 $small-mobile: "only screen and (max-width: 575px)";
 $extra-small-mobile: "only screen and (max-width: 479px)";

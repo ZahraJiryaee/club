@@ -4,12 +4,13 @@
   display: flex;
   justify-content: space-between;
 
-  margin: 0 10%;
+  margin: 0 5%;
 
   @media #{$tablet-device, $large-mobile} {
-    margin: 0 5%;
+    margin: 0 2%;
   }
   @media #{$small-mobile} {
+    margin: 0 16px;
     display: block;
     margin: auto;
   }
@@ -222,12 +223,12 @@
     color: rgba(24, 39, 55, 0.65);
     text-align: justify;
 
-    margin: 0 calc(10% + 16px);
+    margin: 0 calc(5% + 16px) 20px;
     @media #{$tablet-device, $large-mobile} {
-      margin: 0 calc(5% + 16px);
+      margin: 0 calc(2% + 16px) 20px;
     }
     @media #{$small-mobile} {
-      margin: 0 16px;
+      margin: 0 16px 20px;
     }
 
     .game-detail-intro-tabdes {
@@ -267,9 +268,9 @@
   .game-detail-simiral-games-container {
     direction: rtl;
 
-    margin: 0 calc(10% + 16px);
+    margin: 0 calc(5% + 16px);
     @media #{$tablet-device, $large-mobile} {
-      margin: 0 calc(5% + 16px);
+      margin: 0 calc(2% + 16px);
     }
     @media #{$small-mobile} {
       margin: 16px 16px 0;
