@@ -19,11 +19,11 @@
 .game-details-container {
   width: 100%;
   height: auto;
-  padding-top: calc(var(--game-details-header-screenshot-height) * 2);
+  padding-top: 2.5rem;
   padding-bottom: calc(var(--footer-height) + 30px);
   direction: rtl;
   background-color: $white;
-  min-height: 100vh;
+  min-height: calc(100vh - var(--game-details-header-screenshot-height) * 2);
 
   .game-details-icons-container {
     display: flex;
