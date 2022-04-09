@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router";
 
@@ -7,6 +8,8 @@ import { ReactComponent as StarLogo } from "../../assets/images/icon/star.svg";
 import "./genre.styles.scss";
 
 const GenreView = ({ title }) => {
+  let navigate = useNavigate();
+
   const { type } = useParams();
 
   let filteredData;
@@ -28,7 +31,17 @@ const GenreView = ({ title }) => {
         return (
           <div key={application.id}>
             <div className="application-container">
-              <div className="application-details">
+              <div
+                className="application-details"
+                onClick={() => {
+                  return navigate(`/games/detail/${application.id}`, {
+                    state: {
+                      application: application,
+                      category: { applications: [] },
+                    },
+                  });
+                }}
+              >
                 <img
                   className="icon"
                   src={application.source.icon}

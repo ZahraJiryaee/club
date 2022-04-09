@@ -1,8 +1,11 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 import "../../pages/games/games.styles.scss";
 
 const BannerGames = ({ category }) => {
+  let navigate = useNavigate();
+
   return (
     <div className="banner-container">
       {category.applications.map((application) => {
@@ -12,6 +15,11 @@ const BannerGames = ({ category }) => {
             className="banner"
             src={application.source.banner}
             alt="banner"
+            onClick={() => {
+              return navigate(`/games/detail/${application.id}`, {
+                state: { application: application, category: category },
+              });
+            }}
           />
         );
       })}
