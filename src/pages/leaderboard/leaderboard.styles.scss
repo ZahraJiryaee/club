@@ -2,11 +2,40 @@
 
 .leaderboard-container {
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
   background-color: $white;
-  padding-top: 50%;
+  padding-top: 10rem;
+  padding-bottom: calc(var(--footer-height) + 30px);
+  direction: rtl;
 
-  h1 {
-    padding-top: 200px;
+  .leaderborad-topusers-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin: 5% 10%;
+    gap: 1rem 3rem;
+    @media #{$small-mobile} {
+      grid-template-columns: 1fr;
+    }
+    .each-user {
+      border: 1px solid black;
+
+      @media #{$small-mobile} {
+        &:nth-child(n + 8) {
+          display: none;
+        }
+      }
+
+      &.loggedin-user {
+        display: grid;
+        background-color: red;
+      }
+
+      &.loggedin-user-wide {
+        grid-column: span 2;
+        @media #{$small-mobile} {
+          grid-column: auto;
+        }
+      }
+    }
   }
 }
