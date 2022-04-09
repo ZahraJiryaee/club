@@ -9,7 +9,7 @@ import "./leaderboard.styles.scss";
 const LeaderBoardPage = () => (
   <div>
     {/* header */}
-    <LeaderboardHeader />
+    <LeaderboardHeader top3={topUsers.slice(0, 3)} />
 
     {/* content */}
     <div className="leaderboard-container">
