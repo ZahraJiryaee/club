@@ -6,6 +6,14 @@ import Crown from "./../../assets/images/icon/crown.png";
 import "./leaderboard-header.styles.scss";
 
 const LeaderboardHeader = ({ top3 }) => {
+  const handleLeaderboardCheckboxChange = (event) => {
+    /*
+    true:general
+    false:weekly
+    */
+    console.log("checkbox:", event.target.checked);
+  };
+
   let indexedTop3 = [...top3];
   for (let i = 0; i < top3.length; i++) {
     indexedTop3[i].index = i + 1;
@@ -14,7 +22,22 @@ const LeaderboardHeader = ({ top3 }) => {
   return (
     <div className="leaderboard-header-container">
       <div className="leaderboard-header">
-        <p>lb header</p>
+        {/* ------------------------- Switch ---------------------------- */}
+        <div className="checkbox-container">
+          <div className="checkbox-cover">
+            <input
+              type="checkbox"
+              className="checkbox"
+              onChange={(e) => handleLeaderboardCheckboxChange(e)}
+            />
+            <div className="knobs">
+              <span>هفتگی</span>
+            </div>
+            <div className="layer"></div>
+            <div className="separator"></div>
+          </div>
+        </div>
+        {/* ------------------------- Top3 ---------------------------- */}
         <div className="top-three">
           {[indexedTop3[2], indexedTop3[0], indexedTop3[1]].map((user) => (
             <div key={user.id}>

@@ -2,12 +2,139 @@
 
 :root {
   --leaderboard-user-avatar-size: 78px;
+  --leaderboard-switch-width: 400px;
+  --leaderboard-switch-height: 40px;
+  --leaderboard-switch-knobs-height: 30px;
+  --leaderboard-switch-padding: 7px;
+  --leaderboard-switch-transition: 1s ease all;
 }
 
 .leaderboard-header-container {
   width: 100%;
   height: auto;
   //   background-color: $theme-color--navbar-medium-blue;
+
+  /* ------------------------- Switch ---------------------------- */
+  .checkbox-container {
+    margin: 20px 0 40px;
+    position: relative;
+
+    @media #{$tablet-device,$large-mobile} {
+      margin: 5px 0 45px;
+    }
+    @media #{$small-mobile} {
+      margin: 5px 0 30px;
+    }
+
+    .checkbox-cover {
+      position: relative;
+      width: var(--leaderboard-switch-width);
+      height: var(--leaderboard-switch-height);
+      margin: auto;
+      overflow: hidden;
+      border-radius: 20px;
+
+      .checkbox {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        padding: 0;
+        margin: 0;
+        opacity: 0;
+        cursor: pointer;
+        z-index: 3;
+      }
+
+      .knobs,
+      .layer {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+      }
+
+      .layer {
+        width: 100%;
+        background: rgba(255, 255, 255, 0.56);
+        transition: var(--leaderboard-switch-transition);
+        z-index: 1;
+      }
+
+      .knobs {
+        z-index: 2;
+        color: $theme-color--dark;
+        font-size: 15px;
+        font-weight: 500;
+        line-height: 1.4;
+        letter-spacing: -0.24px;
+        text-align: center;
+        @media #{$small-mobile} {
+          font-size: 13px;
+          line-height: 1.62;
+          letter-spacing: -0.21px;
+        }
+
+        &:after,
+        &:before,
+        span {
+          position: absolute;
+          bottom: 0;
+          top: 0;
+          margin: auto;
+          width: calc(
+            (var(--leaderboard-switch-width) / 2) - 2 *
+              var(--leaderboard-switch-padding)
+          );
+          height: var(--leaderboard-switch-knobs-height);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          transition: var(--leaderboard-switch-transition);
+        }
+
+        &:before {
+          content: "";
+          left: var(--leaderboard-switch-padding);
+          background-color: rgba(255, 159, 10, 0.85);
+          border-radius: 14px;
+          box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.16);
+          border: solid 1px rgba(0, 0, 0, 0.04);
+        }
+
+        &:after {
+          content: "کل";
+          right: var(--leaderboard-switch-padding);
+        }
+
+        span {
+          left: var(--leaderboard-switch-padding);
+          z-index: 1;
+        }
+      }
+
+      .checkbox:checked + .knobs:before {
+        left: calc(
+          var(--leaderboard-switch-width) / 2 +
+            var(--leaderboard-switch-padding)
+        );
+      }
+
+      .separator {
+        position: absolute;
+        width: 1px;
+        height: 16px;
+        background: #8e8e93;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+        left: 0;
+        right: 0;
+        z-index: 10;
+      }
+    }
+  }
+  /* ------------------------- Top3 ---------------------------------*/
 
   .leaderboard-header {
     position: fixed;
@@ -19,7 +146,6 @@
     );
     width: 100%;
     height: auto;
-    padding: 30px 0 0px;
     border-radius: 0px 0px 10px 10px;
     overflow: hidden;
 
@@ -33,7 +159,6 @@
       gap: 5rem;
       vertical-align: middle;
       text-align: center;
-      background-color: red;
 
       :nth-child(odd) {
         transform: translateY(15px);
@@ -177,5 +302,16 @@
 @media #{$small-mobile} {
   .leaderboard-header-container {
     --leaderboard-user-avatar-size: 60px;
+    --leaderboard-switch-width: 311px;
+    --leaderboard-switch-height: 36px;
+    --leaderboard-switch-knobs-height: 28px;
+    --leaderboard-switch-padding: 5px;
+  }
+}
+
+@media #{$extra-small-mobile} {
+  .leaderboard-header-container {
+    --leaderboard-switch-width: 215px;
+    --leaderboard-switch-padding: 5px;
   }
 }
