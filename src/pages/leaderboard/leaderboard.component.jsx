@@ -13,7 +13,7 @@ const LeaderBoardPage = () => (
 
     {/* content */}
     <div className="leaderboard-container">
-      <p>جدول رده‌بندی</p>
+      <p className="leaderborad-topusers-grid-txt">جدول رده‌بندی</p>
       <div className="leaderborad-topusers-grid">
         {topUsers.map(
           (user, index) =>
@@ -21,10 +21,24 @@ const LeaderBoardPage = () => (
               <div
                 key={index}
                 className={`each-user ${user.user ? "loggedin-user" : ""} ${
-                  user.user && index > 14 ? "loggedin-user-wide" : ""
-                }`}
+                  user.user && index > 14 ? "loggedin-user-in-middle" : ""
+                } ${!user.prize ? "extract-prize" : ""}`}
               >
-                {user.name} - {user.id}
+                <span className="user-index">{index + 1}</span>
+                <div className="user-record">
+                  <div className="user--avatar-name-score">
+                    <img
+                      src="https://cdn3.iconfinder.com/data/icons/avatars-round-flat/33/avat-01-512.png"
+                      alt="user-avater"
+                      className="avatar"
+                    />
+                    <span className="name-score">
+                      <div>{user.name}</div>
+                      <div>{user.score} امتیاز</div>
+                    </span>
+                  </div>
+                  <div className="user-prize">{user.prize}</div>
+                </div>
               </div>
             )
         )}
