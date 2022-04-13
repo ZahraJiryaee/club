@@ -1,7 +1,7 @@
 @import "./../../style.scss";
 
 :root {
-  --leaderboard-user-record-height: 50px;
+  --leaderboard-user-record-height: 5vh;
 }
 
 .leaderboard-container {
@@ -15,7 +15,7 @@
     line-height: 0.46;
     letter-spacing: -0.62px;
     color: $theme-color--dark;
-    margin: 40px 5%;
+    margin: 4vh 5%;
     @media #{$large-mobile} {
       margin: 3vh 5%;
       font-size: 17px;
@@ -37,6 +37,7 @@
       // border: 1px solid black;
       display: flex;
       align-items: center;
+      justify-content: center;
       gap: 1rem;
 
       @media #{$large-mobile} {
@@ -66,14 +67,13 @@
       .user-index {
         font-size: 15px;
         font-weight: bold;
-        line-height: 1.33;
-        letter-spacing: -0.24px;
         color: $theme-color--orange;
+        width: 15px;
+        display: flex;
+        justify-content: center;
 
         @media #{$large-mobile} {
           font-size: 12px;
-          line-height: 1.67;
-          letter-spacing: -0.19px;
         }
       }
 
@@ -102,27 +102,23 @@
             :nth-child(1) {
               font-size: 13px;
               font-weight: 500;
-              line-height: 1.62;
+              line-height: 1.5;
               letter-spacing: 0.12px;
               color: $theme-color--dark;
               @media #{$large-mobile} {
                 font-size: 10px;
                 font-weight: 500;
-                line-height: 1.9;
-                letter-spacing: 0.09px;
               }
             }
             :nth-child(2) {
               font-size: 10px;
               font-weight: 500;
-              line-height: 2.3;
+              line-height: 1.5;
               letter-spacing: -0.16px;
               color: $theme-color--brownish-grey;
               @media #{$large-mobile} {
                 font-size: 8px;
                 font-weight: 500;
-                line-height: 2.5;
-                letter-spacing: -0.13px;
               }
             }
           }
@@ -149,22 +145,22 @@
           .name-score {
             display: flex;
             justify-content: space-between;
+            :nth-child(1) {
+              line-height: normal;
+            }
             :nth-child(2) {
-              // score
+              /* score */
               position: absolute;
               left: 1rem;
               margin: auto;
               color: $theme-color--marine-blue;
               font-size: 13px;
               font-weight: 500;
-              line-height: 1.69;
-              letter-spacing: -0.21px;
+              line-height: normal;
 
               @media #{$large-mobile} {
                 font-size: 10px;
                 font-weight: 500;
-                line-height: 2;
-                letter-spacing: -0.16px;
               }
             }
           }
@@ -177,8 +173,8 @@
   }
 }
 
-@media #{$large-mobile} {
+@media #{$tablet-device,$large-mobile} {
   .leaderboard-container {
-    --leaderboard-user-record-height: 35px;
+    --leaderboard-user-record-height: 4vh;
   }
 }

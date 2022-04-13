@@ -1,28 +1,30 @@
 @import "./../../style.scss";
 
 :root {
-  --leaderboard-user-avatar-size: 78px;
+  --leaderboard-user-avatar-size: 8vh;
+  --leaderboard-user-avatar-translateY: -3vh;
   --leaderboard-switch-width: 400px;
-  --leaderboard-switch-height: 40px;
-  --leaderboard-switch-knobs-height: 30px;
+  --leaderboard-switch-height: 4vh;
+  --leaderboard-switch-knobs-height: calc(
+    var(--leaderboard-switch-height) * 0.75
+  );
   --leaderboard-switch-padding: 7px;
-  --leaderboard-switch-transition: 1s ease all;
+  --leaderboard-switch-transition: 0.7s ease all;
 }
 
 .leaderboard-header-container {
   width: 100%;
   height: auto;
   position: relative;
-  box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.1);
   //   background-color: $theme-color--navbar-medium-blue;
 
   /* ------------------------- Switch ---------------------------- */
   .checkbox-container {
-    margin: 3vh 0 5vh;
+    margin: 2vh 0;
     position: relative;
 
     @media #{$small-mobile} {
-      margin: 3vh 0 4vh;
+      margin: 1vh 0;
     }
 
     .checkbox-cover {
@@ -133,10 +135,19 @@
       }
     }
   }
+  /* ------------------------- Crown ---------------------------- */
+  .crown {
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    @media #{$small-mobile} {
+      width: 12px;
+      height: 8px;
+    }
+  }
   /* ------------------------- Top3 ---------------------------------*/
-
   .leaderboard-header {
-    // position: absolute;
+    position: relative;
     margin-top: calc($navbar-height - 0.1vh);
     background-image: linear-gradient(
       to bottom,
@@ -146,6 +157,7 @@
     width: 100%;
     height: auto;
     border-radius: 0px 0px 10px 10px;
+    box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.1);
     overflow: hidden;
 
     .top-three {
@@ -159,6 +171,10 @@
       vertical-align: middle;
       text-align: center;
 
+      padding-top: calc(
+        var(--leaderboard-user-avatar-translateY) * -0.95
+      ); // to handle crown position
+
       :nth-child(odd) {
         transform: translateY(15px);
 
@@ -168,10 +184,10 @@
 
         @media #{$small-mobile} {
           .user-avatar {
-            --leaderboard-user-avatar-size: 50px;
+            --leaderboard-user-avatar-size: calc(8vh * 0.8);
           }
           .medal {
-            margin-top: calc(var(--leaderboard-user-avatar-size) / 5.5);
+            margin-top: 0.2vh;
           }
         }
       }
@@ -201,11 +217,8 @@
         left: 0;
         margin: auto;
         transform: translateY(10px);
-
-        @media #{$small-mobile} {
-          width: 88px;
-          height: 90px;
-        }
+        width: 12vh;
+        height: 12.5vh;
       }
 
       .user-avatar {
@@ -217,19 +230,15 @@
         right: 0;
         left: 0;
         margin: auto;
-        transform: translateY(-20px);
-
-        @media #{$small-mobile} {
-          transform: translateY(-10px);
-        }
+        transform: translateY(var(--leaderboard-user-avatar-translateY));
       }
 
       .medal {
         position: absolute;
         right: 0;
-        left: calc(var(--leaderboard-user-avatar-size) - 27px);
+        left: calc(var(--leaderboard-user-avatar-size) - 30px);
         margin: auto;
-        margin-top: calc(var(--leaderboard-user-avatar-size) / 4);
+        margin-top: 1.5vh;
         color: $theme-color--medium-blue;
         background-color: $theme-color--leaderboard-medal;
         width: 21px;
@@ -281,30 +290,15 @@
           }
         }
       }
-
-      .crown {
-        position: absolute;
-        right: 0;
-        left: 0;
-        bottom: 167px;
-        margin: auto;
-        @media #{$small-mobile} {
-          bottom: 121px;
-          width: 12px;
-          height: 8px;
-        }
-      }
     }
   }
 }
 
 @media #{$small-mobile} {
   .leaderboard-header-container {
-    --leaderboard-user-avatar-size: 60px;
     --leaderboard-switch-width: 311px;
-    --leaderboard-switch-height: 36px;
-    --leaderboard-switch-knobs-height: 28px;
     --leaderboard-switch-padding: 5px;
+    --leaderboard-user-avatar-translateY: -2.5vh;
   }
 }
 

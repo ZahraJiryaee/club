@@ -29,9 +29,9 @@ const topUsers = [
   { id: "tg28", name: "علی حاتم", score: 111, user: false },
   { id: "tg29", name: "علی حاتم", score: 111, user: false },
   { id: "tg30", name: "علی حاتم", score: 111, user: false },
-  { id: "tg31", name: "علی حاتم", score: 111, user: true },
+  { id: "tg31", name: "علی حاتم", score: 111, user: false },
   { id: "tg32", name: "علی حاتم", score: 111, prize: "جایزه", user: false },
-  { id: "tg33", name: "علی حاتم", score: 111, prize: "جایزه", user: false },
+  { id: "tg33", name: "علی حاتم", score: 111, prize: "جایزه", user: true },
   { id: "tg34", name: "علی حاتم", score: 111, prize: "جایزه", user: false },
   { id: "tg35", name: "علی حاتم", score: 111, prize: "جایزه", user: false },
 ];

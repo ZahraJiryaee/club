@@ -37,6 +37,8 @@ const LeaderboardHeader = ({ top3 }) => {
             <div className="separator"></div>
           </div>
         </div>
+        {/* ------------------------- Crown ---------------------------- */}
+        <img className="crown" src={Crown} alt="crown" />
         {/* ------------------------- Top3 ---------------------------- */}
         <div className="top-three">
           {[indexedTop3[2], indexedTop3[0], indexedTop3[1]].map((user) => (
@@ -56,9 +58,6 @@ const LeaderboardHeader = ({ top3 }) => {
                 <span>{user.name} </span>
                 <br /> <span>{user.prize}</span>
               </span>
-              {user.index === 1 && (
-                <img className="crown" src={Crown} alt="crown" />
-              )}
             </div>
           ))}
         </div>
