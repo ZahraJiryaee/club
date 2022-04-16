@@ -8,6 +8,7 @@ import GamesPage from "../src/pages/games/games.component";
 import GameDetails from "./pages/game-details/game-details.component";
 import GenrePage from "../src/pages/genre/genre.component";
 import SearchPage from "./pages/search/search.component";
+import LeaderBoardPage from "./pages/leaderboard/leaderboard.component";
 
 const routes = [
   {
@@ -21,7 +22,7 @@ const routes = [
       { path: "games/:type/:id", element: <GenrePage /> },
       { path: "games/search/:id", element: <SearchPage /> },
       { path: "games/detail/:id", element: <GameDetails /> },
-      { path: "leaderboard", element: <LuckyWheelPage /> },
+      { path: "leaderboard", element: <LeaderBoardPage /> },
       { path: "home", element: <LuckyWheelPage /> },
       { path: "about-us", element: <LuckyWheelPage /> },
       { path: "contact-us", element: <LuckyWheelPage /> },

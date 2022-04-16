@@ -19,8 +19,8 @@ body {
   font-family: $font-family-iransans;
   color: $theme-color--dark;
   position: relative;
-  background-color: $theme-color--white;
-  min-height: 100vh;
+  background-color: $white;
+  min-height: calc(100vh - $navbar-height);
   margin: 0;
   padding: 0;
 
