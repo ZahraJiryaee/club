@@ -16,6 +16,11 @@ const shopItems = [
   { id: "si15", name: "50 سکه گلشیفته", scoreNeeded: 100 },
   { id: "si16", name: "50 سکه گلشیفته", scoreNeeded: 100 },
   { id: "si17", name: "50 سکه گلشیفته", scoreNeeded: 100 },
+  { id: "si18", name: "50 سکه گلشیفته", scoreNeeded: 100 },
+  { id: "si19", name: "50 سکه گلشیفته", scoreNeeded: 100 },
+  { id: "si20", name: "50 سکه گلشیفته", scoreNeeded: 100 },
+  { id: "si21", name: "50 سکه گلشیفته", scoreNeeded: 100 },
+  { id: "si22", name: "50 سکه گلشیفته", scoreNeeded: 100 },
 ];
 
 let orderShop = [
