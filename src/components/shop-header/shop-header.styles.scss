@@ -2,19 +2,19 @@
 
 :root {
   --shop-label-height: 2em;
+  --shop-header-container: calc(var(--shop-label-height) * 1.5);
 }
 
 .shop-header-container {
   position: relative;
   margin-top: calc($navbar-height - 0.1vh);
-  border-bottom: 1px solid rgba($color: #000, $alpha: 0.1);
   width: 100%;
-  height: calc(var(--shop-label-height) * 1.5);
+  height: var(--shop-header-container);
 
   .shop-header {
     direction: rtl;
     display: flex;
-    justify-content: end;
+    justify-content: flex-end;
     align-items: flex-start;
     gap: 8px;
     padding: 10px 0;
