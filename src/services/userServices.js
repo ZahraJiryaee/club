@@ -55,7 +55,7 @@ export const setNewToken = (refreshToken) => {
 export const getUserProfile = (accessToken) => {
   return http.get(getUserProfileApiEndpoint, {
     headers: {
-      Authorization: accessToken,
+      Authorization: `Bearer ${accessToken}`,
     },
   });
 };
@@ -66,7 +66,7 @@ export const setInviterNumber = (inviterNumber, accessToken) => {
   JSON.stringify(body);
   return http.post(postInviterPhoneNumberApiEndpoint, body, {
     headers: {
-      Authorization: accessToken,
+      Authorization: `Bearer ${accessToken}`,
     },
   });
 };

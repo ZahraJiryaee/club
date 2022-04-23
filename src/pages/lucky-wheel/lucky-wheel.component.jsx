@@ -75,12 +75,14 @@ const LuckyWheelPage = () => {
   /* signin */
 
   const validateUser = () => {
-    console.log("currentUser", !!currentUser);
-    if (!!currentUser) {
-      /* user exist */
-    } else {
-      setOpenSignupSignin(true);
-    }
+    // console.log("currentUser", !!currentUser);
+    // if (!!currentUser) {
+    //   /* user exist */
+    // } else {
+    //   setOpenSignupSignin(true);
+    // }
+
+    setOpenSignupSignin(true);
   };
 
   const handleCloseSignUpSignIn = () => {

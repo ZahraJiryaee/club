@@ -3,6 +3,7 @@ import {
   checkOTP,
   setPassword,
   setLoginToken,
+  getUserProfile,
 } from "../../services/userServices";
 import { UserActionTypes } from "./user.types";
 
@@ -64,7 +65,7 @@ export const signUp_Phase3 =
 export const login = (username, password) => async (dispatch) => {
   let result;
   await setLoginToken(username, password)
-    .then((response) => {
+    .then(async (response) => {
       if (response.status === 200) {
         localStorage.setItem("accessToken", response.data.access);
         localStorage.setItem("refreshToken", response.data.refresh);
@@ -76,12 +77,24 @@ export const login = (username, password) => async (dispatch) => {
           type: UserActionTypes.SET_REFRESH_TOKEN,
           payload: response.data.refresh,
         });
-        result = "success";
-        console.log("success");
+        await getUserProfile(response.data.access)
+          .then((response) => {
+            if (response.status === 200) {
+              dispatch({
+                type: UserActionTypes.SET_CURRENT_USER,
+                payload: response.data,
+              });
+              result = "success";
+            }
+            //success toast-> welcome to club
+          })
+          .catch((e) => {
+            //error toast-> e.response.data.message
+          });
       }
     })
     .catch((e) => {
-      console.log(e.response.data.message);
+      //error toast-> e.response.data.message
       result = e.response.data.message;
     });
   return result;

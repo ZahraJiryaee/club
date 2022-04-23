@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 
 import { login } from "../../../redux/user/user.action";
 
-const Signin = ({ setSignupMode }) => {
+const Signin = ({ setSignupMode, onCloseSignUpSignIn }) => {
   const dispatch = useDispatch();
 
   const [passwordVisible, setPasswordVisible] = useState(false);
@@ -18,11 +18,12 @@ const Signin = ({ setSignupMode }) => {
   };
 
   const handleSignin = async () => {
-    //   user/token
-    //   user/token/refresh
     const result = await dispatch(login(signinMobileNumber, signinPassword));
-    if (result === "success") console.log("Welcome to medrick club");
-    else console.log(result);
+    if (result === "success") {
+      onCloseSignUpSignIn();
+      console.log("Welcome to medrick club");
+      // success toast => Welcome to medrick club
+    }
   };
 
   const handleSigninMobileNumberChange = (event) => {
@@ -30,7 +31,7 @@ const Signin = ({ setSignupMode }) => {
     const mobileNumber = value.slice(0, maxLength);
     setSigninMobileNumber(mobileNumber);
     setDisableSubmitButton(
-      signinMobileNumber.length === 11 && signinPassword.length === 8
+      signinMobileNumber.length === 11 && signinPassword.length >= 8
         ? false
         : true
     );
@@ -38,10 +39,10 @@ const Signin = ({ setSignupMode }) => {
 
   const handleSigninPasswordChange = (event) => {
     const { value, minLength } = event.target;
-    const mobileNumber = value.slice(0, minLength);
-    setSigninPassword(mobileNumber);
+    const password = value;
+    setSigninPassword(password);
     setDisableSubmitButton(
-      signinMobileNumber.length === 11 && signinPassword.length === 6
+      signinMobileNumber.length === 11 && signinPassword.length >= minLength
         ? false
         : true
     );
@@ -72,7 +73,7 @@ const Signin = ({ setSignupMode }) => {
         <input
           className="signup-signin-input space-margin--up--20"
           type={`${passwordVisible ? "text" : "password"}`}
-          minLength={6}
+          minLength="8"
           value={signinPassword}
           onChange={(e) => handleSigninPasswordChange(e)}
         />
