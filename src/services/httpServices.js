@@ -15,7 +15,6 @@ axios.interceptors.response.use(null, (error) => {
     console.log("Server error!");
     console.log(error);
   }
-
   return Promise.reject(error);
 });
 
