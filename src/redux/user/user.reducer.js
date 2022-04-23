@@ -1,15 +1,21 @@
 import { UserActionTypes } from "./user.types";
 
 const INITIAL_STATE = {
-  currentUser: null,
+  accessToken: null,
+  refreshToken: null,
 };
 
 const userReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case UserActionTypes.SET_CURRENT_USER:
+    case UserActionTypes.SET_ACCESS_TOKEN:
       return {
         ...state,
-        currentUser: action.payload,
+        accessToken: action.payload,
+      };
+    case UserActionTypes.SET_REFRESH_TOKEN:
+      return {
+        ...state,
+        refreshToken: action.payload,
       };
 
     default:
