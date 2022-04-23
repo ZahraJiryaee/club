@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 
 import {
@@ -6,6 +6,9 @@ import {
   signUp_Phase2,
   signUp_Phase3,
 } from "../../../redux/user/user.action";
+
+import { useCountdown } from "../../../services/countDownService";
+import ShowCounter from "../../counter/Counter.component";
 
 const Signup = ({ setSignupMode, onCloseSignUpSignIn }) => {
   const dispatch = useDispatch();
@@ -22,6 +25,10 @@ const Signup = ({ setSignupMode, onCloseSignUpSignIn }) => {
   const [signupInviterPhoneNumber, setSignupInviterPhoneNumber] = useState("");
 
   const [disableSubmitButton, setDisableSubmitButton] = useState(true);
+
+  const [disableOTPTimer, setDisableOTPTimer] = useState(true);
+
+  const [minutes, seconds] = useCountdown(120 * 1000);
 
   const handlePassword1VisibleIconToggle = () => {
     setPassword1Visible(!password1Visible);
@@ -179,6 +186,23 @@ const Signup = ({ setSignupMode, onCloseSignUpSignIn }) => {
               className="fa fa-mobile fa-xs input-mobile-icon"
               aria-hidden="true"
             ></i>
+          </div>
+
+          {/* OTP time */}
+          <div>
+            {/* {minutes + seconds <= 0 ? null : (
+              <ShowCounter minutes={minutes} seconds={seconds} />
+            )} */}
+            <ShowCounter minutes={minutes} seconds={seconds} />
+            <button
+              className={`btn space-margin--up--40 ${
+                disableOTPTimer ? "disabled" : ""
+              }`}
+              disabled={disableOTPTimer}
+              // onClick={resend_otp}
+            >
+              ارسال مجدد
+            </button>
           </div>
 
           <button
