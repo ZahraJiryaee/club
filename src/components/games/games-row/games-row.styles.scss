@@ -1,11 +1,15 @@
 @import "./../../../style.scss";
 
+:root {
+  --games-row-image-width: 92px;
+}
+
 .games-rows-container {
   display: grid;
   grid-auto-flow: column;
   grid-template-rows: repeat(2, auto);
   grid-template-columns: repeat(3, 1fr);
-  gap: 1vw 1vh;
+  gap: 3vh 10px;
   width: 100%;
   direction: rtl;
 
@@ -28,7 +32,17 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid rgba(60, 60, 67, 0.3);
+    position: relative;
+
+    &::after {
+      position: absolute;
+      content: "";
+      border-bottom: 1px solid rgba(60, 60, 67, 0.3);
+      width: calc(100% - var(--games-row-image-width));
+      bottom: -10px;
+      left: 10px;
+      right: auto;
+    }
 
     &:nth-child(n + 7) {
       display: none;
@@ -55,11 +69,12 @@
       gap: 2vw;
 
       .icon {
-        width: 92px;
+        width: var(--games-row-image-width);
         height: 86px;
         border-radius: 15px;
         @media #{$small-mobile} {
-          width: 65px;
+          // --games-row-image-width: 65px;
+          // width: 65px;
           height: 60px;
         }
       }
@@ -120,5 +135,11 @@
         }
       }
     }
+  }
+}
+
+@media #{$small-mobile} {
+  .games-rows-container {
+    --games-row-image-width: 65px;
   }
 }
