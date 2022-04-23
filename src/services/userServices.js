@@ -6,11 +6,20 @@ const postPhoneNumberApiEndpoint =
   getAPIUrl() + "/api/v1/user/signup/verify/request";
 const postOtpApiEndpoint = getAPIUrl() + "/api/v1/user/signup/verify";
 const postPasswordApiEndpoint = getAPIUrl() + "/api/v1/user/signup";
-// const postInvitedCodeApiEndpoint = getAPIUrl() + "";
 
 //Login
-const getTokenApiEndpoint = getAPIUrl() + "/api/v1/user/token";
+const getLoginTokenApiEndpoint = getAPIUrl() + "/api/v1/user/token";
+const getNewTokenApiEndpoint = getAPIUrl() + "/api/v1/user/token/refresh";
 
+//Profile
+const getUserProfileApiEndpoint = getAPIUrl() + "/api/v1/user/profile";
+
+//InviterNumer
+const postInviterPhoneNumberApiEndpoint = getAPIUrl() + "/api/v1/user/invite";
+
+////////////////////////////////////////////////////////////////////
+
+//Signup//
 export const sendPhoneNumber = (phoneNumber) => {
   const body = { mobile_number: phoneNumber };
   JSON.stringify(body);
@@ -24,15 +33,40 @@ export const checkOTP = (phoneNumber, otp) => {
 };
 
 export const setPassword = (password, phoneNumber) => {
-  const body = { password: password, mobile_number: phoneNumber };
+  const body = { mobile_number: phoneNumber, password: password };
   JSON.stringify(body);
   return http.post(postPasswordApiEndpoint, body);
 };
 
-export const setToken = (username, password) => {
+//Login//
+export const setLoginToken = (username, password) => {
   const body = { username: username, password: password };
   JSON.stringify(body);
-  return http.post(getTokenApiEndpoint, body);
+  return http.post(getLoginTokenApiEndpoint, body);
 };
 
-// export const setInvitedCode = (invitedCode) => {};
+export const setNewToken = (refreshToken) => {
+  const body = { refresh: refreshToken };
+  JSON.stringify(body);
+  return http.post(getNewTokenApiEndpoint, body);
+};
+
+//Profile//
+export const getUserProfile = (accessToken) => {
+  return http.get(getUserProfileApiEndpoint, {
+    headers: {
+      Authorization: accessToken,
+    },
+  });
+};
+
+//InviterNumber//
+export const setInviterNumber = (inviterNumber, accessToken) => {
+  const body = { inviter_number: inviterNumber };
+  JSON.stringify(body);
+  return http.post(postInviterPhoneNumberApiEndpoint, body, {
+    headers: {
+      Authorization: accessToken,
+    },
+  });
+};

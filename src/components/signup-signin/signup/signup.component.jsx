@@ -7,7 +7,7 @@ import {
   signUp_Phase3,
 } from "../../../redux/user/user.action";
 
-const Signup = ({ setSignupMode }) => {
+const Signup = ({ setSignupMode, onCloseSignUpSignIn }) => {
   const dispatch = useDispatch();
 
   const [signinSignupStages, setSigninSignupStages] = useState(1);
@@ -19,11 +19,9 @@ const Signup = ({ setSignupMode }) => {
   const [signupOTP, setsignupOTP] = useState("");
   const [signupPassword1, setSignupPassword1] = useState("");
   const [signupPassword2, setSignupPassword2] = useState("");
-  const [signupInvitedCode, setSignupInvitedCode] = useState("");
+  const [signupInviterPhoneNumber, setSignupInviterPhoneNumber] = useState("");
 
-  const [disableSubmitPhase1, setDisableSubmitPhase1] = useState(true);
-  const [disableSubmitPhase2, setDisableSubmitPhase2] = useState(true);
-  const [disableSubmitPhase3, setDisableSubmitPhase3] = useState(true);
+  const [disableSubmitButton, setDisableSubmitButton] = useState(true);
 
   const handlePassword1VisibleIconToggle = () => {
     setPassword1Visible(!password1Visible);
@@ -34,27 +32,43 @@ const Signup = ({ setSignupMode }) => {
 
   const handleSignUp_Phase1 = async () => {
     const result = await dispatch(signUp_Phase1(signupMobileNumber));
-    if (result === "success") setSigninSignupStages(2);
-    else console.log(result);
+    if (result === "success") {
+      setDisableSubmitButton(true);
+      setSigninSignupStages(2);
+    }
   };
 
   const handleSignUp_Phase2 = async () => {
     const result = await dispatch(signUp_Phase2(signupMobileNumber, signupOTP));
-    if (result === "success") setSigninSignupStages(3);
-    else console.log(result);
+    if (result === "success") {
+      setDisableSubmitButton(true);
+      setSigninSignupStages(3);
+    }
   };
 
   const handleSignUp_Phase3 = async () => {
-    //check invitedCode
+    //check this function works or not
+    let inviterCode = "";
+    const hasInviterCode =
+      signupInviterPhoneNumber !== "" && signupInviterPhoneNumber.length === 11
+        ? true
+        : false;
+    if (hasInviterCode) inviterCode = signupInviterPhoneNumber;
     if (signupPassword1 === signupPassword2) {
       const result = await dispatch(
-        signUp_Phase3(signupMobileNumber, signupPassword1)
+        signUp_Phase3(
+          signupMobileNumber,
+          signupPassword1,
+          hasInviterCode,
+          inviterCode
+        )
       );
       if (result === "success") {
         setSigninSignupStages(2);
-        //close popup
-        //send request to get user info
-      } else console.log(result);
+        onCloseSignUpSignIn();
+      }
+    } else {
+      //error toast-> passwords are not same
     }
   };
 
@@ -62,43 +76,44 @@ const Signup = ({ setSignupMode }) => {
     const { value, maxLength } = event.target;
     const mobileNumber = value.slice(0, maxLength);
     setSignupMobileNumber(mobileNumber);
-    setDisableSubmitPhase1(mobileNumber.length === 11 ? false : true);
+    setDisableSubmitButton(mobileNumber.length === 11 ? false : true);
   };
 
   const handleSignupOTPChange = (event) => {
     const { value, maxLength } = event.target;
     const otp = value.slice(0, maxLength);
     setsignupOTP(otp);
-    setDisableSubmitPhase2(otp.length === 5 ? false : true);
+    setDisableSubmitButton(otp.length === 5 ? false : true);
   };
 
   const handleSignupPassword1Change = (event) => {
     const { value, minLength } = event.target;
-    const password1 = value.slice(0, minLength);
+    const password1 = value;
     setSignupPassword1(password1);
-    setDisableSubmitPhase3(
-      signupPassword1.length === 8 && signupPassword2.length === 8
+    setDisableSubmitButton(
+      signupPassword1.length >= minLength && signupPassword2.length >= minLength
         ? false
         : true
     );
   };
+
   const handleSignupPassword2Change = (event) => {
     const { value, minLength } = event.target;
-    const password2 = value.slice(0, minLength);
+    const password2 = value;
     setSignupPassword2(password2);
-    setDisableSubmitPhase3(
-      signupPassword1.length === 8 && signupPassword2.length === 8
+    setDisableSubmitButton(
+      signupPassword1.length >= minLength && signupPassword2.length >= minLength
         ? false
         : true
     );
   };
 
-  const handleSignupInvitedCodeChange = (event) => {
+  const handleSignupInviterNumberChange = (event) => {
     const { value, maxLength } = event.target;
-    const invitedCode = value.slice(0, maxLength);
-    setSignupInvitedCode(invitedCode);
+    const inviterPhoneNumber = value.slice(0, maxLength);
+    setSignupInviterPhoneNumber(inviterPhoneNumber);
 
-    console.log(signupInvitedCode);
+    console.log(signupInviterPhoneNumber);
   };
 
   return (
@@ -131,10 +146,10 @@ const Signup = ({ setSignupMode }) => {
 
           <button
             className={`btn space-margin--up--65 ${
-              disableSubmitPhase1 ? "disabled" : ""
+              disableSubmitButton ? "disabled" : ""
             }`}
             onClick={handleSignUp_Phase1}
-            disabled={disableSubmitPhase1}
+            disabled={disableSubmitButton}
           >
             ثبت نام
           </button>
@@ -168,10 +183,10 @@ const Signup = ({ setSignupMode }) => {
 
           <button
             className={`btn space-margin--up--65 ${
-              disableSubmitPhase2 ? "disabled" : ""
+              disableSubmitButton ? "disabled" : ""
             }`}
             onClick={handleSignUp_Phase2}
-            disabled={disableSubmitPhase2}
+            disabled={disableSubmitButton}
           >
             ثبت نام
           </button>
@@ -231,9 +246,9 @@ const Signup = ({ setSignupMode }) => {
             <input
               className="referral-input"
               type="text"
-              maxLength="7"
-              value={signupInvitedCode}
-              onChange={(e) => handleSignupInvitedCodeChange(e)}
+              maxLength="11"
+              value={signupInviterPhoneNumber}
+              onChange={(e) => handleSignupInviterNumberChange(e)}
             />
           </div>
           <p className="referral-txt">
@@ -243,10 +258,10 @@ const Signup = ({ setSignupMode }) => {
           {/* submit btn */}
           <button
             className={`btn space-margin--up--25 ${
-              disableSubmitPhase3 ? "disabled" : ""
+              disableSubmitButton ? "disabled" : ""
             }`}
             onClick={handleSignUp_Phase3}
-            disabled={disableSubmitPhase3}
+            disabled={disableSubmitButton}
           >
             ثبت نام
           </button>

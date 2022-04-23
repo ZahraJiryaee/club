@@ -124,6 +124,7 @@
           text-align: center;
           direction: ltr;
           font-size: 18px;
+          font-family: $font-family-iransans;
 
           @media #{$small-mobile} {
             width: 145px;
