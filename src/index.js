@@ -6,6 +6,8 @@ import { ToastContainer } from "react-toastify";
 
 import { store } from "./redux/store";
 
+import "./dictionary/dictionary";
+
 import App from "./App";
 
 import reportWebVitals from "./reportWebVitals";

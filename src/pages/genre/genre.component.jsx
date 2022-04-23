@@ -2,6 +2,8 @@ import React, { useState, useEffect, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
 
+import { useTranslation } from "react-i18next";
+
 import { getSelectedGenre } from "../../redux/genres/genres.action";
 import { getSelectedCategory } from "../../redux/games/games.action";
 
@@ -14,6 +16,8 @@ const GenrePage = () => {
   const dispatch = useDispatch();
   const { type, id } = useParams();
   const allCategories = useSelector((state) => state.games.allGames);
+  const { t } = useTranslation();
+
   const [categoryTitle, setCategoryTitle] = useState("");
 
   const [loading, setLoading] = useState(true);
@@ -51,7 +55,7 @@ const GenrePage = () => {
           color="#3399de"
           height="50px"
           width="50px"
-          text="...لطفا منتظر بمانید"
+          text={t("Please wait...")}
         />
       ) : (
         <GenreView title={categoryTitle} />

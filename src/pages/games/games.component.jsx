@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router";
 import { Link } from "react-router-dom";
 
+import { useTranslation } from "react-i18next";
+
 import { getAllGenres } from "../../redux/genres/genres.action";
 import { getAllGames } from "../../redux/games/games.action";
 import { setHeaderMode } from "../../redux/header/header.action";
@@ -19,6 +21,8 @@ const GamesPage = () => {
   const { pathname } = useLocation();
   const dispatch = useDispatch();
   const games = useSelector((state) => state.games.allGames);
+
+  const { t } = useTranslation();
 
   const [loading, setLoading] = useState(true);
 
@@ -47,7 +51,7 @@ const GamesPage = () => {
           color="#3399de"
           height="50px"
           width="50px"
-          text="...لطفا منتظر بمانید"
+          text={t("Please wait...")}
         />
       ) : (
         <div>
