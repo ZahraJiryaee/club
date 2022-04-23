@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
+import { ToastContainer } from "react-toastify";
 
 import { store } from "./redux/store";
 
@@ -11,10 +12,24 @@ import reportWebVitals from "./reportWebVitals";
 
 import "./style.scss";
 import "swiper/css/bundle";
+import "react-toastify/dist/ReactToastify.css";
 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
+      <ToastContainer
+        toastClassName="toast"
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={true}
+        pauseOnFocusLoss
+        pauseOnHover
+        zIndex={200}
+        theme="colored"
+      />
       <BrowserRouter>
         <App />
       </BrowserRouter>
