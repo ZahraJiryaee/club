@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 
 import GameDetailHeader from "../../components/game-details-header/game-details-header.componetnt";
 import RowGames from "../../components/games/games.row.component";
+import GamesRow from "../../components/games/games-row/games-row.component";
 import DownloadAppsBottomSheet from "../../components/download-apps-bottom-sheet/download-apps-bottom-sheet.component";
 
 import InstagramIcon from "../../assets/images/icon/instagram.png";
@@ -126,7 +127,8 @@ const GameDetails = () => {
               <img src={ArrowIconMB} alt="arrow-back" />
             </p>
           </div>
-          <RowGames category={category} />
+          {/* <RowGames category={category} /> */}
+          <GamesRow category={category} />
         </div>
       </div>
 

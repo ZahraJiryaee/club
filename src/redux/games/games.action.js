@@ -6,11 +6,21 @@ import {
 import { GamesActionTypes } from "./games.types";
 
 export const getAllGames = () => async (dispatch) => {
-  const { data } = await getGames();
-  await dispatch({
-    type: GamesActionTypes.GET_ALL_GAMES,
-    payload: data,
-  });
+  let result = "";
+  await getGames()
+    .then((response) => {
+      if (response.status === 200) {
+        dispatch({
+          type: GamesActionTypes.GET_ALL_GAMES,
+          payload: response.data,
+        });
+      }
+    })
+    .catch((e) => {
+      console.log(e);
+      //toast
+    });
+  return result;
 };
 
 export const getSelectedCategory = (id) => async (dispatch) => {
