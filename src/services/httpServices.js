@@ -1,7 +1,5 @@
 import axios from "axios";
 
-import { setNewToken } from "./userServices";
-
 axios.defaults.headers.post["Content-Type"] = "application/json";
 
 const token = localStorage.getItem("token");
@@ -13,11 +11,6 @@ axios.interceptors.response.use(null, (error) => {
     error.response &&
     error.response.status >= 400 &&
     error.response.status < 500;
-  if (error.response.status === 401) {
-    const refreshToken = localStorage.getItem("refreshToken");
-    const { status } = setNewToken(refreshToken);
-    // if(status !== 200) toast(کاربر منقضی شده) -> go to loginpage
-  }
   if (!expectedErrors) {
     console.log("Server error!");
     console.log(error);
