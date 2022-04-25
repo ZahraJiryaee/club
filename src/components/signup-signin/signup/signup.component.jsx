@@ -7,9 +7,6 @@ import {
   signUp_Phase3,
 } from "../../../redux/user/user.action";
 
-import { useCountdown } from "../../../services/countDownService";
-import ShowCounter from "../../counter/Counter.component";
-
 const Signup = ({ setSignupMode, onCloseSignUpSignIn }) => {
   const dispatch = useDispatch();
 
@@ -27,12 +24,28 @@ const Signup = ({ setSignupMode, onCloseSignUpSignIn }) => {
   const [disableSubmitButton, setDisableSubmitButton] = useState(true);
 
   const [disableOTPTimer, setDisableOTPTimer] = useState(true);
+  const [otpTimer, setOtpTimer] = useState(false);
+  const [counter, setCounter] = useState(120);
+  const [minutes, setMinutes] = useState(0);
+  const [seconds, setSeconds] = useState(0);
 
-  const [minutes, seconds] = useCountdown(120 * 1000);
+  useEffect(() => {
+    if (otpTimer) {
+      handleTimeConverting(counter);
+      const timer =
+        counter > 0 && setInterval(() => setCounter(counter - 1), 1000);
+      if (!timer) {
+        setDisableOTPTimer(false);
+        setOtpTimer(false);
+      }
+      return () => clearInterval(timer);
+    }
+  }, [otpTimer, counter]);
 
   const handlePassword1VisibleIconToggle = () => {
     setPassword1Visible(!password1Visible);
   };
+
   const handlePassword2VisibleIconToggle = () => {
     setPassword2Visible(!password2Visible);
   };
@@ -41,6 +54,7 @@ const Signup = ({ setSignupMode, onCloseSignUpSignIn }) => {
     const result = await dispatch(signUp_Phase1(signupMobileNumber));
     if (result === "success") {
       setDisableSubmitButton(true);
+      setOtpTimer(true);
       setSigninSignupStages(2);
     }
   };
@@ -50,6 +64,7 @@ const Signup = ({ setSignupMode, onCloseSignUpSignIn }) => {
     if (result === "success") {
       setDisableSubmitButton(true);
       setSigninSignupStages(3);
+      setOtpTimer(false);
     }
   };
 
@@ -71,7 +86,6 @@ const Signup = ({ setSignupMode, onCloseSignUpSignIn }) => {
         )
       );
       if (result === "success") {
-        setSigninSignupStages(2);
         onCloseSignUpSignIn();
       }
     } else {
@@ -121,6 +135,24 @@ const Signup = ({ setSignupMode, onCloseSignUpSignIn }) => {
     setSignupInviterPhoneNumber(inviterPhoneNumber);
 
     console.log(signupInviterPhoneNumber);
+  };
+
+  const handleResendButton = async () => {
+    setCounter(6);
+    setDisableOTPTimer(true);
+    setOtpTimer(true);
+    await dispatch(signUp_Phase1(signupMobileNumber));
+  };
+
+  const handleTimeConverting = (currentSecond) => {
+    let min = Math.floor(currentSecond / 60);
+    let sec = currentSecond - min * 60;
+
+    if (min < 10) min = "0" + min;
+    if (sec < 10) sec = "0" + sec;
+
+    setMinutes(min);
+    setSeconds(sec);
   };
 
   return (
@@ -190,16 +222,17 @@ const Signup = ({ setSignupMode, onCloseSignUpSignIn }) => {
 
           {/* OTP time */}
           <div>
-            {/* {minutes + seconds <= 0 ? null : (
-              <ShowCounter minutes={minutes} seconds={seconds} />
-            )} */}
-            <ShowCounter minutes={minutes} seconds={seconds} />
+            <div>
+              <span>{minutes}</span>
+              <span>:</span>
+              <span>{seconds}</span>
+            </div>
             <button
               className={`btn space-margin--up--40 ${
                 disableOTPTimer ? "disabled" : ""
               }`}
               disabled={disableOTPTimer}
-              // onClick={resend_otp}
+              onClick={handleResendButton}
             >
               ارسال مجدد
             </button>
