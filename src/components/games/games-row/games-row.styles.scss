@@ -2,6 +2,7 @@
 
 :root {
   --games-row-image-width: 92px;
+  --games-row-items-length: 1;
 }
 
 .games-rows-container {
@@ -19,12 +20,28 @@
   }
 
   @media #{$small-mobile} {
-    grid-template-columns: repeat(2, 85vw);
     grid-template-rows: repeat(3, auto);
+    grid-template-columns: repeat(2, 85vw);
     overflow-x: auto;
 
     &::-webkit-scrollbar {
       display: none;
+    }
+  }
+
+  &.games-rows-container-short {
+    grid-auto-flow: row;
+    @media #{$small-mobile} {
+      grid-auto-flow: column;
+    }
+  }
+
+  &.games-rows-container-1-and-2 {
+    grid-template-rows: repeat(1, auto);
+    grid-template-columns: repeat(var(--games-row-items-length), 1fr);
+    @media #{$small-mobile} {
+      grid-template-rows: repeat(var(--games-row-items-length), auto);
+      grid-template-columns: repeat(1, 1fr);
     }
   }
 

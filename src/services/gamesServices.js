@@ -18,3 +18,7 @@ export const getSearchedApplication = (id) => {
   const params = { search: id };
   return http.get(getFilteredCategoryApiEndpoint, { params });
 };
+
+export const getGameDetails = (id) => {
+  return http.get(getGamesApiEndpoint + id);
+};
