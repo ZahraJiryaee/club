@@ -8,8 +8,14 @@ import GameDetailHeader from "../../components/game-details-header/game-details-
 import GamesRow from "../../components/games/games-row/games-row.component";
 import DownloadAppsBottomSheet from "../../components/download-apps-bottom-sheet/download-apps-bottom-sheet.component";
 
+// import level from "../../components/mock/level.mock";
+
 import InstagramIcon from "../../assets/images/icon/instagram.png";
 import ArrowIconMB from "../../assets/images/icon/arrow-back-marineblue.png";
+import CheckedIcon from "./../../assets/images/icon/check.png";
+import NotCheckedIcon from "./../../assets/images/icon/not-check.png";
+import LevelBadgeIcon from "./../../assets/images/icon/level-badge.png";
+import BlueArrowIcon from "./../../assets/images/icon/blue-arrow.png";
 import { ReactComponent as StarLogo } from "../../assets/images/icon/star.svg";
 
 import "./game-details.styles.scss";
@@ -20,13 +26,53 @@ const GameDetails = () => {
   const { id: gameId } = useParams();
 
   const gameDetails = useSelector((state) => state.games.gameDetails);
+  console.log("gameDetails:", gameDetails);
 
   const [showMore, setShowMore] = useState(false);
   const [openBtmSheet, setOpenBtmSheet] = useState(false);
 
+  const [levelLength, setLevelLength] = useState(0);
+  const [levelFilterConuter, setLevelFilterConuter] = useState(0);
+  const [levelFilterClickTimes, setLevelFilterClickTimes] = useState(0);
+  const howManyItemToShowOnEachClick = 4;
+  const [levelFilter, setLevelFilter] = useState(howManyItemToShowOnEachClick);
+  const [levelTxt, setLevelTxt] = useState(true); /* true=>بیشتر  false=>کمتر */
+
   useEffect(() => {
     dispatch(getGameDetailsInformation(gameId));
   }, [gameId]);
+
+  useEffect(() => {
+    if (gameDetails.length !== 0) {
+      const { level } = gameDetails;
+      setLevelLength(level.length);
+      setLevelFilterConuter(
+        level.length > howManyItemToShowOnEachClick ? 1 : 0
+      );
+      setLevelFilterClickTimes(
+        (level.length / howManyItemToShowOnEachClick) % 1 === 0
+          ? level.length / howManyItemToShowOnEachClick - 1
+          : level.length / howManyItemToShowOnEachClick
+      );
+    }
+  }, [gameDetails]);
+
+  useEffect(() => {
+    if (levelFilterConuter > levelFilterClickTimes) {
+      setLevelTxt(false);
+    }
+  }, [levelFilterConuter, levelFilterClickTimes]);
+
+  const handleMoreBonusClick = () => {
+    setLevelFilter(levelFilter + howManyItemToShowOnEachClick);
+    setLevelFilterConuter(levelFilterConuter + 1);
+
+    if (!levelTxt) {
+      setLevelFilter(howManyItemToShowOnEachClick);
+      setLevelFilterConuter(levelLength > howManyItemToShowOnEachClick ? 1 : 0);
+      setLevelTxt(true);
+    }
+  };
 
   return (
     gameDetails.length !== 0 && (
@@ -65,7 +111,7 @@ const GameDetails = () => {
             <div className="game-detail-list-info-container">
               <ul>
                 <li>
-                  <span>+30 هزار</span>
+                  <span>+{gameDetails.user_install_counter / 1000} هزار</span>
                   <br />
                   <span>نصب فعال</span>
                 </li>
@@ -76,19 +122,19 @@ const GameDetails = () => {
                     <StarLogo />
                   </span>
                   <br />
-                  <span>6012</span>
+                  <span>امتیاز</span>
                 </li>
                 <hr />
                 <li>
                   <span>حجم</span>
                   <br />
-                  <span>2 مگابایت</span>
+                  <span>{gameDetails.size} مگابایت</span>
                 </li>
                 <hr />
                 <li>
                   <span>سازنده</span>
                   <br />
-                  <span>مدریک</span>
+                  <span>{gameDetails.creator}</span>
                 </li>
               </ul>
               <button
@@ -123,6 +169,53 @@ const GameDetails = () => {
               {gameDetails.description}
             </div>
           </div>
+          {/* levels */}
+          {gameDetails.level.length > 0 && (
+            <div className="game-detail-level-container">
+              <img
+                className="game-detail-level-badge"
+                src={LevelBadgeIcon}
+                alt="level-badge"
+              />
+              <p className="game-detail-level-header">
+                جوایزی که با این بازی می‌تونی بگیری:
+              </p>
+              <ul className="game-detail-level-list-container">
+                <li>
+                  <span className="level-icons">
+                    <img src={NotCheckedIcon} alt="check-icon" />
+                  </span>
+                  <span>
+                    این برنامه را نصب کنبد و {gameDetails.install_score_counter}{" "}
+                    امتیاز دریافت کنید
+                  </span>
+                </li>
+                {gameDetails.level
+                  .filter((level, idx) => idx < levelFilter)
+                  .map((level) => (
+                    <div key={level.id}>
+                      <li>
+                        <span className="level-icons">
+                          <img src={NotCheckedIcon} alt="check-icon" />
+                        </span>
+                        <span>
+                          به مرحله {level.level} برسید و{" "}
+                          {level.reach_score_counter} امتیاز دریافت نمایید
+                        </span>
+                      </li>
+                    </div>
+                  ))}
+              </ul>
+              <div className="more-bonus" onClick={handleMoreBonusClick}>
+                <span className="txt">
+                  جوایز {levelTxt ? "بیشـــتر" : "کمتر"}
+                </span>
+                <span className={`${!levelTxt ? "reverse-arrow" : ""}`}>
+                  <img src={BlueArrowIcon} alt="arrow-down" />
+                </span>
+              </div>
+            </div>
+          )}
           {/* simiral games */}
           {gameDetails.suggest.length > 0 && (
             <div className="game-detail-simiral-games-container">
