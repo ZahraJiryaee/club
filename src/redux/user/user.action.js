@@ -73,20 +73,8 @@ export const login = (username, password) => async (dispatch) => {
           type: UserActionTypes.SET_REFRESH_TOKEN,
           payload: response.data.refresh,
         });
-        await getUserProfile(response.data.access)
-          .then((response) => {
-            if (response.status === 200) {
-              dispatch({
-                type: UserActionTypes.SET_CURRENT_USER,
-                payload: response.data,
-              });
-              result = "success";
-            }
-            //success toast-> welcome to club
-          })
-          .catch((e) => {
-            //error toast-> e.response.data.message
-          });
+
+        result = await dispatch(setUserProfile(response.data.access));
       }
     })
     .catch((e) => {
@@ -96,7 +84,26 @@ export const login = (username, password) => async (dispatch) => {
   return result;
 };
 
-export const inviteFriends = (inviterCode) => async (dispatch) => {
+export const setUserProfile = (acccessToken) => async (dispatch) => {
+  let result;
+  await getUserProfile(acccessToken)
+    .then((response) => {
+      if (response.status === 200) {
+        dispatch({
+          type: UserActionTypes.SET_CURRENT_USER,
+          payload: response.data,
+        });
+        result = "success";
+      }
+      //success toast-> welcome to club
+    })
+    .catch((e) => {
+      //error toast-> e.response.data.message
+    });
+  return result;
+};
+
+export const inviteFriends = (inviterCode) => async () => {
   const accessToken = localStorage.getItem("accessToken");
   await setInviterNumber(inviterCode, accessToken)
     .then((response) => {
