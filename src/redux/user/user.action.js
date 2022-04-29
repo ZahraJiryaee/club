@@ -4,6 +4,7 @@ import {
   setPassword,
   setLoginToken,
   getUserProfile,
+  setInviterNumber,
 } from "../../services/userServices";
 import { UserActionTypes } from "./user.types";
 
@@ -38,21 +39,16 @@ export const signUp_Phase2 = (phoneNumber, otp) => async () => {
 };
 
 export const signUp_Phase3 =
-  (phoneNumber, password, hasInviterCode, inviterCode) => async () => {
+  (phoneNumber, password, hasInviterCode, inviterCode) => async (dispatch) => {
     let result;
     await setPassword(password, phoneNumber)
-      .then((response) => {
-        if (response.status === 200) {
-          result = "success";
-          //login to get accesstoken
-          //if we have inviter code -> inviter Code requset(2000 or not) THEN profile info
-          //profile info(check signup response-if it contain use info delete this line )
-
-          //user-info
-          // dispatch({
-          //   type: UserActionTypes.SET_CURRENT_USER,
-          //   payload: response.data,
-          // });
+      .then(async (response) => {
+        if (response.status === 200 || response.status === 201) {
+          //result = "success";
+          result = await dispatch(login(phoneNumber, password));
+          if (hasInviterCode) {
+            await dispatch(inviteFriends(inviterCode));
+          }
         }
       })
       .catch((e) => {
@@ -98,4 +94,15 @@ export const login = (username, password) => async (dispatch) => {
       result = e.response.data.message;
     });
   return result;
+};
+
+export const inviteFriends = (inviterCode) => async (dispatch) => {
+  const accessToken = localStorage.getItem("accessToken");
+  await setInviterNumber(inviterCode, accessToken)
+    .then((response) => {
+      console.log(response);
+    })
+    .catch((e) => {
+      //error toast-> e.response.data.message
+    });
 };
