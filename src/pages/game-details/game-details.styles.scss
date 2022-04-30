@@ -266,6 +266,67 @@
     }
   }
 
+  .game-detail-level-container {
+    background-color: $theme-color--white;
+    padding: 3vh calc(5% + 16px);
+    position: relative;
+
+    .game-detail-level-badge {
+      position: absolute;
+      left: 0;
+      top: 0;
+
+      @media #{$small-mobile} {
+        width: 66px;
+        height: 66px;
+      }
+    }
+
+    .game-detail-level-header {
+      font-size: 26px;
+      font-weight: bold;
+      color: #ff3b30;
+    }
+
+    .game-detail-level-list-container {
+      padding: 15px 0 0;
+
+      li {
+        padding: 8px 0;
+        font-size: 18px;
+        font-weight: 500;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        line-height: 1.11;
+        // color: ;
+
+        .level-icons {
+          padding: 0 16px;
+        }
+      }
+    }
+
+    .more-bonus {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 16px;
+      cursor: pointer;
+
+      .txt {
+        font-size: 18px;
+        font-weight: 500;
+        color: $theme-color--marine-deep-sky-blue;
+      }
+
+      .reverse-arrow {
+        transform: rotate(180deg);
+        transition: 0.3s;
+      }
+    }
+  }
+
   .game-detail-simiral-games-container {
     direction: rtl;
 

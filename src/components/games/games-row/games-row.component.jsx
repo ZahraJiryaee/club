@@ -4,13 +4,16 @@ import StarLogo from "./../../../assets/images/icon/star.png";
 
 import "./games-row.styles.scss";
 
-const GamesRow = ({ category }) => {
-  console.log("category:", category);
-  const { applications } = category;
+const GamesRow = ({ applications }) => {
   console.log("applications:", applications);
 
   return (
-    <div className="games-rows-container">
+    <div
+      className={`games-rows-container ${
+        applications.length <= 4 ? `games-rows-container-short` : ""
+      } ${applications.length <= 2 ? `games-rows-container-1-and-2` : ""}`}
+      style={{ "--games-row-items-length": applications.length }}
+    >
       {applications.map((app) => (
         <React.Fragment key={app.id}>
           <div className="each-game">
