@@ -4,6 +4,7 @@ const INITIAL_STATE = {
   allGames: [],
   filteredCategory: [],
   searchedItem: [],
+  gameDetails: [],
 };
 
 const gamesReducer = (state = INITIAL_STATE, action) => {
@@ -22,6 +23,11 @@ const gamesReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         searchedItem: action.payload,
+      };
+    case GamesActionTypes.GET_GAME_DETAILS:
+      return {
+        ...state,
+        gameDetails: action.payload,
       };
     default:
       return state;

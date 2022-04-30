@@ -9,5 +9,6 @@ export const getGenres = () => {
 };
 
 export const getFilteredGenre = (id) => {
-  return http.get(`${getFilteredGenreApiEndpoint}?genres=${id}`);
+  const params = { genres: id };
+  return http.get(getFilteredGenreApiEndpoint, { params });
 };

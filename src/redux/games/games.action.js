@@ -2,15 +2,26 @@ import {
   getGames,
   getFilteredCategory,
   getSearchedApplication,
+  getGameDetails,
 } from "../../services/gamesServices";
 import { GamesActionTypes } from "./games.types";
 
 export const getAllGames = () => async (dispatch) => {
-  const { data } = await getGames();
-  await dispatch({
-    type: GamesActionTypes.GET_ALL_GAMES,
-    payload: data,
-  });
+  let result = "";
+  await getGames()
+    .then((response) => {
+      if (response.status === 200) {
+        dispatch({
+          type: GamesActionTypes.GET_ALL_GAMES,
+          payload: response.data,
+        });
+      }
+    })
+    .catch((e) => {
+      console.log(e);
+      //toast
+    });
+  return result;
 };
 
 export const getSelectedCategory = (id) => async (dispatch) => {
@@ -36,4 +47,22 @@ export const getSearchedItem = (id) => async (dispatch) => {
       payload: data,
     });
   }
+};
+
+export const getGameDetailsInformation = (id) => async (dispatch) => {
+  let result = "";
+  await getGameDetails(id)
+    .then((response) => {
+      if (response.status === 200) {
+        dispatch({
+          type: GamesActionTypes.GET_GAME_DETAILS,
+          payload: response.data,
+        });
+      }
+    })
+    .catch((e) => {
+      console.log(e);
+      //toast
+    });
+  return result;
 };

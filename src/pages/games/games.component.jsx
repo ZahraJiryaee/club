@@ -1,9 +1,10 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router";
 import { Link } from "react-router-dom";
 
 import { getAllGenres } from "../../redux/genres/genres.action";
+import { getAllGames } from "../../redux/games/games.action";
 import { setHeaderMode } from "../../redux/header/header.action";
 
 import GenreHeader from "../../components/genres/genre-header.component";
@@ -17,10 +18,20 @@ const GamesPage = () => {
   const dispatch = useDispatch();
   const games = useSelector((state) => state.games.allGames);
 
-  useEffect(() => {
-    dispatch(setHeaderMode(pathname));
-    dispatch(getAllGenres());
+  const setGamesAndGenres = useCallback(async () => {
+    try {
+      await dispatch(setHeaderMode(pathname));
+      await dispatch(getAllGames());
+      await dispatch(getAllGenres());
+    } catch (ex) {
+      console.log(ex);
+      //tast error
+    }
   }, []);
+
+  useEffect(() => {
+    setGamesAndGenres();
+  }, [setGamesAndGenres]);
 
   return (
     <div>

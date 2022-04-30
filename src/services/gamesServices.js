@@ -10,9 +10,15 @@ export const getGames = () => {
 };
 
 export const getFilteredCategory = (id) => {
-  return http.get(`${getFilteredCategoryApiEndpoint}?categories=${id}`);
+  const params = { categories: id };
+  return http.get(getFilteredCategoryApiEndpoint, { params });
 };
 
 export const getSearchedApplication = (id) => {
-  return http.get(`${getFilteredCategoryApiEndpoint}?search=${id}`);
+  const params = { search: id };
+  return http.get(getFilteredCategoryApiEndpoint, { params });
+};
+
+export const getGameDetails = (id) => {
+  return http.get(getGamesApiEndpoint + id);
 };
