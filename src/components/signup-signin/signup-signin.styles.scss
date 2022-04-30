@@ -1,0 +1,171 @@
+@import "./../../style.scss";
+
+.entire-page {
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(3px);
+  direction: rtl;
+
+  .signup-signin-container {
+    width: 540px;
+    height: auto;
+    max-height: 90vh;
+    background-color: $white;
+    border-radius: 15px;
+
+    top: 50vh;
+
+    @media #{$small-mobile} {
+      width: 100vw;
+    }
+
+    .signinsignup-close {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      width: 20px;
+      height: 20px;
+      cursor: pointer;
+
+      @media #{$small-mobile} {
+        width: 15px;
+        height: 15px;
+      }
+    }
+
+    .signup-signin-wrapper {
+      width: 100%;
+      height: 100%;
+      padding: 32px 32px 70px;
+
+      /*   logo */
+      .medrick-logo {
+        width: 69px;
+        height: 50px;
+      }
+
+      /*   warning message */
+      .warningMsg {
+        font-size: 15px;
+        font-weight: 500;
+        color: $theme-color--orangey-red;
+        padding-top: 20px;
+      }
+
+      /* texts */
+      .text-right {
+        display: flex;
+        justify-content: flex-start;
+        align-items: baseline;
+      }
+      .bolder-txt {
+        font-size: 21px;
+        font-weight: bold;
+        color: $theme-color--marine-blue;
+      }
+      .lighter-txt {
+        font-size: 18px;
+        font-weight: 500;
+        color: $theme-color--dark;
+
+        .compulsory-txt {
+          font-size: 13px;
+          font-weight: 500;
+          color: $theme-color--orangey-red;
+          padding-right: 0.5rem;
+        }
+      }
+
+      /* input + icon */
+      .signup-signin-input-container {
+        position: relative;
+
+        .signup-signin-input {
+          width: 100%;
+          background-color: $white;
+          background-color: transparent;
+          border: none;
+          border-bottom: 1px solid #838383;
+          font-size: 18px;
+          position: relative;
+          outline: none;
+          height: 32px;
+          font-family: $font-family-iransans;
+        }
+        .fa {
+          position: absolute;
+          margin: auto;
+          bottom: 5px;
+          left: 0;
+          color: $theme-color--brown-grey;
+        }
+        .input-mobile-icon {
+          font-size: 30px;
+        }
+        .input-eye-icon {
+          font-size: 19px;
+        }
+      }
+
+      /* referral code */
+      .referral-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-left: 2px;
+        .referral-input {
+          width: 185px;
+          height: 50px;
+          background-color: #dfdfdf;
+          border-radius: 25px;
+          border: none;
+          outline: none;
+          text-align: center;
+          direction: ltr;
+          font-size: 18px;
+          font-family: $font-family-iransans;
+
+          @media #{$small-mobile} {
+            width: 145px;
+            height: 40px;
+          }
+        }
+      }
+      .referral-txt {
+        font-size: 13px;
+        font-weight: 500;
+        color: $theme-color--marine-deep-sky-blue;
+        padding: 10px;
+      }
+
+      /* submit btn */
+      .btn {
+        width: 168px;
+        height: 44.8px;
+        color: $white;
+        background-color: $theme-color--marine-blue;
+        font-size: 18px;
+        font-weight: 500;
+        border: none;
+        outline: none;
+        border-radius: 25px;
+        font-family: $font-family-iransans;
+
+        &.disabled {
+          background-color: $theme-color--brown-grey;
+        }
+      }
+
+      .switch-between-signin-signup-text {
+        padding-top: 20px;
+        font-size: 18px;
+        font-weight: 20px;
+
+        .link {
+          color: $theme-color--orangey-red;
+        }
+      }
+    }
+  }
+}

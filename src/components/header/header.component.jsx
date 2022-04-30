@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 
 import { ReactComponent as StarLogo } from "../../assets/images/header/star.svg";
-import Logo from "../../assets/images/header/logo.png";
+import Logo from "../../assets/images/icon/medrick-logo.png";
 import ArrowBack from "../../assets/images/icon/arrow-back.png";
 
 import { sidebarNavigation, headerNavigation } from "../../model/header.model";

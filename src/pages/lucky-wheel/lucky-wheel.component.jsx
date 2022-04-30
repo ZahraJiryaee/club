@@ -1,12 +1,16 @@
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
+
 import SpinningWheel from "../../components/spinning-wheel/spinning-wheel.component";
 import Modal from "../../components/lucky-wheel-modal/modal.component";
 
 import HandPointUp from "./../../assets/images/icon/hand-point-up.png";
 
 import "./lucky-wheel.component.scss";
+import SignupSignin from "../../components/signup-signin/signup-signin.component";
 
 const LuckyWheelPage = () => {
+  const currentUser = useSelector((state) => state.user.currentUser);
   // const [selectedItem, setSelectedItem] = useState(6);
   const [wheelItem, setWheelItem] = useState(6);
   const items = [
@@ -58,6 +62,7 @@ const LuckyWheelPage = () => {
     },
   ];
   const [modal, setModal] = useState(false);
+  const [openSignupSignin, setOpenSignupSignin] = useState(false);
 
   const toggleModal = () => {
     setModal(true);
@@ -65,6 +70,23 @@ const LuckyWheelPage = () => {
 
   const handlePopupClose = () => {
     setModal(false);
+  };
+
+  /* signin */
+
+  const validateUser = () => {
+    // console.log("currentUser", !!currentUser);
+    // if (!!currentUser) {
+    //   /* user exist */
+    // } else {
+    //   setOpenSignupSignin(true);
+    // }
+
+    setOpenSignupSignin(true);
+  };
+
+  const handleCloseSignUpSignIn = () => {
+    setOpenSignupSignin(false);
   };
 
   return (
@@ -91,7 +113,8 @@ const LuckyWheelPage = () => {
       {/* ---------------- Spin Btn ------------------ */}
       <button
         className="lucky-wheel-page-btn center-absolute"
-        onClick={toggleModal}
+        // onClick={toggleModal}
+        onClick={validateUser}
       >
         بچرخون
       </button>
@@ -115,6 +138,13 @@ const LuckyWheelPage = () => {
           // prizeType="coin"
           prizeType="physical-item"
           onClosePopup={handlePopupClose}
+        />
+      )}
+      {/* ---------------- SignUp/SignIn ------------------ */}
+      {openSignupSignin && (
+        <SignupSignin
+          onCloseSignUpSignIn={handleCloseSignUpSignIn}
+          warningMsg={true}
         />
       )}
     </div>
