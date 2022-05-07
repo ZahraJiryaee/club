@@ -1,42 +1,70 @@
 import axios from "axios";
+import { useDispatch } from "react-redux";
 
+import getApis from "./api";
+import localstorageService from "./localstorageService";
 import { error } from "./toastService";
 import { setNewToken } from "./userServices";
 
-axios.defaults.headers.post["Content-Type"] = "application/json";
+import { setOpenValidationDialog } from "./../redux/user/user.action";
 
-const token = localStorage.getItem("token");
+export function useSetupAxios() {
+  const dispatch = useDispatch();
 
-if (token) axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+  return (
+    axios.interceptors.request.use(
+      (config) => {
+        const accessToken = localstorageService.getAccessToken();
+        if (accessToken)
+          config.headers["Authorization"] = `Bearer ${accessToken}`;
+        axios.defaults.headers.post["Content-Type"] = "application/json";
+        return config;
+      },
+      (error) => {
+        return Promise.reject(error);
+      }
+    ),
+    axios.interceptors.response.use(
+      (response) => {
+        return response;
+      },
+      (error) => {
+        const accessToken = localstorageService.getAccessToken();
 
-axios.interceptors.response.use(null, (error) => {
-  const expectedErrors =
-    error.response &&
-    error.response.status >= 400 &&
-    error.response.status < 500;
-  if (!expectedErrors) {
-    error("Server error!");
-    console.log(error);
-  } else {
-    errorHandling(error.response.status);
-  }
-  return Promise.reject(error);
-});
+        if (
+          error.response.status === 401 &&
+          error.response.request.responseURL === getApis.newTokenApiEndpoint
+        ) {
+          dispatch(setOpenValidationDialog(true));
+        } else if (error.response.status === 401) {
+          setNewToken(accessToken)
+            .then((response) => {
+              const { data } = response;
+              localstorageService.setToken({
+                accessToken: data.access,
+                refreshToken: data.refresh,
+              });
+
+              error.config.headers["Authorization"] = `Bearer ${data.access}`;
+              error.config.baseURL = undefined;
+              return axios.request(error.config);
+            })
+            .catch((error) => {
+              console.log("error");
+              dispatch(setOpenValidationDialog(true));
+              if (error.response.status === 401) {
+                localstorageService.clearToken();
+              }
+            });
+        }
+        return Promise.reject(error);
+      }
+    )
+  );
+}
 
 const errorHandling = (status) => {
   if (status === 401) {
-    const refreshToken = localStorage.getItem("refreshToken");
-    const { status, data } = setNewToken(refreshToken);
-    if (status === 200) {
-      //toast -> try again...
-      localStorage.setItem("accessToken", data.access);
-      localStorage.setItem("refreshToken", data.refresh);
-    } else {
-      localStorage.removeItem("accessToken");
-      localStorage.removeItem("refreshToken");
-      return error("User Unauthorized");
-      //Go to login popup
-    }
   } else if (status === 403) {
     return error("Access_denied");
   } else if (status === 404) {

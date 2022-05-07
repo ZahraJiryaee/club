@@ -4,6 +4,7 @@ const INITIAL_STATE = {
   accessToken: null,
   refreshToken: null,
   currentUser: {},
+  openValidationDialog: false,
 };
 
 const userReducer = (state = INITIAL_STATE, action) => {
@@ -22,6 +23,11 @@ const userReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         currentUser: action.payload,
+      };
+    case UserActionTypes.SET_OPEN_VALIDATION_DIALOG:
+      return {
+        ...state,
+        openValidationDialog: action.payload,
       };
     default:
       return state;

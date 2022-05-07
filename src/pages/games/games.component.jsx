@@ -1,7 +1,6 @@
 import React, { useEffect, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useLocation } from "react-router";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 import { getAllGenres } from "../../redux/genres/genres.action";
 import { getAllGames } from "../../redux/games/games.action";

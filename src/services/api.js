@@ -4,3 +4,12 @@ export const API_URL =
 export const getAPIUrl = () => {
   return `${API_URL}`;
 };
+
+const newTokenApiEndpoint = API_URL + "/api/v1/user/token/refresh";
+
+const getApis = {
+  API_URL,
+  newTokenApiEndpoint,
+};
+
+export default getApis;
