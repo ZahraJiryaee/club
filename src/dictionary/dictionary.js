@@ -4,8 +4,17 @@ import { initReactI18next } from "react-i18next";
 const resources = {
   fa: {
     translation: {
-      "Please wait...": "...لطفا منتظر بمانید",
-      "Not Found": "یافت نشد!",
+      Please_Wait: "...لطفا منتظر بمانید",
+      Not_Found: "یافت نشد!",
+      Lucky_Wheel_Header_Txt: "گـــردونه شــانــس مـدریــک",
+      Lucky_Wheel_Sub_Header_Txt_Lin1:
+        "در گردونه مدریک شانس خود را جهت برنده شدن جوایز",
+      Lucky_Wheel_Sub_Header_Txt_Lin2: "ارزنده امتحان کنید.",
+      Lucky_Wheel_Spin_Btn: "بچرخون",
+      Lucky_wheel_Want_More_Chance:
+        "شــانـس بیشتری برای چـرخونـدن گـردونه می‌خـوای؟",
+      Lucky_Wheel_Click_Here: "اینجا را کلیک کن",
+      Chance: "شانس",
     },
   },
 };

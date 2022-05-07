@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useTranslation } from "react-i18next";
 
 import SpinningWheel from "../../components/spinning-wheel/spinning-wheel.component";
 import Modal from "../../components/lucky-wheel-modal/modal.component";
@@ -13,6 +14,7 @@ import "./lucky-wheel.component.scss";
 
 const LuckyWheelPage = () => {
   const dispatch = useDispatch();
+  const { t } = useTranslation();
 
   const currentUser = useSelector((state) => state.user.currentUser);
   const bonusList = useSelector((state) => state.wheel.bonusList);
@@ -91,12 +93,12 @@ const LuckyWheelPage = () => {
       {/* ---------------- Page Upper Txt ------------------ */}
       <div className="main-header">
         <h2 className="header-txt center-absolute">
-          گـــردونه شــانــس مـدریــک
+          {t("Lucky_Wheel_Header_Txt")}
         </h2>
         <p className="subheader-txt center-absolute">
-          در گردونه مدریک شانس خود را جهت برنده شدن جوایز
+          {t("Lucky_Wheel_Sub_Header_Txt_Lin1")}
           <br />
-          ارزنده امتحان کنید.
+          {t("Lucky_Wheel_Sub_Header_Txt_Lin2")}
         </p>
       </div>
       {/* ---------------- Wheel ------------------ */}
@@ -116,11 +118,11 @@ const LuckyWheelPage = () => {
         // onClick={toggleModal}
         onClick={handleWheelSpinBtnClick}
       >
-        بچرخون
+        {t("Lucky_Wheel_Spin_Btn")}
       </button>
       {/* ---------------- Page Lower Txt ------------------ */}
       <p className="want-more-chance center-absolute">
-        شــانـس بیشتری برای چـرخونـدن گـردونه می‌خـوای؟
+        {t("Lucky_wheel_Want_More_Chance")}
       </p>
       <div className="click-here center-absolute">
         <img
@@ -129,7 +131,7 @@ const LuckyWheelPage = () => {
           alt="hand-point-up"
         />
         <p className="click-here--text" onClick={getProfile}>
-          اینجا را کلیک کن
+          {t("Lucky_Wheel_Click_Here")}
         </p>
       </div>
       {/* ---------------- modal ------------------ */}
