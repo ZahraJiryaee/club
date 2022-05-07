@@ -1,5 +1,9 @@
 import http from "./httpServices";
 import { getAPIUrl } from "./api";
+import getApis from "./api";
+import localstorageService from "./localstorageService";
+
+const refreshToken = localstorageService.getRefreshToken();
 
 //Signup
 const postPhoneNumberApiEndpoint =
@@ -9,7 +13,6 @@ const postPasswordApiEndpoint = getAPIUrl() + "/api/v1/user/signup";
 
 //Login
 const getLoginTokenApiEndpoint = getAPIUrl() + "/api/v1/user/token";
-const getNewTokenApiEndpoint = getAPIUrl() + "/api/v1/user/token/refresh";
 
 //Profile
 const getUserProfileApiEndpoint = getAPIUrl() + "/api/v1/user/profile";
@@ -45,28 +48,20 @@ export const setLoginToken = (username, password) => {
   return http.post(getLoginTokenApiEndpoint, body);
 };
 
-export const setNewToken = (refreshToken) => {
-  const body = { refresh: refreshToken };
+export const setNewToken = () => {
+  const body = { refresh: `${refreshToken}` };
   JSON.stringify(body);
-  return http.post(getNewTokenApiEndpoint, body);
+  return http.post(getApis.newTokenApiEndpoint, body);
 };
 
 //Profile//
-export const getUserProfile = (accessToken) => {
-  return http.get(getUserProfileApiEndpoint, {
-    headers: {
-      Authorization: `Bearer ${accessToken}`,
-    },
-  });
+export const getUserProfile = () => {
+  return http.get(getUserProfileApiEndpoint);
 };
 
 //InviterNumber//
-export const setInviterNumber = (inviterNumber, accessToken) => {
+export const setInviterNumber = (inviterNumber) => {
   const body = { inviter_number: inviterNumber };
   JSON.stringify(body);
-  return http.post(postInviterPhoneNumberApiEndpoint, body, {
-    headers: {
-      Authorization: `Bearer ${accessToken}`,
-    },
-  });
+  return http.post(postInviterPhoneNumberApiEndpoint, body);
 };

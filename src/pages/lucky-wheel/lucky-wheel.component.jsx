@@ -1,68 +1,26 @@
-import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect, useState, useCallback } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 import SpinningWheel from "../../components/spinning-wheel/spinning-wheel.component";
 import Modal from "../../components/lucky-wheel-modal/modal.component";
 
+import { getBonusList, setUserBonus } from "../../redux/wheel/wheel.action";
+import { setUserProfile } from "../../redux/user/user.action";
+
 import HandPointUp from "./../../assets/images/icon/hand-point-up.png";
 
 import "./lucky-wheel.component.scss";
-import SignupSignin from "../../components/signup-signin/signup-signin.component";
 
 const LuckyWheelPage = () => {
+  const dispatch = useDispatch();
+
   const currentUser = useSelector((state) => state.user.currentUser);
-  // const [selectedItem, setSelectedItem] = useState(6);
+  const bonusList = useSelector((state) => state.wheel.bonusList);
+  const setBonus = useSelector((state) => state.wheel.bonus);
+
+  const [userChanceConuter, setUserChanceConuter] = useState(0);
   const [wheelItem, setWheelItem] = useState(6);
-  const items = [
-    {
-      color: "red",
-      gradient: "linear-gradient(to left, #743ad5, #d53a9d)",
-      content: "جایزه 1",
-    },
-
-    {
-      color: "yellow",
-      gradient: "linear-gradient(to left, #743ad5, #d53a9d)",
-      content: "جایزه 2",
-    },
-
-    {
-      color: "red",
-      gradient: "linear-gradient(to left, #743ad5, #d53a9d)",
-      content: "جایزه 3",
-    },
-
-    {
-      color: "yellow",
-      gradient: "linear-gradient(to left, #743ad5, #d53a9d)",
-      content: "جایزه 4",
-    },
-
-    {
-      color: "red",
-      gradient: "linear-gradient(to left, #743ad5, #d53a9d)",
-      content: "جایزه 5",
-    },
-
-    {
-      color: "yellow",
-      gradient: "linear-gradient(to left, #743ad5, #d53a9d)",
-      content: "جایزه 6",
-    },
-    {
-      color: "red",
-      gradient: "linear-gradient(to left, #743ad5, #d53a9d)",
-      content: "جایزه 7",
-    },
-
-    {
-      color: "yellow",
-      gradient: "linear-gradient(to left, #743ad5, #d53a9d)",
-      content: "جایزه 8",
-    },
-  ];
   const [modal, setModal] = useState(false);
-  const [openSignupSignin, setOpenSignupSignin] = useState(false);
 
   const toggleModal = () => {
     setModal(true);
@@ -72,21 +30,60 @@ const LuckyWheelPage = () => {
     setModal(false);
   };
 
-  /* signin */
+  useEffect(() => {
+    dispatch(getBonusList());
+  }, []);
 
-  const validateUser = () => {
-    // console.log("currentUser", !!currentUser);
-    // if (!!currentUser) {
-    //   /* user exist */
-    // } else {
-    //   setOpenSignupSignin(true);
-    // }
-
-    setOpenSignupSignin(true);
+  const getProfile = () => {
+    dispatch(setUserProfile()).then((res) => {
+      console.log("pro res", res);
+    });
   };
 
-  const handleCloseSignUpSignIn = () => {
-    setOpenSignupSignin(false);
+  useEffect(() => {
+    console.log("currentUser:", currentUser);
+    if (!isEmpty(currentUser)) {
+      setUserChanceConuter(currentUser.chance_counter);
+    }
+  }, [currentUser]);
+
+  const [isWheelSpinning, setIsWheelSpinning] = useState(false);
+  let isSpinOnItemOne = false; //controls wheel goes back to item1 after every spin
+  const [bonusId, setBonusId] = useState(0);
+
+  const handleWheelSpinBtnClick = () => {
+    let result = dispatch(setUserBonus());
+    result.then((response) => {
+      if (response.status === 200) {
+        const bonusId = bonusList.findIndex(
+          (bonus) => bonus.id === response.data.id
+        );
+        console.log("bonusId:", bonusId);
+        setBonusId(bonusId);
+
+        spinHandler();
+      } else if (response.status === 403) {
+        console.log("luckwheel -error");
+        // popup optopns to increase chances
+      }
+    });
+  };
+
+  const spinHandler = useCallback(() => {
+    console.log("isSpinOnItemOne:", isSpinOnItemOne);
+    console.log("isWheelSpinning:", isWheelSpinning);
+    if (isSpinOnItemOne === true) {
+      setIsWheelSpinning(true);
+      // isSpinOnItemOne = false;
+    } else {
+      isSpinOnItemOne = true;
+      setIsWheelSpinning(false);
+      setTimeout(spinHandler, 400);
+    }
+  }, [setBonus]);
+
+  const isEmpty = (inputObject) => {
+    return Object.keys(inputObject).length === 0;
   };
 
   return (
@@ -105,16 +102,19 @@ const LuckyWheelPage = () => {
       {/* ---------------- Wheel ------------------ */}
       <div className="wheel-component center-absolute">
         <SpinningWheel
-          items={items}
+          bonusList={bonusList}
+          bonusId={bonusId}
           wheelItem={wheelItem}
+          userChanceConuter={userChanceConuter}
           setWheelItem={(e) => setWheelItem(e)}
+          isWheelSpinning={isWheelSpinning}
         />
       </div>
       {/* ---------------- Spin Btn ------------------ */}
       <button
         className="lucky-wheel-page-btn center-absolute"
         // onClick={toggleModal}
-        onClick={validateUser}
+        onClick={handleWheelSpinBtnClick}
       >
         بچرخون
       </button>
@@ -128,7 +128,9 @@ const LuckyWheelPage = () => {
           src={HandPointUp}
           alt="hand-point-up"
         />
-        <p className="click-here--text">اینجا را کلیک کن</p>
+        <p className="click-here--text" onClick={getProfile}>
+          اینجا را کلیک کن
+        </p>
       </div>
       {/* ---------------- modal ------------------ */}
       {/* prizetype can either be coin or physical-item */}
@@ -138,13 +140,6 @@ const LuckyWheelPage = () => {
           // prizeType="coin"
           prizeType="physical-item"
           onClosePopup={handlePopupClose}
-        />
-      )}
-      {/* ---------------- SignUp/SignIn ------------------ */}
-      {openSignupSignin && (
-        <SignupSignin
-          onCloseSignUpSignIn={handleCloseSignUpSignIn}
-          warningMsg={true}
         />
       )}
     </div>

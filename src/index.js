@@ -15,12 +15,10 @@ import reportWebVitals from "./reportWebVitals";
 import "./style.scss";
 import "swiper/css/bundle";
 import "react-toastify/dist/ReactToastify.css";
-import Loading from "./components/common/Loading.component";
 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <Loading />
       <ToastContainer
         toastClassName="toast"
         position="top-center"

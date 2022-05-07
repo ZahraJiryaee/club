@@ -1,7 +1,6 @@
 import React from "react";
 
-import { NavLink } from "react-router-dom";
-import { useLocation } from "react-router";
+import { NavLink, useLocation } from "react-router-dom";
 
 import { ReactComponent as LeaderBoardLogo } from "../../assets/images/footer/inactive/leader-board.svg";
 import { ReactComponent as GamesLogo } from "../../assets/images/footer/inactive/games.svg";

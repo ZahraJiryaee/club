@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useLocation } from "react-router";
+import { useLocation } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
 import { setHeaderMode } from "../../redux/header/header.action";

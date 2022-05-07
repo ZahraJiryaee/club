@@ -113,3 +113,8 @@ export const inviteFriends = (inviterCode) => async () => {
       //error toast-> e.response.data.message
     });
 };
+
+export const setOpenValidationDialog = (value) => ({
+  type: UserActionTypes.SET_OPEN_VALIDATION_DIALOG,
+  payload: value,
+});

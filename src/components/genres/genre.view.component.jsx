@@ -1,7 +1,6 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { useParams } from "react-router";
 
 import { ReactComponent as StarLogo } from "../../assets/images/icon/star.svg";
 
