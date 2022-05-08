@@ -37,8 +37,8 @@ const LuckyWheelPage = () => {
   }, []);
 
   const getProfile = () => {
-    dispatch(setUserProfile()).then((res) => {
-      console.log("pro res", res);
+    dispatch(setUserProfile()).then((response) => {
+      console.log("profile response", response);
     });
   };
 
@@ -65,7 +65,6 @@ const LuckyWheelPage = () => {
 
         spinHandler();
       } else if (response.status === 403) {
-        console.log("luckwheel -error");
         // popup optopns to increase chances
       }
     });

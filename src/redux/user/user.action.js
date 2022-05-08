@@ -49,6 +49,7 @@ export const signUp_Phase3 =
           if (hasInviterCode) {
             await dispatch(inviteFriends(inviterCode));
           }
+          dispatch(setOpenValidationDialog(false));
         }
       })
       .catch((e) => {
@@ -73,6 +74,7 @@ export const login = (username, password) => async (dispatch) => {
           type: UserActionTypes.SET_REFRESH_TOKEN,
           payload: response.data.refresh,
         });
+        dispatch(setOpenValidationDialog(false));
 
         result = await dispatch(setUserProfile(response.data.access));
       }
@@ -93,12 +95,13 @@ export const setUserProfile = (acccessToken) => async (dispatch) => {
           type: UserActionTypes.SET_CURRENT_USER,
           payload: response.data,
         });
-        result = "success";
+        result = response;
       }
       //success toast-> welcome to club
     })
     .catch((e) => {
       //error toast-> e.response.data.message
+      result = e.response;
     });
   return result;
 };

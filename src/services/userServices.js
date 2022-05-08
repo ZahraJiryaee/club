@@ -14,9 +14,6 @@ const postPasswordApiEndpoint = getAPIUrl() + "/api/v1/user/signup";
 //Login
 const getLoginTokenApiEndpoint = getAPIUrl() + "/api/v1/user/token";
 
-//Profile
-const getUserProfileApiEndpoint = getAPIUrl() + "/api/v1/user/profile";
-
 //InviterNumer
 const postInviterPhoneNumberApiEndpoint = getAPIUrl() + "/api/v1/user/invite";
 
@@ -56,7 +53,7 @@ export const setNewToken = () => {
 
 //Profile//
 export const getUserProfile = () => {
-  return http.get(getUserProfileApiEndpoint);
+  return http.get(getApis.userProfileApiEndpoint);
 };
 
 //InviterNumber//

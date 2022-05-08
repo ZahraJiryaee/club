@@ -7,7 +7,7 @@ import {
   signUp_Phase3,
 } from "../../../redux/user/user.action";
 
-const Signup = ({ setSignupMode, onCloseSignUpSignIn }) => {
+const Signup = ({ setSignupMode }) => {
   const dispatch = useDispatch();
 
   const [signinSignupStages, setSigninSignupStages] = useState(1);
@@ -68,7 +68,7 @@ const Signup = ({ setSignupMode, onCloseSignUpSignIn }) => {
     }
   };
 
-  const handleSignUp_Phase3 = async () => {
+  const handleSignUp_Phase3 = () => {
     //check this function works or not
     let inviterCode = "";
     const hasInviterCode =
@@ -77,7 +77,7 @@ const Signup = ({ setSignupMode, onCloseSignUpSignIn }) => {
         : false;
     if (hasInviterCode) inviterCode = signupInviterPhoneNumber;
     if (signupPassword1 === signupPassword2) {
-      const result = await dispatch(
+      const result = dispatch(
         signUp_Phase3(
           signupMobileNumber,
           signupPassword1,
@@ -85,9 +85,12 @@ const Signup = ({ setSignupMode, onCloseSignUpSignIn }) => {
           inviterCode
         )
       );
-      if (result === "success") {
-        onCloseSignUpSignIn();
-      }
+      result.then((response) => {
+        if (response.status === 200) {
+          // success toast => Welcome to medrick club
+          console.log("Welcome to Medrick Club!");
+        }
+      });
     } else {
       //error toast-> passwords are not same
     }

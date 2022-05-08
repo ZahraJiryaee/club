@@ -28,7 +28,7 @@ export function useSetupAxios() {
       (response) => {
         return response;
       },
-      (error) => {
+      async (error) => {
         const accessToken = localstorageService.getAccessToken();
 
         if (
@@ -37,7 +37,7 @@ export function useSetupAxios() {
         ) {
           dispatch(setOpenValidationDialog(true));
         } else if (error.response.status === 401) {
-          setNewToken(accessToken)
+          await setNewToken(accessToken)
             .then((response) => {
               const { data } = response;
               localstorageService.setToken({
@@ -49,10 +49,17 @@ export function useSetupAxios() {
               error.config.baseURL = undefined;
               return axios.request(error.config);
             })
-            .catch((error) => {
-              console.log("error");
-              dispatch(setOpenValidationDialog(true));
-              if (error.response.status === 401) {
+            .catch((refreshError) => {
+              if (
+                error.response.request.responseURL ===
+                getApis.userProfileApiEndpoint
+              ) {
+                dispatch(setOpenValidationDialog(false));
+              } else {
+                // dispatch(setOpenValidationDialog(true));
+              }
+
+              if (refreshError.response.status === 401) {
                 localstorageService.clearToken();
               }
             });
