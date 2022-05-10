@@ -6,7 +6,6 @@ import SpinningWheel from "../../components/spinning-wheel/spinning-wheel.compon
 import Modal from "../../components/lucky-wheel-modal/modal.component";
 
 import { getBonusList, setUserBonus } from "../../redux/wheel/wheel.action";
-import { setUserProfile } from "../../redux/user/user.action";
 
 import HandPointUp from "./../../assets/images/icon/hand-point-up.png";
 
@@ -36,15 +35,9 @@ const LuckyWheelPage = () => {
     dispatch(getBonusList());
   }, []);
 
-  const getProfile = () => {
-    dispatch(setUserProfile()).then((response) => {
-      console.log("profile response", response);
-    });
-  };
-
   useEffect(() => {
-    console.log("currentUser:", currentUser);
-    if (!isEmpty(currentUser)) {
+    console.log("currentUser-luck:", currentUser);
+    if (currentUser) {
       setUserChanceConuter(currentUser.chance_counter);
     }
   }, [currentUser]);
@@ -64,6 +57,10 @@ const LuckyWheelPage = () => {
         setBonusId(bonusId);
 
         spinHandler();
+
+        setTimeout(() => {
+          toggleModal();
+        }, 10000);
       } else if (response.status === 403) {
         // popup optopns to increase chances
       }
@@ -82,10 +79,6 @@ const LuckyWheelPage = () => {
       setTimeout(spinHandler, 400);
     }
   }, [setBonus]);
-
-  const isEmpty = (inputObject) => {
-    return Object.keys(inputObject).length === 0;
-  };
 
   return (
     <div className="blue-bg outer-box">
@@ -129,9 +122,7 @@ const LuckyWheelPage = () => {
           src={HandPointUp}
           alt="hand-point-up"
         />
-        <p className="click-here--text" onClick={getProfile}>
-          {t("Lucky_Wheel_Click_Here")}
-        </p>
+        <p className="click-here--text">{t("Lucky_Wheel_Click_Here")}</p>
       </div>
       {/* ---------------- modal ------------------ */}
       {/* prizetype can either be coin or physical-item */}

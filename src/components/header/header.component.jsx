@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 
@@ -11,8 +11,15 @@ import { sidebarNavigation, headerNavigation } from "../../model/header.model";
 import "./header.styles.scss";
 
 const Header = () => {
+  const currentUser = useSelector((state) => state.user.currentUser);
+
   const headerMode = useSelector((state) => state.header.headerMode);
   const [toggleMenu, setToggleMenu] = useState(false);
+  const [scoreCounter, setScoreCounter] = useState(0);
+
+  useEffect(() => {
+    if (currentUser) setScoreCounter(currentUser.score_counter);
+  }, [currentUser]);
 
   return (
     <header className={headerMode}>
@@ -52,7 +59,7 @@ const Header = () => {
       <div className="action">
         <div className="score">
           <StarLogo />
-          <span className="score-text">500</span>
+          <span className="score-text">{scoreCounter}</span>
         </div>
       </div>
       {/* ---------------------- Navbar - Menu Toggle --------------------------- */}

@@ -76,7 +76,7 @@ export const login = (username, password) => async (dispatch) => {
         });
         dispatch(setOpenValidationDialog(false));
 
-        result = await dispatch(setUserProfile(response.data.access));
+        result = await dispatch(setUserProfile());
       }
     })
     .catch((e) => {
@@ -86,9 +86,9 @@ export const login = (username, password) => async (dispatch) => {
   return result;
 };
 
-export const setUserProfile = (acccessToken) => async (dispatch) => {
+export const setUserProfile = () => async (dispatch) => {
   let result;
-  await getUserProfile(acccessToken)
+  await getUserProfile()
     .then((response) => {
       if (response.status === 200) {
         dispatch({
@@ -101,6 +101,10 @@ export const setUserProfile = (acccessToken) => async (dispatch) => {
     })
     .catch((e) => {
       //error toast-> e.response.data.message
+      dispatch({
+        type: UserActionTypes.SET_CURRENT_USER,
+        payload: null,
+      });
       result = e.response;
     });
   return result;

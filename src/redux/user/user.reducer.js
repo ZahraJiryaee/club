@@ -3,7 +3,7 @@ import { UserActionTypes } from "./user.types";
 const INITIAL_STATE = {
   accessToken: null,
   refreshToken: null,
-  currentUser: {},
+  currentUser: null,
   openValidationDialog: false,
 };
 
