@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 import { ReactComponent as StarLogo } from "../../assets/images/header/star.svg";
 import Logo from "../../assets/images/icon/medrick-logo.png";
@@ -11,9 +12,11 @@ import { sidebarNavigation, headerNavigation } from "../../model/header.model";
 import "./header.styles.scss";
 
 const Header = () => {
-  const currentUser = useSelector((state) => state.user.currentUser);
+  const { t } = useTranslation();
 
+  const currentUser = useSelector((state) => state.user.currentUser);
   const headerMode = useSelector((state) => state.header.headerMode);
+
   const [toggleMenu, setToggleMenu] = useState(false);
   const [scoreCounter, setScoreCounter] = useState(0);
 
@@ -44,7 +47,7 @@ const Header = () => {
               <hr />
             </li>
           ))}
-          <p className="version">نسخه 1.1.1</p>
+          <p className="version">{t("Version")} 1.1.1</p>
         </ul>
       </div>
       {/* ---------------------- Logo --------------------------- */}

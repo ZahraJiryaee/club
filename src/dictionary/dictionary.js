@@ -15,6 +15,7 @@ const resources = {
         "شــانـس بیشتری برای چـرخونـدن گـردونه می‌خـوای؟",
       Lucky_Wheel_Click_Here: "اینجا را کلیک کن",
       Chance: "شانس",
+      Version: "نسخه",
     },
   },
 };
