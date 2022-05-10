@@ -3,9 +3,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 
 import SpinningWheel from "../../components/spinning-wheel/spinning-wheel.component";
-import Modal from "../../components/lucky-wheel-modal/modal.component";
 
 import { getBonusList, setUserBonus } from "../../redux/wheel/wheel.action";
+import { setOpenWheelModal } from "../../redux/wheel/wheel.action";
 
 import HandPointUp from "./../../assets/images/icon/hand-point-up.png";
 
@@ -21,19 +21,14 @@ const LuckyWheelPage = () => {
 
   const [userChanceConuter, setUserChanceConuter] = useState(0);
   const [wheelItem, setWheelItem] = useState(6);
-  const [modal, setModal] = useState(false);
 
   const toggleModal = () => {
-    setModal(true);
-  };
-
-  const handlePopupClose = () => {
-    setModal(false);
+    dispatch(setOpenWheelModal(true));
   };
 
   useEffect(() => {
     dispatch(getBonusList());
-  }, []);
+  }, [dispatch]);
 
   useEffect(() => {
     console.log("currentUser-luck:", currentUser);
@@ -63,6 +58,8 @@ const LuckyWheelPage = () => {
         }, 10000);
       } else if (response.status === 403) {
         // popup optopns to increase chances
+      } else {
+        // toast
       }
     });
   };
@@ -107,7 +104,6 @@ const LuckyWheelPage = () => {
       {/* ---------------- Spin Btn ------------------ */}
       <button
         className="lucky-wheel-page-btn center-absolute"
-        // onClick={toggleModal}
         onClick={handleWheelSpinBtnClick}
       >
         {t("Lucky_Wheel_Spin_Btn")}
@@ -124,16 +120,6 @@ const LuckyWheelPage = () => {
         />
         <p className="click-here--text">{t("Lucky_Wheel_Click_Here")}</p>
       </div>
-      {/* ---------------- modal ------------------ */}
-      {/* prizetype can either be coin or physical-item */}
-      {modal && (
-        <Modal
-          title="50 سکه گلمراد"
-          // prizeType="coin"
-          prizeType="physical-item"
-          onClosePopup={handlePopupClose}
-        />
-      )}
     </div>
   );
 };

@@ -10,6 +10,7 @@ import { setUserProfile } from "./redux/user/user.action";
 import { useSetupAxios } from "./services/httpServices";
 
 import routes from "./routes";
+import LuckyWheelModal from "./components/lucky-wheel-modal/lucky-wheel-modal.component";
 
 function App() {
   const routing = useRoutes(routes);
@@ -21,12 +22,13 @@ function App() {
     dispatch(setUserProfile()).then((response) => {
       console.log("profile response app", response);
     });
-  }, []);
+  }, [dispatch]);
 
   return (
     <>
       <Loading />
       <SignupSignin />
+      <LuckyWheelModal />
       <Fragment>{routing}</Fragment>
     </>
   );

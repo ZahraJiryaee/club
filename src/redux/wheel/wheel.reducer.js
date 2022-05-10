@@ -3,6 +3,7 @@ import { WheelActionTypes } from "./wheel.types";
 const INITIAL_STATE = {
   bonusList: [],
   bonus: null,
+  openWheelModal: false,
 };
 
 const wheelReducer = (state = INITIAL_STATE, action) => {
@@ -16,6 +17,11 @@ const wheelReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         bonus: action.payload,
+      };
+    case WheelActionTypes.OPEN_WHEEL_MODAL:
+      return {
+        ...state,
+        openWheelModal: action.payload,
       };
     default:
       return state;
