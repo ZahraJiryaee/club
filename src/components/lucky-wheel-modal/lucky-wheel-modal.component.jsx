@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { useTranslation } from "react-i18next";
 
 import { setOpenWheelModal } from "../../redux/wheel/wheel.action";
 import { setUserProfile } from "../../redux/user/user.action";
@@ -10,6 +11,7 @@ import "./lucky-wheel-modal.styles.scss";
 
 const LuckyWheelModal = () => {
   const dispatch = useDispatch();
+  const { t } = useTranslation();
 
   const setBonus = useSelector((state) => state.wheel.bonus);
   const openWheelModal = useSelector((state) => state.wheel.openWheelModal);
@@ -19,16 +21,16 @@ const LuckyWheelModal = () => {
   const [prizeReceived, setPrizeReceived] = useState(false);
   const [userAddress, setUserAddress] = useState("");
   const [popupBtnTxt, setPopupBtnTxt] = useState(
-    prizeType === "dig" ? "دریافت" : "تایید"
+    prizeType === "dig" ? t("Receive") : t("Confirm")
   );
 
   const popupPrizeBtn = () => {
     console.log("api call");
     setPrizeReceived(true);
     if (prizeType === "dig") {
-      setPopupBtnTxt(`کد تایید: ${value}`);
+      setPopupBtnTxt(`${t("Verification_Code")}: ${value}`);
     } else if (prizeType === "non-dig") {
-      setPopupBtnTxt(`کد پیگیری: ${value}`);
+      setPopupBtnTxt(`${t("Tracking_Code")}: ${value}`);
     }
   };
 
@@ -42,13 +44,11 @@ const LuckyWheelModal = () => {
   };
 
   useEffect(() => {
+    console.log("setBonus- modal:", setBonus);
+
     setPrizeReceived(false);
     setUserAddress("");
-    setPopupBtnTxt(prizeType === "dig" ? "دریافت" : "تایید");
-  }, [prizeType]);
-
-  useEffect(() => {
-    console.log("setBonus- modal:", setBonus);
+    setPopupBtnTxt(setBonus.type === "dig" ? t("Receive") : t("Confirm"));
   }, [setBonus]);
 
   return openWheelModal && setBonus ? (
@@ -77,8 +77,8 @@ const LuckyWheelModal = () => {
               {!prizeReceived ? (
                 <>
                   <p className="center-absolute user-address-label">
-                    <span>لطفا شهر و آدرس محل دریافت را وارد نمایید.</span>
-                    <span>(اجباری)</span>
+                    <span>{t("Enter_Address")}</span>
+                    <span>{t("Required")}</span>
                   </p>
                   <textarea
                     defaultValue={userAddress}
@@ -90,11 +90,11 @@ const LuckyWheelModal = () => {
               ) : (
                 <>
                   <p className="center-absolute send-to-user-address">
-                    <span>ارسال به:</span>
+                    <span>{t("Send_To")}</span>
                     <span>{userAddress}</span>
                   </p>
                   <p className="center-absolute support-number">
-                    <span>شماره پشتیبانی:</span>
+                    <span>{t("Support_Number")}</span>
                     <span>{process.env.REACT_APP_SUPPORT_NUMBER}</span>
                   </p>
                 </>
@@ -104,7 +104,7 @@ const LuckyWheelModal = () => {
           {/*--------------------- Digital Specific -------------------*/}
           {prizeType === "dig" && prizeReceived && (
             <p className="center-absolute dig-prize-received-hint">
-              توجه: کد دریافتی را در بازی مورد نظر وارد نمایید.
+              {t("Enter_Code_In_Game")}
             </p>
           )}
           {/*--------------------- Button -------------------*/}
