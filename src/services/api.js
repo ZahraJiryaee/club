@@ -11,10 +11,18 @@ const newTokenApiEndpoint = API_URL + "/api/v1/user/token/refresh";
 // profile
 const userProfileApiEndpoint = API_URL + "/api/v1/user/profile";
 
+// leaderboard
+const listUserWeekly = API_URL + "/api/v1/score/weakly";
+const listUserMonthly = API_URL + "/api/v1/score/monthly";
+const listUserSeasonal = API_URL + "/api/v1/score/seasonal";
+
 const getApis = {
   API_URL,
   newTokenApiEndpoint,
   userProfileApiEndpoint,
+  listUserWeekly,
+  listUserMonthly,
+  listUserSeasonal,
 };
 
 export default getApis;
