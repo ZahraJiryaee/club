@@ -5,7 +5,7 @@ import { useRoutes } from "react-router-dom";
 import Loading from "./components/common/Loading.component";
 import SignupSignin from "./components/signup-signin/signup-signin.component";
 
-import { setUserProfile } from "./redux/user/user.action";
+import { setCurrentUser } from "./redux/user/user.action";
 
 import { useSetupAxios } from "./services/httpServices";
 
@@ -19,7 +19,7 @@ function App() {
   useSetupAxios();
 
   useEffect(() => {
-    dispatch(setUserProfile()).then((response) => {
+    dispatch(setCurrentUser()).then((response) => {
       console.log("profile response app", response);
     });
   }, [dispatch]);

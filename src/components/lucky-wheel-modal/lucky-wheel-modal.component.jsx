@@ -3,7 +3,10 @@ import { useSelector, useDispatch } from "react-redux";
 import { useTranslation } from "react-i18next";
 
 import { setOpenWheelModal } from "../../redux/wheel/wheel.action";
-import { setUserProfile } from "../../redux/user/user.action";
+import {
+  setCurrentUser,
+  setUserProfileAddress,
+} from "../../redux/user/user.action";
 
 import CloseIcon from "./../../assets/images/icon/close-icon.png";
 
@@ -15,6 +18,7 @@ const LuckyWheelModal = () => {
 
   const setBonus = useSelector((state) => state.wheel.bonus);
   const openWheelModal = useSelector((state) => state.wheel.openWheelModal);
+  const currentUser = useSelector((state) => state.user.currentUser);
 
   const { title, type: prizeType, value } = setBonus || {};
 
@@ -31,6 +35,29 @@ const LuckyWheelModal = () => {
       setPopupBtnTxt(`${t("Verification_Code")}: ${value}`);
     } else if (prizeType === "non-dig") {
       setPopupBtnTxt(`${t("Tracking_Code")}: ${value}`);
+
+      const {
+        first_name,
+        last_name,
+        avatar,
+        gender,
+        birth_date,
+        postal_code,
+        username,
+      } = currentUser;
+
+      const setProfileBody = {
+        first_name,
+        last_name,
+        avatar,
+        gender,
+        birth_date,
+        address: userAddress,
+        postal_code,
+        contact_mobile_number: username,
+      };
+
+      dispatch(setUserProfileAddress(setProfileBody));
     }
   };
 
@@ -40,16 +67,17 @@ const LuckyWheelModal = () => {
 
   const handleClosePopup = () => {
     dispatch(setOpenWheelModal(false));
-    dispatch(setUserProfile());
+    dispatch(setCurrentUser());
   };
 
   useEffect(() => {
     console.log("setBonus- modal:", setBonus);
+    const { type } = setBonus || {};
 
     setPrizeReceived(false);
     setUserAddress("");
-    setPopupBtnTxt(setBonus.type === "dig" ? t("Receive") : t("Confirm"));
-  }, [setBonus]);
+    setPopupBtnTxt(type === "dig" ? t("Receive") : t("Confirm"));
+  }, [setBonus, t]);
 
   return openWheelModal && setBonus ? (
     <>

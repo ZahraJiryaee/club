@@ -4,6 +4,7 @@ import {
   setPassword,
   setLoginToken,
   getUserProfile,
+  setUserProfile,
   setInviterNumber,
 } from "../../services/userServices";
 import { UserActionTypes } from "./user.types";
@@ -76,7 +77,7 @@ export const login = (username, password) => async (dispatch) => {
         });
         dispatch(setOpenValidationDialog(false));
 
-        result = await dispatch(setUserProfile());
+        result = await dispatch(setCurrentUser());
       }
     })
     .catch((e) => {
@@ -86,7 +87,7 @@ export const login = (username, password) => async (dispatch) => {
   return result;
 };
 
-export const setUserProfile = () => async (dispatch) => {
+export const setCurrentUser = () => async (dispatch) => {
   let result;
   await getUserProfile()
     .then((response) => {
@@ -106,6 +107,22 @@ export const setUserProfile = () => async (dispatch) => {
         payload: null,
       });
       result = e.response;
+    });
+  return result;
+};
+
+export const setUserProfileAddress = (body) => async (dispatch) => {
+  let result;
+  await setUserProfile(body)
+    .then((response) => {
+      console.log("response-setuser-profile-address", response);
+      if (response.status === 200) {
+        result = response;
+      }
+    })
+    .catch((error) => {
+      console.log("error-setuser-profile-address", error);
+      result = error.response;
     });
   return result;
 };

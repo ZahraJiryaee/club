@@ -56,6 +56,10 @@ export const getUserProfile = () => {
   return http.get(getApis.userProfileApiEndpoint);
 };
 
+export const setUserProfile = (body) => {
+  return http.put(getApis.userProfileApiEndpoint, body);
+};
+
 //InviterNumber//
 export const setInviterNumber = (inviterNumber) => {
   const body = { inviter_number: inviterNumber };
