@@ -5,9 +5,12 @@ import "./games-banner.styles.scss";
 
 const BannerGames = ({ category }) => {
   let navigate = useNavigate();
-
+  console.log("category.applications.length", category.applications.length);
   return (
-    <div className="banner-container">
+    <div
+      className="games-banner-container"
+      style={{ "--games-banner-items-length": category.applications.length }}
+    >
       {category.applications.map((application) => {
         return (
           <img

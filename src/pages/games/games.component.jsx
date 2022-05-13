@@ -43,7 +43,7 @@ const GamesPage = () => {
             <div key={category.id} className="games-container">
               <div className="game-category-header">
                 <p className="title">{category.title}</p>
-                <Link to={`/games/category/${category.id}`}>
+                <Link to={`/games/category/${category.id}`} className="more">
                   <p className="more">
                     بیشتر
                     <img src={ArrowIconMB} alt="arrow-back" />

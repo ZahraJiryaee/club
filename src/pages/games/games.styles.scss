@@ -7,8 +7,6 @@
   background-color: $white;
 
   .games-container {
-    // overflow-x: auto;
-    // overflow-x: hidden;
     direction: rtl;
     margin: 0 calc(5% + 16px) 32px;
     @media #{$tablet-device, $large-mobile} {
@@ -21,6 +19,7 @@
     .game-category-header {
       display: flex;
       justify-content: space-between;
+      margin-bottom: 3vh;
 
       .title {
         font-size: 17px;
