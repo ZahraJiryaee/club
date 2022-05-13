@@ -19,7 +19,7 @@
 
   @media #{$small-mobile} {
     grid-template-rows: repeat(1, auto);
-    grid-template-columns: repeat(2, 80vw);
+    grid-template-columns: repeat(2, 85vw);
     overflow-x: auto;
     // @if --games-banner-items-length != 1 {
     //   overflow-x: auto;

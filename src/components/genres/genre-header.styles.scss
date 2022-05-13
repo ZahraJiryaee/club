@@ -1,5 +1,9 @@
 @import "../../assets/scss/variables";
 
+.genre-header {
+  display: none;
+}
+
 @media #{$tablet-device,$large-mobile} {
   .spacer {
     width: 100%;
@@ -18,6 +22,7 @@
   }
 
   .genre-header {
+    display: block;
     padding-top: calc($navbar-height - 0.1vh);
     // padding-top: 9.9vh;
     direction: rtl;

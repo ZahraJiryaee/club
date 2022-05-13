@@ -2,8 +2,8 @@
 
 .games-page {
   width: 100%;
-  padding: 18.5px 17.5px 0 0;
   padding-bottom: calc(var(--footer-height) + 30px);
+  padding-top: calc($navbar-height + 16px);
   background-color: $white;
 
   .games-container {
@@ -47,5 +47,11 @@
         }
       }
     }
+  }
+}
+
+@media #{$tablet-device,$large-mobile} {
+  .games-page {
+    padding-top: 18.5px;
   }
 }
