@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-import "../../pages/games/games.styles.scss";
+import "./games-banner.styles.scss";
 
 const BannerGames = ({ category }) => {
   let navigate = useNavigate();

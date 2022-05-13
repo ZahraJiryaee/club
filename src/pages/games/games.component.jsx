@@ -7,10 +7,12 @@ import { getAllGames } from "../../redux/games/games.action";
 import { setHeaderMode } from "../../redux/header/header.action";
 
 import GenreHeader from "../../components/genres/genre-header.component";
-import RowGames from "../../components/games/games.row.component";
-import BannerGames from "../../components/games/games.banner.component";
+import GamesRow from "../../components/games/games-row/games-row.component";
+import BannerGames from "../../components/games/games-banner/games-banner.component";
 
+import ArrowIconMB from "../../assets/images/icon/arrow-back-marineblue.png";
 import "./games.styles.scss";
+import "../game-details/game-details.styles.scss";
 
 const GamesPage = () => {
   const { pathname } = useLocation();
@@ -38,29 +40,25 @@ const GamesPage = () => {
       <div className="games-page">
         {games.map((category) => {
           return category.enumerate_type === 1 ? (
-            <div key={category.id}>
-              <div className="category-container">
-                <span className="category-title">{category.title}</span>
-                <div>
-                  <Link
-                    className="more-button"
-                    to={`/games/category/${category.id}`}
-                  >
-                    <span>بیشتر</span>
-                  </Link>
-                  <Link to={`/category/${category.id}`}>
-                    <span className="more-icon">
-                      <i className="fa fa-solid fa-chevron-left" />
-                    </span>
-                  </Link>
-                </div>
+            <div key={category.id} className="games-container">
+              <div className="game-category-header">
+                <p className="title">{category.title}</p>
+                <Link to={`/games/category/${category.id}`}>
+                  <p className="more">
+                    بیشتر
+                    <img src={ArrowIconMB} alt="arrow-back" />
+                  </p>
+                </Link>
               </div>
-              <RowGames category={category} />
+              <GamesRow
+                applications={category.applications}
+                page="games-page"
+              />
             </div>
           ) : (
-            <div key={category.id}>
-              <div className="category-container">
-                <span className="category-title">{category.title}</span>
+            <div key={category.id} className="games-container">
+              <div className="game-category-header">
+                <span className="title">{category.title}</span>
               </div>
               <BannerGames category={category} />
             </div>

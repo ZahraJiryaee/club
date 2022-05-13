@@ -1,10 +1,19 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 import StarLogo from "./../../../assets/images/icon/star.png";
 
 import "./games-row.styles.scss";
 
-const GamesRow = ({ applications }) => {
+const GamesRow = ({ applications, page, category }) => {
+  let navigate = useNavigate();
+
+  const navigateToGameDetails = (application, category) => {
+    return navigate(`/games/detail/${application.id}`, {
+      state: { application: application, category: category },
+    });
+  };
+
   console.log("applications:", applications);
 
   return (
@@ -22,7 +31,11 @@ const GamesRow = ({ applications }) => {
                 className="icon"
                 src={app.source.icon}
                 alt="game-icon"
-                //   onClick={() => navigateToGameDetails(app)}
+                onClick={
+                  page === "games-page"
+                    ? () => navigateToGameDetails(app, category)
+                    : () => {}
+                }
               />
               <div className="name-shortDes-score">
                 <span className="name">{app.name}</span>

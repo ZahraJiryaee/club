@@ -1,0 +1,15 @@
+.banner-container {
+  margin-bottom: 20px;
+  display: flex;
+  overflow-x: auto;
+  white-space: nowrap;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  .banner {
+    width: 95%;
+    height: auto;
+    border-radius: 10px;
+    margin-left: 5px;
+  }
+}
