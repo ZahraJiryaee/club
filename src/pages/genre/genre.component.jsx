@@ -6,7 +6,7 @@ import { getSelectedGenre } from "../../redux/genres/genres.action";
 import { getSelectedCategory } from "../../redux/games/games.action";
 
 import GenreHeader from "../../components/genres/genre-header.component";
-import GenreView from "../../components/genres/genre.view.component";
+import GenreView from "../../components/genres/genre-view.component";
 
 const GenrePage = () => {
   const dispatch = useDispatch();
