@@ -1,0 +1,25 @@
+@import "../../assets/scss/variables";
+
+.rate-detail {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.25rem;
+  padding-left: 1rem;
+
+  .rate-number {
+    font-size: 14px;
+    font-weight: 500;
+    color: $theme-color--brownish-grey;
+    @media #{$small-mobile} {
+      font-size: 12px;
+    }
+  }
+
+  .star {
+    @media #{$small-mobile} {
+      width: 16px;
+      height: 14.9px;
+      margin-top: 2px;
+    }
+  }
+}

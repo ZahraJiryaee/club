@@ -59,19 +59,17 @@ const GenreView = ({ title }) => {
                 </div>
               </div>
 
-              <div className="test">
-                <div className="games-banner-container">
-                  {application.source.screenshots.map((screenshot, index) => {
-                    return (
-                      <img
-                        className="banner"
-                        key={index}
-                        src={screenshot}
-                        alt="banner"
-                      />
-                    );
-                  })}
-                </div>
+              <div className="games-banner-container">
+                {application.source.screenshots.map((screenshot, index) => {
+                  return (
+                    <img
+                      className="banner"
+                      key={index}
+                      src={screenshot}
+                      alt="banner"
+                    />
+                  );
+                })}
               </div>
             </>
           );

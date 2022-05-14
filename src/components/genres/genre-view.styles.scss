@@ -1,10 +1,5 @@
 @import "../../assets/scss/variables";
 
-// :root {
-//   --games-row-image-width: 92px;
-//   --games-row-items-length: 1;
-// }
-
 .genre-page {
   direction: rtl;
   width: 100%;
@@ -27,12 +22,15 @@
       margin-bottom: 3vh;
 
       .title {
-        font-size: 17px;
+        font-size: 26px;
         font-weight: bold;
         line-height: 0.71;
         letter-spacing: -0.41px;
         text-align: center;
         color: $theme-color--dark;
+        @media #{$small-mobile} {
+          font-size: 17px;
+        }
       }
     }
 
@@ -117,60 +115,45 @@
       }
     }
 
-    .test {
-      // // width: 85%;
-      // margin-right: auto;
-      // margin-left: auto;
+    .games-banner-container {
+      display: grid;
+      grid-auto-flow: column;
+      grid-template-rows: repeat(1, auto);
+      grid-template-columns: repeat(3, 1fr);
+      gap: 3vh 16px;
+      width: 100%;
       margin-bottom: 36px;
-      // direction: ltr;
 
-      .games-banner-container {
-        display: grid;
-        grid-auto-flow: column;
+      @media #{$tablet-device,$large-mobile} {
         grid-template-rows: repeat(1, auto);
-        grid-template-columns: repeat(3, 1fr);
-        gap: 3vh 16px;
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      @media #{$small-mobile} {
+        grid-template-rows: repeat(1, auto);
+        grid-template-columns: repeat(2, 85vw);
+        overflow-x: auto;
+        // @if --games-banner-items-length != 1 {
+        //   overflow-x: auto;
+        // } @else {
+        //   overflow: hidden;
+        // }
+
+        &::-webkit-scrollbar {
+          display: none;
+        }
+      }
+
+      .banner {
         width: 100%;
-
-        @media #{$tablet-device,$large-mobile} {
-          grid-template-rows: repeat(1, auto);
-          grid-template-columns: repeat(2, 1fr);
-        }
-
-        @media #{$small-mobile} {
-          grid-template-rows: repeat(1, auto);
-          grid-template-columns: repeat(2, 85vw);
-          overflow-x: auto;
-          // @if --games-banner-items-length != 1 {
-          //   overflow-x: auto;
-          // } @else {
-          //   overflow: hidden;
-          // }
-
-          &::-webkit-scrollbar {
-            display: none;
-          }
-        }
-
-        .banner {
-          width: 100%;
-          height: auto;
-          border-radius: 10px;
-        }
+        height: auto;
+        border-radius: 10px;
       }
     }
   }
 }
 
 @media #{$tablet-device,$large-mobile} {
-  // .test {
-  //   width: 100%;
-  //   margin-right: 0;
-  //   margin-left: 0;
-  // }
-  // .games-banner-container {
-  //   width: 100%;
-  // }
   .genre-page {
     padding-top: 18.5px;
   }
