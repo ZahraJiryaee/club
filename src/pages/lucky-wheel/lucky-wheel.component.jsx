@@ -1,11 +1,11 @@
 import React, { useEffect, useState, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useTranslation } from "react-i18next";
 
 import SpinningWheel from "../../components/spinning-wheel/spinning-wheel.component";
-import Modal from "../../components/lucky-wheel-modal/modal.component";
 
 import { getBonusList, setUserBonus } from "../../redux/wheel/wheel.action";
-import { setUserProfile } from "../../redux/user/user.action";
+import { setOpenWheelModal } from "../../redux/wheel/wheel.action";
 
 import HandPointUp from "./../../assets/images/icon/hand-point-up.png";
 
@@ -13,6 +13,7 @@ import "./lucky-wheel.component.scss";
 
 const LuckyWheelPage = () => {
   const dispatch = useDispatch();
+  const { t } = useTranslation();
 
   const currentUser = useSelector((state) => state.user.currentUser);
   const bonusList = useSelector((state) => state.wheel.bonusList);
@@ -20,29 +21,18 @@ const LuckyWheelPage = () => {
 
   const [userChanceConuter, setUserChanceConuter] = useState(0);
   const [wheelItem, setWheelItem] = useState(6);
-  const [modal, setModal] = useState(false);
 
   const toggleModal = () => {
-    setModal(true);
-  };
-
-  const handlePopupClose = () => {
-    setModal(false);
+    dispatch(setOpenWheelModal(true));
   };
 
   useEffect(() => {
     dispatch(getBonusList());
-  }, []);
-
-  const getProfile = () => {
-    dispatch(setUserProfile()).then((res) => {
-      console.log("pro res", res);
-    });
-  };
+  }, [dispatch]);
 
   useEffect(() => {
-    console.log("currentUser:", currentUser);
-    if (!isEmpty(currentUser)) {
+    console.log("currentUser-luck:", currentUser);
+    if (currentUser) {
       setUserChanceConuter(currentUser.chance_counter);
     }
   }, [currentUser]);
@@ -62,9 +52,14 @@ const LuckyWheelPage = () => {
         setBonusId(bonusId);
 
         spinHandler();
+
+        setTimeout(() => {
+          toggleModal();
+        }, 10000);
       } else if (response.status === 403) {
-        console.log("luckwheel -error");
         // popup optopns to increase chances
+      } else {
+        // toast
       }
     });
   };
@@ -82,21 +77,17 @@ const LuckyWheelPage = () => {
     }
   }, [setBonus]);
 
-  const isEmpty = (inputObject) => {
-    return Object.keys(inputObject).length === 0;
-  };
-
   return (
     <div className="blue-bg outer-box">
       {/* ---------------- Page Upper Txt ------------------ */}
       <div className="main-header">
         <h2 className="header-txt center-absolute">
-          گـــردونه شــانــس مـدریــک
+          {t("Lucky_Wheel_Header_Txt")}
         </h2>
         <p className="subheader-txt center-absolute">
-          در گردونه مدریک شانس خود را جهت برنده شدن جوایز
+          {t("Lucky_Wheel_Sub_Header_Txt_Lin1")}
           <br />
-          ارزنده امتحان کنید.
+          {t("Lucky_Wheel_Sub_Header_Txt_Lin2")}
         </p>
       </div>
       {/* ---------------- Wheel ------------------ */}
@@ -113,14 +104,13 @@ const LuckyWheelPage = () => {
       {/* ---------------- Spin Btn ------------------ */}
       <button
         className="lucky-wheel-page-btn center-absolute"
-        // onClick={toggleModal}
         onClick={handleWheelSpinBtnClick}
       >
-        بچرخون
+        {t("Lucky_Wheel_Spin_Btn")}
       </button>
       {/* ---------------- Page Lower Txt ------------------ */}
       <p className="want-more-chance center-absolute">
-        شــانـس بیشتری برای چـرخونـدن گـردونه می‌خـوای؟
+        {t("Lucky_wheel_Want_More_Chance")}
       </p>
       <div className="click-here center-absolute">
         <img
@@ -128,20 +118,8 @@ const LuckyWheelPage = () => {
           src={HandPointUp}
           alt="hand-point-up"
         />
-        <p className="click-here--text" onClick={getProfile}>
-          اینجا را کلیک کن
-        </p>
+        <p className="click-here--text">{t("Lucky_Wheel_Click_Here")}</p>
       </div>
-      {/* ---------------- modal ------------------ */}
-      {/* prizetype can either be coin or physical-item */}
-      {modal && (
-        <Modal
-          title="50 سکه گلمراد"
-          // prizeType="coin"
-          prizeType="physical-item"
-          onClosePopup={handlePopupClose}
-        />
-      )}
     </div>
   );
 };

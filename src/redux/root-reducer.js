@@ -4,6 +4,7 @@ import userReducer from "./user/user.reducer";
 import gamesReducer from "./games/games.reducer";
 import genresReducer from "./genres/genres.reducer";
 import wheelReducer from "./wheel/wheel.reducer";
+import leaderboardReducer from "./leaderboard/leaderboard.reducer";
 
 export const rootReducer = combineReducers({
   header: headerReducer,
@@ -11,4 +12,5 @@ export const rootReducer = combineReducers({
   games: gamesReducer,
   genres: genresReducer,
   wheel: wheelReducer,
+  leaderboard: leaderboardReducer,
 });

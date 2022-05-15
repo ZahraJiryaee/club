@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import { useTranslation } from "react-i18next";
 
 import { setHeaderMode } from "../../redux/header/header.action";
 
@@ -17,6 +18,7 @@ const SpinningWheel = ({
   console.log("bonusList:", bonusList);
   const { pathname } = useLocation();
   const dispatch = useDispatch();
+  const { t } = useTranslation();
 
   useEffect(() => {
     dispatch(setHeaderMode(pathname));
@@ -37,7 +39,7 @@ const SpinningWheel = ({
       <button id="spin">
         <span className="chance-number">{userChanceConuter}</span>
         <br />
-        <span className="chance-text">شانس</span>
+        <span className="chance-text">{t("Chance")}</span>
       </button>
       <img className="arrow" src={Arrow} alt="lucky-wheel-pointer" />
 

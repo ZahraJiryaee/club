@@ -1,4 +1,7 @@
 import React from "react";
+import { useDispatch } from "react-redux";
+
+import { setLeaderBoardHeaderStatus } from "../../redux/leaderboard/leaderboard.action";
 
 import UserAvatarContainer from "./../../assets/images/leaderboard/user-avatar-container.png";
 import Crown from "./../../assets/images/icon/crown.png";
@@ -6,12 +9,14 @@ import Crown from "./../../assets/images/icon/crown.png";
 import "./leaderboard-header.styles.scss";
 
 const LeaderboardHeader = ({ top3 }) => {
+  const dispatch = useDispatch();
+
   const handleLeaderboardCheckboxChange = (event) => {
     /*
     true:general
     false:weekly
     */
-    console.log("checkbox:", event.target.checked);
+    dispatch(setLeaderBoardHeaderStatus(event.target.checked));
   };
 
   let indexedTop3 = [...top3];
