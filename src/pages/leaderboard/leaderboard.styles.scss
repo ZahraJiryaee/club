@@ -2,8 +2,67 @@
 
 :root {
   --leaderboard-user-record-height: 5vh;
+  --user-list-gap: 1vh;
+  --user-list-rows: 7;
 }
 
+.leaderboard-container {
+  direction: rtl;
+
+  .leaderboard-user-list {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: var(--user-list-gap) 8vh;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    height: calc(
+      (var(--user-list-gap) + var(--leaderboard-user-record-height)) *
+        var(--user-list-rows)
+    );
+    width: 80%;
+
+    &.leaderboard-height-current-user-between-7-and-13 {
+      @media #{$large-mobile} {
+        --user-list-rows: 8;
+      }
+    }
+
+    .leaderboard-each-user {
+      background: gray;
+      height: var(--leaderboard-user-record-height);
+
+      &.current-user-in-first-14 {
+        background-color: yellow;
+      }
+
+      @media #{$large-mobile} {
+        &:nth-child(n + 8) {
+          display: none;
+        }
+
+        &.current-user-between-7-and-13 {
+          display: flex;
+          background-color: purple;
+          flex-direction: row;
+        }
+      }
+    }
+  }
+
+  .current-user-out-first-14 {
+    background-color: red;
+    width: 40%;
+    height: var(--leaderboard-user-record-height);
+
+    @media #{$large-mobile} {
+      width: 80%;
+    }
+  }
+}
+
+/*
 .leaderboard-container {
   width: 100%;
   padding-bottom: calc(var(--footer-height) + 30px);
@@ -27,10 +86,14 @@
 
   .leaderborad-topusers-grid {
     display: grid;
+    grid-auto-flow: column;
+    grid-template-rows: repeat(7, auto);
     grid-template-columns: 1fr 1fr;
     margin: 0% 10%;
     gap: 2vh 3rem;
+
     @media #{$large-mobile} {
+      grid-template-rows: repeat(8, auto);
       grid-template-columns: 1fr;
     }
     .each-user {
@@ -56,11 +119,19 @@
       }
 
       &.loggedin-user-in-middle {
-        // grid-column: span 2;
-        transform: translateX(-50%);
+        grid-column: span 2;
+        // background-color: red;
+        // position: absolute;
+        // bottom: 20px;
+        // // top: 0;
+        // width: 38%;
+        // left: 0;
+        // right: 0;
+        // margin: auto;
+        // transform: translateX(-50%);
         @media #{$large-mobile} {
-          // grid-column: auto;
-          transform: none;
+          grid-column: auto;
+          // transform: none;
         }
       }
 
@@ -87,7 +158,7 @@
         justify-content: space-between;
         position: relative;
 
-        .user--avatar-name-score {
+        .user--avatar-name {
           display: flex;
           align-items: center;
           gap: 0.5rem;
@@ -110,21 +181,26 @@
                 font-weight: 500;
               }
             }
-            :nth-child(2) {
-              font-size: 10px;
-              font-weight: 500;
-              line-height: 1.5;
-              letter-spacing: -0.16px;
-              color: $theme-color--brownish-grey;
-              @media #{$large-mobile} {
-                font-size: 8px;
-                font-weight: 500;
-              }
-            }
+            // :nth-child(2) {
+            //   font-size: 10px;
+            //   font-weight: 500;
+            //   line-height: 1.5;
+            //   letter-spacing: -0.16px;
+            //   color: $theme-color--brownish-grey;
+            //   @media #{$large-mobile} {
+            //     font-size: 8px;
+            //     font-weight: 500;
+            //   }
+            // }
           }
         }
 
-        .user-prize {
+        .user--score-prize {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 1rem;
+
           font-size: 13px;
           font-weight: 500;
           line-height: 1.69;
@@ -141,7 +217,7 @@
       }
 
       &.extract-prize .user-record {
-        .user--avatar-name-score {
+        .user--avatar-name {
           .name-score {
             display: flex;
             justify-content: space-between;
@@ -149,7 +225,7 @@
               line-height: normal;
             }
             :nth-child(2) {
-              /* score */
+              
               position: absolute;
               left: 1rem;
               margin: auto;
@@ -172,6 +248,7 @@
     }
   }
 }
+*/
 
 @media #{$tablet-device,$large-mobile} {
   .leaderboard-container {
