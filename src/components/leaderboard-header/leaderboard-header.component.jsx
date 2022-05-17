@@ -46,25 +46,36 @@ const LeaderboardHeader = ({ top3 }) => {
         <img className="crown" src={Crown} alt="crown" />
         {/* ------------------------- Top3 ---------------------------- */}
         <div className="top-three">
-          {[indexedTop3[2], indexedTop3[0], indexedTop3[1]].map((user) => (
-            <div key={user.id}>
-              <img
-                className="user-avatar-container"
-                src={UserAvatarContainer}
-                alt="user-avatar-container"
-              />
-              <img
-                className="user-avatar"
-                src="https://cdn3.iconfinder.com/data/icons/avatars-round-flat/33/avat-01-512.png"
-                alt="user-avatar"
-              />
-              <span className="medal">{user.index}</span>
-              <span className="name-score">
-                <span>{user.name} </span>
-                <br /> <span>{user.prize}</span>
-              </span>
-            </div>
-          ))}
+          {[indexedTop3[2], indexedTop3[0], indexedTop3[1]].map((user) => {
+            console.log("user:", user);
+            const { id, award } = user;
+            const { avatar, first_name, last_name } = user.user;
+            return (
+              <div key={id}>
+                <img
+                  className="user-avatar-container"
+                  src={UserAvatarContainer}
+                  alt="user-avatar-container"
+                />
+                <img
+                  className="user-avatar"
+                  src={`${
+                    avatar
+                      ? avatar
+                      : "https://cdn3.iconfinder.com/data/icons/avatars-round-flat/33/avat-01-512.png"
+                  }`}
+                  alt="user-avatar"
+                />
+                <span className="medal">{user.index}</span>
+                <span className="name-score">
+                  <span>
+                    {last_name} {first_name}
+                  </span>
+                  <br /> <span>{award}</span>
+                </span>
+              </div>
+            );
+          })}
         </div>
       </div>
     </div>

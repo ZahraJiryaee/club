@@ -46,10 +46,12 @@
 
     .leaderboard-each-user {
       height: var(--leaderboard-user-record-height);
+      width: 45%;
 
       // &.current-user-in-first-14 {}
 
       @media #{$large-mobile} {
+        width: 100%;
         &:nth-child(n + 8) {
           display: none;
         }
@@ -69,6 +71,13 @@
       width: 80%;
     }
   }
+}
+
+/*--------------------------------
+      FULL WIDTH FOR SHORT LISTS
+---------------------------------*/
+.leaderboard-container .leaderboard-full-width-records .leaderboard-each-user {
+  width: 100%;
 }
 
 /*--------------------------------
