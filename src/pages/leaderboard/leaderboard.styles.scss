@@ -8,67 +8,9 @@
 
 .leaderboard-container {
   direction: rtl;
-
-  .leaderboard-user-list {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    gap: var(--user-list-gap) 8vh;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    height: calc(
-      (var(--user-list-gap) + var(--leaderboard-user-record-height)) *
-        var(--user-list-rows)
-    );
-    width: 80%;
-
-    &.leaderboard-height-current-user-between-7-and-13 {
-      @media #{$large-mobile} {
-        --user-list-rows: 8;
-      }
-    }
-
-    .leaderboard-each-user {
-      background: gray;
-      height: var(--leaderboard-user-record-height);
-
-      &.current-user-in-first-14 {
-        background-color: yellow;
-      }
-
-      @media #{$large-mobile} {
-        &:nth-child(n + 8) {
-          display: none;
-        }
-
-        &.current-user-between-7-and-13 {
-          display: flex;
-          background-color: purple;
-          flex-direction: row;
-        }
-      }
-    }
-  }
-
-  .current-user-out-first-14 {
-    background-color: red;
-    width: 40%;
-    height: var(--leaderboard-user-record-height);
-
-    @media #{$large-mobile} {
-      width: 80%;
-    }
-  }
-}
-
-/*
-.leaderboard-container {
-  width: 100%;
   padding-bottom: calc(var(--footer-height) + 30px);
-  direction: rtl;
 
-  .leaderborad-topusers-grid-txt {
+  .leaderborad-headline-txt {
     font-size: 26px;
     font-weight: bold;
     line-height: 0.46;
@@ -84,174 +26,141 @@
     }
   }
 
-  .leaderborad-topusers-grid {
-    display: grid;
-    grid-auto-flow: column;
-    grid-template-rows: repeat(7, auto);
-    grid-template-columns: 1fr 1fr;
-    margin: 0% 10%;
-    gap: 2vh 3rem;
+  .leaderboard-user-list {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: var(--user-list-gap) 8vh;
+
+    height: calc(
+      (var(--user-list-gap) + var(--leaderboard-user-record-height)) *
+        var(--user-list-rows)
+    );
+    width: 80%;
+
+    &.leaderboard-height-current-user-between-7-and-13 {
+      @media #{$large-mobile} {
+        --user-list-rows: 8;
+      }
+    }
+
+    .leaderboard-each-user {
+      height: var(--leaderboard-user-record-height);
+
+      // &.current-user-in-first-14 {}
+
+      @media #{$large-mobile} {
+        &:nth-child(n + 8) {
+          display: none;
+        }
+
+        &.current-user-between-7-and-13 {
+          display: block;
+        }
+      }
+    }
+  }
+
+  .current-user-out-first-14 {
+    width: 40%;
+    height: var(--leaderboard-user-record-height);
 
     @media #{$large-mobile} {
-      grid-template-rows: repeat(8, auto);
-      grid-template-columns: 1fr;
+      width: 80%;
     }
-    .each-user {
-      // border: 1px solid black;
+  }
+}
+
+/*--------------------------------
+      IF CURRENT USER HAS LOGGEDIN STYLE
+---------------------------------*/
+.current-user-loggedin .user-record .user-info {
+  background-color: $theme-color--tangerine;
+}
+
+/*--------------------------------
+      USER RECORD LOGIC
+---------------------------------*/
+.user-record {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  @media #{$large-mobile} {
+    gap: 0.5rem;
+  }
+
+  .user-index {
+    font-size: 15px;
+    font-weight: bold;
+    color: $theme-color--orange;
+    width: 15px;
+    display: flex;
+    justify-content: center;
+
+    @media #{$large-mobile} {
+      font-size: 12px;
+    }
+  }
+
+  .user-info {
+    background-color: $theme-color--leaderboard-user-records-bg;
+    width: 100%;
+    height: var(--leaderboard-user-record-height);
+    display: flex;
+    border-radius: 50px;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+
+    .user--avatar-name {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+
+      .avatar {
+        width: var(--leaderboard-user-record-height);
+        height: var(--leaderboard-user-record-height);
+        border-radius: 25%;
+      }
+
+      .name {
+        font-size: 13px;
+        font-weight: 500;
+        line-height: 1.5;
+        letter-spacing: 0.12px;
+        color: $theme-color--dark;
+        @media #{$large-mobile} {
+          font-size: 10px;
+          font-weight: 500;
+        }
+      }
+    }
+
+    .user--score-prize {
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 1rem;
 
+      font-size: 13px;
+      font-weight: 500;
+      line-height: 1.69;
+      letter-spacing: -0.21px;
+      color: $theme-color--marine-blue;
+      margin-left: 1rem;
       @media #{$large-mobile} {
-        gap: 0.5rem;
-
-        &:nth-child(n + 8) {
-          display: none;
-        }
-      }
-
-      &.loggedin-user {
-        display: flex;
-        .user-record {
-          background-color: $theme-color--tangerine;
-        }
-      }
-
-      &.loggedin-user-in-middle {
-        grid-column: span 2;
-        // background-color: red;
-        // position: absolute;
-        // bottom: 20px;
-        // // top: 0;
-        // width: 38%;
-        // left: 0;
-        // right: 0;
-        // margin: auto;
-        // transform: translateX(-50%);
-        @media #{$large-mobile} {
-          grid-column: auto;
-          // transform: none;
-        }
-      }
-
-      .user-index {
-        font-size: 15px;
-        font-weight: bold;
-        color: $theme-color--orange;
-        width: 15px;
-        display: flex;
-        justify-content: center;
-
-        @media #{$large-mobile} {
-          font-size: 12px;
-        }
-      }
-
-      .user-record {
-        background-color: $theme-color--leaderboard-user-records-bg;
-        width: 100%;
-        height: var(--leaderboard-user-record-height);
-        display: flex;
-        border-radius: 50px;
-        align-items: center;
-        justify-content: space-between;
-        position: relative;
-
-        .user--avatar-name {
-          display: flex;
-          align-items: center;
-          gap: 0.5rem;
-
-          .avatar {
-            width: var(--leaderboard-user-record-height);
-            height: var(--leaderboard-user-record-height);
-            border-radius: 25%;
-          }
-
-          .name-score {
-            :nth-child(1) {
-              font-size: 13px;
-              font-weight: 500;
-              line-height: 1.5;
-              letter-spacing: 0.12px;
-              color: $theme-color--dark;
-              @media #{$large-mobile} {
-                font-size: 10px;
-                font-weight: 500;
-              }
-            }
-            // :nth-child(2) {
-            //   font-size: 10px;
-            //   font-weight: 500;
-            //   line-height: 1.5;
-            //   letter-spacing: -0.16px;
-            //   color: $theme-color--brownish-grey;
-            //   @media #{$large-mobile} {
-            //     font-size: 8px;
-            //     font-weight: 500;
-            //   }
-            // }
-          }
-        }
-
-        .user--score-prize {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          gap: 1rem;
-
-          font-size: 13px;
-          font-weight: 500;
-          line-height: 1.69;
-          letter-spacing: -0.21px;
-          color: $theme-color--marine-blue;
-          margin-left: 1rem;
-          @media #{$large-mobile} {
-            font-size: 10px;
-            font-weight: 500;
-            line-height: 2;
-            letter-spacing: -0.16px;
-          }
-        }
-      }
-
-      &.extract-prize .user-record {
-        .user--avatar-name {
-          .name-score {
-            display: flex;
-            justify-content: space-between;
-            :nth-child(1) {
-              line-height: normal;
-            }
-            :nth-child(2) {
-              
-              position: absolute;
-              left: 1rem;
-              margin: auto;
-              color: $theme-color--marine-blue;
-              font-size: 13px;
-              font-weight: 500;
-              line-height: normal;
-
-              @media #{$large-mobile} {
-                font-size: 10px;
-                font-weight: 500;
-              }
-            }
-          }
-        }
-        .user-prize {
-          display: none;
-        }
+        font-size: 10px;
+        font-weight: 500;
+        line-height: 2;
+        letter-spacing: -0.16px;
       }
     }
   }
 }
-*/
 
 @media #{$tablet-device,$large-mobile} {
   .leaderboard-container {
-    --leaderboard-user-record-height: 4vh;
+    --leaderboard-user-record-height: 4.7vh;
   }
 }
