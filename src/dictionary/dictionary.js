@@ -25,6 +25,10 @@ const resources = {
       Send_To: "ارسال به:",
       Support_Number: "شماره پشتیبانی:",
       Enter_Code_In_Game: "توجه: کد دریافتی را در بازی مورد نظر وارد نمایید.",
+      Prize: "جایزه",
+      Score: "امتیاز",
+      Leaderboard_Table: "جدول رده‌بندی",
+      Weekly: "هفتگی",
     },
   },
 };

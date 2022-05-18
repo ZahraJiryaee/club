@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { useTranslation } from "react-i18next";
 
 import { setHeaderMode } from "../../redux/header/header.action";
 import {
@@ -19,6 +20,7 @@ import "./leaderboard.styles.scss";
 const LeaderBoardPage = () => {
   const { pathname } = useLocation();
   const dispatch = useDispatch();
+  const { t } = useTranslation();
 
   const leaderboardHeaderStatus = useSelector(
     (state) => state.leaderboard.leaderboardHeaderStatus
@@ -66,8 +68,10 @@ const LeaderBoardPage = () => {
             </span>
           </div>
           <div className="user--score-prize">
-            {award && <span>جایزه</span>}
-            <span>{leaderboardHeaderStatus ? weakly : seasonal} امتیاز</span>
+            {award && <span>{t("Prize")}</span>}
+            <span>
+              {leaderboardHeaderStatus ? weakly : seasonal} {t("Score")}
+            </span>
           </div>
         </div>
       </div>
@@ -107,7 +111,7 @@ const LeaderBoardPage = () => {
 
       {/* content */}
       <div className="leaderboard-container">
-        <p className="leaderborad-headline-txt">جدول رده‌بندی</p>
+        <p className="leaderborad-headline-txt">{t("Leaderboard_Table")}</p>
         <div className="center-flex">
           <div
             className={`leaderboard-user-list ${
