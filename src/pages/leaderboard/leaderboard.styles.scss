@@ -1,74 +1,91 @@
 @import "./../../style.scss";
 
 :root {
-  --leaderboard-user-record-height: 5vh;
-  --user-list-gap: 1vh;
+  --leaderboard-user-record-height: 32px;
+  --user-list-gap: 10px;
   --user-list-rows: 7;
 }
 
 .leaderboard-container {
   direction: rtl;
-  padding-bottom: calc(var(--footer-height) + 30px);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  vertical-align: middle;
+  margin: 0 5vw;
+  min-height: calc(
+    100vh - $navbar-height - var(--leaderboard-container-height)
+  );
+  top: 50%;
 
   .leaderborad-headline-txt {
+    position: absolute;
+    top: 0;
+
     font-size: 26px;
     font-weight: bold;
     line-height: 0.46;
     letter-spacing: -0.62px;
     color: $theme-color--dark;
-    margin: 4vh 5%;
+    margin: 15px 5%;
     @media #{$large-mobile} {
-      margin: 3vh 5%;
       font-size: 17px;
       font-weight: bold;
       line-height: 0.71;
       letter-spacing: -0.41px;
     }
   }
+  .leaderboard-user-list-container {
+    justify-content: flex-start;
+    .leaderboard-user-list {
+      display: flex;
+      justify-content: flex-start;
+      flex-direction: column;
+      flex-wrap: wrap;
+      gap: var(--user-list-gap) 8vw;
 
-  .leaderboard-user-list {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    gap: var(--user-list-gap) 8vh;
-
-    height: calc(
-      (var(--user-list-gap) + var(--leaderboard-user-record-height)) *
-        var(--user-list-rows)
-    );
-    width: 80%;
-
-    &.leaderboard-height-current-user-between-7-and-13 {
-      @media #{$large-mobile} {
-        --user-list-rows: 8;
-      }
-    }
-
-    .leaderboard-each-user {
-      height: var(--leaderboard-user-record-height);
-      width: 45%;
-
-      // &.current-user-in-first-14 {}
+      height: calc(
+        (var(--user-list-gap) + var(--leaderboard-user-record-height)) *
+          var(--user-list-rows)
+      );
+      width: 41vw;
 
       @media #{$large-mobile} {
         width: 100%;
-        &:nth-child(n + 8) {
-          display: none;
-        }
+      }
 
-        &.current-user-between-7-and-13 {
-          display: block;
+      &.leaderboard-height-current-user-between-7-and-13 {
+        @media #{$large-mobile} {
+          --user-list-rows: 8;
+        }
+      }
+
+      .leaderboard-each-user {
+        height: var(--leaderboard-user-record-height);
+        width: 100%;
+
+        // &.current-user-in-first-14 {}
+
+        @media #{$large-mobile} {
+          &:nth-child(n + 8) {
+            display: none;
+          }
+
+          &.current-user-between-7-and-13 {
+            display: block;
+          }
         }
       }
     }
   }
 
   .current-user-out-first-14 {
-    width: 40%;
+    width: 41vw;
     height: var(--leaderboard-user-record-height);
 
     @media #{$large-mobile} {
-      width: 80%;
+      width: 100%;
     }
   }
 }
@@ -76,8 +93,8 @@
 /*--------------------------------
       FULL WIDTH FOR SHORT LISTS
 ---------------------------------*/
-.leaderboard-container .leaderboard-full-width-records .leaderboard-each-user {
-  width: 100%;
+.leaderboard-container .leaderboard-user-list.leaderboard-full-width-records {
+  width: 90vw;
 }
 
 /*--------------------------------
@@ -165,11 +182,5 @@
         letter-spacing: -0.16px;
       }
     }
-  }
-}
-
-@media #{$tablet-device,$large-mobile} {
-  .leaderboard-container {
-    --leaderboard-user-record-height: 4.7vh;
   }
 }

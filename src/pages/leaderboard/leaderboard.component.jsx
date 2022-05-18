@@ -64,7 +64,7 @@ const LeaderBoardPage = () => {
               className="avatar"
             />
             <span className="name">
-              {last_name} {first_name}
+              {first_name} {last_name}
             </span>
           </div>
           <div className="user--score-prize">
@@ -112,7 +112,7 @@ const LeaderBoardPage = () => {
       {/* content */}
       <div className="leaderboard-container">
         <p className="leaderborad-headline-txt">{t("Leaderboard_Table")}</p>
-        <div className="center-flex">
+        <div className="center-flex leaderboard-user-list-container">
           <div
             className={`leaderboard-user-list ${
               loggedinUser &&

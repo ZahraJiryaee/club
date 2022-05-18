@@ -1,31 +1,36 @@
 @import "./../../style.scss";
 
 :root {
-  --leaderboard-user-avatar-size: 8vh;
-  --leaderboard-user-avatar-translateY: -3vh;
+  --leaderboard-user-avatar-size: 78px;
+  --leaderboard-user-avatar-container-width: 115px;
+  --leaderboard-user-avatar-container-height: 126px;
+  --leaderboard-user-avatar-container-translateY: 25px;
+  --leaderboard-top3-odd-child-translateY: 15px;
   --leaderboard-switch-width: 400px;
-  --leaderboard-switch-height: 4vh;
+  --leaderboard-switch-height: 36px;
+  --leaderboard-switch-margin: 20px;
   --leaderboard-switch-knobs-height: calc(
     var(--leaderboard-switch-height) * 0.75
   );
   --leaderboard-switch-padding: 7px;
   --leaderboard-switch-transition: 0.7s ease all;
+
+  --leaderboard-container-height: calc(
+    var(--leaderboard-switch-height) + var(--leaderboard-switch-margin) * 2 +
+      var(--leaderboard-user-avatar-container-height) +
+      var(--leaderboard-top3-odd-child-translateY)
+  );
 }
 
 .leaderboard-header-container {
   width: 100%;
-  height: auto;
   position: relative;
   //   background-color: $theme-color--navbar-medium-blue;
 
   /* ------------------------- Switch ---------------------------- */
   .checkbox-container {
-    margin: 2vh 0;
+    margin: var(--leaderboard-switch-margin) 0;
     position: relative;
-
-    @media #{$small-mobile} {
-      margin: 1vh 0;
-    }
 
     .checkbox-cover {
       position: relative;
@@ -148,14 +153,13 @@
   /* ------------------------- Top3 ---------------------------------*/
   .leaderboard-header {
     position: relative;
-    margin-top: calc($navbar-height - 0.1vh);
+    margin-top: calc($navbar-height - 10px);
     background-image: linear-gradient(
       to bottom,
       $theme-color--navbar-medium-blue,
       $theme-color--navbar-light-blue
     );
     width: 100%;
-    height: auto;
     border-radius: 0px 0px 10px 10px;
     box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.1);
     overflow: hidden;
@@ -164,30 +168,27 @@
       display: flex;
       flex-direction: row;
       width: auto;
-      height: auto;
+      height: calc(
+        var(--leaderboard-user-avatar-container-height) +
+          var(--leaderboard-user-avatar-container-translateY)
+      );
       padding: 0;
       justify-content: center;
       gap: 5rem;
       vertical-align: middle;
       text-align: center;
 
-      padding-top: calc(
-        var(--leaderboard-user-avatar-translateY) * -0.95
-      ); // to handle crown position
-
       :nth-child(odd) {
-        transform: translateY(15px);
+        transform: translateY(var(--leaderboard-top3-odd-child-translateY));
 
-        span.name-score {
+        span.name-award {
           transform: translateY(-15px);
         }
 
-        @media #{$small-mobile} {
+        @media #{$tablet-device,$large-mobile} {
           .user-avatar {
-            --leaderboard-user-avatar-size: calc(8vh * 0.8);
-          }
-          .medal {
-            margin-top: 0.2vh;
+            width: calc(var(--leaderboard-user-avatar-size) * 0.85);
+            height: calc(var(--leaderboard-user-avatar-size) * 0.85);
           }
         }
       }
@@ -195,7 +196,7 @@
         .user-avatar {
           border: 2px solid $theme-color--meduim-yellow;
         }
-        span.name-score {
+        span.name-award {
           transform: translateY(-10px);
 
           @media #{$small-mobile} {
@@ -216,9 +217,11 @@
         right: 0;
         left: 0;
         margin: auto;
-        transform: translateY(10px);
-        width: 12vh;
-        height: 12.5vh;
+        transform: translateY(
+          var(--leaderboard-user-avatar-container-translateY)
+        );
+        width: var(--leaderboard-user-avatar-container-width);
+        height: var(--leaderboard-user-avatar-container-height);
       }
 
       .user-avatar {
@@ -230,15 +233,14 @@
         right: 0;
         left: 0;
         margin: auto;
-        transform: translateY(var(--leaderboard-user-avatar-translateY));
       }
 
       .medal {
         position: absolute;
         right: 0;
-        left: calc(var(--leaderboard-user-avatar-size) - 30px);
+        left: 40px;
         margin: auto;
-        margin-top: 1.5vh;
+        margin-top: 40px;
         color: $theme-color--medium-blue;
         background-color: $theme-color--leaderboard-medal;
         width: 21px;
@@ -248,6 +250,9 @@
         font-size: 13px;
         font-weight: bold;
 
+        @media #{$tablet-device,$large-mobile} {
+          margin-top: 18px;
+        }
         @media #{$extra-small-mobile} {
           font-size: 10px;
           width: 16px;
@@ -255,7 +260,7 @@
         }
       }
 
-      .name-score {
+      .name-award {
         position: absolute;
         right: 0;
         left: 0;
@@ -294,11 +299,19 @@
   }
 }
 
+@media #{$tablet-device,$large-mobile} {
+  .leaderboard-header-container {
+    --leaderboard-switch-margin: 10px;
+    --leaderboard-user-avatar-container-width: 88px;
+    --leaderboard-user-avatar-container-height: 90px;
+    --leaderboard-user-avatar-size: 60px;
+  }
+}
+
 @media #{$small-mobile} {
   .leaderboard-header-container {
     --leaderboard-switch-width: 311px;
     --leaderboard-switch-padding: 5px;
-    --leaderboard-user-avatar-translateY: -2.5vh;
   }
 }
 

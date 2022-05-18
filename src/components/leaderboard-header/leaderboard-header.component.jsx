@@ -50,7 +50,6 @@ const LeaderboardHeader = ({ top3 }) => {
         {/* ------------------------- Top3 ---------------------------- */}
         <div className="top-three">
           {[indexedTop3[2], indexedTop3[0], indexedTop3[1]].map((user) => {
-            console.log("user:", user);
             const { id, award } = user;
             const { avatar, first_name, last_name } = user.user;
             return (
@@ -66,9 +65,9 @@ const LeaderboardHeader = ({ top3 }) => {
                   alt="user-avatar"
                 />
                 <span className="medal">{user.index}</span>
-                <span className="name-score">
+                <span className="name-award">
                   <span>
-                    {last_name} {first_name}
+                    {first_name} {last_name}
                   </span>
                   <br /> <span>{award}</span>
                 </span>
