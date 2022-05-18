@@ -5,6 +5,7 @@ import { setLeaderBoardHeaderStatus } from "../../redux/leaderboard/leaderboard.
 
 import UserAvatarContainer from "./../../assets/images/leaderboard/user-avatar-container.png";
 import Crown from "./../../assets/images/icon/crown.png";
+import ProfileAvatar from "./../../assets/images/icon/profile-avatar.png";
 
 import "./leaderboard-header.styles.scss";
 
@@ -59,11 +60,7 @@ const LeaderboardHeader = ({ top3 }) => {
                 />
                 <img
                   className="user-avatar"
-                  src={`${
-                    avatar
-                      ? avatar
-                      : "https://cdn3.iconfinder.com/data/icons/avatars-round-flat/33/avat-01-512.png"
-                  }`}
+                  src={`${avatar ? avatar : ProfileAvatar}`}
                   alt="user-avatar"
                 />
                 <span className="medal">{user.index}</span>

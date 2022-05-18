@@ -12,6 +12,8 @@ import LeaderboardHeader from "../../components/leaderboard-header/leaderboard-h
 
 // import topUsersWeekly from "../../components/mock/leaderborad.mock";
 
+import ProfileAvatar from "./../../assets/images/icon/profile-avatar.png";
+
 import "./leaderboard.styles.scss";
 
 const LeaderBoardPage = () => {
@@ -55,11 +57,7 @@ const LeaderBoardPage = () => {
         <div className="user-info">
           <div className="user--avatar-name">
             <img
-              src={`${
-                avatar
-                  ? avatar
-                  : "https://cdn3.iconfinder.com/data/icons/avatars-round-flat/33/avat-01-512.png"
-              }`}
+              src={`${avatar ? avatar : ProfileAvatar}`}
               alt="user-avater"
               className="avatar"
             />
