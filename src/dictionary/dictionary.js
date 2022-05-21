@@ -29,6 +29,10 @@ const resources = {
       Score: "امتیاز",
       Leaderboard_Table: "جدول رده‌بندی",
       Weekly: "هفتگی",
+      Purchse: "خرید",
+      Sorting: "مرتب‌سازی",
+      Next_Page: "صفحه بعدی",
+      Previous_Page: "صفحه قبلی",
     },
   },
 };
