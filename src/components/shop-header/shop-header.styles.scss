@@ -105,6 +105,7 @@
         max-height: calc(
           var(--shop-label-height) * 8
         ); /* 2*8 item can be shown */
+        z-index: 10;
 
         &::after {
           content: "✔";

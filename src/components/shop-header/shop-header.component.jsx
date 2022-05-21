@@ -15,6 +15,7 @@ const ShopHeader = () => {
   };
   const handleCheckedItem = (id) => {
     /* set the "checked" value for the selected id to true & others to false */
+    console.log("id:", id);
     if (toggleSelect) {
       let clone = [...orderShop];
       let picked_data = clone.filter((item) => item.id === id);

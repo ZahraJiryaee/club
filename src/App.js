@@ -2,7 +2,7 @@ import React, { Fragment, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useRoutes } from "react-router-dom";
 
-import Loading from "./components/common/Loading.component";
+import Loading from "./components/common/loading/loading.component";
 import SignupSignin from "./components/signup-signin/signup-signin.component";
 
 import { setCurrentUser } from "./redux/user/user.action";
