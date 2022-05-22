@@ -13,7 +13,7 @@ import ShopItem from "./../../assets/images/test/shop-item.png";
 
 import "./shop.styles.scss";
 
-let PageSize = 12;
+let PageSize = 4 * 4;
 
 const ShopPage = () => {
   const { pathname } = useLocation();
@@ -40,10 +40,7 @@ const ShopPage = () => {
         {currentShopData.map((item) => (
           <div className="shop-item" key={item.id}>
             <div className="shop-item-img-container">
-              <div
-                className="shop-item-img"
-                style={{ backgroundImage: `url(${ShopItem})` }}
-              ></div>
+              <img className="shop-item-img" src={ShopItem} alt="" />
             </div>
             <div className="name-score-container">
               <div className="shop-item-name">{item.name}</div>
