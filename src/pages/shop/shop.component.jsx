@@ -40,7 +40,7 @@ const ShopPage = () => {
         {currentShopData.map((item) => (
           <div className="shop-item" key={item.id}>
             <div className="shop-item-img-container">
-              <img className="shop-item-img" src={ShopItem} alt="" />
+              <img className="shop-item-img" src={ShopItem} alt="shop-item" />
             </div>
             <div className="name-score-container">
               <div className="shop-item-name">{item.name}</div>

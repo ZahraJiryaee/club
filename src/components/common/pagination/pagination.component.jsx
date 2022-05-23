@@ -1,5 +1,8 @@
 import React from "react";
 import { usePagination, DOTS } from "./../../../services/usePagination";
+
+import ArrowBackDark from "./../../../assets/images/icon/arrow-back-dark.png";
+
 import "./pagination.styles.scss";
 
 const Pagination = (props) => {
@@ -37,9 +40,16 @@ const Pagination = (props) => {
       <div className="pagination-container">
         {/* Prev Section */}
         <div>
-          <li className="pagination-item" onClick={onPrevious}>
-            <button disabled={currentPage === 1}>قبلی</button>
-          </li>
+          <button
+            className="pagination-btn"
+            disabled={currentPage === 1}
+            onClick={onPrevious}
+          >
+            <span className="pagination-arrow pagination-arrow--prev">
+              <img src={ArrowBackDark} alt="pagination-arrow-prev" />
+            </span>
+            <span>صفحه قبلی</span>
+          </button>
         </div>
         {/* Number Rage Section */}
         <div className="pagination-number-range-area">
@@ -62,8 +72,17 @@ const Pagination = (props) => {
           })}
         </div>
         {/* Next Section */}
-        <div className="pagination-item" onClick={onNext}>
-          <button disabled={currentPage === lastPage}>بعدی</button>
+        <div>
+          <button
+            className="pagination-btn"
+            disabled={currentPage === lastPage}
+            onClick={onNext}
+          >
+            <span>صفحه بعدی</span>
+            <span className="pagination-arrow pagination-arrow--next">
+              <img src={ArrowBackDark} alt="pagination-arrow-next" />
+            </span>
+          </button>
         </div>
       </div>
     </>
