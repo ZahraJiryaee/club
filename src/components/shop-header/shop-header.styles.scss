@@ -7,9 +7,9 @@
 
 .shop-header-container {
   position: relative;
-  margin-top: calc($navbar-height - 0.1vh);
   width: 100%;
   height: var(--shop-header-container);
+  background-color: $white;
 
   .shop-header {
     direction: rtl;
@@ -17,7 +17,7 @@
     justify-content: flex-end;
     align-items: flex-start;
     gap: 8px;
-    padding: 23px 0 0;
+    padding: 18px 0 0;
 
     .txt {
       font-size: 15px;

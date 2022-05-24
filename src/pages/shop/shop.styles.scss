@@ -112,27 +112,33 @@
         }
       }
     }
-
-    .shop-item-purchase-btn {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 70px;
-      height: 35px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      color: $theme-color--shop-purchase-btn;
-      background-color: $theme-color--marine-blue;
-      border-radius: 0 var(--shop-items-border-radius);
-      font-size: 15px;
-      font-weight: 500;
-
-      @media #{$small-mobile} {
-        width: 60px;
-        height: 30px;
-        font-size: 12px;
-      }
-    }
   }
+}
+
+.shop-item-purchase-btn {
+  width: 70px;
+  height: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: $theme-color--shop-purchase-btn;
+  background-color: $theme-color--marine-blue;
+  font-size: 15px;
+  font-weight: 500;
+  outline: none;
+  border: none;
+  font-family: $font-family-iransans;
+  border-radius: 10px;
+
+  @media #{$small-mobile} {
+    width: 60px;
+    height: 30px;
+    font-size: 12px;
+  }
+}
+.shop-item-purchase-btn-position {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  border-radius: 0 var(--shop-items-border-radius);
 }

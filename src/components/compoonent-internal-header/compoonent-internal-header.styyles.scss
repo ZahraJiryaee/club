@@ -1,0 +1,13 @@
+@import "./../../style.scss";
+
+.component-internal-header {
+  margin-top: calc($navbar-height - 0.1vh);
+  // padding-top: 9.9vh;
+  direction: rtl;
+  background-color: $theme-color--navbar-medium-blue;
+  background-image: linear-gradient(
+    to bottom,
+    $theme-color--navbar-medium-blue,
+    $theme-color--navbar-light-blue
+  );
+}

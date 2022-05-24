@@ -22,6 +22,7 @@ const routes = [
       { path: "games/genre/all", element: <GamesPage /> },
       { path: "games/:type/:id", element: <GenrePage /> },
       { path: "games/search/:id", element: <SearchPage /> },
+      { path: "shop/search/:id", element: <SearchPage /> },
       { path: "games/detail/:id", element: <GameDetails /> },
       { path: "shop", element: <ShopPage /> },
       { path: "leaderboard", element: <LeaderBoardPage /> },

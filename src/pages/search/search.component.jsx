@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+import React, { useState } from "react";
+import { useLocation } from "react-router-dom";
 import InfiniteScroll from "react-infinite-scroll-component";
 
 import GenreHeader from "../../components/genres/genre-header.component";
@@ -7,9 +7,43 @@ import GenreHeader from "../../components/genres/genre-header.component";
 import { ReactComponent as StarLogo } from "../../assets/images/icon/star.svg";
 
 const SearchPage = () => {
-  const filteredItems = useSelector((state) => state.games.searchedItem);
+  const location = useLocation();
+
+  let filteredItems = location.state.selector;
+
   const [hasMore, setHasMore] = useState(true);
   const [data, setData] = useState([]);
+
+  const handleShopItemClick = () => {
+    console.log("open dialogue");
+  };
+
+  const handleApplicationPlayer = (action) => {
+    switch (action.component) {
+      case "game":
+        return (
+          <>
+            <div>
+              <span className="rate-text">{action.content}</span>
+            </div>
+            <StarLogo className="rate-icon" />
+          </>
+        );
+
+      case "shop":
+        return (
+          <button
+            className="shop-item-purchase-btn"
+            onClick={handleShopItemClick}
+          >
+            {action.content}
+          </button>
+        );
+
+      default:
+        break;
+    }
+  };
 
   // useEffect(() => {
   //   setData(data.concat(Array.from()));
@@ -28,36 +62,31 @@ const SearchPage = () => {
 
   return (
     <div>
-      <GenreHeader />
+      {filteredItems.component === "game" ? <GenreHeader /> : null}
       <div className="genre-container">
         <div className="category-container">
           <span className="category-title">
-            {filteredItems.length === 0
+            {filteredItems.data.length === 0
               ? "نتیجه‌ای یافت نشد!"
-              : `${filteredItems.length} مورد یافت شد.`}
+              : `${filteredItems.data.length} مورد یافت شد.`}
           </span>
         </div>
-        {filteredItems.map((application) => {
+        {filteredItems.data.map((application) => {
           return (
             <div key={application.id}>
               <div className="application-container">
                 <div className="application-details">
-                  <img
-                    className="icon"
-                    src={application.source.icon}
-                    alt="icon"
-                  />
+                  <img className="icon" src={application.icon} alt="icon" />
                   <div className="description">
-                    <span className="title">{application.name}</span>
-                    <span className="install-score">{`${application.install_score_counter} امتیاز با نصب این بازی دریافت کنید.`}</span>
+                    <span className="title">{application.header}</span>
+                    <span className="install-score">
+                      {application.subHeader}
+                    </span>
                   </div>
                 </div>
                 <div className="application-rate">
                   <br />
-                  <div>
-                    <span className="rate-text">{application.rate}</span>
-                  </div>
-                  <StarLogo className="rate-icon" />
+                  <>{handleApplicationPlayer(application.action)}</>
                 </div>
               </div>
             </div>
