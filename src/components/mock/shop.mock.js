@@ -248,12 +248,41 @@ const shopItems = [
   },
 ];
 
+const shopItems2 = [
+  {
+    id: "80405077-7f0d-4782-b8ee-4757cac2376f",
+    title: "جام قهرمانی باشگاه استقلال",
+    description: "شما توانایی خرید این جام را ندارید. تلاش نکنید",
+    leave_chance_counter: 3,
+    total: 20,
+    used_count: 0,
+    expire_at: "2022-05-31T18:37:57Z",
+    active: true,
+    is_deleted: false,
+    updated_at: "2022-05-22T18:38:02.638366Z",
+    deleted_at: null,
+  },
+  {
+    id: "f5eac86f-d572-4db5-8d8c-70a78d6cb001",
+    title: "جام قهرمانی باشگاه پرسپولیس",
+    description: "این جام در حقیقت وجود ندارد و شما دارید هوا خریداری میکنید",
+    leave_chance_counter: 2,
+    total: 100,
+    used_count: 0,
+    expire_at: "2022-06-30T18:37:20Z",
+    active: true,
+    is_deleted: false,
+    updated_at: "2022-05-22T18:37:22.150089Z",
+    deleted_at: null,
+  },
+];
+
 const orderShop = [
   { id: "os1", content: "بیشترین امتیاز", checked: false },
   { id: "os2", content: "کمترین امتیاز", checked: false },
   { id: "os3", content: "جدیدترین", checked: true },
 ];
 
-const shopMock = { shopItems, orderShop };
+const shopMock = { shopItems, orderShop, shopItems2 };
 
 export default shopMock;

@@ -5,6 +5,7 @@ import gamesReducer from "./games/games.reducer";
 import genresReducer from "./genres/genres.reducer";
 import wheelReducer from "./wheel/wheel.reducer";
 import leaderboardReducer from "./leaderboard/leaderboard.reducer";
+import shopReducer from "./shop/shop.reducer";
 
 export const rootReducer = combineReducers({
   header: headerReducer,
@@ -13,4 +14,5 @@ export const rootReducer = combineReducers({
   genres: genresReducer,
   wheel: wheelReducer,
   leaderboard: leaderboardReducer,
+  shop: shopReducer,
 });

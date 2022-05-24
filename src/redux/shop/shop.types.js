@@ -1,0 +1,4 @@
+export const ShopActionTypes = {
+  GET_ALL_SHOP_ITEMS: "GET_ALL_SHOP_ITEMS",
+  GET_SEARCHED_SHOP_ITEMS: "GET_SEARCHED_SHOP_ITEMS",
+};
