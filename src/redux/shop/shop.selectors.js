@@ -7,6 +7,11 @@ export const selectSetOpenShopModal = createSelector(
   (shop) => shop.setOpenShopModal
 );
 
+export const selectShopModalData = createSelector(
+  [selectShop],
+  (shop) => shop.shopModalData
+);
+
 export const selectSearchedShopItems = createSelector(
   [selectShop],
   (shop) => shop.searchedShopItems
@@ -25,6 +30,7 @@ const mapSearchedShopItemsToSearchPage = (items) => {
       header: item.title,
       subHeader: `${item.leave_chance_counter} امتیاز`,
       action: { component: "shop", content: "خرید" },
+      originalItem: item,
     };
   });
   return { data: newItems, component: "shop" };

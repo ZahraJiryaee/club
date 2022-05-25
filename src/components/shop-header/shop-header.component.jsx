@@ -21,7 +21,7 @@ const ShopHeader = () => {
 
   const handelShopSearch = async () => {
     setSearchField("");
-    dispatch(getSearchedShopItems(shopMock.shopItems2));
+    dispatch(getSearchedShopItems(shopMock.shopItems));
     return navigate(`/${routeNames.shop}/search/${searchField}`);
   };
 

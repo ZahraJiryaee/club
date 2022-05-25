@@ -3,7 +3,10 @@ import { useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import InfiniteScroll from "react-infinite-scroll-component";
 
-import { setOpenShopModal } from "../../redux/shop/shop.actions";
+import {
+  setOpenShopModal,
+  setShopModalData,
+} from "../../redux/shop/shop.actions";
 
 import { selectSearchedGameItemsMappedToSearchPage } from "../../redux/games/games.selectors";
 import { selectSearchedShopItemsMappedToSearchPage } from "../../redux/shop/shop.selectors";
@@ -33,11 +36,13 @@ const SearchPage = () => {
   const [hasMore, setHasMore] = useState(true);
   const [data, setData] = useState([]);
 
-  const handleShopItemClick = () => {
+  const handleShopItemClick = (originalItem) => {
     dispatch(setOpenShopModal(true));
+    dispatch(setShopModalData(originalItem));
   };
 
-  const handleApplicationPlayer = (action) => {
+  const handleApplicationPlayer = (application) => {
+    const { action } = application;
     switch (action.component) {
       case "game":
         return (
@@ -53,7 +58,7 @@ const SearchPage = () => {
         return (
           <button
             className="shop-item-purchase-btn"
-            onClick={handleShopItemClick}
+            onClick={() => handleShopItemClick(application.originalItem)}
           >
             {action.content}
           </button>
@@ -107,7 +112,7 @@ const SearchPage = () => {
                 </div>
                 <div className="application-rate">
                   <br />
-                  <>{handleApplicationPlayer(application.action)}</>
+                  <>{handleApplicationPlayer(application)}</>
                 </div>
               </div>
             </div>

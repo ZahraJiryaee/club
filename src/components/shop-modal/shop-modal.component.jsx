@@ -3,7 +3,10 @@ import { useSelector, useDispatch } from "react-redux";
 
 import { setOpenShopModal } from "../../redux/shop/shop.actions";
 
-import { selectSetOpenShopModal } from "../../redux/shop/shop.selectors";
+import {
+  selectSetOpenShopModal,
+  selectShopModalData,
+} from "../../redux/shop/shop.selectors";
 
 import CloseIcon from "./../../assets/images/icon/close-icon.png";
 
@@ -13,7 +16,8 @@ const ShopModal = ({ shopItemData }) => {
   const dispatch = useDispatch();
 
   const isShopModalOPen = useSelector(selectSetOpenShopModal);
-  //   console.log("isShopModalOPen:", isShopModalOPen);
+  const shopModalData = useSelector(selectShopModalData);
+  console.log("shopModalData:", shopModalData);
 
   const handleShopModalClose = () => {
     dispatch(setOpenShopModal(false));

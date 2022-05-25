@@ -3,7 +3,10 @@ import { useLocation } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
 import { setHeaderMode } from "../../redux/header/header.action";
-import { setOpenShopModal } from "../../redux/shop/shop.actions";
+import {
+  setOpenShopModal,
+  setShopModalData,
+} from "../../redux/shop/shop.actions";
 
 import ShopOrderingHeader from "../../components/shop-ordering-header/shop-ordering-header.component";
 import ShopHeader from "../../components/shop-header/shop-header.component";
@@ -29,8 +32,9 @@ const ShopPage = () => {
     return shopMock.shopItems.slice(firstPageIndex, lastPageIndex);
   }, [currentPage]);
 
-  const onPurchaseClick = () => {
+  const onPurchaseClick = (item) => {
     dispatch(setOpenShopModal(true));
+    dispatch(setShopModalData(item));
   };
 
   useEffect(() => {
@@ -53,14 +57,14 @@ const ShopPage = () => {
               <img className="shop-item-img" src={ShopItem} alt="shop-item" />
             </div>
             <div className="name-score-container">
-              <div className="shop-item-name">{item.name}</div>
+              <div className="shop-item-name">{item.title}</div>
               <div className="shop-item-score-needed">
-                {item.scoreNeeded} امتیاز
+                {item.leave_chance_counter} امتیاز
               </div>
             </div>
             <button
               className="shop-item-purchase-btn-position shop-item-purchase-btn"
-              onClick={onPurchaseClick}
+              onClick={() => onPurchaseClick(item)}
             >
               خرید
             </button>

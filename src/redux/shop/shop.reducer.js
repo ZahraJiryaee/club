@@ -1,9 +1,10 @@
 import { ShopActionTypes } from "./shop.types";
 
 const INITIAL_STATE = {
+  setOpenShopModal: false,
+  shopModalData: null,
   allShopItems: [],
   searchedShopItems: [],
-  setOpenShopModal: false,
 };
 
 const shopReducer = (state = INITIAL_STATE, action) => {
@@ -12,6 +13,11 @@ const shopReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         setOpenShopModal: action.payload,
+      };
+    case ShopActionTypes.SET_SHOP_MODAL_Data:
+      return {
+        ...state,
+        shopModalData: action.payload,
       };
     case ShopActionTypes.GET_ALL_SHOP_ITEMS:
       return {
