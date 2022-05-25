@@ -3,6 +3,7 @@ import { useLocation } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
 import { setHeaderMode } from "../../redux/header/header.action";
+import { setOpenShopModal } from "../../redux/shop/shop.actions";
 
 import ShopOrderingHeader from "../../components/shop-ordering-header/shop-ordering-header.component";
 import ShopHeader from "../../components/shop-header/shop-header.component";
@@ -27,6 +28,10 @@ const ShopPage = () => {
     const lastPageIndex = firstPageIndex + PageSize;
     return shopMock.shopItems.slice(firstPageIndex, lastPageIndex);
   }, [currentPage]);
+
+  const onPurchaseClick = () => {
+    dispatch(setOpenShopModal(true));
+  };
 
   useEffect(() => {
     dispatch(setHeaderMode(pathname));
@@ -53,9 +58,12 @@ const ShopPage = () => {
                 {item.scoreNeeded} امتیاز
               </div>
             </div>
-            <div className="shop-item-purchase-btn-position shop-item-purchase-btn">
+            <button
+              className="shop-item-purchase-btn-position shop-item-purchase-btn"
+              onClick={onPurchaseClick}
+            >
               خرید
-            </div>
+            </button>
           </div>
         ))}
       </span>

@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import InfiniteScroll from "react-infinite-scroll-component";
+
+import { setOpenShopModal } from "../../redux/shop/shop.actions";
 
 import { selectSearchedGameItemsMappedToSearchPage } from "../../redux/games/games.selectors";
 import { selectSearchedShopItemsMappedToSearchPage } from "../../redux/shop/shop.selectors";
@@ -15,6 +17,7 @@ import { ReactComponent as StarLogo } from "../../assets/images/icon/star.svg";
 
 const SearchPage = () => {
   const location = useLocation();
+  const dispatch = useDispatch();
 
   const firstSliceOfPathname = location.pathname.slice(1).split("/")[0];
   const selector = {
@@ -27,15 +30,11 @@ const SearchPage = () => {
   };
   let filteredItems = selector[firstSliceOfPathname];
 
-  console.log("firstSliceOfPathname:", firstSliceOfPathname);
-  console.log("selector:", selector);
-  console.log("filteredItems:", filteredItems);
-
   const [hasMore, setHasMore] = useState(true);
   const [data, setData] = useState([]);
 
   const handleShopItemClick = () => {
-    console.log("open dialogue");
+    dispatch(setOpenShopModal(true));
   };
 
   const handleApplicationPlayer = (action) => {

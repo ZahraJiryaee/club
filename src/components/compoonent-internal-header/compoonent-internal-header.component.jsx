@@ -9,10 +9,9 @@ const ComponentInternalHeader = ({ setFixer, children }) => {
     if (setFixer && typeof window !== "undefined") {
       window.onscroll = () => {
         let currentScrollPos = window.pageYOffset;
-        console.log("currentScrollPos:", currentScrollPos);
+        // console.log("currentScrollPos:", currentScrollPos);
         let maxScroll = document.body.scrollHeight - window.innerHeight;
-        console.log("maxScroll:", maxScroll);
-        console.log(maxScroll);
+        // console.log("maxScroll:", maxScroll);
         if (currentScrollPos > 51) {
           setNavbarGenreFixed("component-internal-header-fixed");
         } else {

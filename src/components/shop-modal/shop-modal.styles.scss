@@ -1,0 +1,50 @@
+@import "./../../style.scss";
+
+.shop-modal-container {
+  background-color: rgba($color: #000000, $alpha: 0.35);
+  z-index: 30;
+
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+
+  .shop-modal {
+    width: 540px;
+    height: 520px;
+    background-color: $white;
+    border-radius: 15px;
+    padding: 30px 17px;
+    position: relative;
+
+    @media #{$small-mobile} {
+      width: 100%;
+      height: 420px;
+    }
+
+    .shop-modal-close-container {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      cursor: pointer;
+      @media #{$small-mobile} {
+        top: 16px;
+        right: 16px;
+      }
+      .shop-modal-close {
+        width: 20px;
+        height: 20px;
+        @media #{$small-mobile} {
+          width: 15px;
+          height: 15px;
+        }
+      }
+    }
+  }
+}
