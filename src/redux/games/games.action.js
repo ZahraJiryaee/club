@@ -3,7 +3,6 @@ import {
   getFilteredCategory,
   getSearchedApplication,
   getGameDetails,
-  mapSearchedGameItemsToSearchPage,
 } from "../../services/gamesServices";
 import { GamesActionTypes } from "./games.types";
 
@@ -35,8 +34,8 @@ export const getSelectedCategory = (id) => async (dispatch) => {
 };
 
 export const getSearchedItem = (id) => async (dispatch) => {
-  let result = await getSearchedApplication(id);
-  const { data } = result;
+  const { data } = await getSearchedApplication(id);
+
   if (data.length === 0) {
     await dispatch({
       type: GamesActionTypes.GET_SEARCHED_ITEM,
@@ -48,7 +47,6 @@ export const getSearchedItem = (id) => async (dispatch) => {
       payload: data,
     });
   }
-  return mapSearchedGameItemsToSearchPage(data);
 };
 
 export const getGameDetailsInformation = (id) => async (dispatch) => {

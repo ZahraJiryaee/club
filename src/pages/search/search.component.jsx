@@ -1,15 +1,28 @@
 import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
+import { useSelector } from "react-redux";
 import InfiniteScroll from "react-infinite-scroll-component";
 
+import { selectSearchedGameItemsMappedToSearchPage } from "../../redux/games/games.selectors";
+import { selectSearchedShopItemsMappedToSearchPage } from "../../redux/shop/shop.selectors";
+
 import GenreHeader from "../../components/genres/genre-header.component";
+import ShopHeader from "../../components/shop-header/shop-header.component";
+
+import { routeNames } from "../../services/routeService";
 
 import { ReactComponent as StarLogo } from "../../assets/images/icon/star.svg";
 
 const SearchPage = () => {
   const location = useLocation();
 
-  let filteredItems = location.state.selector;
+  const firstSliceOfPathname = location.pathname.slice(1).split("/")[0];
+  console.log("firstSliceOfPathname:", firstSliceOfPathname);
+  const selector = {
+    games: useSelector(selectSearchedGameItemsMappedToSearchPage),
+    shop: useSelector(selectSearchedShopItemsMappedToSearchPage),
+  };
+  let filteredItems = selector[firstSliceOfPathname];
 
   const [hasMore, setHasMore] = useState(true);
   const [data, setData] = useState([]);
@@ -63,6 +76,8 @@ const SearchPage = () => {
   return (
     <div>
       {filteredItems.component === "game" ? <GenreHeader /> : null}
+      {filteredItems.component === "shop" ? <ShopHeader /> : null}
+
       <div className="genre-container">
         <div className="category-container">
           <span className="category-title">

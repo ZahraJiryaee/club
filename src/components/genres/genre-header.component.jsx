@@ -19,12 +19,8 @@ const GenreHeader = () => {
 
   const handelSearch = () => {
     setSearchField("");
-    const result = dispatch(getSearchedItem(searchField));
-    result.then((response) => {
-      return navigate(`/games/search/${searchField}`, {
-        state: { selector: response },
-      });
-    });
+    dispatch(getSearchedItem(searchField));
+    return navigate(`/games/search/${searchField}`);
   };
 
   const handleSetSearchField = (value) => {

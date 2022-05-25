@@ -22,16 +22,3 @@ export const getSearchedApplication = (id) => {
 export const getGameDetails = (id) => {
   return http.get(getGamesApiEndpoint + id);
 };
-
-export const mapSearchedGameItemsToSearchPage = (items) => {
-  const newItems = items.map((item) => {
-    return {
-      id: item.id,
-      icon: item.source.icon,
-      header: item.name,
-      subHeader: `${item.install_score_counter} امتیاز با نصب این بازی دریافت کنید.`,
-      action: { component: "game", content: item.rate },
-    };
-  });
-  return { data: newItems, component: "game" };
-};
