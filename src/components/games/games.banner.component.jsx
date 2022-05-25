@@ -1,6 +1,8 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
+import { routeNames } from "../../services/routeService";
+
 import "../../pages/games/games.styles.scss";
 
 const BannerGames = ({ category }) => {
@@ -16,7 +18,7 @@ const BannerGames = ({ category }) => {
             src={application.source.banner}
             alt="banner"
             onClick={() => {
-              return navigate(`/games/detail/${application.id}`, {
+              return navigate(`/${routeNames.game}/detail/${application.id}`, {
                 state: { application: application, category: category },
               });
             }}

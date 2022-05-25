@@ -4,6 +4,8 @@ import { NavLink, useNavigate } from "react-router-dom";
 
 import { getSearchedItem } from "../../redux/games/games.action";
 
+import { routeNames } from "../../services/routeService";
+
 import ComponentInternalHeader from "../compoonent-internal-header/compoonent-internal-header.component";
 import SearchBox from "../search-box/search-box.component";
 
@@ -20,7 +22,7 @@ const GenreHeader = () => {
   const handelSearch = () => {
     setSearchField("");
     dispatch(getSearchedItem(searchField));
-    return navigate(`/games/search/${searchField}`);
+    return navigate(`/${routeNames.game}/search/${searchField}`);
   };
 
   const handleSetSearchField = (value) => {
@@ -41,7 +43,7 @@ const GenreHeader = () => {
         <div className="genres-container">
           <ul className="genre-title">
             <NavLink
-              to="/games/genre/all"
+              to={`/${routeNames.game}/genre/all`}
               className={({ isActive }) =>
                 isActive ? "selected" : "not-selected"
               }
@@ -52,7 +54,7 @@ const GenreHeader = () => {
               return (
                 <NavLink
                   key={genre.id}
-                  to={`/games/genre/${genre.id}`}
+                  to={`/${routeNames.game}/genre/${genre.id}`}
                   className={({ isActive }) =>
                     isActive ? "selected" : "not-selected"
                   }

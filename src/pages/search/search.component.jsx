@@ -17,12 +17,19 @@ const SearchPage = () => {
   const location = useLocation();
 
   const firstSliceOfPathname = location.pathname.slice(1).split("/")[0];
-  console.log("firstSliceOfPathname:", firstSliceOfPathname);
   const selector = {
-    games: useSelector(selectSearchedGameItemsMappedToSearchPage),
-    shop: useSelector(selectSearchedShopItemsMappedToSearchPage),
+    [routeNames["game"]]: useSelector(
+      selectSearchedGameItemsMappedToSearchPage
+    ),
+    [routeNames["shop"]]: useSelector(
+      selectSearchedShopItemsMappedToSearchPage
+    ),
   };
   let filteredItems = selector[firstSliceOfPathname];
+
+  console.log("firstSliceOfPathname:", firstSliceOfPathname);
+  console.log("selector:", selector);
+  console.log("filteredItems:", filteredItems);
 
   const [hasMore, setHasMore] = useState(true);
   const [data, setData] = useState([]);
@@ -75,8 +82,8 @@ const SearchPage = () => {
 
   return (
     <div>
-      {filteredItems.component === "game" ? <GenreHeader /> : null}
-      {filteredItems.component === "shop" ? <ShopHeader /> : null}
+      {firstSliceOfPathname === routeNames["game"] ? <GenreHeader /> : null}
+      {firstSliceOfPathname === routeNames["shop"] ? <ShopHeader /> : null}
 
       <div className="genre-container">
         <div className="category-container">

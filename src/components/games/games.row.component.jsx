@@ -1,6 +1,8 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
+import { routeNames } from "../../services/routeService";
+
 import { ReactComponent as StarLogo } from "../../assets/images/icon/star.svg";
 
 import "./games.row.styles.scss";
@@ -9,7 +11,7 @@ function Column({ data, category, maxRowNumber, dividerWidth }) {
   let navigate = useNavigate();
 
   const navigateToGameDetails = (application) => {
-    return navigate(`/games/detail/${application.id}`, {
+    return navigate(`/${routeNames.game}/detail/${application.id}`, {
       state: { application: application, category: category },
     });
   };

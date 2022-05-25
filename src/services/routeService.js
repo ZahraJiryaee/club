@@ -1,1 +1,1 @@
-export const routeNames = { shop: "shop", games: "games" };
+export const routeNames = { shop: "shop", game: "games" };

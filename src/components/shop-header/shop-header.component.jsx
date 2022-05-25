@@ -7,6 +7,8 @@ import { getSearchedShopItems } from "../../redux/shop/shop.actions";
 import ComponentInternalHeader from "../compoonent-internal-header/compoonent-internal-header.component";
 import SearchBox from "../search-box/search-box.component";
 
+import { routeNames } from "../../services/routeService";
+
 import shopMock from "../../components/mock/shop.mock";
 
 import "./shop-header.styles.scss";
@@ -20,7 +22,7 @@ const ShopHeader = () => {
   const handelShopSearch = async () => {
     setSearchField("");
     dispatch(getSearchedShopItems(shopMock.shopItems2));
-    return navigate(`/shop/search/${searchField}`);
+    return navigate(`/${routeNames.shop}/search/${searchField}`);
   };
 
   const handleSetSearchField = (value) => {

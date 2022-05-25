@@ -6,6 +6,8 @@ import { getAllGenres } from "../../redux/genres/genres.action";
 import { getAllGames } from "../../redux/games/games.action";
 import { setHeaderMode } from "../../redux/header/header.action";
 
+import { routeNames } from "../../services/routeService";
+
 import GenreHeader from "../../components/genres/genre-header.component";
 import RowGames from "../../components/games/games.row.component";
 import BannerGames from "../../components/games/games.banner.component";
@@ -44,7 +46,7 @@ const GamesPage = () => {
                 <div>
                   <Link
                     className="more-button"
-                    to={`/games/category/${category.id}`}
+                    to={`/${routeNames.game}/category/${category.id}`}
                   >
                     <span>بیشتر</span>
                   </Link>
