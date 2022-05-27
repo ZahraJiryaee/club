@@ -13,7 +13,9 @@ import "./header.styles.scss";
 const Header = () => {
   const headerMode = useSelector((state) => state.header.headerMode);
   const genres = useSelector((state) => state.genres.allGenres);
+
   const [toggleMenu, setToggleMenu] = useState(false);
+  const [scoreCounter, setScoreCounter] = useState(0);
 
   return (
     <header className={headerMode}>
