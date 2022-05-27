@@ -46,15 +46,9 @@ const SignupSignin = ({ warningMsg }) => {
             )}
             {/*------------------ SignUp or Signin ------------------*/}
             {signupMode ? (
-              <Signup
-                setSignupMode={setSignupMode}
-                onCloseSignUpSignIn={handleCloseSignUpSignIn}
-              />
+              <Signup setSignupMode={setSignupMode} />
             ) : (
-              <Signin
-                setSignupMode={setSignupMode}
-                onCloseSignUpSignIn={handleCloseSignUpSignIn}
-              />
+              <Signin setSignupMode={setSignupMode} />
             )}
           </div>
         </div>

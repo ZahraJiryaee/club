@@ -1,8 +1,12 @@
 import React, { useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import { setHeaderMode } from "../../redux/header/header.action";
+import {
+  getUserListWeekly,
+  getUserListSeasonal,
+} from "../../redux/leaderboard/leaderboard.action";
 
 import LeaderboardHeader from "../../components/leaderboard-header/leaderboard-header.component";
 
@@ -14,9 +18,39 @@ const LeaderBoardPage = () => {
   const { pathname } = useLocation();
   const dispatch = useDispatch();
 
+  const leaderboardHeaderStatus = useSelector(
+    (state) => state.leaderboard.leaderboardHeaderStatus
+  );
+  const userListWeekly = useSelector(
+    (state) => state.leaderboard.userListWeekly
+  );
+  const userListSeasonal = useSelector(
+    (state) => state.leaderboard.userListSeasonal
+  );
+
   useEffect(() => {
     dispatch(setHeaderMode(pathname));
-  }, []);
+  }, [dispatch, pathname]);
+
+  useEffect(() => {
+    console.log("userListWeekly:", userListWeekly);
+  }, [userListWeekly]);
+
+  useEffect(() => {
+    console.log("userListSeasonal:", userListSeasonal);
+  }, [userListSeasonal]);
+
+  useEffect(() => {
+    /*
+    true:general
+    false:weekly
+    */
+    if (leaderboardHeaderStatus) {
+      dispatch(getUserListSeasonal());
+    } else {
+      dispatch(getUserListWeekly());
+    }
+  }, [leaderboardHeaderStatus]);
 
   return (
     <div>

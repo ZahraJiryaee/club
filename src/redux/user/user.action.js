@@ -4,6 +4,7 @@ import {
   setPassword,
   setLoginToken,
   getUserProfile,
+  setUserProfile,
   setInviterNumber,
 } from "../../services/userServices";
 import { UserActionTypes } from "./user.types";
@@ -49,6 +50,7 @@ export const signUp_Phase3 =
           if (hasInviterCode) {
             await dispatch(inviteFriends(inviterCode));
           }
+          dispatch(setOpenValidationDialog(false));
         }
       })
       .catch((e) => {
@@ -73,8 +75,9 @@ export const login = (username, password) => async (dispatch) => {
           type: UserActionTypes.SET_REFRESH_TOKEN,
           payload: response.data.refresh,
         });
+        dispatch(setOpenValidationDialog(false));
 
-        result = await dispatch(setUserProfile(response.data.access));
+        result = await dispatch(setCurrentUser());
       }
     })
     .catch((e) => {
@@ -84,21 +87,42 @@ export const login = (username, password) => async (dispatch) => {
   return result;
 };
 
-export const setUserProfile = (acccessToken) => async (dispatch) => {
+export const setCurrentUser = () => async (dispatch) => {
   let result;
-  await getUserProfile(acccessToken)
+  await getUserProfile()
     .then((response) => {
       if (response.status === 200) {
         dispatch({
           type: UserActionTypes.SET_CURRENT_USER,
           payload: response.data,
         });
-        result = "success";
+        result = response;
       }
       //success toast-> welcome to club
     })
     .catch((e) => {
       //error toast-> e.response.data.message
+      dispatch({
+        type: UserActionTypes.SET_CURRENT_USER,
+        payload: null,
+      });
+      result = e.response;
+    });
+  return result;
+};
+
+export const setUserProfileAddress = (body) => async (dispatch) => {
+  let result;
+  await setUserProfile(body)
+    .then((response) => {
+      console.log("response-setuser-profile-address", response);
+      if (response.status === 200) {
+        result = response;
+      }
+    })
+    .catch((error) => {
+      console.log("error-setuser-profile-address", error);
+      result = error.response;
     });
   return result;
 };

@@ -47,3 +47,8 @@ export const setUserBonus = () => async (dispatch) => {
     });
   return result;
 };
+
+export const setOpenWheelModal = (value) => ({
+  type: WheelActionTypes.OPEN_WHEEL_MODAL,
+  payload: value,
+});

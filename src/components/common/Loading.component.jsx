@@ -21,7 +21,7 @@ const Loading = () => {
           width="50px"
           height="50px"
         />
-        <p>{t("Please wait...")}</p>
+        <p>{t("Please_Wait")}</p>
       </div>
     )
   );

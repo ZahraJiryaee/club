@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 
 import { login } from "../../../redux/user/user.action";
 
-const Signin = ({ setSignupMode, onCloseSignUpSignIn }) => {
+const Signin = ({ setSignupMode }) => {
   const dispatch = useDispatch();
 
   const [passwordVisible, setPasswordVisible] = useState(false);
@@ -17,13 +17,14 @@ const Signin = ({ setSignupMode, onCloseSignUpSignIn }) => {
     setPasswordVisible(!passwordVisible);
   };
 
-  const handleSignin = async () => {
-    const result = await dispatch(login(signinMobileNumber, signinPassword));
-    if (result === "success") {
-      onCloseSignUpSignIn();
-      console.log("Welcome to medrick club");
-      // success toast => Welcome to medrick club
-    }
+  const handleSignin = () => {
+    const result = dispatch(login(signinMobileNumber, signinPassword));
+    result.then((response) => {
+      if (response.status === 200) {
+        // success toast => Welcome to medrick club
+        console.log("Welcome to Medrick Club!");
+      }
+    });
   };
 
   const handleSigninMobileNumberChange = (event) => {

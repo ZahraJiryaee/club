@@ -1,9 +1,7 @@
 @import "./../../style.scss";
 
 :root {
-  --popup-width: 37vw;
-  --popup-height: 65vh;
-  --popup-textarea-padding: 20px;
+  --lucky-wheel-popup-textarea-padding: 20px;
 }
 
 .overlay {
@@ -12,39 +10,27 @@
   background-color: rgba(0, 0, 0, 0.35);
   backdrop-filter: blur(3px);
 
-  .popup {
-    position: absolute;
-    top: 50vh;
-    left: 50%;
-    -moz-transform: translateX(-50%) translateY(-50%);
-    -webkit-transform: translateX(-50%) translateY(-50%);
-    transform: translateX(-50%) translateY(-50%);
+  position: fixed;
+  z-index: 21;
+  top: 0;
 
-    width: var(--popup-width);
-    height: var(--popup-height);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+
+  .popup {
+    position: relative;
+
+    width: 540px;
+    height: 70%;
     background-color: white;
     border-radius: 10px;
     z-index: 200;
 
-    @media #{$desktop-device} {
-      --popup-width: 45vw;
-      --popup-height: 55vh;
-    }
-    @media #{$tablet-device} {
-      --popup-width: 50vw;
-      --popup-height: 55vh;
-    }
-    @media #{$large-mobile} {
-      --popup-width: 70vw;
-      --popup-height: 60vh;
-    }
     @media #{$small-mobile} {
-      --popup-width: 100vw;
-      --popup-height: 55vh;
-    }
-    @media #{$extra-small-mobile} {
-      --popup-width: 100vw;
-      --popup-height: 45vh;
+      width: 100%;
+      height: 360px;
     }
 
     .bg-hooray {
@@ -55,33 +41,19 @@
       background-repeat: no-repeat;
       background-size: cover;
       border-radius: 10px;
-      width: var(--popup-width);
-      height: calc(var(--popup-height) - 10vh);
-
-      &.bg-hooray-coin {
-        height: calc(var(--popup-height) - 10vh);
-      }
-      &.bg-hooray-physical-item {
-        height: calc(var(--popup-height) - 25%);
-      }
-    }
-
-    .ttt {
-      position: relative;
-      width: var(--popup-width);
-      height: var(--popup-height);
-      // background-color: red;
+      width: 100%;
+      height: 100%;
     }
 
     .popup-close {
       position: absolute;
-      top: 10px;
-      right: 10px;
+      top: 16px;
+      right: 16px;
       width: 20px;
       height: 20px;
       cursor: pointer;
 
-      @media #{$extra-small-mobile} {
+      @media #{$small-mobile} {
         width: 15px;
         height: 15px;
       }
@@ -98,20 +70,20 @@
       width: 100%;
       padding: 0 10px;
 
-      &.popup-title-coin {
+      &.popup-title-dig {
         top: 35%;
       }
-      &.popup-title-coin-prize-received-true {
+      &.popup-title-dig-prize-received-true {
         top: 35%;
       }
-      &.popup-title-physical-item {
+      &.popup-title-non-dig {
         top: 10%;
       }
-      &.popup-title-physical-item-prize-received-true {
+      &.popup-title-non-dig-prize-received-true {
         top: 15%;
       }
 
-      @media #{$extra-small-mobile} {
+      @media #{$small-mobile} {
         font-size: 25px;
         line-height: 0.48;
         letter-spacing: -0.6px;
@@ -134,29 +106,30 @@
       font-weight: 500;
       line-height: 0.67;
       letter-spacing: -0.43px;
+      direction: rtl;
 
       cursor: pointer;
 
-      &.popup-prize-btn-coin {
+      &.popup-prize-btn-dig {
         top: 70%;
       }
-      &.popup-prize-btn-coin-prize-received-true {
+      &.popup-prize-btn-dig-prize-received-true {
         background-color: $theme-color--marine-deep-sky-blue;
       }
-      &.popup-prize-btn-physical-item {
+      &.popup-prize-btn-non-dig {
         top: 90%;
         background-color: $theme-color--cool-green;
       }
-      &.popup-prize-btn-physical-item-prize-received-true {
+      &.popup-prize-btn-non-dig-prize-received-true {
         top: 72%;
         background-color: $theme-color--marine-deep-sky-blue;
       }
 
-      &:disabled {
+      &.disabled {
         background-color: $theme-color--brown-grey;
       }
 
-      @media #{$extra-small-mobile} {
+      @media #{$small-mobile} {
         width: 150px;
         height: 40px;
         font-size: 15px;
@@ -165,7 +138,7 @@
       }
     }
 
-    .coin-prize-received-hint {
+    .dig-prize-received-hint {
       top: 80%;
 
       direction: rtl;
@@ -182,19 +155,20 @@
       direction: rtl;
 
       .user-address-label {
-        top: 25%;
+        top: 26%;
         width: 100%;
 
         text-align: right;
-        padding-right: calc(var(--popup-textarea-padding) / 2);
+        padding-right: calc(var(--lucky-wheel-popup-textarea-padding) / 2);
+        font-size: 18px;
 
         & span:nth-child(2) {
           color: $theme-color--vermillion;
           padding-right: 10px;
         }
 
-        @media #{$extra-small-mobile} {
-          top: 23%;
+        @media #{$small-mobile} {
+          font-size: 12px;
         }
       }
 
@@ -203,9 +177,8 @@
 
         background-color: $theme-color--white;
         border-radius: 10px;
-        // width: calc(var(--popup-width) - var(--popup-textarea-padding));
-        width: calc(100% - var(--popup-textarea-padding));
-        height: calc(var(--popup-height) / 2.4);
+        width: calc(100% - var(--lucky-wheel-popup-textarea-padding));
+        height: 170px;
         font-family: $font-family-iransans;
         text-align: right;
         padding: 10px 15px;
@@ -218,9 +191,9 @@
         box-shadow: none;
         resize: none;
 
-        // @media #{$tablet-device} {
-        //   height: 135px;
-        // }
+        @media #{$small-mobile} {
+          height: 135px;
+        }
       }
 
       .send-to-user-address {
@@ -237,7 +210,7 @@
           padding-right: 10px;
         }
 
-        @media #{$extra-small-mobile} {
+        @media #{$small-mobile} {
           font-size: 12px;
           line-height: 1.5;
           letter-spacing: -0.19px;
@@ -256,7 +229,7 @@
           padding-right: 10px;
         }
 
-        @media #{$extra-small-mobile} {
+        @media #{$small-mobile} {
           font-size: 10px;
           line-height: 1.2;
           letter-spacing: -0.16px;
