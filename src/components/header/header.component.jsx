@@ -16,6 +16,7 @@ const Header = () => {
 
   const currentUser = useSelector((state) => state.user.currentUser);
   const headerMode = useSelector((state) => state.header.headerMode);
+  const genres = useSelector((state) => state.genres.allGenres);
 
   const [toggleMenu, setToggleMenu] = useState(false);
   const [scoreCounter, setScoreCounter] = useState(0);
