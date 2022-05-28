@@ -25,6 +25,10 @@ const resources = {
       Send_To: "ارسال به:",
       Support_Number: "شماره پشتیبانی:",
       Enter_Code_In_Game: "توجه: کد دریافتی را در بازی مورد نظر وارد نمایید.",
+      Low_Score_Warning: "امتیاز شما از حد مجاز کمتر است.",
+      Your_Request_Was_Successful: "درخواست شما با موفقیت انجام شد",
+      Enter_Code_In_Game:
+        "توجه: کد تایید دریافتی را در بازی مورد نظر وارد نمایید.",
     },
   },
 };

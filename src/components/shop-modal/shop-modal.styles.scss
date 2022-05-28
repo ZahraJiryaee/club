@@ -3,6 +3,7 @@
 .shop-modal-container {
   background-color: rgba($color: #000000, $alpha: 0.35);
   z-index: 30;
+  direction: rtl;
 
   position: fixed;
   top: 0;
@@ -17,7 +18,7 @@
 
   .shop-modal {
     width: 540px;
-    height: 520px;
+    height: auto;
     background-color: $white;
     border-radius: 15px;
     padding: 30px 17px;
@@ -44,6 +45,81 @@
           width: 15px;
           height: 15px;
         }
+      }
+    }
+
+    .flex-container {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      justify-content: center;
+      flex-direction: column;
+      background: pink;
+      // gap: 16px;
+      height: 100%;
+      width: 100%;
+
+      .shop-moadal-score-container {
+        color: $theme-color--marine-blue;
+      }
+
+      .shop-modal-item-img {
+        &.img-width-143 {
+          width: 143px;
+          height: 132px;
+        }
+      }
+
+      .shop-item-title {
+        color: $theme-color--dark;
+      }
+
+      .shop-item-leave-chance-counter {
+        color: $theme-color--orangey-red;
+      }
+
+      .shop-modal-enter-address-container {
+        width: 100%;
+        display: flex;
+        justify-content: flex-start;
+        gap: 0.5rem;
+
+        .required {
+          color: $theme-color--orangey-red;
+        }
+      }
+
+      .shop-item-textarea {
+        height: 140px;
+      }
+
+      .shop-modal-low-scroe-warning {
+        color: $theme-color--vermillion;
+      }
+
+      .successful-req {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: $theme-color--green;
+        gap: 8px;
+      }
+
+      .shop-modal-enter-code-in-game {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 0.5rem;
+        color: $theme-color--marine-blue;
+      }
+
+      .shop-modal-support-number {
+        color: $theme-color--medium-blue;
+      }
+
+      .shop-modal-send-to-address {
+        color: $theme-color--medium-blue;
       }
     }
   }
