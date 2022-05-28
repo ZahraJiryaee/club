@@ -1,5 +1,9 @@
 @import "../../assets/scss/variables";
 
+.genre-header {
+  display: none;
+}
+
 @media #{$tablet-device,$large-mobile} {
   .spacer {
     width: 100%;
@@ -14,15 +18,16 @@
     .genres-container {
       position: fixed;
       width: 100%;
+      z-index: 10;
     }
   }
 
   .genre-header {
+    display: block;
     padding-top: calc($navbar-height - 0.1vh);
     // padding-top: 9.9vh;
     direction: rtl;
     background-color: $theme-color--navbar-medium-blue;
-
     .search-box-container {
       justify-content: center;
       padding: 0 8px;

@@ -1,56 +1,57 @@
 @import "../../assets/scss/variables";
 
-@media #{$tablet-device,$large-mobile} {
-  .games-page {
-    padding: 18.5px 17.5px 0 0;
+.games-page {
+  width: 100%;
+  padding-bottom: calc(var(--footer-height) + 30px);
+  padding-top: calc($navbar-height + 16px);
+  background-color: $white;
+
+  .games-container {
     direction: rtl;
-    padding-bottom: calc(var(--footer-height) + 30px);
+    margin: 0 calc(5% + 16px) 32px;
+    @media #{$tablet-device, $large-mobile} {
+      margin: 0 calc(2% + 16px) 32px;
+    }
+    @media #{$small-mobile} {
+      margin: 0 16px 32px;
+    }
 
-    .category-container {
+    .game-category-header {
       display: flex;
-      width: 95%;
       justify-content: space-between;
-      margin-bottom: 20px;
+      margin-bottom: 3vh;
 
-      .category-title {
+      .title {
         font-size: 17px;
         font-weight: bold;
+        line-height: 0.71;
         letter-spacing: -0.41px;
         text-align: center;
+        color: $theme-color--dark;
       }
 
-      .more-button {
+      .more {
         font-size: 12px;
-        font-weight: bold;
-        line-height: 20px;
-        color: $theme-color--medium-blue;
-        padding-bottom: 5px;
+        font-weight: 500;
+        line-height: 1.67;
+        letter-spacing: -0.19px;
+        text-align: left;
+        color: $theme-color--marine-blue;
         text-decoration: none;
-      }
 
-      .more-icon {
-        padding: 10px 10px 10px 0;
-        font-size: 10px;
-        color: $theme-color--medium-blue;
-      }
-    }
-
-    .banner-container {
-      margin-bottom: 20px;
-      display: flex;
-      overflow-x: auto;
-      white-space: nowrap;
-
-      &::-webkit-scrollbar {
-        display: none;
-      }
-
-      .banner {
-        width: 95%;
-        height: auto;
-        border-radius: 10px;
-        margin-left: 5px;
+        img {
+          width: 5.7px;
+          height: 10px;
+          margin-right: 8px;
+          vertical-align: middle;
+        }
       }
     }
+  }
+}
+
+@media #{$tablet-device,$large-mobile} {
+  .games-page {
+    padding-top: 18.5px;
   }
 }

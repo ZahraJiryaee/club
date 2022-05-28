@@ -1,0 +1,40 @@
+@import "./../../../style.scss";
+
+:root {
+  --games-banner-items-length: 1;
+}
+
+.games-banner-container {
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-rows: repeat(1, auto);
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3vh 16px;
+  width: 100%;
+
+  @media #{$tablet-device,$large-mobile} {
+    grid-template-rows: repeat(1, auto);
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media #{$small-mobile} {
+    grid-template-rows: repeat(1, auto);
+    grid-template-columns: repeat(2, 85vw);
+    overflow-x: auto;
+    // @if --games-banner-items-length != 1 {
+    //   overflow-x: auto;
+    // } @else {
+    //   overflow: hidden;
+    // }
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  .banner {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+  }
+}

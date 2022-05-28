@@ -16,6 +16,7 @@ const Header = () => {
 
   const currentUser = useSelector((state) => state.user.currentUser);
   const headerMode = useSelector((state) => state.header.headerMode);
+  const genres = useSelector((state) => state.genres.allGenres);
 
   const [toggleMenu, setToggleMenu] = useState(false);
   const [scoreCounter, setScoreCounter] = useState(0);
@@ -74,10 +75,35 @@ const Header = () => {
                 <NavLink
                   to={`/${hn.link}`}
                   className={({ isActive }) =>
-                    isActive ? "header-nav-selected" : ""
+                    isActive ? `${"header-nav-selected"} ${"genre"}` : "genre"
                   }
                 >
-                  {hn.title}
+                  {hn.id === "hn2" ? (
+                    <>
+                      <>
+                        {hn.title}
+                        <i className="fa fa-caret-down" />
+                      </>
+                      <div class="subnav-content">
+                        {genres.map((genre) => {
+                          return (
+                            <li>
+                              <NavLink
+                                to={`/games/genre/${genre.id}`}
+                                className={({ isActive }) =>
+                                  isActive ? "selected" : ""
+                                }
+                              >
+                                {genre.title}
+                              </NavLink>
+                            </li>
+                          );
+                        })}
+                      </div>
+                    </>
+                  ) : (
+                    hn.title
+                  )}
                 </NavLink>
               </li>
             ))}
