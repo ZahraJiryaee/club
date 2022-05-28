@@ -7,6 +7,11 @@ export const selectSetOpenShopModal = createSelector(
   (shop) => shop.setOpenShopModal
 );
 
+export const selectAllShopItems = createSelector(
+  [selectShop],
+  (shop) => shop.allShopItems
+);
+
 export const selectShopModalData = createSelector(
   [selectShop],
   (shop) => shop.shopModalData

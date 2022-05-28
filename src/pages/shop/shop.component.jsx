@@ -1,18 +1,21 @@
 import React, { useEffect, useState, useMemo } from "react";
 import { useLocation } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import { setHeaderMode } from "../../redux/header/header.action";
 import {
   setOpenShopModal,
   setShopModalData,
+  getAllShopItems,
 } from "../../redux/shop/shop.actions";
+
+import { selectAllShopItems } from "../../redux/shop/shop.selectors";
 
 import ShopOrderingHeader from "../../components/shop-ordering-header/shop-ordering-header.component";
 import ShopHeader from "../../components/shop-header/shop-header.component";
 import Pagination from "../../components/common/pagination/pagination.component";
 
-import shopMock from "../../components/mock/shop.mock";
+// import shopMock from "../../components/mock/shop.mock";
 
 import ShopItem from "./../../assets/images/test/shop-item.png";
 
@@ -24,12 +27,15 @@ const ShopPage = () => {
   const { pathname } = useLocation();
   const dispatch = useDispatch();
 
+  // const allShopItems = shopMock.shopItems;
+  const allShopItems = useSelector(selectAllShopItems);
+
   const [currentPage, setCurrentPage] = useState(1);
 
   const currentShopData = useMemo(() => {
     const firstPageIndex = (currentPage - 1) * PageSize;
     const lastPageIndex = firstPageIndex + PageSize;
-    return shopMock.shopItems.slice(firstPageIndex, lastPageIndex);
+    return allShopItems.slice(firstPageIndex, lastPageIndex);
   }, [currentPage]);
 
   const onPurchaseClick = (item) => {
@@ -39,6 +45,10 @@ const ShopPage = () => {
 
   useEffect(() => {
     dispatch(setHeaderMode(pathname));
+  }, []);
+
+  useEffect(() => {
+    dispatch(getAllShopItems());
   }, []);
 
   return (
@@ -75,7 +85,7 @@ const ShopPage = () => {
       {/* Pagination */}
       <Pagination
         currentPage={currentPage}
-        totalCount={shopMock.shopItems.length}
+        totalCount={allShopItems.length}
         pageSize={PageSize}
         onPageChange={(page) => setCurrentPage(page)}
       />
