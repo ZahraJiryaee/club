@@ -27,10 +27,10 @@ function App() {
 
   return (
     <>
-      <Loading />
-      <SignupSignin />
       <LuckyWheelModal />
       <ShopModal />
+      <SignupSignin />
+      <Loading />
       <Fragment>{routing}</Fragment>
     </>
   );

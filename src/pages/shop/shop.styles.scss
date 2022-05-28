@@ -129,6 +129,7 @@
   border: none;
   font-family: $font-family-iransans;
   border-radius: 10px;
+  cursor: pointer;
 
   @media #{$small-mobile} {
     width: 60px;

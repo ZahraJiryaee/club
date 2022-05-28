@@ -29,6 +29,9 @@ const resources = {
       Your_Request_Was_Successful: "درخواست شما با موفقیت انجام شد",
       Enter_Code_In_Game:
         "توجه: کد تایید دریافتی را در بازی مورد نظر وارد نمایید.",
+      Continue: "ادامه",
+      Score: "امتیاز",
+      Your_Score: "امتیاز شما:",
     },
   },
 };

@@ -1,13 +1,16 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useTranslation } from "react-i18next";
 
 import { setOpenShopModal } from "../../redux/shop/shop.actions";
+import { setCurrentUser } from "../../redux/user/user.action";
 
 import {
   selectSetOpenShopModal,
   selectShopModalData,
 } from "../../redux/shop/shop.selectors";
+
+import CustomButton from "../common/custom-button/custom-button.component";
 
 import CloseIcon from "./../../assets/images/icon/close-icon.png";
 import ShopItemImg from "./../../assets/images/test/shop-item.png";
@@ -22,18 +25,31 @@ const ShopModal = () => {
 
   const isShopModalOPen = useSelector(selectSetOpenShopModal);
   const shopModalData = useSelector(selectShopModalData);
+  const currentUser = useSelector((state) => state.user.currentUser);
   console.log("shopModalData:", shopModalData);
 
+  const [phase, setPhase] = useState(1);
+  const [userAddress, setUserAddress] = useState("");
+
   const handleShopModalClose = () => {
+    setPhase(1);
+    setUserAddress("");
     dispatch(setOpenShopModal(false));
   };
 
-  /* UI Models */
+  /* ------------------ Get User Profile --------------------- */
+  useEffect(() => {
+    // dispatch(setCurrentUser());
+  }, []);
+
+  /* ------------------ UI Models ------------------ */
   const YourScore = (fontSize) => {
+    const { score_counter } = currentUser || {};
     return (
       <p className={`shop-moadal-score-container fontsize-${fontSize}`}>
-        <span>امتیاز شما: </span>
-        <span>500</span>
+        <span>
+          {t("Your_Score")} {score_counter}
+        </span>
       </p>
     );
   };
@@ -59,7 +75,7 @@ const ShopModal = () => {
   const ShopItemLeaveChanceCounter = (fontSize) => {
     return (
       <p className={`shop-item-leave-chance-counter fontsize-${fontSize}`}>
-        {shopModalData.leave_chance_counter} امتیاز
+        {shopModalData.leave_chance_counter} {t("Score")}
       </p>
     );
   };
@@ -74,15 +90,25 @@ const ShopModal = () => {
   };
 
   const Textarea = () => {
-    return <textarea className="textarea shop-item-textarea" />;
+    return (
+      <textarea
+        className="textarea shop-item-textarea"
+        defaultValue={userAddress}
+        onChange={handleUserAddressTxtChange}
+        autoFocus
+      />
+    );
   };
 
   const LowScoreWarning = () => {
-    return (
+    const { score_counter } = currentUser || {};
+    const { leave_chance_counter } = shopModalData;
+
+    return leave_chance_counter > score_counter ? (
       <p className="shop-modal-low-scroe-warning fontsize-10">
         {t("Low_Score_Warning")}
       </p>
-    );
+    ) : null;
   };
 
   const SuccessfulRequest = () => {
@@ -114,19 +140,144 @@ const ShopModal = () => {
   const SendToAddress = () => {
     return (
       <p className="shop-modal-send-to-address fontsize-13">
-        {t("Send_To")} تست تست
+        {t("Send_To")} {userAddress}
       </p>
     );
   };
 
-  const ShopBtn = (btnBgColor) => {
-    return (
-      <button className={`wide-button wide-button__${btnBgColor}`}>
-        تایید
-      </button>
-    );
+  /* ----------------- Populate Popup With Above Componnets ------------------- */
+
+  const handleNonDigItems = () => {
+    switch (phase) {
+      case 1:
+        return (
+          <>
+            {YourScore(18)}
+            {ShopItemImage(143)}
+            {ShopItemTitle(21)}
+            {ShopItemLeaveChanceCounter(18)}
+            <CustomButton
+              btnBgColor="cool-green"
+              onClick={handleNonDigAction_Phase1}
+            >
+              {t("Continue")}
+            </CustomButton>
+            {LowScoreWarning()}
+          </>
+        );
+
+      case 2:
+        return (
+          <>
+            {YourScore(18)}
+            {ShopItemImage(93)}
+            {ShopItemTitle(21)}
+            {ShopItemLeaveChanceCounter(18)}
+            {EnterAddressTxt()}
+            {Textarea()}
+            <CustomButton
+              btnBgColor="cool-green"
+              onClick={handleNonDigAction_Phase2}
+            >
+              {t("Confirm")}
+            </CustomButton>
+          </>
+        );
+      case 3:
+        return (
+          <>
+            {YourScore(18)}
+            {ShopItemImage(143)}
+            {ShopItemTitle(21)}
+            {ShopItemLeaveChanceCounter(18)}
+            {SuccessfulRequest()}
+            <CustomButton
+              btnBgColor="deep-sky-blue"
+              disabled
+              // onClick={handleNonDigAction_Phase3}
+            >
+              {t("Tracking_Code")}: 67676
+            </CustomButton>
+            {SendToAddress()}
+            {SupportNumber()}
+          </>
+        );
+      default:
+        return <h1>Sry</h1>;
+    }
   };
 
+  const handleDigItems = () => {
+    switch (phase) {
+      case 1:
+        return (
+          <>
+            {YourScore(18)}
+            {ShopItemImage(143)}
+            {ShopItemTitle(21)}
+            {ShopItemLeaveChanceCounter(18)}
+            <CustomButton
+              btnBgColor="cool-green"
+              onClick={handleDigAction_Phase1}
+            >
+              {t("Confirm")}
+            </CustomButton>
+            {LowScoreWarning()}
+          </>
+        );
+      case 2:
+        return (
+          <>
+            {YourScore(18)}
+            {ShopItemImage(143)}
+            {ShopItemTitle(21)}
+            {ShopItemLeaveChanceCounter(18)}
+            {SuccessfulRequest()}
+            <CustomButton
+              btnBgColor="deep-sky-blue"
+              disabled
+              // onClick={handleDigAction_Phase2}
+            >
+              {t("Verification_Code")}: 9090909
+            </CustomButton>
+            {EnterCodeInGame()}
+          </>
+        );
+      default:
+        break;
+    }
+  };
+
+  const populateUi = () => {
+    const { type } = shopModalData;
+    switch (type) {
+      case "dig":
+        return handleDigItems();
+      case "non-dig":
+        return handleNonDigItems();
+      default:
+        break;
+    }
+  };
+
+  /* ------------------- Handle OnClicks ---------------------- */
+  const handleNonDigAction_Phase1 = () => {
+    setPhase(2);
+  };
+
+  const handleNonDigAction_Phase2 = () => {
+    setPhase(3);
+  };
+
+  const handleDigAction_Phase1 = () => {
+    setPhase(2);
+  };
+
+  const handleUserAddressTxtChange = (e) => {
+    setUserAddress(e.target.value);
+  };
+
+  /* --------------------------------------------------------- */
   return isShopModalOPen ? (
     <div className="shop-modal-container">
       <div className="shop-modal">
@@ -138,20 +289,7 @@ const ShopModal = () => {
           <img src={CloseIcon} alt="close-modal" className="shop-modal-close" />
         </div>
         {/* content */}
-        <div className="flex-container ">
-          {YourScore(18)}
-          {ShopItemImage(143)}
-          {ShopItemTitle(21)}
-          {ShopItemLeaveChanceCounter(18)}
-          {EnterAddressTxt()}
-          {SuccessfulRequest()}
-          {Textarea()}
-          {ShopBtn("cool-green")}
-          {LowScoreWarning()}
-          {EnterCodeInGame()}
-          {SendToAddress()}
-          {SupportNumber()}
-        </div>
+        <div className="flex-container ">{populateUi()}</div>
       </div>
     </div>
   ) : null;

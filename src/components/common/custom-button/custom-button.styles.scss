@@ -1,0 +1,29 @@
+@import "./../../../style.scss";
+
+.wide-button {
+  width: 168px;
+  height: 45px;
+  color: $theme-color--white;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+
+  font-family: $font-family-iransans;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 0.67;
+  letter-spacing: -0.43px;
+  direction: rtl;
+  margin: 16px 0;
+
+  &__cool-green {
+    background-color: $theme-color--cool-green;
+  }
+  &__deep-sky-blue {
+    background-color: $theme-color--marine-deep-sky-blue;
+  }
+
+  &:disabled {
+    cursor: auto;
+  }
+}

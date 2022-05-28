@@ -64,9 +64,16 @@
       }
 
       .shop-modal-item-img {
+        box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.2);
+        border-radius: 10px;
+
         &.img-width-143 {
           width: 143px;
           height: 132px;
+        }
+        &.img-width-93 {
+          width: 93px;
+          height: 88px;
         }
       }
 
