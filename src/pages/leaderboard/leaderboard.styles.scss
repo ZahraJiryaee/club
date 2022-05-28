@@ -1,180 +1,186 @@
 @import "./../../style.scss";
 
 :root {
-  --leaderboard-user-record-height: 5vh;
+  --leaderboard-user-record-height: 32px;
+  --user-list-gap: 10px;
+  --user-list-rows: 7;
 }
 
 .leaderboard-container {
-  width: 100%;
-  padding-bottom: calc(var(--footer-height) + 30px);
   direction: rtl;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  vertical-align: middle;
+  margin: 0 5vw;
+  min-height: calc(
+    100vh - $navbar-height - var(--leaderboard-container-height)
+  );
+  top: 50%;
 
-  .leaderborad-topusers-grid-txt {
+  .leaderborad-headline-txt {
+    position: absolute;
+    top: 0;
+
     font-size: 26px;
     font-weight: bold;
     line-height: 0.46;
     letter-spacing: -0.62px;
     color: $theme-color--dark;
-    margin: 4vh 5%;
+    margin: 15px 5%;
     @media #{$large-mobile} {
-      margin: 3vh 5%;
       font-size: 17px;
       font-weight: bold;
       line-height: 0.71;
       letter-spacing: -0.41px;
     }
   }
+  .leaderboard-user-list-container {
+    justify-content: flex-start;
+    .leaderboard-user-list {
+      display: flex;
+      justify-content: flex-start;
+      flex-direction: column;
+      flex-wrap: wrap;
+      gap: var(--user-list-gap) 8vw;
 
-  .leaderborad-topusers-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    margin: 0% 10%;
-    gap: 2vh 3rem;
-    @media #{$large-mobile} {
-      grid-template-columns: 1fr;
+      height: calc(
+        (var(--user-list-gap) + var(--leaderboard-user-record-height)) *
+          var(--user-list-rows)
+      );
+      width: 41vw;
+
+      @media #{$large-mobile} {
+        width: 100%;
+      }
+
+      &.leaderboard-height-current-user-between-7-and-13 {
+        @media #{$large-mobile} {
+          --user-list-rows: 8;
+        }
+      }
+
+      .leaderboard-each-user {
+        height: var(--leaderboard-user-record-height);
+        width: 100%;
+
+        // &.current-user-in-first-14 {}
+
+        @media #{$large-mobile} {
+          &:nth-child(n + 8) {
+            display: none;
+          }
+
+          &.current-user-between-7-and-13 {
+            display: block;
+          }
+        }
+      }
     }
-    .each-user {
-      // border: 1px solid black;
+  }
+
+  .current-user-out-first-14 {
+    width: 41vw;
+    height: var(--leaderboard-user-record-height);
+
+    @media #{$large-mobile} {
+      width: 100%;
+    }
+  }
+}
+
+/*--------------------------------
+      FULL WIDTH FOR SHORT LISTS
+---------------------------------*/
+.leaderboard-container .leaderboard-user-list.leaderboard-full-width-records {
+  width: 90vw;
+}
+
+/*--------------------------------
+      IF CURRENT USER HAS LOGGEDIN STYLE
+---------------------------------*/
+.current-user-loggedin .user-record .user-info {
+  background-color: $theme-color--tangerine;
+}
+
+/*--------------------------------
+      USER RECORD LOGIC
+---------------------------------*/
+.user-record {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  @media #{$large-mobile} {
+    gap: 0.5rem;
+  }
+
+  .user-index {
+    font-size: 15px;
+    font-weight: bold;
+    color: $theme-color--orange;
+    width: 15px;
+    display: flex;
+    justify-content: center;
+
+    @media #{$large-mobile} {
+      font-size: 12px;
+    }
+  }
+
+  .user-info {
+    background-color: $theme-color--leaderboard-user-records-bg;
+    width: 100%;
+    height: var(--leaderboard-user-record-height);
+    display: flex;
+    border-radius: 50px;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+
+    .user--avatar-name {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+
+      .avatar {
+        width: var(--leaderboard-user-record-height);
+        height: var(--leaderboard-user-record-height);
+        border-radius: 50%;
+      }
+
+      .name {
+        font-size: 13px;
+        font-weight: 500;
+        line-height: 1.5;
+        letter-spacing: 0.12px;
+        color: $theme-color--dark;
+        @media #{$large-mobile} {
+          font-size: 10px;
+          font-weight: 500;
+        }
+      }
+    }
+
+    .user--score-prize {
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 1rem;
 
+      font-size: 13px;
+      font-weight: 500;
+      line-height: 1.69;
+      letter-spacing: -0.21px;
+      color: $theme-color--marine-blue;
+      margin-left: 1rem;
       @media #{$large-mobile} {
-        gap: 0.5rem;
-
-        &:nth-child(n + 8) {
-          display: none;
-        }
-      }
-
-      &.loggedin-user {
-        display: flex;
-        .user-record {
-          background-color: $theme-color--tangerine;
-        }
-      }
-
-      &.loggedin-user-in-middle {
-        // grid-column: span 2;
-        transform: translateX(-50%);
-        @media #{$large-mobile} {
-          // grid-column: auto;
-          transform: none;
-        }
-      }
-
-      .user-index {
-        font-size: 15px;
-        font-weight: bold;
-        color: $theme-color--orange;
-        width: 15px;
-        display: flex;
-        justify-content: center;
-
-        @media #{$large-mobile} {
-          font-size: 12px;
-        }
-      }
-
-      .user-record {
-        background-color: $theme-color--leaderboard-user-records-bg;
-        width: 100%;
-        height: var(--leaderboard-user-record-height);
-        display: flex;
-        border-radius: 50px;
-        align-items: center;
-        justify-content: space-between;
-        position: relative;
-
-        .user--avatar-name-score {
-          display: flex;
-          align-items: center;
-          gap: 0.5rem;
-
-          .avatar {
-            width: var(--leaderboard-user-record-height);
-            height: var(--leaderboard-user-record-height);
-            border-radius: 25%;
-          }
-
-          .name-score {
-            :nth-child(1) {
-              font-size: 13px;
-              font-weight: 500;
-              line-height: 1.5;
-              letter-spacing: 0.12px;
-              color: $theme-color--dark;
-              @media #{$large-mobile} {
-                font-size: 10px;
-                font-weight: 500;
-              }
-            }
-            :nth-child(2) {
-              font-size: 10px;
-              font-weight: 500;
-              line-height: 1.5;
-              letter-spacing: -0.16px;
-              color: $theme-color--brownish-grey;
-              @media #{$large-mobile} {
-                font-size: 8px;
-                font-weight: 500;
-              }
-            }
-          }
-        }
-
-        .user-prize {
-          font-size: 13px;
-          font-weight: 500;
-          line-height: 1.69;
-          letter-spacing: -0.21px;
-          color: $theme-color--marine-blue;
-          margin-left: 1rem;
-          @media #{$large-mobile} {
-            font-size: 10px;
-            font-weight: 500;
-            line-height: 2;
-            letter-spacing: -0.16px;
-          }
-        }
-      }
-
-      &.extract-prize .user-record {
-        .user--avatar-name-score {
-          .name-score {
-            display: flex;
-            justify-content: space-between;
-            :nth-child(1) {
-              line-height: normal;
-            }
-            :nth-child(2) {
-              /* score */
-              position: absolute;
-              left: 1rem;
-              margin: auto;
-              color: $theme-color--marine-blue;
-              font-size: 13px;
-              font-weight: 500;
-              line-height: normal;
-
-              @media #{$large-mobile} {
-                font-size: 10px;
-                font-weight: 500;
-              }
-            }
-          }
-        }
-        .user-prize {
-          display: none;
-        }
+        font-size: 10px;
+        font-weight: 500;
+        line-height: 2;
+        letter-spacing: -0.16px;
       }
     }
-  }
-}
-
-@media #{$tablet-device,$large-mobile} {
-  .leaderboard-container {
-    --leaderboard-user-record-height: 4vh;
   }
 }

@@ -1,15 +1,18 @@
 import React from "react";
 import { useDispatch } from "react-redux";
+import { useTranslation } from "react-i18next";
 
 import { setLeaderBoardHeaderStatus } from "../../redux/leaderboard/leaderboard.action";
 
 import UserAvatarContainer from "./../../assets/images/leaderboard/user-avatar-container.png";
 import Crown from "./../../assets/images/icon/crown.png";
+import ProfileAvatar from "./../../assets/images/icon/profile-avatar.png";
 
 import "./leaderboard-header.styles.scss";
 
 const LeaderboardHeader = ({ top3 }) => {
   const dispatch = useDispatch();
+  const { t } = useTranslation();
 
   const handleLeaderboardCheckboxChange = (event) => {
     /*
@@ -36,7 +39,7 @@ const LeaderboardHeader = ({ top3 }) => {
               onChange={(e) => handleLeaderboardCheckboxChange(e)}
             />
             <div className="knobs">
-              <span>هفتگی</span>
+              <span>{t("Weekly")}</span>
             </div>
             <div className="layer"></div>
             <div className="separator"></div>
@@ -46,25 +49,31 @@ const LeaderboardHeader = ({ top3 }) => {
         <img className="crown" src={Crown} alt="crown" />
         {/* ------------------------- Top3 ---------------------------- */}
         <div className="top-three">
-          {[indexedTop3[2], indexedTop3[0], indexedTop3[1]].map((user) => (
-            <div key={user.id}>
-              <img
-                className="user-avatar-container"
-                src={UserAvatarContainer}
-                alt="user-avatar-container"
-              />
-              <img
-                className="user-avatar"
-                src="https://cdn3.iconfinder.com/data/icons/avatars-round-flat/33/avat-01-512.png"
-                alt="user-avatar"
-              />
-              <span className="medal">{user.index}</span>
-              <span className="name-score">
-                <span>{user.name} </span>
-                <br /> <span>{user.prize}</span>
-              </span>
-            </div>
-          ))}
+          {[indexedTop3[2], indexedTop3[0], indexedTop3[1]].map((user) => {
+            const { id, award } = user;
+            const { avatar, first_name, last_name } = user.user;
+            return (
+              <div key={id}>
+                <img
+                  className="user-avatar-container"
+                  src={UserAvatarContainer}
+                  alt="user-avatar-container"
+                />
+                <img
+                  className="user-avatar"
+                  src={`${avatar ? avatar : ProfileAvatar}`}
+                  alt="user-avatar"
+                />
+                <span className="medal">{user.index}</span>
+                <span className="name-award">
+                  <span>
+                    {first_name} {last_name}
+                  </span>
+                  <br /> <span>{award}</span>
+                </span>
+              </div>
+            );
+          })}
         </div>
       </div>
     </div>

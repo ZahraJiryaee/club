@@ -1,6 +1,7 @@
-import React, { useEffect } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { useTranslation } from "react-i18next";
 
 import { setHeaderMode } from "../../redux/header/header.action";
 import {
@@ -10,88 +11,148 @@ import {
 
 import LeaderboardHeader from "../../components/leaderboard-header/leaderboard-header.component";
 
-import topUsers from "../../components/mock/leaderborad.mock";
+// import topUsersWeekly from "../../components/mock/leaderborad.mock";
+
+import ProfileAvatar from "./../../assets/images/icon/profile-avatar.png";
 
 import "./leaderboard.styles.scss";
 
 const LeaderBoardPage = () => {
   const { pathname } = useLocation();
   const dispatch = useDispatch();
+  const { t } = useTranslation();
 
   const leaderboardHeaderStatus = useSelector(
     (state) => state.leaderboard.leaderboardHeaderStatus
   );
-  const userListWeekly = useSelector(
-    (state) => state.leaderboard.userListWeekly
+  const currentUser = useSelector((state) => state.user.currentUser);
+
+  const [topUsers, setTopUsers] = useState(null);
+  const [loggedinUser, setLoggedinUser] = useState(null);
+
+  const checkIFUserIsInBetween = (rowIndex) => {
+    return rowIndex >= 7 &&
+      rowIndex <= 13 &&
+      rowIndex === loggedinUser.index - 1
+      ? true
+      : false;
+  };
+
+  const FindCurrentUserInLeaderboardList = useCallback(
+    (topUsers) => {
+      if (currentUser) {
+        const loggedinUser = topUsers.filter(
+          (user) => user.user.username === currentUser.username
+        );
+        setLoggedinUser(loggedinUser[0]);
+      }
+    },
+    [currentUser]
   );
-  const userListSeasonal = useSelector(
-    (state) => state.leaderboard.userListSeasonal
-  );
+
+  const UserRecord = ({ user }) => {
+    const { first_name, last_name, avatar } = user.user;
+    const { award, index, seasonal, weakly } = user;
+    return (
+      <div className="user-record">
+        <span className="user-index">{index}</span>
+        <div className="user-info">
+          <div className="user--avatar-name">
+            <img
+              src={`${avatar ? avatar : ProfileAvatar}`}
+              alt="user-avater"
+              className="avatar"
+            />
+            <span className="name">
+              {first_name} {last_name}
+            </span>
+          </div>
+          <div className="user--score-prize">
+            {award && <span>{t("Prize")}</span>}
+            <span>
+              {leaderboardHeaderStatus ? weakly : seasonal} {t("Score")}
+            </span>
+          </div>
+        </div>
+      </div>
+    );
+  };
 
   useEffect(() => {
     dispatch(setHeaderMode(pathname));
   }, [dispatch, pathname]);
 
   useEffect(() => {
-    console.log("userListWeekly:", userListWeekly);
-  }, [userListWeekly]);
-
-  useEffect(() => {
-    console.log("userListSeasonal:", userListSeasonal);
-  }, [userListSeasonal]);
-
-  useEffect(() => {
     /*
     true:general
     false:weekly
     */
+    let result;
     if (leaderboardHeaderStatus) {
-      dispatch(getUserListSeasonal());
+      result = dispatch(getUserListSeasonal());
     } else {
-      dispatch(getUserListWeekly());
+      result = dispatch(getUserListWeekly());
     }
-  }, [leaderboardHeaderStatus]);
+    result.then((response) => {
+      if (response.status === 200) {
+        setTopUsers(response.data.data);
+      }
+    });
+  }, [leaderboardHeaderStatus, dispatch]);
 
-  return (
+  useEffect(() => {
+    if (topUsers) FindCurrentUserInLeaderboardList(topUsers);
+  }, [topUsers, FindCurrentUserInLeaderboardList]);
+
+  return topUsers ? (
     <div>
       {/* header */}
       <LeaderboardHeader top3={topUsers.slice(0, 3)} />
 
       {/* content */}
       <div className="leaderboard-container">
-        <p className="leaderborad-topusers-grid-txt">جدول رده‌بندی</p>
-        <div className="leaderborad-topusers-grid">
-          {topUsers.map(
-            (user, index) =>
-              (index < 14 || user.user) && (
+        <p className="leaderborad-headline-txt">{t("Leaderboard_Table")}</p>
+        <div className="center-flex leaderboard-user-list-container">
+          <div
+            className={`leaderboard-user-list ${
+              loggedinUser &&
+              loggedinUser.index - 1 >= 7 &&
+              loggedinUser.index - 1 <= 13
+                ? "leaderboard-height-current-user-between-7-and-13"
+                : ""
+            } ${topUsers.length < 7 ? "leaderboard-full-width-records" : ""}`}
+          >
+            {topUsers
+              .filter((user, idx) => idx <= 13)
+              .map((user, idx) => (
                 <div
-                  key={index}
-                  className={`each-user ${user.user ? "loggedin-user" : ""} ${
-                    user.user && index > 14 ? "loggedin-user-in-middle" : ""
-                  } ${!user.prize ? "extract-prize" : ""}`}
+                  key={user.id}
+                  className={`leaderboard-each-user ${
+                    loggedinUser && loggedinUser.index - 1 === idx
+                      ? "current-user-in-first-14 current-user-loggedin"
+                      : ""
+                  } ${
+                    loggedinUser && checkIFUserIsInBetween(idx)
+                      ? "current-user-between-7-and-13 current-user-loggedin"
+                      : ""
+                  }`}
                 >
-                  <span className="user-index">{index + 1}</span>
-                  <div className="user-record">
-                    <div className="user--avatar-name-score">
-                      <img
-                        src="https://cdn3.iconfinder.com/data/icons/avatars-round-flat/33/avat-01-512.png"
-                        alt="user-avater"
-                        className="avatar"
-                      />
-                      <span className="name-score">
-                        <div>{user.name}</div>
-                        <div>{user.score} امتیاز</div>
-                      </span>
-                    </div>
-                    <div className="user-prize">{user.prize}</div>
-                  </div>
+                  <UserRecord user={user} />
                 </div>
-              )
-          )}
+              ))}
+          </div>
         </div>
+
+        {loggedinUser && loggedinUser.index > 14 && (
+          <div className="center-flex">
+            <div className="current-user-out-first-14 current-user-loggedin">
+              <UserRecord user={loggedinUser} />
+            </div>
+          </div>
+        )}
       </div>
     </div>
-  );
+  ) : null;
 };
 
 export default LeaderBoardPage;
