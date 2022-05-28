@@ -26,7 +26,6 @@
 
     @media #{$small-mobile} {
       width: 100%;
-      height: 420px;
     }
 
     .shop-modal-close-container {
@@ -54,10 +53,15 @@
       flex-wrap: wrap;
       justify-content: center;
       flex-direction: column;
-      background: pink;
       // gap: 16px;
       height: 100%;
       width: 100%;
+
+      @media #{$small-mobile} {
+        p {
+          margin: 6px 0;
+        }
+      }
 
       .shop-moadal-score-container {
         color: $theme-color--marine-blue;
@@ -75,14 +79,46 @@
           width: 93px;
           height: 88px;
         }
+
+        @media #{$small-mobile} {
+          &.responsive-non-dig-1 {
+            width: 123px;
+            height: 111px;
+          }
+          &.responsive-non-dig-2,
+          &.responsive-non-dig-3 {
+            width: 71px;
+            height: 65px;
+          }
+          &.responsive-dig-1 {
+            width: 123px;
+            height: 113px;
+          }
+          &.responsive-dig-2 {
+            width: 99px;
+            height: 91px;
+          }
+        }
       }
 
-      .shop-item-title {
-        color: $theme-color--dark;
-      }
+      .shop-item-titleandscore {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
 
-      .shop-item-leave-chance-counter {
-        color: $theme-color--orangey-red;
+        @media #{$small-mobile} {
+          gap: 2px;
+        }
+
+        .shop-item-title {
+          color: $theme-color--dark;
+        }
+
+        .shop-item-leave-chance-counter {
+          color: $theme-color--orangey-red;
+        }
       }
 
       .shop-modal-enter-address-container {

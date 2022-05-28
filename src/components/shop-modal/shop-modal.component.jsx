@@ -43,40 +43,42 @@ const ShopModal = () => {
   }, []);
 
   /* ------------------ UI Models ------------------ */
-  const YourScore = (fontSize) => {
+  const ShopItemLeaveScoreImgTitleUserScore = (
+    userScoreFontSize,
+    imgWidth,
+    titleFontSize,
+    leaveScoreFontSize,
+    stage
+  ) => {
     const { score_counter } = currentUser || {};
     return (
-      <p className={`shop-moadal-score-container fontsize-${fontSize}`}>
-        <span>
-          {t("Your_Score")} {score_counter}
-        </span>
-      </p>
-    );
-  };
-
-  const ShopItemImage = (imgWidth) => {
-    return (
-      <img
-        src={ShopItemImg}
-        alt="shop-item-image"
-        className={`shop-modal-item-img img-width-${imgWidth}`}
-      />
-    );
-  };
-
-  const ShopItemTitle = (fontSize) => {
-    return (
-      <p className={`shop-item-title fontsize-${fontSize}`}>
-        {shopModalData.title}
-      </p>
-    );
-  };
-
-  const ShopItemLeaveChanceCounter = (fontSize) => {
-    return (
-      <p className={`shop-item-leave-chance-counter fontsize-${fontSize}`}>
-        {shopModalData.leave_chance_counter} {t("Score")}
-      </p>
+      <>
+        {/* User Score */}
+        <p
+          className={`shop-moadal-score-container fontsize-${userScoreFontSize}`}
+        >
+          <span>
+            {t("Your_Score")} {score_counter}
+          </span>
+        </p>
+        {/* Item Img */}
+        <img
+          src={ShopItemImg}
+          alt="shop-item-image"
+          className={`shop-modal-item-img img-width-${imgWidth} responsive-${stage}`}
+        />
+        {/* Item Title & Leave_Score_Counter */}
+        <p className="shop-item-titleandscore">
+          <span className={`shop-item-title fontsize-${titleFontSize}`}>
+            {shopModalData.title}
+          </span>
+          <span
+            className={`shop-item-leave-chance-counter fontsize-${leaveScoreFontSize}`}
+          >
+            {shopModalData.leave_chance_counter} {t("Score")}
+          </span>
+        </p>
+      </>
     );
   };
 
@@ -113,7 +115,7 @@ const ShopModal = () => {
 
   const SuccessfulRequest = () => {
     return (
-      <p className="successful-req">
+      <p className="successful-req fontsize-15">
         <img src={CheckCircleGreen} alt="success-icon" />
         <span>{t("Your_Request_Was_Successful")}</span>
       </p>
@@ -152,10 +154,7 @@ const ShopModal = () => {
       case 1:
         return (
           <>
-            {YourScore(18)}
-            {ShopItemImage(143)}
-            {ShopItemTitle(21)}
-            {ShopItemLeaveChanceCounter(18)}
+            {ShopItemLeaveScoreImgTitleUserScore(18, 143, 21, 18, "non-dig-1")}
             <CustomButton
               btnBgColor="cool-green"
               onClick={handleNonDigAction_Phase1}
@@ -169,15 +168,13 @@ const ShopModal = () => {
       case 2:
         return (
           <>
-            {YourScore(18)}
-            {ShopItemImage(93)}
-            {ShopItemTitle(21)}
-            {ShopItemLeaveChanceCounter(18)}
+            {ShopItemLeaveScoreImgTitleUserScore(18, 93, 21, 18, "non-dig-2")}
             {EnterAddressTxt()}
             {Textarea()}
             <CustomButton
               btnBgColor="cool-green"
               onClick={handleNonDigAction_Phase2}
+              disabled={userAddress === "" ? true : false}
             >
               {t("Confirm")}
             </CustomButton>
@@ -186,14 +183,11 @@ const ShopModal = () => {
       case 3:
         return (
           <>
-            {YourScore(18)}
-            {ShopItemImage(143)}
-            {ShopItemTitle(21)}
-            {ShopItemLeaveChanceCounter(18)}
+            {ShopItemLeaveScoreImgTitleUserScore(18, 143, 21, 18, "non-dig-3")}
             {SuccessfulRequest()}
             <CustomButton
               btnBgColor="deep-sky-blue"
-              disabled
+              cursorAuto
               // onClick={handleNonDigAction_Phase3}
             >
               {t("Tracking_Code")}: 67676
@@ -212,10 +206,7 @@ const ShopModal = () => {
       case 1:
         return (
           <>
-            {YourScore(18)}
-            {ShopItemImage(143)}
-            {ShopItemTitle(21)}
-            {ShopItemLeaveChanceCounter(18)}
+            {ShopItemLeaveScoreImgTitleUserScore(18, 143, 21, 18, "dig-1")}
             <CustomButton
               btnBgColor="cool-green"
               onClick={handleDigAction_Phase1}
@@ -228,14 +219,11 @@ const ShopModal = () => {
       case 2:
         return (
           <>
-            {YourScore(18)}
-            {ShopItemImage(143)}
-            {ShopItemTitle(21)}
-            {ShopItemLeaveChanceCounter(18)}
+            {ShopItemLeaveScoreImgTitleUserScore(18, 143, 21, 18, "dig-2")}
             {SuccessfulRequest()}
             <CustomButton
               btnBgColor="deep-sky-blue"
-              disabled
+              cursorAuto
               // onClick={handleDigAction_Phase2}
             >
               {t("Verification_Code")}: 9090909

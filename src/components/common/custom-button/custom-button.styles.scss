@@ -16,6 +16,12 @@
   direction: rtl;
   margin: 16px 0;
 
+  @media #{$small-mobile} {
+    width: 150px;
+    height: 40px;
+    font-size: 15px;
+  }
+
   &__cool-green {
     background-color: $theme-color--cool-green;
   }
@@ -23,7 +29,12 @@
     background-color: $theme-color--marine-deep-sky-blue;
   }
 
+  &.cursor-auto {
+    cursor: auto;
+  }
+
   &:disabled {
     cursor: auto;
+    background-color: $theme-color--brown-grey;
   }
 }
