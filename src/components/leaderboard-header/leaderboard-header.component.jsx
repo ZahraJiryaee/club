@@ -1,5 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
+import { useTranslation } from "react-i18next";
 
 import { setLeaderBoardHeaderStatus } from "../../redux/leaderboard/leaderboard.action";
 
@@ -10,6 +11,7 @@ import "./leaderboard-header.styles.scss";
 
 const LeaderboardHeader = ({ top3 }) => {
   const dispatch = useDispatch();
+  const { t } = useTranslation();
 
   const handleLeaderboardCheckboxChange = (event) => {
     /*
@@ -36,7 +38,7 @@ const LeaderboardHeader = ({ top3 }) => {
               onChange={(e) => handleLeaderboardCheckboxChange(e)}
             />
             <div className="knobs">
-              <span>هفتگی</span>
+              <span>{t("Weekly")}</span>
             </div>
             <div className="layer"></div>
             <div className="separator"></div>

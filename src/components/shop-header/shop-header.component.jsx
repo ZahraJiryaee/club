@@ -1,6 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 import { getSearchedShopItems } from "../../redux/shop/shop.actions";
 
@@ -16,6 +17,7 @@ import "./shop-header.styles.scss";
 const ShopHeader = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const allShopItems = useSelector(selectAllShopItems);
 
@@ -42,7 +44,7 @@ const ShopHeader = () => {
         onSearchIconClick={handelShopSearch}
         searchField={searchField}
         setSearchField={handleSetSearchField}
-        searchInputPlaceHolder="جستجو در فروشگاه"
+        searchInputPlaceHolder={t("Search_In_Shop")}
       />
     </ComponentInternalHeader>
   );

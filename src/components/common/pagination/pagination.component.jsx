@@ -1,11 +1,14 @@
 import React from "react";
 import { usePagination, DOTS } from "./../../../services/usePagination";
+import { useTranslation } from "react-i18next";
 
 import ArrowBackDark from "./../../../assets/images/icon/arrow-back-dark.png";
 
 import "./pagination.styles.scss";
 
 const Pagination = (props) => {
+  const { t } = useTranslation();
+
   const {
     onPageChange,
     totalCount,
@@ -48,7 +51,7 @@ const Pagination = (props) => {
             <span className="pagination-arrow pagination-arrow--prev">
               <img src={ArrowBackDark} alt="pagination-arrow-prev" />
             </span>
-            <span>صفحه قبلی</span>
+            <span>{t("Previous_Page")}</span>
           </button>
         </div>
         {/* Number Rage Section */}
@@ -78,7 +81,7 @@ const Pagination = (props) => {
             disabled={currentPage === lastPage}
             onClick={onNext}
           >
-            <span>صفحه بعدی</span>
+            <span>{t("Next_Page")}</span>
             <span className="pagination-arrow pagination-arrow--next">
               <img src={ArrowBackDark} alt="pagination-arrow-next" />
             </span>

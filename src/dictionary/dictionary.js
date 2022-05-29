@@ -32,6 +32,11 @@ const resources = {
       Continue: "ادامه",
       Score: "امتیاز",
       Your_Score: "امتیاز شما:",
+      Search_In_Shop: "جستجو در فروشگاه",
+      Search_In_Games: "جستجو بازی‌ها",
+      No_Results_Were_Found: "نتیجه‌ای یافت نشد!",
+      X_Results_Were_Found: "مورد یافت شد.",
+      All: "همه",
     },
   },
 };

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
+import { useTranslation } from "react-i18next";
 import InfiniteScroll from "react-infinite-scroll-component";
 
 import {
@@ -21,6 +22,7 @@ import { ReactComponent as StarLogo } from "../../assets/images/icon/star.svg";
 const SearchPage = () => {
   const location = useLocation();
   const dispatch = useDispatch();
+  const { t } = useTranslation();
 
   const firstSliceOfPathname = location.pathname.slice(1).split("/")[0];
   const selector = {
@@ -93,8 +95,8 @@ const SearchPage = () => {
         <div className="category-container">
           <span className="category-title">
             {filteredItems.data.length === 0
-              ? "نتیجه‌ای یافت نشد!"
-              : `${filteredItems.data.length} مورد یافت شد.`}
+              ? t("No_Results_Were_Found")
+              : `${filteredItems.data.length} ${t("X_Results_Were_Found")}`}
           </span>
         </div>
         {filteredItems.data.map((application) => {

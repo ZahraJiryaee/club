@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useMemo } from "react";
 import { useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { useTranslation } from "react-i18next";
 
 import { setHeaderMode } from "../../redux/header/header.action";
 import {
@@ -26,6 +27,7 @@ let PageSize = 4 * 4;
 const ShopPage = () => {
   const { pathname } = useLocation();
   const dispatch = useDispatch();
+  const { t } = useTranslation();
 
   // const allShopItems = shopMock.shopItems;
   const allShopItems = useSelector(selectAllShopItems);
@@ -69,14 +71,14 @@ const ShopPage = () => {
             <div className="name-score-container">
               <div className="shop-item-name">{item.title}</div>
               <div className="shop-item-score-needed">
-                {item.leave_chance_counter} امتیاز
+                {item.leave_chance_counter} {t("Score")}
               </div>
             </div>
             <button
               className="shop-item-purchase-btn-position shop-item-purchase-btn"
               onClick={() => onPurchaseClick(item)}
             >
-              خرید
+              {t("Purchse")}
             </button>
           </div>
         ))}

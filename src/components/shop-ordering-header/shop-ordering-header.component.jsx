@@ -1,10 +1,13 @@
 import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 import shopMock from "../mock/shop.mock";
 
 import "./shop-ordering-header.styles.scss";
 
 const ShopOrderingHeader = () => {
+  const { t } = useTranslation();
+
   const [toggleSelect, setToggleSelect] = useState(false);
   const [orderShop, setOrderShop] = useState(shopMock.orderShop);
   const handleSelectToggle = (e) => {
@@ -31,7 +34,7 @@ const ShopOrderingHeader = () => {
   return (
     <div className="shop-header-container">
       <div className="shop-header">
-        <span className="txt">مرتب‌سازی:</span>
+        <span className="txt">{t("Sorting")}:</span>
         <span
           className={`dropdown ${toggleSelect ? "expanded" : ""}`}
           onClick={(e) => handleSelectToggle(e)}

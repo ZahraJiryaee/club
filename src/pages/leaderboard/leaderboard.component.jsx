@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { useTranslation } from "react-i18next";
 
 import { setHeaderMode } from "../../redux/header/header.action";
 import {
@@ -17,6 +18,7 @@ import "./leaderboard.styles.scss";
 const LeaderBoardPage = () => {
   const { pathname } = useLocation();
   const dispatch = useDispatch();
+  const { t } = useTranslation();
 
   const leaderboardHeaderStatus = useSelector(
     (state) => state.leaderboard.leaderboardHeaderStatus
@@ -59,7 +61,9 @@ const LeaderBoardPage = () => {
 
       {/* content */}
       <div className="leaderboard-container">
-        <p className="leaderborad-topusers-grid-txt">جدول رده‌بندی</p>
+        <p className="leaderborad-topusers-grid-txt">
+          {t("Leaderboard_Table")}
+        </p>
         <div className="leaderborad-topusers-grid">
           {topUsers.map(
             (user, index) =>
@@ -80,7 +84,9 @@ const LeaderBoardPage = () => {
                       />
                       <span className="name-score">
                         <div>{user.name}</div>
-                        <div>{user.score} امتیاز</div>
+                        <div>
+                          {user.score} {t("Score")}
+                        </div>
                       </span>
                     </div>
                     <div className="user-prize">{user.prize}</div>

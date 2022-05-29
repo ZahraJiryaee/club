@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 import { getSearchedItem } from "../../redux/games/games.action";
 
@@ -14,6 +15,7 @@ import "./genre-header.styles.scss";
 const GenreHeader = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const genres = useSelector((state) => state.genres.allGenres);
 
@@ -37,7 +39,7 @@ const GenreHeader = () => {
           onSearchIconClick={handelSearch}
           searchField={searchField}
           setSearchField={handleSetSearchField}
-          searchInputPlaceHolder="جستجو بازی‌ها"
+          searchInputPlaceHolder={t("Search_In_Games")}
         />
         {/* Genre */}
         <div className="genres-container">
@@ -48,7 +50,7 @@ const GenreHeader = () => {
                 isActive ? "selected" : "not-selected"
               }
             >
-              <li>همه</li>
+              <li>{t("All")}</li>
             </NavLink>
             {genres.map((genre) => {
               return (

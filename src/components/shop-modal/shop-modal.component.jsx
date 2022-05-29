@@ -39,7 +39,7 @@ const ShopModal = () => {
 
   /* ------------------ Get User Profile --------------------- */
   useEffect(() => {
-    // dispatch(setCurrentUser());
+    dispatch(setCurrentUser());
   }, []);
 
   /* ------------------ UI Models ------------------ */
