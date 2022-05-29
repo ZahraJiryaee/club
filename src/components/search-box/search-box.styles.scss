@@ -22,23 +22,34 @@
     align-items: center;
     background-color: $white;
 
-    .search-text {
-      padding: 5px 16px;
-      border: none;
-      width: 100%;
-      height: 100%;
-      border-radius: 15px;
-      font-family: $font-family-iransans;
-      font-size: 12px;
+    .search-box-form {
+      display: flex;
+      justify-content: flex-start;
 
-      &:focus {
-        outline: none;
+      .search-text {
+        padding: 5px 16px;
+        border: none;
+        width: 100%;
+        height: 100%;
+        border-radius: 15px;
+        font-family: $font-family-iransans;
+        font-size: 12px;
+
+        &:focus {
+          outline: none;
+        }
       }
-    }
 
-    .search-icon {
-      margin-right: 16px;
-      color: $theme-color--brown-grey;
+      .search-icon-container {
+        background-color: inherit;
+        border: none;
+        outline: none;
+
+        .search-icon {
+          margin-right: 16px;
+          color: $theme-color--brown-grey;
+        }
+      }
     }
   }
 }
