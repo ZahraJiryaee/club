@@ -1,76 +1,62 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { NavLink, Link } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 import { getSearchedItem } from "../../redux/games/games.action";
+
+import { routeNames } from "../../services/routeService";
+
+import ComponentInternalHeader from "../compoonent-internal-header/compoonent-internal-header.component";
+import SearchBox from "../search-box/search-box.component";
 
 import "./genre-header.styles.scss";
 
 const GenreHeader = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { t } = useTranslation();
+
   const genres = useSelector((state) => state.genres.allGenres);
-  const [navbarGenreFixed, setNavbarGenreFixed] = React.useState("");
+
   const [searchField, setSearchField] = React.useState("");
 
-  const handelSearch = async () => {
-    dispatch(getSearchedItem(searchField));
+  const handelSearch = () => {
     setSearchField("");
+    dispatch(getSearchedItem(searchField));
+    return navigate(`/${routeNames.game}/search/${searchField}`);
   };
 
-  useEffect(() => {
-    const updateNavbarGenreFixed = () => {
-      if (
-        document.documentElement.scrollTop >= 30 ||
-        document.body.scrollTop >= 30
-      ) {
-        setNavbarGenreFixed("genre-fixed");
-      } else if (
-        document.documentElement.scrollTop < 30 ||
-        document.body.scrollTop < 30
-      ) {
-        setNavbarGenreFixed("");
-      }
-    };
-
-    window.addEventListener("scroll", updateNavbarGenreFixed);
-
-    return function cleanup() {
-      window.removeEventListener("scroll", updateNavbarGenreFixed);
-    };
-  });
+  const handleSetSearchField = (value) => {
+    setSearchField(value);
+  };
 
   return (
     <>
-      <div className={`genre-header ${navbarGenreFixed}`}>
-        <div className="search-box-container">
-          <div className="search-box">
-            <Link onClick={handelSearch} to={`/games/search/${searchField}`}>
-              <i className="fa fa-search search-icon" />
-            </Link>
-            <input
-              value={searchField}
-              className="search-text"
-              type="text"
-              placeholder="جستجو بازی‌ها"
-              onChange={(e) => setSearchField(e.target.value)}
-            />
-          </div>
-        </div>
+      <ComponentInternalHeader setFixer>
+        {/* Search */}
+        <SearchBox
+          onSearchIconClick={handelSearch}
+          searchField={searchField}
+          setSearchField={handleSetSearchField}
+          searchInputPlaceHolder={t("Search_In_Games")}
+        />
+        {/* Genre */}
         <div className="genres-container">
           <ul className="genre-title">
             <NavLink
-              to="/games/genre/all"
+              to={`/${routeNames.game}/genre/all`}
               className={({ isActive }) =>
                 isActive ? "selected" : "not-selected"
               }
             >
-              <li>همه</li>
+              <li>{t("All")}</li>
             </NavLink>
             {genres.map((genre) => {
               return (
                 <NavLink
                   key={genre.id}
-                  to={`/games/genre/${genre.id}`}
+                  to={`/${routeNames.game}/genre/${genre.id}`}
                   className={({ isActive }) =>
                     isActive ? "selected" : "not-selected"
                   }
@@ -81,10 +67,7 @@ const GenreHeader = () => {
             })}
           </ul>
         </div>
-      </div>
-      {navbarGenreFixed === "genre-fixed" && (
-        <div className="spacer">&nbsp;</div>
-      )}
+      </ComponentInternalHeader>
     </>
   );
 };
