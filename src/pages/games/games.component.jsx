@@ -6,6 +6,8 @@ import { getAllGenres } from "../../redux/genres/genres.action";
 import { getAllGames } from "../../redux/games/games.action";
 import { setHeaderMode } from "../../redux/header/header.action";
 
+import { routeNames } from "../../services/routeService";
+
 import GenreHeader from "../../components/genres/genre-header.component";
 import GamesRow from "../../components/games/games-row/games-row.component";
 import BannerGames from "../../components/games/games-banner/games-banner.component";
@@ -43,7 +45,10 @@ const GamesPage = () => {
             <div key={category.id} className="games-container">
               <div className="game-category-header">
                 <p className="title">{category.title}</p>
-                <Link to={`/games/category/${category.id}`} className="more">
+                <Link
+                  to={`/${routeNames.game}/category/${category.id}`}
+                  className="more"
+                >
                   <p className="more">
                     بیشتر
                     <img src={ArrowIconMB} alt="arrow-back" />

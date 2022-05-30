@@ -1,6 +1,7 @@
 import React from "react";
-
 import { NavLink, useLocation } from "react-router-dom";
+
+import { routeNames } from "../../services/routeService";
 
 import { ReactComponent as LeaderBoardLogo } from "../../assets/images/footer/inactive/leader-board.svg";
 import { ReactComponent as GamesLogo } from "../../assets/images/footer/inactive/games.svg";
@@ -20,9 +21,9 @@ const Footer = () => {
   const { pathname } = useLocation();
   const MapUrlToIndicatorNum = () => {
     if (pathname.includes("profile")) return -2;
-    else if (pathname.includes("shop")) return -1;
+    else if (pathname.includes(`${routeNames.shop}`)) return -1;
     else if (pathname.includes("lucky-wheel")) return 0;
-    else if (pathname.includes("games")) return 1;
+    else if (pathname.includes(`${routeNames.game}`)) return 1;
     else if (pathname.includes("leaderboard")) return 2;
   };
 
@@ -54,10 +55,18 @@ const Footer = () => {
                 <span className="text">پروفایل</span>
               </NavLink>
             </li>
-            <li className={`list ${pathname.includes("shop") ? "active" : ""}`}>
-              <NavLink to="/shop">
+            <li
+              className={`list ${
+                pathname.includes(`${routeNames.shop}`) ? "active" : ""
+              }`}
+            >
+              <NavLink to={`/${routeNames.shop}`}>
                 <span className="icon">
-                  {pathname === "/shop" ? <ActiveShopLogo /> : <ShopLogo />}
+                  {pathname === `/${routeNames.shop}` ? (
+                    <ActiveShopLogo />
+                  ) : (
+                    <ShopLogo />
+                  )}
                 </span>
                 <span className="text">فروشگاه</span>
               </NavLink>
@@ -79,11 +88,13 @@ const Footer = () => {
               </NavLink>
             </li>
             <li
-              className={`list ${pathname.includes("games") ? "active" : ""}`}
+              className={`list ${
+                pathname.includes(`${routeNames.game}`) ? "active" : ""
+              }`}
             >
-              <NavLink to="/games/genre/all">
+              <NavLink to={`/${routeNames.game}/genre/all`}>
                 <span className="icon">
-                  {pathname.includes("games") ? (
+                  {pathname.includes(`${routeNames.game}`) ? (
                     <ActiveGamesLogo />
                   ) : (
                     <GamesLogo />
