@@ -1,8 +1,8 @@
 @import "./../../../style.scss";
 
 .pagination-container {
-  position: absolute;
-  bottom: 0;
+  // position: absolute;
+  // bottom: 0;
 
   display: flex;
   width: 100%;
@@ -11,10 +11,10 @@
   align-items: center;
   list-style-type: none;
   direction: rtl;
-  padding: 60px 100px 90px;
+  padding: 30px 100px 90px;
 
   @media #{$tablet-device,$large-mobile} {
-    padding: 60px 16px 90px;
+    padding: 30px 16px 100px;
   }
 
   .pagination-number-range-area {
