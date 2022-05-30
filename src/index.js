@@ -3,8 +3,9 @@ import ReactDOM from "react-dom";
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import { ToastContainer } from "react-toastify";
+import { PersistGate } from "redux-persist/integration/react"; //wrap around App
 
-import { store } from "./redux/store";
+import { store, persistor } from "./redux/store";
 
 import "./dictionary/dictionary";
 
@@ -19,22 +20,24 @@ import "react-toastify/dist/ReactToastify.css";
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <ToastContainer
-        toastClassName="toast"
-        position="top-center"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={true}
-        pauseOnFocusLoss
-        pauseOnHover
-        zIndex={200}
-        theme="colored"
-      />
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
+      <PersistGate persistor={persistor}>
+        <ToastContainer
+          toastClassName="toast"
+          position="top-center"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={true}
+          pauseOnFocusLoss
+          pauseOnHover
+          zIndex={200}
+          theme="colored"
+        />
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </PersistGate>
     </Provider>
   </React.StrictMode>,
   document.getElementById("root")
