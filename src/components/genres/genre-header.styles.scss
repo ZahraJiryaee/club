@@ -1,7 +1,24 @@
 @import "../../assets/scss/variables";
 
+.component-internal-header {
+  .search-box-container,
+  .genres-container {
+    display: none;
+  }
+}
+
 @media #{$tablet-device,$large-mobile} {
+  .component-internal-header {
+    .search-box-container,
+    .genres-container {
+      display: block;
+    }
+  }
+
   .component-internal-header-fixed {
+    .search-box-container {
+      display: none;
+    }
     .genres-container {
       position: fixed;
       width: 100%;
@@ -10,6 +27,7 @@
         $theme-color--navbar-medium-blue,
         $theme-color--navbar-light-blue
       );
+      z-index: 10;
     }
   }
 

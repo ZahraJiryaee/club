@@ -1,8 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import { useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { useTranslation } from "react-i18next";
-import InfiniteScroll from "react-infinite-scroll-component";
 
 import {
   setOpenShopModal,
@@ -17,7 +16,7 @@ import ShopHeader from "../../components/shop-header/shop-header.component";
 
 import { routeNames } from "../../services/routeService";
 
-import { ReactComponent as StarLogo } from "../../assets/images/icon/star.svg";
+import StarLogo from "../../assets/images/icon/star.png";
 
 const SearchPage = () => {
   const location = useLocation();
@@ -35,9 +34,6 @@ const SearchPage = () => {
   };
   let filteredItems = selector[firstSliceOfPathname];
 
-  const [hasMore, setHasMore] = useState(true);
-  const [data, setData] = useState([]);
-
   const handleShopItemClick = (originalItem) => {
     dispatch(setOpenShopModal(true));
     dispatch(setShopModalData(originalItem));
@@ -52,7 +48,7 @@ const SearchPage = () => {
             <div>
               <span className="rate-text">{action.content}</span>
             </div>
-            <StarLogo className="rate-icon" />
+            <img src={StarLogo} alt="star-logo" className="rate-icon" />
           </>
         );
 
@@ -70,21 +66,6 @@ const SearchPage = () => {
         break;
     }
   };
-
-  // useEffect(() => {
-  //   setData(data.concat(Array.from()));
-  // }, []);
-
-  // const fetchMoreData = () => {
-  //   if (data.length >= filteredItems.length) {
-  //     setHasMore(false);
-  //     return;
-  //   }
-
-  //   setTimeout(() => {
-  //     setData(data.concat(Array.from(filteredItems)));
-  //   });
-  // };
 
   return (
     <div>

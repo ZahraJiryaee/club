@@ -78,7 +78,7 @@ const ShopPage = () => {
               className="shop-item-purchase-btn-position shop-item-purchase-btn"
               onClick={() => onPurchaseClick(item)}
             >
-              {t("Purchse")}
+              {t("Purchase")}
             </button>
           </div>
         ))}

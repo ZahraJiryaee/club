@@ -37,6 +37,13 @@ const resources = {
       No_Results_Were_Found: "نتیجه‌ای یافت نشد!",
       X_Results_Were_Found: "مورد یافت شد.",
       All: "همه",
+      Prize: "جایزه",
+      Leaderboard_Table: "جدول رده‌بندی",
+      Weekly: "هفتگی",
+      Purchase: "خرید",
+      Sorting: "مرتب‌سازی",
+      Next_Page: "صفحه بعدی",
+      Previous_Page: "صفحه قبلی",
     },
   },
 };
