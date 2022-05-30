@@ -3,9 +3,9 @@ import React from "react";
 import ReactLoading from "react-loading";
 import { useTranslation } from "react-i18next";
 
-import useAxiosLoader from "../../services/loaderService";
+import useAxiosLoader from "../../../services/useLoader";
 
-import "./Loading.style.scss";
+import "./loading.style.scss";
 
 const Loading = () => {
   const [loading] = useAxiosLoader();
