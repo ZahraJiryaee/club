@@ -1,11 +1,17 @@
 // import { getGenres, getFilteredGenre } from "../../services/genresServices";
 import { HeaderActionTypes } from "./header.types";
 
+import { routeNames } from "../../services/routeService";
+
 export const setHeaderMode = (pathname) => async (dispatch) => {
   let headerMode = "";
 
   if (pathname === "/lucky-wheel") headerMode = "transparent";
-  else if (pathname.includes("games") || pathname.includes("leaderboard"))
+  else if (
+    pathname.includes(`${routeNames.game}`) ||
+    pathname.includes("leaderboard") ||
+    pathname.includes(`${routeNames.shop}`)
+  )
     headerMode = "games";
   else headerMode = "simple";
 

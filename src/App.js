@@ -2,15 +2,16 @@ import React, { Fragment, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useRoutes } from "react-router-dom";
 
-import Loading from "./components/common/Loading.component";
-import SignupSignin from "./components/signup-signin/signup-signin.component";
-
 import { setCurrentUser } from "./redux/user/user.action";
 
 import { useSetupAxios } from "./services/httpServices";
 
-import routes from "./routes";
+import Loading from "./components/common/loading/loading.component";
+import SignupSignin from "./components/signup-signin/signup-signin.component";
 import LuckyWheelModal from "./components/lucky-wheel-modal/lucky-wheel-modal.component";
+import ShopModal from "./components/shop-modal/shop-modal.component";
+
+import routes from "./routes";
 
 function App() {
   const routing = useRoutes(routes);
@@ -26,9 +27,10 @@ function App() {
 
   return (
     <>
-      <Loading />
-      <SignupSignin />
       <LuckyWheelModal />
+      <ShopModal />
+      <SignupSignin />
+      <Loading />
       <Fragment>{routing}</Fragment>
     </>
   );

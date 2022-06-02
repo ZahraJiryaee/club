@@ -1,3 +1,5 @@
+import { routeNames } from "../services/routeService";
+
 export const sidebarNavigation = [
   { id: "sn1", title: "اتصال به بازی‌ها", link: "home" },
   { id: "sn2", title: "راهنمای استفاده از کدهای جایزه مدریک", link: "home" },
@@ -8,8 +10,8 @@ export const sidebarNavigation = [
 
 export const headerNavigation = [
   { id: "hn1", title: "گردونه", link: "lucky-wheel" },
-  { id: "hn2", title: "بازی‌ها", link: "games/genre/all" },
-  { id: "hn3", title: "فروشگاه", link: "shop" },
+  { id: "hn2", title: "بازی‌ها", link: `${routeNames.game}/genre/all` },
+  { id: "hn3", title: "فروشگاه", link: `${routeNames.shop}` },
   { id: "hn4", title: "رده‌بندی", link: "leaderboard" },
   { id: "hn5", title: "پروفایل", link: "profile" },
 ];

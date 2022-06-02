@@ -1,47 +1,99 @@
-import React, { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+import React from "react";
+import { useLocation } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { useTranslation } from "react-i18next";
+
+import {
+  setOpenShopModal,
+  setShopModalData,
+} from "../../redux/shop/shop.actions";
+
+import { selectSearchedGameItemsMappedToSearchPage } from "../../redux/games/games.selectors";
+import { selectSearchedShopItemsMappedToSearchPage } from "../../redux/shop/shop.selectors";
 
 import GenreHeader from "../../components/genres/genre-header.component";
+import ShopHeader from "../../components/shop-header/shop-header.component";
+
+import { routeNames } from "../../services/routeService";
 
 import StarLogo from "../../assets/images/icon/star.png";
 
 import "../../components/genres/genre-view.styles.scss";
-import "./search.styles.scss";
 
 const SearchPage = () => {
-  const filteredItems = useSelector((state) => state.games.searchedItem);
+  const location = useLocation();
+  const dispatch = useDispatch();
+  const { t } = useTranslation();
+
+  const firstSliceOfPathname = location.pathname.slice(1).split("/")[0];
+  const selector = {
+    [routeNames["game"]]: useSelector(
+      selectSearchedGameItemsMappedToSearchPage
+    ),
+    [routeNames["shop"]]: useSelector(
+      selectSearchedShopItemsMappedToSearchPage
+    ),
+  };
+  let filteredItems = selector[firstSliceOfPathname];
+
+  const handleShopItemClick = (originalItem) => {
+    dispatch(setOpenShopModal(true));
+    dispatch(setShopModalData(originalItem));
+  };
+
+  const handleApplicationPlayer = (application) => {
+    const { action } = application;
+    switch (action.component) {
+      case "game":
+        return (
+          <>
+            <div className="rate-number">{action.content}</div>
+            <img src={StarLogo} alt="star-logo" className="star" />
+          </>
+        );
+
+      case "shop":
+        return (
+          <button
+            className="shop-item-purchase-btn"
+            onClick={() => handleShopItemClick(application.originalItem)}
+          >
+            {action.content}
+          </button>
+        );
+
+      default:
+        break;
+    }
+  };
 
   return (
     <div>
-      <GenreHeader />
+      {firstSliceOfPathname === routeNames["game"] ? <GenreHeader /> : null}
+      {firstSliceOfPathname === routeNames["shop"] ? <ShopHeader /> : null}
+
       <div className="genre-page">
         <div className="genre-container">
-          <div className="category-header">
+          <span className="category-header">
             <p className="title">
-              {filteredItems.length === 0
-                ? "نتیجه‌ای یافت نشد!"
-                : `${filteredItems.length} مورد یافت شد.`}
+              {filteredItems.data.length === 0
+                ? t("No_Results_Were_Found")
+                : `${filteredItems.data.length} ${t("X_Results_Were_Found")}`}
             </p>
-          </div>
-          {filteredItems.map((application) => {
+          </span>
+
+          {filteredItems.data.map((application) => {
             return (
               <div key={application.id} className="game-detail">
-                <div className="application-container">
-                  <div className="icon-name-shortDes-score">
-                    <img
-                      className="icon"
-                      src={application.source.icon}
-                      alt="icon"
-                    />
-                    <div className="name-shortDes-score">
-                      <span className="name">{application.name}</span>
-                      <span className="score">{`${application.install_score_counter} امتیاز با نصب این بازی دریافت کنید.`}</span>
-                      <div className="rate-detail">
-                        <div className="rate-number">{application.rate}</div>
-                        <img className="star" src={StarLogo} alt="star" />
-                      </div>
-                    </div>
+                <div className="icon-name-shortDes-score">
+                  <img className="icon" src={application.icon} alt="icon" />
+                  <div className="name-shortDes-score">
+                    <span className="name">{application.header}</span>
+                    <span className="score">{`${application.subHeader}`}</span>
                   </div>
+                </div>
+                <div className="rate-container">
+                  {handleApplicationPlayer(application)}
                 </div>
               </div>
             );

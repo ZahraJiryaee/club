@@ -3,7 +3,7 @@
 .games-page {
   width: 100%;
   padding-bottom: calc(var(--footer-height) + 30px);
-  padding-top: calc($navbar-height + 16px);
+  // padding-top: calc($navbar-height + 16px);
   background-color: $white;
 
   .games-container {

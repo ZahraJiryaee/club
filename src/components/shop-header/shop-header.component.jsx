@@ -1,61 +1,52 @@
-import React, { useState } from "react";
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
-import shopMock from "../mock/shop.mock";
+import { getSearchedShopItems } from "../../redux/shop/shop.actions";
+
+import { selectAllShopItems } from "../../redux/shop/shop.selectors";
+
+import ComponentInternalHeader from "../compoonent-internal-header/compoonent-internal-header.component";
+import SearchBox from "../search-box/search-box.component";
+
+import { routeNames } from "../../services/routeService";
 
 import "./shop-header.styles.scss";
 
 const ShopHeader = () => {
-  const [toggleSelect, setToggleSelect] = useState(false);
-  const [orderShop, setOrderShop] = useState(shopMock.orderShop);
-  const handleSelectToggle = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { t } = useTranslation();
 
-    setToggleSelect(!toggleSelect);
+  const allShopItems = useSelector(selectAllShopItems);
+
+  const [searchField, setSearchField] = React.useState("");
+
+  const handelShopSearch = async () => {
+    setSearchField("");
+    let searchedItem = [];
+    allShopItems.forEach((item) => {
+      if (item.title.includes(searchField)) searchedItem.push(item);
+    });
+    dispatch(getSearchedShopItems(searchedItem));
+    return navigate(`/${routeNames.shop}/search/${searchField}`);
   };
-  const handleCheckedItem = (id) => {
-    /* set the "checked" value for the selected id to true & others to false */
-    if (toggleSelect) {
-      let clone = [...orderShop];
-      let picked_data = clone.filter((item) => item.id === id);
-      for (let i = 0; i < clone.length; i++) {
-        if (clone[i].id === picked_data[0].id) {
-          clone[i].checked = true;
-        } else clone[i].checked = false;
-      }
-      setOrderShop(clone);
-    }
+
+  const handleSetSearchField = (value) => {
+    setSearchField(value);
   };
 
   return (
-    <div className="shop-header-container">
-      <div className="shop-header">
-        <span className="txt">مرتب‌سازی:</span>
-        <span
-          className={`dropdown ${toggleSelect ? "expanded" : ""}`}
-          onClick={(e) => handleSelectToggle(e)}
-        >
-          {orderShop.map((item) => (
-            <React.Fragment key={item.id}>
-              <input
-                type="radio"
-                name={`sort-${item.content}`}
-                id={`sort-${item.content}`}
-                value={item.content}
-                checked={item.checked}
-                readOnly
-              />
-              <label
-                htmlFor={`sort-${item.content}`}
-                onClick={() => handleCheckedItem(item.id)}
-              >
-                {item.content}
-              </label>
-            </React.Fragment>
-          ))}
-        </span>
-      </div>
-    </div>
+    <ComponentInternalHeader>
+      {/* <Search /> */}
+      <SearchBox
+        onSearchIconClick={handelShopSearch}
+        searchField={searchField}
+        setSearchField={handleSetSearchField}
+        searchInputPlaceHolder={t("Search_In_Shop")}
+      />
+    </ComponentInternalHeader>
   );
 };
 

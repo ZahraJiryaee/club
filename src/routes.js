@@ -11,6 +11,8 @@ import SearchPage from "./pages/search/search.component";
 import LeaderBoardPage from "./pages/leaderboard/leaderboard.component";
 import ShopPage from "./pages/shop/shop.component";
 
+import { routeNames } from "./services/routeService";
+
 const routes = [
   {
     path: "/",
@@ -19,11 +21,12 @@ const routes = [
       { path: "lucky-wheel", element: <LuckyWheelPage /> },
       { path: "profile", element: <LuckyWheelPage /> },
       { path: "home", element: <LuckyWheelPage /> },
-      { path: "games/genre/all", element: <GamesPage /> },
-      { path: "games/:type/:id", element: <GenrePage /> },
-      { path: "games/search/:id", element: <SearchPage /> },
-      { path: "games/detail/:id", element: <GameDetails /> },
-      { path: "shop", element: <ShopPage /> },
+      { path: `${routeNames.game}/genre/all`, element: <GamesPage /> },
+      { path: `${routeNames.game}/:type/:id`, element: <GenrePage /> },
+      { path: `${routeNames.game}/search/:id`, element: <SearchPage /> },
+      { path: `${routeNames.game}/detail/:id`, element: <GameDetails /> },
+      { path: `${routeNames.shop}`, element: <ShopPage /> },
+      { path: `${routeNames.shop}/search/:id`, element: <SearchPage /> },
       { path: "leaderboard", element: <LeaderBoardPage /> },
       { path: "about-us", element: <LuckyWheelPage /> },
       { path: "contact-us", element: <LuckyWheelPage /> },
