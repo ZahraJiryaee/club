@@ -44,6 +44,13 @@ const resources = {
       Sorting: "مرتب‌سازی",
       Next_Page: "صفحه بعدی",
       Previous_Page: "صفحه قبلی",
+      Shopping_History: "تاریخچه فروشگاه",
+      Gifts_History: "تاریخچه جوایز",
+      Invite_Friends: "معرفی دوستان",
+      Inviter_Code: "ثبت معرف",
+      Login_To_Access_Features: "برای دسترسی به امکانات برنامه لطفا وارد شوید",
+      Login: "ورود به حساب کاربری",
+      Edit_Profile: "ویرایش پروفایل",
     },
   },
 };

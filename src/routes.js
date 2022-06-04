@@ -10,6 +10,7 @@ import GenrePage from "../src/pages/genre/genre.component";
 import SearchPage from "./pages/search/search.component";
 import LeaderBoardPage from "./pages/leaderboard/leaderboard.component";
 import ShopPage from "./pages/shop/shop.component";
+import ProfilePage from "./pages/profile/profile.component";
 
 import { routeNames } from "./services/routeService";
 
@@ -19,7 +20,7 @@ const routes = [
     element: <MainLayout />,
     children: [
       { path: "lucky-wheel", element: <LuckyWheelPage /> },
-      { path: "profile", element: <LuckyWheelPage /> },
+      { path: "profile", element: <ProfilePage /> },
       { path: "home", element: <LuckyWheelPage /> },
       { path: `${routeNames.game}/genre/all`, element: <GamesPage /> },
       { path: `${routeNames.game}/:type/:id`, element: <GenrePage /> },
