@@ -50,7 +50,13 @@ const resources = {
       Inviter_Code: "ثبت معرف",
       Login_To_Access_Features: "برای دسترسی به امکانات برنامه لطفا وارد شوید",
       Login: "ورود به حساب کاربری",
+      Logout: "خروج از حساب کاربری",
       Edit_Profile: "ویرایش پروفایل",
+      Edit: "ویرایش",
+      Save: "ذخیره",
+      Username: "نام کاربری",
+      Phone_Number: "شماره تلفن",
+      Gender: "جنسیت",
     },
   },
 };

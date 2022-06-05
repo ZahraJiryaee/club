@@ -20,7 +20,7 @@ import "./footer.styles.scss";
 const Footer = () => {
   const { pathname } = useLocation();
   const MapUrlToIndicatorNum = () => {
-    if (pathname.includes("profile")) return -2;
+    if (pathname.includes(`${routeNames.profile}`)) return -2;
     else if (pathname.includes(`${routeNames.shop}`)) return -1;
     else if (pathname.includes("lucky-wheel")) return 0;
     else if (pathname.includes(`${routeNames.game}`)) return 1;

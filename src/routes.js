@@ -11,6 +11,7 @@ import SearchPage from "./pages/search/search.component";
 import LeaderBoardPage from "./pages/leaderboard/leaderboard.component";
 import ShopPage from "./pages/shop/shop.component";
 import ProfilePage from "./pages/profile/profile.component";
+import EditProfilePage from "./pages/profile/edit-profile/edit-profile.conponent";
 
 import { routeNames } from "./services/routeService";
 
@@ -20,6 +21,10 @@ const routes = [
     element: <MainLayout />,
     children: [
       { path: "lucky-wheel", element: <LuckyWheelPage /> },
+      {
+        path: `${routeNames.profile}/edit-information`,
+        element: <EditProfilePage />,
+      },
       { path: "profile", element: <ProfilePage /> },
       { path: "home", element: <LuckyWheelPage /> },
       { path: `${routeNames.game}/genre/all`, element: <GamesPage /> },

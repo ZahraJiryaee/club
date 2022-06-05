@@ -87,6 +87,28 @@ export const login = (username, password) => async (dispatch) => {
   return result;
 };
 
+export const logout = () => async (dispatch) => {
+  localStorage.removeItem("accessToken");
+  localStorage.removeItem("refreshToken");
+
+  await dispatch(setOpenValidationDialog(true));
+
+  dispatch({
+    type: UserActionTypes.SET_CURRENT_USER,
+    payload: null,
+  });
+
+  dispatch({
+    type: UserActionTypes.SET_ACCESS_TOKEN,
+    payload: null,
+  });
+
+  dispatch({
+    type: UserActionTypes.SET_REFRESH_TOKEN,
+    payload: null,
+  });
+};
+
 export const setCurrentUser = () => async (dispatch) => {
   let result;
   await getUserProfile()

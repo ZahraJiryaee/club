@@ -1,11 +1,14 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 
+import { setOpenValidationDialog } from "../../redux/user/user.action";
+import { setHeaderMode } from "../../redux/header/header.action";
+
+import { routeNames } from "../../services/routeService";
 import { ProfileMenu } from "../../model/profile-menu-model";
 
-import { setHeaderMode } from "../../redux/header/header.action";
 import ProfileAvatar from "./../../assets/images/icon/blue-avatar-icon.png";
 import ArrowIconMB from "../../assets/images/icon/arrow-back-dark.png";
 
@@ -14,6 +17,7 @@ import "./profile.styles.scss";
 const ProfilePage = () => {
   const { pathname } = useLocation();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { t } = useTranslation();
 
   const currentUser = useSelector((state) => state.user.currentUser);
@@ -22,14 +26,13 @@ const ProfilePage = () => {
     dispatch(setHeaderMode(pathname));
   }, []);
 
-  // useEffect(() => {
-  //   if (currentUser) {
-  //     console.log("currentUser Profileeee", true);
-  //   } else {
-  //     console.log("currentUser Profileeee", false);
-  //   }
-  //   console.log("currentUser Profileeee", currentUser);
-  // }, [currentUser]);
+  const handleLogin = () => {
+    dispatch(setOpenValidationDialog(true));
+  };
+
+  const handleEditProfile = () => {
+    return navigate(`/${routeNames.profile}/edit-information`);
+  };
 
   return (
     <div className="profile-container">
@@ -40,7 +43,7 @@ const ProfilePage = () => {
         </p>
         <button
           className="login-btn"
-          // onClick={handleWheelSpinBtnClick}
+          onClick={currentUser ? handleEditProfile : handleLogin}
         >
           {currentUser ? t("Edit_Profile") : t("Login")}
         </button>
