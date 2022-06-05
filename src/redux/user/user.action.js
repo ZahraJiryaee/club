@@ -109,6 +109,23 @@ export const logout = () => async (dispatch) => {
   });
 };
 
+export const editUserProfileInformation = (body) => async (dispatch) => {
+  let result;
+  await setUserProfile(body)
+    .then(async (response) => {
+      console.log("response-setuser-profile-address", response);
+      if (response.status === 200) {
+        result = await dispatch(setCurrentUser());
+        // result = response;
+      }
+    })
+    .catch((error) => {
+      console.log("error-setuser-profile-address", error);
+      result = error.response;
+    });
+  return result;
+};
+
 export const setCurrentUser = () => async (dispatch) => {
   let result;
   await getUserProfile()

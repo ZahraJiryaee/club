@@ -42,11 +42,13 @@ const Footer = () => {
         <div className="footer-navigation">
           <ul>
             <li
-              className={`list ${pathname.includes("profile") ? "active" : ""}`}
+              className={`list ${
+                pathname.includes(`${routeNames.profile}`) ? "active" : ""
+              }`}
             >
               <NavLink to="/profile">
                 <span className="icon">
-                  {pathname === "/profile" ? (
+                  {pathname.includes(`${routeNames.profile}`) ? (
                     <ActiveProfileLogo />
                   ) : (
                     <ProfileLogo />

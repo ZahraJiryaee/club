@@ -57,6 +57,9 @@ const resources = {
       Username: "نام کاربری",
       Phone_Number: "شماره تلفن",
       Gender: "جنسیت",
+      Unknown: "نامشخص",
+      Male: "آقا",
+      Female: "خانم",
     },
   },
 };
