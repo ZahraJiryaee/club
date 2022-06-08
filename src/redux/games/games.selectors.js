@@ -7,6 +7,16 @@ export const selectSearchedGameItems = createSelector(
   (games) => games.searchedItem
 );
 
+export const selectIsApplicationInstalled = createSelector(
+  [selectGames],
+  (games) => games.isApplicationInstalled
+);
+
+export const selectUserApplicationInfo = createSelector(
+  [selectGames],
+  (games) => games.userApplicationInfo
+);
+
 export const selectSearchedGameItemsMappedToSearchPage = createSelector(
   [selectGames],
   (games) => mapSearchedGameItemsToSearchPage(games.searchedItem)

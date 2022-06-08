@@ -2,13 +2,22 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 
-import { getGameDetailsInformation } from "../../redux/games/games.action";
+import {
+  getGameDetailsInformation,
+  getUserApplicationInformation,
+  isApplicationInstalled,
+} from "../../redux/games/games.action";
+
+import {
+  selectUserApplicationInfo,
+  selectIsApplicationInstalled,
+} from "../../redux/games/games.selectors";
 
 import GameDetailHeader from "../../components/game-details-header/game-details-header.componetnt";
 import GamesRow from "../../components/games/games-row/games-row.component";
 import DownloadAppsBottomSheet from "../../components/download-apps-bottom-sheet/download-apps-bottom-sheet.component";
 
-// import level from "../../components/mock/level.mock";
+// import {level, userAppInfo} from "../../components/mock/level.mock";
 
 import InstagramIcon from "../../assets/images/icon/instagram.png";
 import ArrowIconMB from "../../assets/images/icon/arrow-back-marineblue.png";
@@ -26,10 +35,16 @@ const GameDetails = () => {
   const { id: gameId } = useParams();
 
   const gameDetails = useSelector((state) => state.games.gameDetails);
+  const userApplicationInfo = useSelector(selectUserApplicationInfo);
+  const appInstallationStatus = useSelector(selectIsApplicationInstalled);
+
   console.log("gameDetails:", gameDetails);
+  console.log("userApplicationInfo:", userApplicationInfo);
+  console.log("appInstallationStatus:", appInstallationStatus);
 
   const [showMore, setShowMore] = useState(false);
   const [openBtmSheet, setOpenBtmSheet] = useState(false);
+  const [levelsThatUserPassed, setLevelsThatUserPassed] = useState({});
 
   const [levelLength, setLevelLength] = useState(0);
   const [levelFilterConuter, setLevelFilterConuter] = useState(0);
@@ -39,8 +54,25 @@ const GameDetails = () => {
   const [levelTxt, setLevelTxt] = useState(true); /* true=>بیشتر  false=>کمتر */
 
   useEffect(() => {
+    dispatch(isApplicationInstalled(gameId));
+  }, [gameId]);
+
+  useEffect(() => {
     dispatch(getGameDetailsInformation(gameId));
   }, [gameId]);
+
+  useEffect(() => {
+    dispatch(getUserApplicationInformation(gameId));
+  }, [gameId]);
+
+  useEffect(() => {
+    let userPassedLevels = {};
+    userApplicationInfo.forEach(
+      (item) => (userPassedLevels[item.level.id] = true)
+    );
+    console.log("userPassedLevels:", userPassedLevels);
+    setLevelsThatUserPassed(userPassedLevels);
+  }, [userApplicationInfo]);
 
   useEffect(() => {
     if (gameDetails.length !== 0) {
@@ -183,35 +215,67 @@ const GameDetails = () => {
               <ul className="game-detail-level-list-container">
                 <li>
                   <span className="level-icons">
-                    <img src={NotCheckedIcon} alt="check-icon" />
+                    <img
+                      src={
+                        appInstallationStatus.is_install
+                          ? CheckedIcon
+                          : NotCheckedIcon
+                      }
+                      alt="check-icon"
+                      className="check-icon"
+                    />
                   </span>
-                  <span>
+                  <span
+                    className={`${
+                      appInstallationStatus.is_install ? "color-dark-65" : ""
+                    }`}
+                  >
                     این برنامه را نصب کنبد و {gameDetails.install_score_counter}{" "}
                     امتیاز دریافت کنید
                   </span>
                 </li>
                 {gameDetails.level
                   .filter((level, idx) => idx < levelFilter)
-                  .map((level) => (
-                    <div key={level.id}>
-                      <li>
-                        <span className="level-icons">
-                          <img src={NotCheckedIcon} alt="check-icon" />
-                        </span>
-                        <span>
-                          به مرحله {level.level} برسید و{" "}
-                          {level.reach_score_counter} امتیاز دریافت نمایید
-                        </span>
-                      </li>
-                    </div>
-                  ))}
+                  .map((level, idx) => {
+                    return (
+                      <div key={level.id}>
+                        <li>
+                          <span className="level-icons">
+                            <img
+                              src={
+                                levelsThatUserPassed[level.id]
+                                  ? CheckedIcon
+                                  : NotCheckedIcon
+                              }
+                              alt="check-icon"
+                              className="check-icon"
+                            />
+                          </span>
+                          <span
+                            className={`${
+                              levelsThatUserPassed[level.id]
+                                ? "color-dark-65"
+                                : ""
+                            }`}
+                          >
+                            به مرحله {level.level} برسید و{" "}
+                            {level.reach_score_counter} امتیاز دریافت نمایید
+                          </span>
+                        </li>
+                      </div>
+                    );
+                  })}
               </ul>
               <div className="more-bonus" onClick={handleMoreBonusClick}>
                 <span className="txt">
                   جوایز {levelTxt ? "بیشـــتر" : "کمتر"}
                 </span>
                 <span className={`${!levelTxt ? "reverse-arrow" : ""}`}>
-                  <img src={BlueArrowIcon} alt="arrow-down" />
+                  <img
+                    className="more-bonus-arrow"
+                    src={BlueArrowIcon}
+                    alt="arrow-down"
+                  />
                 </span>
               </div>
             </div>

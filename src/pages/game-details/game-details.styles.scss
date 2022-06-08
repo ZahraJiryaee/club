@@ -286,10 +286,18 @@
       font-size: 26px;
       font-weight: bold;
       color: #ff3b30;
+
+      @media #{$small-mobile} {
+        font-size: 15px;
+      }
     }
 
     .game-detail-level-list-container {
       padding: 15px 0 0;
+
+      @media #{$small-mobile} {
+        padding: 8px 0 0;
+      }
 
       li {
         padding: 8px 0;
@@ -303,6 +311,22 @@
 
         .level-icons {
           padding: 0 16px;
+
+          display: flex;
+          justify-content: center;
+          align-items: center;
+
+          @media #{$small-mobile} {
+            padding: 0 8px;
+            .check-icon {
+              width: 10.6px;
+              height: 10px;
+            }
+          }
+        }
+
+        @media #{$small-mobile} {
+          font-size: 13px;
         }
       }
     }
@@ -318,11 +342,22 @@
         font-size: 18px;
         font-weight: 500;
         color: $theme-color--marine-deep-sky-blue;
+
+        @media #{$small-mobile} {
+          font-size: 13px;
+        }
       }
 
       .reverse-arrow {
         transform: rotate(180deg);
         transition: 0.3s;
+      }
+
+      .more-bonus-arrow {
+        @media #{$small-mobile} {
+          width: 10px;
+          height: 5.7px;
+        }
       }
     }
   }

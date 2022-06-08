@@ -19,6 +19,12 @@ const listUserSeasonal = API_URL + "/api/v1/score/seasonal";
 // shop
 const listShopItems = API_URL + "/api/v1/shop/goods";
 
+// game
+const getGamesApiEndpoint = API_URL + "/api/v1/application/";
+const getFilteredCategoryApiEndpoint = API_URL + "/api/v1/application/filter";
+const getUserApplicationInfoEndpoint = API_URL + "/api/v1/application/user/";
+const isAppInstalledEndpoint = API_URL + "/api/v1/application/user/is_install/";
+
 const getApis = {
   API_URL,
   newTokenApiEndpoint,
@@ -27,6 +33,10 @@ const getApis = {
   listUserMonthly,
   listUserSeasonal,
   listShopItems,
+  getGamesApiEndpoint,
+  getFilteredCategoryApiEndpoint,
+  getUserApplicationInfoEndpoint,
+  isAppInstalledEndpoint,
 };
 
 export default getApis;

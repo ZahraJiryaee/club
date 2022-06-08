@@ -3,6 +3,8 @@ import {
   getFilteredCategory,
   getSearchedApplication,
   getGameDetails,
+  getUserApplicationInfo,
+  isAppInstalled,
 } from "../../services/gamesServices";
 import { GamesActionTypes } from "./games.types";
 
@@ -65,4 +67,34 @@ export const getGameDetailsInformation = (id) => async (dispatch) => {
       //toast
     });
   return result;
+};
+
+export const getUserApplicationInformation = (gameId) => async (dispatch) => {
+  await getUserApplicationInfo(gameId)
+    .then((response) => {
+      if (response.status === 200) {
+        dispatch({
+          type: GamesActionTypes.GET_USER_APPLICATION_INFO,
+          payload: response.data,
+        });
+      }
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+};
+
+export const isApplicationInstalled = (gameId) => async (dispatch) => {
+  await isAppInstalled(gameId)
+    .then((response) => {
+      if (response.status === 200) {
+        dispatch({
+          type: GamesActionTypes.IS_APPLICATION_INSTALLED,
+          payload: response.data,
+        });
+      }
+    })
+    .catch((error) => {
+      console.log(error);
+    });
 };
