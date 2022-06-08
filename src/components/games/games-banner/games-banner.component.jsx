@@ -21,9 +21,7 @@ const BannerGames = ({ category }) => {
             src={application.source.banner}
             alt="banner"
             onClick={() => {
-              return navigate(`/${routeNames.game}/detail/${application.id}`, {
-                state: { application: application, category: category },
-              });
+              return navigate(`/${routeNames.game}/detail/${application.id}`);
             }}
           />
         );

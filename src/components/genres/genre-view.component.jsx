@@ -2,6 +2,8 @@ import React from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 
+import { routeNames } from "../../services/routeService";
+
 import StarLogo from "../../assets/images/icon/star.png";
 
 import "./genre-view.styles.scss";
@@ -37,12 +39,9 @@ const GenreView = ({ title }) => {
                     src={application.source.icon}
                     alt="game-icon"
                     onClick={() => {
-                      return navigate(`/games/detail/${application.id}`, {
-                        state: {
-                          application: application,
-                          category: { applications: [] },
-                        },
-                      });
+                      return navigate(
+                        `/${routeNames.game}/detail/${application.id}`
+                      );
                     }}
                   />
                   <div className="name-shortDes-score">

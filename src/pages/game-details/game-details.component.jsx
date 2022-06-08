@@ -17,6 +17,8 @@ import GameDetailHeader from "../../components/game-details-header/game-details-
 import GamesRow from "../../components/games/games-row/games-row.component";
 import DownloadAppsBottomSheet from "../../components/download-apps-bottom-sheet/download-apps-bottom-sheet.component";
 
+import { routeNames } from "../../services/routeService";
+
 // import {levelMock,purchaseMock,userAppInfoMock,} from "../../components/mock/level.mock";
 
 import InstagramIcon from "../../assets/images/icon/instagram.png";
@@ -68,6 +70,7 @@ const GameDetails = () => {
 
   useEffect(() => {
     dispatch(getUserApplicationInformation(gameId));
+    /* returns a award lists that user has achieved -level */
   }, [gameId]);
 
   useEffect(() => {
@@ -317,7 +320,10 @@ const GameDetails = () => {
                   <img src={ArrowIconMB} alt="arrow-back" />
                 </p>
               </div>
-              <GamesRow applications={gameDetails.suggest} />
+              <GamesRow
+                applications={gameDetails.suggest}
+                page={routeNames.game}
+              />
             </div>
           )}
         </div>

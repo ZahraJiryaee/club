@@ -13,6 +13,7 @@ import GamesRow from "../../components/games/games-row/games-row.component";
 import BannerGames from "../../components/games/games-banner/games-banner.component";
 
 import ArrowIconMB from "../../assets/images/icon/arrow-back-marineblue.png";
+
 import "./games.styles.scss";
 import "../game-details/game-details.styles.scss";
 
@@ -57,7 +58,7 @@ const GamesPage = () => {
               </div>
               <GamesRow
                 applications={category.applications}
-                page="games-page"
+                page={routeNames.game}
               />
             </div>
           ) : (

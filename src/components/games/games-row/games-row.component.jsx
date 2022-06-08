@@ -1,17 +1,23 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
+import { routeNames } from "../../../services/routeService";
+
 import StarLogo from "./../../../assets/images/icon/star.png";
 
 import "./games-row.styles.scss";
 
-const GamesRow = ({ applications, page, category }) => {
+const GamesRow = ({ applications, page }) => {
   let navigate = useNavigate();
 
-  const navigateToGameDetails = (application, category) => {
-    return navigate(`/games/detail/${application.id}`, {
-      state: { application: application, category: category },
-    });
+  const navigateToGameDetails = (application) => {
+    return navigate(`/${routeNames.game}/detail/${application.id}`);
+  };
+
+  const handleGameClicked = (app) => {
+    if (page === routeNames.game) {
+      return navigateToGameDetails(app);
+    }
   };
 
   console.log("applications:", applications);
@@ -31,14 +37,12 @@ const GamesRow = ({ applications, page, category }) => {
                 className="icon"
                 src={app.source.icon}
                 alt="game-icon"
-                onClick={
-                  page === "games-page"
-                    ? () => navigateToGameDetails(app, category)
-                    : () => {}
-                }
+                onClick={() => handleGameClicked(app)}
               />
               <div className="name-shortDes-score">
-                <span className="name">{app.name}</span>
+                <span className="name" onClick={() => handleGameClicked(app)}>
+                  {app.name}
+                </span>
                 <span className="shortDes">{app.short_description}</span>
                 <span className="score">{`${app.install_score_counter} امتیاز با نصب این بازی دریافت کنید.`}</span>
               </div>
