@@ -17,7 +17,7 @@ import GameDetailHeader from "../../components/game-details-header/game-details-
 import GamesRow from "../../components/games/games-row/games-row.component";
 import DownloadAppsBottomSheet from "../../components/download-apps-bottom-sheet/download-apps-bottom-sheet.component";
 
-// import {level, userAppInfo} from "../../components/mock/level.mock";
+// import {levelMock,purchaseMock,userAppInfoMock,} from "../../components/mock/level.mock";
 
 import InstagramIcon from "../../assets/images/icon/instagram.png";
 import ArrowIconMB from "../../assets/images/icon/arrow-back-marineblue.png";
@@ -44,14 +44,19 @@ const GameDetails = () => {
 
   const [showMore, setShowMore] = useState(false);
   const [openBtmSheet, setOpenBtmSheet] = useState(false);
-  const [levelsThatUserPassed, setLevelsThatUserPassed] = useState({});
 
-  const [levelLength, setLevelLength] = useState(0);
-  const [levelFilterConuter, setLevelFilterConuter] = useState(0);
-  const [levelFilterClickTimes, setLevelFilterClickTimes] = useState(0);
+  const [awardsThatUserPassed, setAwardsThatUserPassed] = useState({});
+  const [awardsList, setAwardsList] = useState([]);
+  const [awardsListLength, setAwardsListLength] = useState(0);
+  const [awardsListFilterConuter, setAwardsListFilterConuter] = useState(0);
+  const [awardsListFilterClickTimes, setAwardsListFilterClickTimes] =
+    useState(0);
   const howManyItemToShowOnEachClick = 4;
-  const [levelFilter, setLevelFilter] = useState(howManyItemToShowOnEachClick);
-  const [levelTxt, setLevelTxt] = useState(true); /* true=>بیشتر  false=>کمتر */
+  const [awardsListFilter, setAwardsListFilter] = useState(
+    howManyItemToShowOnEachClick
+  );
+  const [awardsListTxt, setAwardsListTxt] =
+    useState(true); /* true=>show more  false=>show less */
 
   useEffect(() => {
     dispatch(isApplicationInstalled(gameId));
@@ -71,38 +76,55 @@ const GameDetails = () => {
       (item) => (userPassedLevels[item.level.id] = true)
     );
     console.log("userPassedLevels:", userPassedLevels);
-    setLevelsThatUserPassed(userPassedLevels);
+    setAwardsThatUserPassed(userPassedLevels);
   }, [userApplicationInfo]);
 
   useEffect(() => {
-    if (gameDetails.length !== 0) {
-      const { level } = gameDetails;
-      setLevelLength(level.length);
-      setLevelFilterConuter(
-        level.length > howManyItemToShowOnEachClick ? 1 : 0
-      );
-      setLevelFilterClickTimes(
-        (level.length / howManyItemToShowOnEachClick) % 1 === 0
-          ? level.length / howManyItemToShowOnEachClick - 1
-          : level.length / howManyItemToShowOnEachClick
-      );
-    }
+    let level_purchase = [];
+    /* ------------- Load Data --------------- */
+    /* original */
+    const { level } = gameDetails;
+    const { purchase } = gameDetails;
+    /* mock */
+    // const level = levelMock;
+    // const purchase = purchaseMock;
+    /* -------------------------------------- */
+    level.forEach((level) => {
+      level_purchase.push({ ...level, _customType: "level" });
+    });
+    purchase.forEach((purchase) => {
+      level_purchase.push({ ...purchase, _customType: "purchase" });
+    });
+    console.log("level_purchase:", level_purchase);
+    setAwardsList(level_purchase);
+    //
+    setAwardsListLength(level_purchase.length);
+    setAwardsListFilterConuter(
+      level_purchase.length > howManyItemToShowOnEachClick ? 1 : 0
+    );
+    setAwardsListFilterClickTimes(
+      (level_purchase.length / howManyItemToShowOnEachClick) % 1 === 0
+        ? level_purchase.length / howManyItemToShowOnEachClick - 1
+        : level_purchase.length / howManyItemToShowOnEachClick
+    );
   }, [gameDetails]);
 
   useEffect(() => {
-    if (levelFilterConuter > levelFilterClickTimes) {
-      setLevelTxt(false);
+    if (awardsListFilterConuter > awardsListFilterClickTimes) {
+      setAwardsListTxt(false);
     }
-  }, [levelFilterConuter, levelFilterClickTimes]);
+  }, [awardsListFilterConuter, awardsListFilterClickTimes]);
 
   const handleMoreBonusClick = () => {
-    setLevelFilter(levelFilter + howManyItemToShowOnEachClick);
-    setLevelFilterConuter(levelFilterConuter + 1);
+    setAwardsListFilter(awardsListFilter + howManyItemToShowOnEachClick);
+    setAwardsListFilterConuter(awardsListFilterConuter + 1);
 
-    if (!levelTxt) {
-      setLevelFilter(howManyItemToShowOnEachClick);
-      setLevelFilterConuter(levelLength > howManyItemToShowOnEachClick ? 1 : 0);
-      setLevelTxt(true);
+    if (!awardsListTxt) {
+      setAwardsListFilter(howManyItemToShowOnEachClick);
+      setAwardsListFilterConuter(
+        awardsListLength > howManyItemToShowOnEachClick ? 1 : 0
+      );
+      setAwardsListTxt(true);
     }
   };
 
@@ -201,8 +223,8 @@ const GameDetails = () => {
               {gameDetails.description}
             </div>
           </div>
-          {/* levels */}
-          {gameDetails.level.length > 0 && (
+          {/* Awards List */}
+          {awardsList.length > 0 && (
             <div className="game-detail-level-container">
               <img
                 className="game-detail-level-badge"
@@ -234,32 +256,34 @@ const GameDetails = () => {
                     امتیاز دریافت کنید
                   </span>
                 </li>
-                {gameDetails.level
-                  .filter((level, idx) => idx < levelFilter)
-                  .map((level, idx) => {
+                {awardsList
+                  .filter((award, idx) => idx < awardsListFilter)
+                  .map((award, idx) => {
                     return (
-                      <div key={level.id}>
+                      <div key={award.id}>
                         <li>
                           <span className="level-icons">
-                            <img
-                              src={
-                                levelsThatUserPassed[level.id]
-                                  ? CheckedIcon
-                                  : NotCheckedIcon
-                              }
-                              alt="check-icon"
-                              className="check-icon"
-                            />
+                            {award._customType === "level" ? (
+                              <img
+                                src={
+                                  awardsThatUserPassed[award.id]
+                                    ? CheckedIcon
+                                    : NotCheckedIcon
+                                }
+                                alt="check-icon"
+                                className="check-icon"
+                              />
+                            ) : null}
                           </span>
                           <span
                             className={`${
-                              levelsThatUserPassed[level.id]
+                              awardsThatUserPassed[award.id]
                                 ? "color-dark-65"
                                 : ""
                             }`}
                           >
-                            به مرحله {level.level} برسید و{" "}
-                            {level.reach_score_counter} امتیاز دریافت نمایید
+                            {award.description} و {award.reach_score_counter}{" "}
+                            امتیاز دریافت نمایید
                           </span>
                         </li>
                       </div>
@@ -268,9 +292,9 @@ const GameDetails = () => {
               </ul>
               <div className="more-bonus" onClick={handleMoreBonusClick}>
                 <span className="txt">
-                  جوایز {levelTxt ? "بیشـــتر" : "کمتر"}
+                  جوایز {awardsListTxt ? "بیشـــتر" : "کمتر"}
                 </span>
-                <span className={`${!levelTxt ? "reverse-arrow" : ""}`}>
+                <span className={`${!awardsListTxt ? "reverse-arrow" : ""}`}>
                   <img
                     className="more-bonus-arrow"
                     src={BlueArrowIcon}

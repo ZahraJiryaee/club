@@ -307,17 +307,16 @@
         justify-content: flex-start;
         align-items: center;
         line-height: 1.11;
-        // color: ;
 
         .level-icons {
-          padding: 0 16px;
+          width: 56px;
 
           display: flex;
           justify-content: center;
           align-items: center;
 
           @media #{$small-mobile} {
-            padding: 0 8px;
+            width: 30px;
             .check-icon {
               width: 10.6px;
               height: 10px;
