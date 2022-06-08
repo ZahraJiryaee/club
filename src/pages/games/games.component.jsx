@@ -1,6 +1,7 @@
 import React, { useEffect, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 import { getAllGenres } from "../../redux/genres/genres.action";
 import { getAllGames } from "../../redux/games/games.action";
@@ -20,6 +21,8 @@ import "../game-details/game-details.styles.scss";
 const GamesPage = () => {
   const { pathname } = useLocation();
   const dispatch = useDispatch();
+  const { t } = useTranslation();
+
   const games = useSelector((state) => state.games.allGames);
 
   const setGamesAndGenres = useCallback(async () => {
@@ -51,7 +54,7 @@ const GamesPage = () => {
                   className="more"
                 >
                   <p className="more">
-                    بیشتر
+                    {t("More")}
                     <img src={ArrowIconMB} alt="arrow-back" />
                   </p>
                 </Link>

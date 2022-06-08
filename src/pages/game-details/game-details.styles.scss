@@ -261,6 +261,7 @@
 
         @media #{$extra-small-mobile} {
           display: block;
+          cursor: pointer;
         }
       }
     }
@@ -394,6 +395,7 @@
     letter-spacing: -0.19px;
     text-align: left;
     color: $theme-color--marine-blue;
+    cursor: pointer;
 
     img {
       width: 5.7px;

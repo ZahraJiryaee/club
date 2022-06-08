@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 import {
   getGameDetailsInformation,
@@ -33,6 +34,8 @@ import "./game-details.styles.scss";
 
 const GameDetails = () => {
   const dispatch = useDispatch();
+  let navigate = useNavigate();
+  const { t } = useTranslation();
 
   const { id: gameId } = useParams();
 
@@ -168,9 +171,11 @@ const GameDetails = () => {
             <div className="game-detail-list-info-container">
               <ul>
                 <li>
-                  <span>+{gameDetails.user_install_counter / 1000} هزار</span>
+                  <span>
+                    +{gameDetails.user_install_counter / 1000} {t("Thousand")}
+                  </span>
                   <br />
-                  <span>نصب فعال</span>
+                  <span>{t("Active_Installation")}</span>
                 </li>
                 <hr />
                 <li>
@@ -179,17 +184,19 @@ const GameDetails = () => {
                     <StarLogo />
                   </span>
                   <br />
-                  <span>امتیاز</span>
+                  <span>{t("Score")}</span>
                 </li>
                 <hr />
                 <li>
-                  <span>حجم</span>
+                  <span>{t("Size")}</span>
                   <br />
-                  <span>{gameDetails.size} مگابایت</span>
+                  <span>
+                    {gameDetails.size} {t("Megabytes")}
+                  </span>
                 </li>
                 <hr />
                 <li>
-                  <span>سازنده</span>
+                  <span>{t("Creator")}</span>
                   <br />
                   <span>{gameDetails.creator}</span>
                 </li>
@@ -198,16 +205,16 @@ const GameDetails = () => {
                 className="install-btn"
                 onClick={() => setOpenBtmSheet(true)}
               >
-                نصب
+                {t("Install")}
               </button>
             </div>
           </div>
           {/* intro */}
           <div className="game-detail-intro-container">
             <div className="game-detail-header">
-              <p className="title">معرفی برنامه</p>
+              <p className="title">{t("Game_Introduction")}</p>
               <p className="more" onClick={() => setShowMore(!showMore)}>
-                {showMore ? "کمتر" : "بیشتر"}
+                {showMore ? t("Less") : t("More")}
                 <img src={ArrowIconMB} alt="arrow-back" />
               </p>
             </div>
@@ -235,7 +242,7 @@ const GameDetails = () => {
                 alt="level-badge"
               />
               <p className="game-detail-level-header">
-                جوایزی که با این بازی می‌تونی بگیری:
+                {t("Awards_That_Can_Be_Achieved_With_This_Game")}
               </p>
               <ul className="game-detail-level-list-container">
                 <li>
@@ -255,8 +262,8 @@ const GameDetails = () => {
                       appInstallationStatus.is_install ? "color-dark-65" : ""
                     }`}
                   >
-                    این برنامه را نصب کنبد و {gameDetails.install_score_counter}{" "}
-                    امتیاز دریافت کنید
+                    {t("Install_This_App_And")}{" "}
+                    {gameDetails.install_score_counter} {t("Get_X_Points")}
                   </span>
                 </li>
                 {awardsList
@@ -285,8 +292,8 @@ const GameDetails = () => {
                                 : ""
                             }`}
                           >
-                            {award.description} و {award.reach_score_counter}{" "}
-                            امتیاز دریافت نمایید
+                            {award.description} {t("And")}{" "}
+                            {award.reach_score_counter} {t("Get_X_Points")}
                           </span>
                         </li>
                       </div>
@@ -295,7 +302,7 @@ const GameDetails = () => {
               </ul>
               <div className="more-bonus" onClick={handleMoreBonusClick}>
                 <span className="txt">
-                  جوایز {awardsListTxt ? "بیشـــتر" : "کمتر"}
+                  {t("Prizes")} {awardsListTxt ? t("More_Extended") : t("Less")}
                 </span>
                 <span className={`${!awardsListTxt ? "reverse-arrow" : ""}`}>
                   <img
@@ -310,13 +317,17 @@ const GameDetails = () => {
           {/* simiral games */}
           {gameDetails.suggest.length > 0 && (
             <div className="game-detail-simiral-games-container">
-              <div
-                className="game-detail-header"
-                // onClick={() => navigate(`/games/category/${category.id}`)}
-              >
-                <p className="title">بازی‌های مشابه</p>
-                <p className="more">
-                  بیشتر
+              <div className="game-detail-header">
+                <p className="title">{t("Similar_Games")}</p>
+                <p
+                  className="more"
+                  onClick={() => {
+                    return navigate(
+                      `/${routeNames.game}/category/${gameDetails.categories[0].id}`
+                    );
+                  }}
+                >
+                  {t("More")}
                   <img src={ArrowIconMB} alt="arrow-back" />
                 </p>
               </div>

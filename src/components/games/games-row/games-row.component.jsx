@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 import { routeNames } from "../../../services/routeService";
 
@@ -9,6 +10,7 @@ import "./games-row.styles.scss";
 
 const GamesRow = ({ applications, page }) => {
   let navigate = useNavigate();
+  const { t } = useTranslation();
 
   const navigateToGameDetails = (application) => {
     return navigate(`/${routeNames.game}/detail/${application.id}`);
@@ -44,7 +46,9 @@ const GamesRow = ({ applications, page }) => {
                   {app.name}
                 </span>
                 <span className="shortDes">{app.short_description}</span>
-                <span className="score">{`${app.install_score_counter} امتیاز با نصب این بازی دریافت کنید.`}</span>
+                <span className="score">{`${app.install_score_counter} ${t(
+                  "Achieve_X_Points_By_Installing_This_Game"
+                )}`}</span>
               </div>
             </div>
             <div className="rate-container">
