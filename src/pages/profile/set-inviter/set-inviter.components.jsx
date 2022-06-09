@@ -1,12 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useTranslation } from "react-i18next";
 
-// import {
-//   logout,
-//   editUserProfileInformation,
-// } from "../../../redux/user/user.action";
+import { inviteFriends } from "../../../redux/user/user.action";
 import { setHeaderMode } from "../../../redux/header/header.action";
 
 import FriendsIcon from "./../../../assets/images/icon/invite-friends.png";
@@ -16,6 +13,7 @@ import "../profile.styles.scss";
 const SetInviterCode = () => {
   const { pathname } = useLocation();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { t } = useTranslation();
 
   useEffect(() => {
@@ -28,6 +26,15 @@ const SetInviterCode = () => {
     const { value, maxLength } = event.target;
     const code = value.slice(0, maxLength);
     setInviterCode(code);
+  };
+
+  const handleSendCode = () => {
+    const result = dispatch(inviteFriends(inviterCode));
+    result.then((response) => {
+      if (response.status === 200 || response.status === 201) {
+        navigate("/profile");
+      }
+    });
   };
 
   return (
@@ -47,7 +54,9 @@ const SetInviterCode = () => {
               onChange={(e) => handleInviterCodeChange(e)}
             />
           </div>
-          <div className="send-code-text">{t("Inviter_Code")}</div>
+          <div className="send-code-text" onClick={handleSendCode}>
+            {t("Inviter_Code")}
+          </div>
         </div>
       </div>
     </div>
