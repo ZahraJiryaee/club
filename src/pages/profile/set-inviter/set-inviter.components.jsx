@@ -21,18 +21,22 @@ const SetInviterCode = () => {
   }, []);
 
   const [inviterCode, setInviterCode] = useState("");
+  const [activeSendButton, setActiveSendButton] = useState(false);
 
   const handleInviterCodeChange = (event) => {
     const { value, maxLength } = event.target;
     const code = value.slice(0, maxLength);
+    setActiveSendButton(code.length === 11 ? true : false);
     setInviterCode(code);
   };
 
   const handleSendCode = () => {
+    setActiveSendButton(false);
     const result = dispatch(inviteFriends(inviterCode));
     result.then((response) => {
       if (response.status === 200 || response.status === 201) {
         navigate("/profile");
+        setInviterCode("");
       }
     });
   };
@@ -54,7 +58,12 @@ const SetInviterCode = () => {
               onChange={(e) => handleInviterCodeChange(e)}
             />
           </div>
-          <div className="send-code-text" onClick={handleSendCode}>
+          <div
+            className={`${
+              activeSendButton ? "active-button" : "deactive-button"
+            } send-code-text`}
+            onClick={activeSendButton ? () => handleSendCode() : () => {}}
+          >
             {t("Inviter_Code")}
           </div>
         </div>

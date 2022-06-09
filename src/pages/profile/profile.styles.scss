@@ -179,13 +179,21 @@
       .send-code-text {
         font-size: 15px;
         font-weight: bold;
-        color: $theme-color--marine-deep-sky-blue;
+
         margin: 24px 0;
         cursor: pointer;
 
         @media #{$large-mobile} {
           font-size: 12px;
         }
+      }
+
+      .active-button {
+        color: $theme-color--marine-deep-sky-blue;
+      }
+
+      .deactive-button {
+        color: $theme-color--brownish-grey !important;
       }
     }
   }
