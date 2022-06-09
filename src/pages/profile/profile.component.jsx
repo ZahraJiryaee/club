@@ -54,19 +54,26 @@ const ProfilePage = () => {
       </div>
       <div className="profile-details">
         {ProfileMenu.map((item) => {
-          return (
-            <div
-              className="details-container"
-              key={item.id}
-              onClick={() => handleMovePage(item.route)}
-            >
-              <div className="title-container">
-                <img src={item.icon} alt="title-icon" className="title-icon" />
-                <span className="title">{t(item.title)}</span>
+          if (item.title === "Inviter_Code" && currentUser.has_invited)
+            return null;
+          else
+            return (
+              <div
+                className="details-container"
+                key={item.id}
+                onClick={() => handleMovePage(item.route)}
+              >
+                <div className="title-container">
+                  <img
+                    src={item.icon}
+                    alt="title-icon"
+                    className="title-icon"
+                  />
+                  <span className="title">{t(item.title)}</span>
+                </div>
+                <img className="more-icon" src={ArrowIconMB} alt="arrow-back" />
               </div>
-              <img className="more-icon" src={ArrowIconMB} alt="arrow-back" />
-            </div>
-          );
+            );
         })}
       </div>
     </div>

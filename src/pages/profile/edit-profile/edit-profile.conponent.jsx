@@ -47,7 +47,7 @@ const EditProfilePage = () => {
   const handleSaveEditedValues = async () => {
     if (userName !== "" && phoneNumber !== "") {
       const {
-        // first_name,
+        first_name,
         last_name,
         avatar,
         // gender,
@@ -59,14 +59,15 @@ const EditProfilePage = () => {
       } = currentUser;
 
       const setProfileBody = {
-        first_name: userName,
-        last_name: userName,
+        first_name,
+        last_name,
         avatar,
         gender: gender,
         birth_date,
         address,
         postal_code,
         contact_mobile_number: phoneNumber,
+        userName: userName,
       };
 
       const result = dispatch(editUserProfileInformation(setProfileBody));
