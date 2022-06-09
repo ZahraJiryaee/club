@@ -110,4 +110,83 @@
       }
     }
   }
+
+  .friends-container {
+    .header-container {
+      .avatar {
+        width: 75px;
+        height: 75px;
+        border-radius: 50%;
+
+        @media #{$large-mobile} {
+          width: 55px;
+          height: 55px;
+        }
+      }
+
+      .description-text {
+        font-size: 18px;
+        font-weight: bold;
+        color: $theme-color--marine-medium-blue;
+
+        @media #{$large-mobile} {
+          font-size: 12px;
+          padding: 0 20%;
+        }
+      }
+    }
+    .set-inviter-container {
+      width: 100%;
+      margin-top: 64px;
+      direction: rtl;
+
+      .inviter-code {
+        padding: 0 30%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        @media #{$desktop-device} {
+          padding: 0 20%;
+        }
+        @media #{$large-mobile} {
+          padding: 0 5%;
+        }
+
+        .code-input {
+          width: 220px;
+          height: 40px;
+          background-color: $theme-color--input-grey;
+          color: $theme-color--marine-blue;
+          border: none;
+          border-radius: 50px;
+          position: relative;
+          outline: none;
+          font-family: $font-family-iransans;
+          font-size: 18px;
+          font-weight: 500;
+          padding: 0 16px;
+          display: flex;
+          text-align: center;
+
+          @media #{$large-mobile} {
+            width: 150px;
+            font-size: 15px;
+          }
+        }
+      }
+
+      .send-code-text {
+        font-size: 15px;
+        font-weight: bold;
+        color: $theme-color--marine-deep-sky-blue;
+        margin: 24px 0;
+        cursor: pointer;
+
+        @media #{$large-mobile} {
+          font-size: 12px;
+        }
+      }
+    }
+  }
 }

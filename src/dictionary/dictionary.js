@@ -48,6 +48,7 @@ const resources = {
       Gifts_History: "تاریخچه جوایز",
       Invite_Friends: "معرفی دوستان",
       Inviter_Code: "ثبت معرف",
+      Connect_To_Games: "اتصال به بازی‌ها",
       Login_To_Access_Features: "برای دسترسی به امکانات برنامه لطفا وارد شوید",
       Login: "ورود به حساب کاربری",
       Logout: "خروج از حساب کاربری",
@@ -60,6 +61,9 @@ const resources = {
       Unknown: "نامشخص",
       Male: "آقا",
       Female: "خانم",
+      Inviter: "معرف",
+      Inviter_Description:
+        "کد معرف خود را وارد کنید تا \n هر دو شانس چرخوندن گردونه را دریافت نمایید",
     },
   },
 };

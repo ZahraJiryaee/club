@@ -34,6 +34,10 @@ const ProfilePage = () => {
     return navigate(`/${routeNames.profile}/edit-information`);
   };
 
+  const handleMovePage = (route) => {
+    navigate(`/${routeNames.profile}${route}`);
+  };
+
   return (
     <div className="profile-container">
       <div className="profile-info">
@@ -51,7 +55,11 @@ const ProfilePage = () => {
       <div className="profile-details">
         {ProfileMenu.map((item) => {
           return (
-            <div className="details-container" key={item.id}>
+            <div
+              className="details-container"
+              key={item.id}
+              onClick={() => handleMovePage(item.route)}
+            >
               <div className="title-container">
                 <img src={item.icon} alt="title-icon" className="title-icon" />
                 <span className="title">{t(item.title)}</span>
