@@ -1,0 +1,60 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`expect to render LuckyWheelPage component 1`] = `
+<div
+  className="blue-bg outer-box"
+>
+  <div
+    className="main-header"
+  >
+    <h2
+      className="header-txt center-absolute"
+    >
+      Lucky_Wheel_Header_Txt
+    </h2>
+    <p
+      className="subheader-txt center-absolute"
+    >
+      Lucky_Wheel_Sub_Header_Txt_Lin1
+      <br />
+      Lucky_Wheel_Sub_Header_Txt_Lin2
+    </p>
+  </div>
+  <div
+    className="wheel-component center-absolute"
+  >
+    <SpinningWheel
+      bonusId={0}
+      isWheelSpinning={false}
+      setWheelItem={[Function]}
+      userChanceConuter={0}
+      wheelItem={6}
+    />
+  </div>
+  <button
+    className="lucky-wheel-page-btn center-absolute"
+    onClick={[Function]}
+  >
+    Lucky_Wheel_Spin_Btn
+  </button>
+  <p
+    className="want-more-chance center-absolute"
+  >
+    Lucky_wheel_Want_More_Chance
+  </p>
+  <div
+    className="click-here center-absolute"
+  >
+    <img
+      alt="hand-point-up"
+      className="click-here--icon"
+      src="hand-point-up.png"
+    />
+    <p
+      className="click-here--text"
+    >
+      Lucky_Wheel_Click_Here
+    </p>
+  </div>
+</div>
+`;
