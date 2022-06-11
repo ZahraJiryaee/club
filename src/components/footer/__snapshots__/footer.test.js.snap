@@ -1,0 +1,130 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`expect to render Footer component with profile path 1`] = `
+<Fragment>
+  <div
+    className="footer-wrapper"
+    style={
+      Object {
+        "--footer-indicator-number": -2,
+      }
+    }
+  >
+    <div
+      className="footer-filler"
+    >
+      <div
+        className="left"
+      />
+      <div
+        className="middle"
+      />
+      <div
+        className="right"
+      />
+    </div>
+    <div
+      className="footer-container"
+    />
+    <div
+      className="footer-navigation"
+    >
+      <ul>
+        <li
+          className="list active"
+        >
+          <NavLink
+            to="/profile"
+          >
+            <span
+              className="icon"
+            >
+              <ForwardRef(SvgProfile) />
+            </span>
+            <span
+              className="text"
+            >
+              پروفایل
+            </span>
+          </NavLink>
+        </li>
+        <li
+          className="list "
+        >
+          <NavLink
+            to="/shop"
+          >
+            <span
+              className="icon"
+            >
+              <ForwardRef(SvgShop) />
+            </span>
+            <span
+              className="text"
+            >
+              فروشگاه
+            </span>
+          </NavLink>
+        </li>
+        <li
+          className="list "
+        >
+          <NavLink
+            to="/lucky-wheel"
+          >
+            <span
+              className="icon"
+            >
+              <ForwardRef(SvgWheel) />
+            </span>
+            <span
+              className="text"
+            >
+              گردونه
+            </span>
+          </NavLink>
+        </li>
+        <li
+          className="list "
+        >
+          <NavLink
+            to="/games/genre/all"
+          >
+            <span
+              className="icon"
+            >
+              <ForwardRef(SvgGames) />
+            </span>
+            <span
+              className="text"
+            >
+              بازی‌ها
+            </span>
+          </NavLink>
+        </li>
+        <li
+          className="list "
+        >
+          <NavLink
+            to="/leaderboard"
+          >
+            <span
+              className="icon"
+            >
+              <ForwardRef(SvgLeaderBoard) />
+            </span>
+            <span
+              className="text"
+            >
+              رده‌بندی
+            </span>
+          </NavLink>
+        </li>
+        <div
+          className="indicator"
+        />
+      </ul>
+    </div>
+  </div>
+</Fragment>
+`;
