@@ -6,17 +6,24 @@ import localstorageService from "./localstorageService";
 import { error } from "./toastService";
 import { setNewToken } from "./userServices";
 
-import { setOpenValidationDialog } from "./../redux/user/user.action";
+import {
+  setOpenValidationDialog,
+  setIsLoading,
+} from "./../redux/user/user.action";
 
 export function useSetupAxios() {
   const dispatch = useDispatch();
+
+  dispatch(setIsLoading(true));
 
   return (
     axios.interceptors.request.use(
       (config) => {
         const accessToken = localstorageService.getAccessToken();
         if (accessToken)
-          config.headers["Authorization"] = `Bearer ${accessToken}`;
+          config.headers["Authorization"] = accessToken
+            ? `Bearer ${accessToken}`
+            : "";
         axios.defaults.headers.post["Content-Type"] = "application/json";
         return config;
       },
@@ -47,6 +54,7 @@ export function useSetupAxios() {
 
               error.config.headers["Authorization"] = `Bearer ${data.access}`;
               error.config.baseURL = undefined;
+              // window.location.reload();
               return axios.request(error.config);
             })
             .catch((refreshError) => {
@@ -62,6 +70,9 @@ export function useSetupAxios() {
               if (refreshError.response.status === 401) {
                 localstorageService.clearToken();
               }
+            })
+            .finally(() => {
+              dispatch(setIsLoading(false));
             });
         }
         return Promise.reject(error);
@@ -70,20 +81,11 @@ export function useSetupAxios() {
   );
 }
 
-const errorHandling = (status) => {
-  if (status === 401) {
-  } else if (status === 403) {
-    return error("Access_denied");
-  } else if (status === 404) {
-    return error("یافت نشد");
-  } else {
-    return error("Something went wrong! Please try again.");
-  }
-};
-
-export default {
+const http = {
   get: axios.get,
   post: axios.post,
   put: axios.put,
   delete: axios.delete,
 };
+
+export default http;

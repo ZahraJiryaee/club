@@ -18,6 +18,7 @@ const LuckyWheelPage = () => {
   const currentUser = useSelector((state) => state.user.currentUser);
   const bonusList = useSelector((state) => state.wheel.bonusList);
   const setBonus = useSelector((state) => state.wheel.bonus);
+  const isLoading = useSelector((state) => state.user.isLoading);
 
   const [userChanceConuter, setUserChanceConuter] = useState(0);
   const [wheelItem, setWheelItem] = useState(6);
@@ -28,7 +29,7 @@ const LuckyWheelPage = () => {
 
   useEffect(() => {
     dispatch(getBonusList());
-  }, [dispatch]);
+  }, [dispatch, isLoading]);
 
   useEffect(() => {
     console.log("currentUser-luck:", currentUser);
