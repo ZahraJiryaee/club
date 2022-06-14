@@ -1,5 +1,5 @@
 import React from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { useTranslation } from "react-i18next";
 
@@ -23,6 +23,7 @@ import "../../components/genres/genre-view.styles.scss";
 const SearchPage = () => {
   const location = useLocation();
   const dispatch = useDispatch();
+  let navigate = useNavigate();
   const { t } = useTranslation();
 
   const firstSliceOfPathname = location.pathname.slice(1).split("/")[0];
@@ -67,6 +68,22 @@ const SearchPage = () => {
     }
   };
 
+  const navigateToItemDetails = (routePath, applicationId) => {
+    return navigate(`/${routePath}/detail/${applicationId}`);
+  };
+
+  const handleItemClicked = (application) => {
+    const { action } = application;
+    switch (action.component) {
+      case "game":
+        return navigateToItemDetails(routeNames["game"], application.id);
+      case "shop":
+        return null;
+      default:
+        return null;
+    }
+  };
+
   return (
     <div>
       {firstSliceOfPathname === routeNames["game"] ? <GenreHeader /> : null}
@@ -86,9 +103,19 @@ const SearchPage = () => {
             return (
               <div key={application.id} className="game-detail">
                 <div className="icon-name-shortDes-score">
-                  <img className="icon" src={application.icon} alt="icon" />
+                  <img
+                    className="icon"
+                    src={application.icon}
+                    alt="icon"
+                    onClick={() => handleItemClicked(application)}
+                  />
                   <div className="name-shortDes-score">
-                    <span className="name">{application.header}</span>
+                    <span
+                      className="name"
+                      onClick={() => handleItemClicked(application)}
+                    >
+                      {application.header}
+                    </span>
                     <span className="score">{`${application.subHeader}`}</span>
                   </div>
                 </div>
