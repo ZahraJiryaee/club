@@ -8,7 +8,6 @@ import { selectIsLoading } from "./redux/user/user.selectors";
 
 import { useSetupAxios } from "./services/httpServices";
 
-import Loading from "./components/common/loading/loading.component";
 import SignupSignin from "./components/signup-signin/signup-signin.component";
 import LuckyWheelModal from "./components/lucky-wheel-modal/lucky-wheel-modal.component";
 import ShopModal from "./components/shop-modal/shop-modal.component";
@@ -34,7 +33,6 @@ function App() {
       <LuckyWheelModal />
       <ShopModal />
       <SignupSignin />
-      <Loading />
       <Fragment>{routing}</Fragment>
     </>
   );
