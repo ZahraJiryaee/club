@@ -9,6 +9,7 @@ import {
   selectSetOpenShopModal,
   selectShopModalData,
 } from "../../redux/shop/shop.selectors";
+import { selectCurrentUser } from "../../redux/user/user.selectors";
 
 import CustomButton from "../common/custom-button/custom-button.component";
 
@@ -25,7 +26,7 @@ const ShopModal = () => {
 
   const isShopModalOPen = useSelector(selectSetOpenShopModal);
   const shopModalData = useSelector(selectShopModalData);
-  const currentUser = useSelector((state) => state.user.currentUser);
+  const currentUser = useSelector(selectCurrentUser);
   console.log("shopModalData:", shopModalData);
 
   const [phase, setPhase] = useState(1);
@@ -40,7 +41,7 @@ const ShopModal = () => {
   /* ------------------ Get User Profile --------------------- */
   useEffect(() => {
     dispatch(setCurrentUser());
-  }, []);
+  }, [dispatch]);
 
   /* ------------------ UI Models ------------------ */
   const ShopItemLeaveScoreImgTitleUserScore = (
@@ -64,7 +65,7 @@ const ShopModal = () => {
         {/* Item Img */}
         <img
           src={ShopItemImg}
-          alt="shop-item-image"
+          alt="shop-item"
           className={`shop-modal-item-img img-width-${imgWidth} responsive-${stage}`}
         />
         {/* Item Title & Leave_Score_Counter */}

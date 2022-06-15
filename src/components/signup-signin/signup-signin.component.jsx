@@ -6,6 +6,8 @@ import Signin from "./signin/signin.component";
 
 import { setOpenValidationDialog } from "../../redux/user/user.action";
 
+import { selectOpenValidationDialog } from "../../redux/user/user.selectors";
+
 import CloseIcon from "./../../assets/images/icon/close-icon.png";
 import MedrickLogo from "./../../assets/images/icon/medrick-logo.png";
 
@@ -15,7 +17,7 @@ const SignupSignin = ({ warningMsg }) => {
   const dispatch = useDispatch();
 
   const [signupMode, setSignupMode] = useState(true); // true=>signup   false=>login
-  const openVal = useSelector((state) => state.user.openValidationDialog);
+  const openVal = useSelector(selectOpenValidationDialog);
 
   const handleCloseSignUpSignIn = () => {
     dispatch(setOpenValidationDialog(false));

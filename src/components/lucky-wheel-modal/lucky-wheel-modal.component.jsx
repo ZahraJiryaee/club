@@ -8,6 +8,12 @@ import {
   setUserProfileAddress,
 } from "../../redux/user/user.action";
 
+import {
+  selectBonus,
+  selectOpenWheelModal,
+} from "../../redux/wheel/wheel.selectors";
+import { selectCurrentUser } from "../../redux/user/user.selectors";
+
 import CloseIcon from "./../../assets/images/icon/close-icon.png";
 
 import "./lucky-wheel-modal.styles.scss";
@@ -16,9 +22,9 @@ const LuckyWheelModal = () => {
   const dispatch = useDispatch();
   const { t } = useTranslation();
 
-  const setBonus = useSelector((state) => state.wheel.bonus);
-  const openWheelModal = useSelector((state) => state.wheel.openWheelModal);
-  const currentUser = useSelector((state) => state.user.currentUser);
+  const setBonus = useSelector(selectBonus);
+  const openWheelModal = useSelector(selectOpenWheelModal);
+  const currentUser = useSelector(selectCurrentUser);
 
   const { title, type: prizeType, value } = setBonus || {};
 

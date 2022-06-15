@@ -5,13 +5,15 @@ import { useParams } from "react-router-dom";
 import { getSelectedGenre } from "../../redux/genres/genres.action";
 import { getSelectedCategory } from "../../redux/games/games.action";
 
+import { selectAllGames } from "../../redux/games/games.selectors";
+
 import GenreHeader from "../../components/genres/genre-header.component";
 import GenreView from "../../components/genres/genre-view.component";
 
 const GenrePage = () => {
   const dispatch = useDispatch();
   const { type, id } = useParams();
-  const allCategories = useSelector((state) => state.games.allGames);
+  const allCategories = useSelector(selectAllGames);
 
   const [categoryTitle, setCategoryTitle] = useState("");
 
@@ -30,7 +32,7 @@ const GenrePage = () => {
       console.log(ex);
       //tast error
     }
-  }, [type, id, allCategories]);
+  }, [dispatch, type, id, allCategories]);
 
   useEffect(() => {
     setGenres();

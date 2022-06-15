@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback } from "react";
+import React, { useEffect, useState, useCallback, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 
@@ -10,7 +10,11 @@ import {
   setOpenWheelModal,
 } from "../../redux/wheel/wheel.action";
 
-import { selectIsLoading } from "../../redux/user/user.selectors";
+import {
+  selectCurrentUser,
+  selectIsLoading,
+} from "../../redux/user/user.selectors";
+import { selectBonusList } from "../../redux/wheel/wheel.selectors";
 
 import HandPointUp from "./../../assets/images/icon/hand-point-up.png";
 
@@ -20,9 +24,8 @@ const LuckyWheelPage = () => {
   const dispatch = useDispatch();
   const { t } = useTranslation();
 
-  const currentUser = useSelector((state) => state.user.currentUser);
-  const bonusList = useSelector((state) => state.wheel.bonusList);
-  const setBonus = useSelector((state) => state.wheel.bonus);
+  const currentUser = useSelector(selectCurrentUser);
+  const bonusList = useSelector(selectBonusList);
   const isLoading = useSelector(selectIsLoading);
 
   const [userChanceConuter, setUserChanceConuter] = useState(0);
@@ -44,7 +47,6 @@ const LuckyWheelPage = () => {
   }, [currentUser]);
 
   const [isWheelSpinning, setIsWheelSpinning] = useState(false);
-  let isSpinOnItemOne = false; //controls wheel goes back to item1 after every spin
   const [bonusId, setBonusId] = useState(0);
 
   const handleWheelSpinBtnClick = () => {
@@ -70,18 +72,18 @@ const LuckyWheelPage = () => {
     });
   };
 
+  const isSpinOnItemOne = useRef(false); //controls wheel goes back to item1 after every spin
   const spinHandler = useCallback(() => {
-    console.log("isSpinOnItemOne:", isSpinOnItemOne);
-    console.log("isWheelSpinning:", isWheelSpinning);
-    if (isSpinOnItemOne === true) {
+    console.log("isSpinOnItemOne.current:", isSpinOnItemOne.current);
+    if (isSpinOnItemOne.current === true) {
       setIsWheelSpinning(true);
-      // isSpinOnItemOne = false;
+      isSpinOnItemOne.current = false;
     } else {
-      isSpinOnItemOne = true;
+      isSpinOnItemOne.current = true;
       setIsWheelSpinning(false);
-      setTimeout(spinHandler, 400);
+      setTimeout(spinHandler, 450);
     }
-  }, [setBonus]);
+  }, []);
 
   return (
     <div className="blue-bg outer-box">

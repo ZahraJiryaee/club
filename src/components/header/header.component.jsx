@@ -3,6 +3,10 @@ import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
+import { selectCurrentUser } from "../../redux/user/user.selectors";
+import { selectHeaderMode } from "../../redux/header/header.selectors";
+import { selectAllGenres } from "../../redux/genres/genres.seletors";
+
 import { ReactComponent as StarLogo } from "../../assets/images/header/star.svg";
 import Logo from "../../assets/images/icon/medrick-logo.png";
 import ArrowBack from "../../assets/images/icon/arrow-back.png";
@@ -10,14 +14,16 @@ import ArrowBack from "../../assets/images/icon/arrow-back.png";
 import { sidebarNavigation, headerNavigation } from "../../model/header.model";
 import Loading from "../common/loading/loading.component";
 
+import generateUniqueId from "../../services/generateUniqueId";
+
 import "./header.styles.scss";
 
 const Header = () => {
   const { t } = useTranslation();
 
-  const currentUser = useSelector((state) => state.user.currentUser);
-  const headerMode = useSelector((state) => state.header.headerMode);
-  const genres = useSelector((state) => state.genres.allGenres);
+  const currentUser = useSelector(selectCurrentUser);
+  const headerMode = useSelector(selectHeaderMode);
+  const genres = useSelector(selectAllGenres);
 
   const [toggleMenu, setToggleMenu] = useState(false);
   const [scoreCounter, setScoreCounter] = useState(0);
@@ -33,7 +39,7 @@ const Header = () => {
       <div className="sidebar-group">
         <ul className={`${toggleMenu ? "active" : ""} sidebar-navigation`}>
           {sidebarNavigation.map((sn) => (
-            <li key={sn.id}>
+            <li key={generateUniqueId("sidebar-navigation")}>
               <NavLink
                 to={`/${sn.link}`}
                 className={({ isActive }) =>
@@ -73,7 +79,7 @@ const Header = () => {
         <div className="header-group">
           <ul className={`${toggleMenu ? "active" : ""} header-navigation`}>
             {headerNavigation.map((hn) => (
-              <li key={hn.id}>
+              <li key={generateUniqueId("header-navigation")}>
                 <NavLink
                   to={`/${hn.link}`}
                   className={({ isActive }) =>
@@ -86,10 +92,13 @@ const Header = () => {
                         {hn.title}
                         <i className="fa fa-caret-down" />
                       </>
-                      <div class="subnav-content">
+                      <div className="subnav-content">
                         {genres.map((genre) => {
                           return (
-                            <li>
+                            <div
+                              className="subnav-content-list"
+                              key={generateUniqueId("subnav-content")}
+                            >
                               <NavLink
                                 to={`/games/genre/${genre.id}`}
                                 className={({ isActive }) =>
@@ -98,7 +107,7 @@ const Header = () => {
                               >
                                 {genre.title}
                               </NavLink>
-                            </li>
+                            </div>
                           );
                         })}
                       </div>

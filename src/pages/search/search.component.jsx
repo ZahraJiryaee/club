@@ -36,7 +36,6 @@ const SearchPage = () => {
   */
   const firstSliceOfPathname = location.pathname.slice(1).split("/")[0];
   const searchField = location.pathname.slice(1).split("/")[2];
-  console.log("searchField:", searchField);
 
   useEffect(() => {
     switch (firstSliceOfPathname) {
@@ -52,7 +51,7 @@ const SearchPage = () => {
       default:
         break;
     }
-  }, [location, firstSliceOfPathname]);
+  }, [location, firstSliceOfPathname, searchField, dispatch]);
 
   const selector = {
     [routeNames["game"]]: useSelector(

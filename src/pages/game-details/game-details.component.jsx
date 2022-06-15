@@ -12,6 +12,7 @@ import {
 import {
   selectUserApplicationInfo,
   selectIsApplicationInstalled,
+  selectGameDetails,
 } from "../../redux/games/games.selectors";
 
 import GameDetailHeader from "../../components/game-details-header/game-details-header.componetnt";
@@ -39,7 +40,7 @@ const GameDetails = () => {
 
   const { id: gameId } = useParams();
 
-  const gameDetails = useSelector((state) => state.games.gameDetails);
+  const gameDetails = useSelector(selectGameDetails);
   const userApplicationInfo = useSelector(selectUserApplicationInfo);
   const appInstallationStatus = useSelector(selectIsApplicationInstalled);
 
@@ -65,16 +66,16 @@ const GameDetails = () => {
 
   useEffect(() => {
     dispatch(isApplicationInstalled(gameId));
-  }, [gameId]);
+  }, [gameId, dispatch]);
 
   useEffect(() => {
     dispatch(getGameDetailsInformation(gameId));
-  }, [gameId]);
+  }, [gameId, dispatch]);
 
   useEffect(() => {
     dispatch(getUserApplicationInformation(gameId));
     /* returns a award lists that user has achieved -level */
-  }, [gameId]);
+  }, [gameId, dispatch]);
 
   useEffect(() => {
     let userPassedLevels = {};

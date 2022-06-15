@@ -2,9 +2,24 @@ import { createSelector } from "reselect";
 
 const selectGames = (state) => state.games;
 
+export const selectAllGames = createSelector(
+  [selectGames],
+  (games) => games.allGames
+);
+
+export const selectFilteredCategory = createSelector(
+  [selectGames],
+  (games) => games.filteredCategory
+);
+
 export const selectSearchedGameItems = createSelector(
   [selectGames],
   (games) => games.searchedItem
+);
+
+export const selectGameDetails = createSelector(
+  [selectGames],
+  (games) => games.gameDetails
 );
 
 export const selectIsApplicationInstalled = createSelector(
