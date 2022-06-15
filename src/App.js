@@ -1,8 +1,10 @@
 import React, { Fragment, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useRoutes } from "react-router-dom";
 
 import { setCurrentUser } from "./redux/user/user.action";
+
+import { selectIsLoading } from "./redux/user/user.selectors";
 
 import { useSetupAxios } from "./services/httpServices";
 
@@ -17,13 +19,15 @@ function App() {
   const routing = useRoutes(routes);
   const dispatch = useDispatch();
 
+  const isLoading = useSelector(selectIsLoading);
+
   useSetupAxios();
 
   useEffect(() => {
     dispatch(setCurrentUser()).then((response) => {
       console.log("profile response app", response);
     });
-  }, [dispatch]);
+  }, [dispatch, isLoading]);
 
   return (
     <>

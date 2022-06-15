@@ -1,89 +1,93 @@
 import axios from "axios";
 import { useDispatch } from "react-redux";
 
+import {
+  setOpenValidationDialog,
+  setIsLoading,
+} from "./../redux/user/user.action";
+
 import getApis from "./api";
 import localstorageService from "./localstorageService";
-import { error } from "./toastService";
 import { setNewToken } from "./userServices";
 
-import { setOpenValidationDialog } from "./../redux/user/user.action";
+const request = axios.create({});
 
 export function useSetupAxios() {
   const dispatch = useDispatch();
 
-  return (
-    axios.interceptors.request.use(
-      (config) => {
-        const accessToken = localstorageService.getAccessToken();
-        if (accessToken)
-          config.headers["Authorization"] = `Bearer ${accessToken}`;
-        axios.defaults.headers.post["Content-Type"] = "application/json";
-        return config;
-      },
-      (error) => {
-        return Promise.reject(error);
-      }
-    ),
-    axios.interceptors.response.use(
-      (response) => {
-        return response;
-      },
-      async (error) => {
-        const accessToken = localstorageService.getAccessToken();
+  dispatch(setIsLoading(true));
 
-        if (
-          error.response.status === 401 &&
-          error.response.request.responseURL === getApis.newTokenApiEndpoint
-        ) {
-          dispatch(setOpenValidationDialog(true));
-        } else if (error.response.status === 401) {
-          await setNewToken(accessToken)
-            .then((response) => {
-              const { data } = response;
-              localstorageService.setToken({
-                accessToken: data.access,
-                refreshToken: data.refresh,
-              });
-
-              error.config.headers["Authorization"] = `Bearer ${data.access}`;
-              error.config.baseURL = undefined;
-              return axios.request(error.config);
-            })
-            .catch((refreshError) => {
-              if (
-                error.response.request.responseURL ===
-                getApis.userProfileApiEndpoint
-              ) {
-                dispatch(setOpenValidationDialog(false));
-              } else {
-                // dispatch(setOpenValidationDialog(true));
-              }
-
-              if (refreshError.response.status === 401) {
-                localstorageService.clearToken();
-              }
-            });
-        }
-        return Promise.reject(error);
-      }
-    )
+  request.interceptors.request.use(
+    (config) => {
+      const accessToken = localstorageService.getAccessToken();
+      if (accessToken)
+        config.headers["Authorization"] = accessToken
+          ? `Bearer ${accessToken}`
+          : "";
+      request.defaults.headers.post["Content-Type"] = "application/json";
+      return config;
+    },
+    (error) => {
+      return Promise.reject(error);
+    }
   );
+
+  request.interceptors.response.use(
+    (response) => {
+      return response;
+    },
+    async (error) => {
+      const accessToken = localstorageService.getAccessToken();
+
+      if (
+        error.response.status === 401 &&
+        error.response.request.responseURL === getApis.newTokenApiEndpoint
+      ) {
+        dispatch(setOpenValidationDialog(true));
+      } else if (error.response.status === 401) {
+        await setNewToken(accessToken)
+          .then((response) => {
+            const { data } = response;
+            localstorageService.setToken({
+              accessToken: data.access,
+              refreshToken: data.refresh,
+            });
+
+            error.config.headers["Authorization"] = `Bearer ${data.access}`;
+            error.config.baseURL = undefined;
+            // window.location.reload();
+            return request.request(error.config);
+          })
+          .catch((refreshError) => {
+            if (
+              error.response.request.responseURL ===
+              getApis.userProfileApiEndpoint
+            ) {
+              dispatch(setOpenValidationDialog(false));
+            } else {
+              // dispatch(setOpenValidationDialog(true));
+            }
+
+            if (refreshError.response.status === 401) {
+              localstorageService.clearToken();
+            }
+          })
+          .finally(() => {
+            dispatch(setIsLoading(false));
+          });
+      }
+      return Promise.reject(error);
+    }
+  );
+
+  return request;
 }
 
-const errorHandling = (status) => {
-  if (status === 401) {
-  } else if (status === 403) {
-    return error("Access_denied");
-  } else if (status === 404) {
-    return error("یافت نشد");
-  } else {
-    return error("Something went wrong! Please try again.");
-  }
+const http = {
+  get: request.get,
+  post: request.post,
+  put: request.put,
+  delete: request.delete,
 };
 
-export default {
-  get: axios.get,
-  post: axios.post,
-  put: axios.put,
-  delete: axios.delete,
-};
+export default http;

@@ -4,8 +4,13 @@ import { useTranslation } from "react-i18next";
 
 import SpinningWheel from "../../components/spinning-wheel/spinning-wheel.component";
 
-import { getBonusList, setUserBonus } from "../../redux/wheel/wheel.action";
-import { setOpenWheelModal } from "../../redux/wheel/wheel.action";
+import {
+  getBonusList,
+  setUserBonus,
+  setOpenWheelModal,
+} from "../../redux/wheel/wheel.action";
+
+import { selectIsLoading } from "../../redux/user/user.selectors";
 
 import HandPointUp from "./../../assets/images/icon/hand-point-up.png";
 
@@ -18,6 +23,7 @@ const LuckyWheelPage = () => {
   const currentUser = useSelector((state) => state.user.currentUser);
   const bonusList = useSelector((state) => state.wheel.bonusList);
   const setBonus = useSelector((state) => state.wheel.bonus);
+  const isLoading = useSelector(selectIsLoading);
 
   const [userChanceConuter, setUserChanceConuter] = useState(0);
   const [wheelItem, setWheelItem] = useState(6);
@@ -28,7 +34,7 @@ const LuckyWheelPage = () => {
 
   useEffect(() => {
     dispatch(getBonusList());
-  }, [dispatch]);
+  }, [dispatch, isLoading]);
 
   useEffect(() => {
     console.log("currentUser-luck:", currentUser);
