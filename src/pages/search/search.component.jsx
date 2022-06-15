@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { useTranslation } from "react-i18next";
@@ -6,7 +6,9 @@ import { useTranslation } from "react-i18next";
 import {
   setOpenShopModal,
   setShopModalData,
+  getSearchedShopItems,
 } from "../../redux/shop/shop.actions";
+import { getSearchedItem } from "../../redux/games/games.action";
 
 import { selectSearchedGameItemsMappedToSearchPage } from "../../redux/games/games.selectors";
 import { selectSearchedShopItemsMappedToSearchPage } from "../../redux/shop/shop.selectors";
@@ -15,6 +17,8 @@ import GenreHeader from "../../components/genres/genre-header.component";
 import ShopHeader from "../../components/shop-header/shop-header.component";
 
 import { routeNames } from "../../services/routeService";
+
+import shopMock from "../../components/mock/shop.mock";
 
 import StarLogo from "../../assets/images/icon/star.png";
 
@@ -26,7 +30,30 @@ const SearchPage = () => {
   let navigate = useNavigate();
   const { t } = useTranslation();
 
+  /*
+  route format:
+  {the component we are searching on-as firstSliceOfPathname}/"search"/{searchField}
+  */
   const firstSliceOfPathname = location.pathname.slice(1).split("/")[0];
+  const searchField = location.pathname.slice(1).split("/")[2];
+  console.log("searchField:", searchField);
+
+  useEffect(() => {
+    switch (firstSliceOfPathname) {
+      case routeNames.game:
+        dispatch(getSearchedItem(searchField));
+        break;
+
+      case routeNames.shop: {
+        dispatch(getSearchedShopItems([shopMock.shopItems[0]]));
+        break;
+      }
+
+      default:
+        break;
+    }
+  }, [location, firstSliceOfPathname]);
+
   const selector = {
     [routeNames["game"]]: useSelector(
       selectSearchedGameItemsMappedToSearchPage
