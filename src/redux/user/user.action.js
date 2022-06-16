@@ -6,6 +6,7 @@ import {
   getUserProfile,
   setUserProfile,
   setInviterNumber,
+  setDeviceId,
 } from "../../services/userServices";
 import { UserActionTypes } from "./user.types";
 
@@ -169,6 +170,17 @@ export const setUserProfileAddress = (body) => async (dispatch) => {
 export const inviteFriends = (inviterCode) => async () => {
   const accessToken = localStorage.getItem("accessToken");
   await setInviterNumber(inviterCode, accessToken)
+    .then((response) => {
+      console.log(response);
+    })
+    .catch((e) => {
+      //error toast-> e.response.data.message
+    });
+};
+
+export const LinkDeviceID = (deviceID) => async () => {
+  const accessToken = localStorage.getItem("accessToken");
+  await setDeviceId(deviceID, accessToken)
     .then((response) => {
       console.log(response);
     })

@@ -17,6 +17,10 @@ const getLoginTokenApiEndpoint = getAPIUrl() + "/api/v1/user/token";
 //InviterNumer
 const postInviterPhoneNumberApiEndpoint = getAPIUrl() + "/api/v1/user/invite";
 
+//DeviceId
+const postDeviceIdApiEndpoint =
+  getAPIUrl() + "/api/v1/user/sync/device/request";
+
 ////////////////////////////////////////////////////////////////////
 
 //Signup//
@@ -65,4 +69,11 @@ export const setInviterNumber = (inviterNumber) => {
   const body = { inviter_number: inviterNumber };
   JSON.stringify(body);
   return http.post(postInviterPhoneNumberApiEndpoint, body);
+};
+
+//DeviceId//
+export const setDeviceId = (deviceId) => {
+  const body = { public_id: deviceId };
+  JSON.stringify(body);
+  return http.post(postDeviceIdApiEndpoint, body);
 };

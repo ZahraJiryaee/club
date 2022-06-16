@@ -54,7 +54,8 @@ const ProfilePage = () => {
       </div>
       <div className="profile-details">
         {ProfileMenu.map((item) => {
-          if (item.title === "Inviter_Code" && currentUser.has_invited)
+          if (item.title === "" && currentUser?.has_invited)
+            // if (item.title === "Inviter_Code" && currentUser.has_invited)
             return null;
           else
             return (

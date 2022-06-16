@@ -10,7 +10,7 @@ import FriendsIcon from "./../../../assets/images/icon/invite-friends.png";
 
 import "../profile.styles.scss";
 
-const SetInviterCode = () => {
+const InviterCodePage = () => {
   const { pathname } = useLocation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -72,4 +72,4 @@ const SetInviterCode = () => {
   );
 };
 
-export default SetInviterCode;
+export default InviterCodePage;

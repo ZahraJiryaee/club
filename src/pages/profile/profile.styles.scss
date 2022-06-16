@@ -197,4 +197,104 @@
       }
     }
   }
+
+  .device-id-container {
+    .header-container {
+      padding: 0 20%;
+
+      @media #{$large-mobile} {
+        padding: 0 10%;
+      }
+
+      .description-text {
+        font-size: 18px;
+        font-weight: 500;
+        line-height: 1.69;
+        color: $theme-color--dark;
+        text-align: right;
+
+        @media #{$large-mobile} {
+          font-size: 15px;
+          font-weight: 700;
+        }
+      }
+    }
+    .set-device-id-container {
+      width: 100%;
+      margin-top: 64px;
+      direction: rtl;
+
+      .device-code {
+        padding: 0 30%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        @media #{$desktop-device} {
+          padding: 0 20%;
+        }
+        @media #{$large-mobile} {
+          padding: 0 5%;
+        }
+
+        .title-input {
+          color: $theme-color--marine-blue;
+          font-size: 18px;
+          font-weight: 500;
+          margin-left: 16px;
+          @media #{$large-mobile} {
+            font-size: 15px;
+            font-weight: 700;
+          }
+        }
+
+        .code-input {
+          width: 220px;
+          height: 40px;
+          background-color: $theme-color--input-grey;
+          color: $theme-color--marine-blue;
+          border: none;
+          border-radius: 50px;
+          position: relative;
+          outline: none;
+          font-family: $font-family-iransans;
+          font-size: 18px;
+          font-weight: 500;
+          padding: 0 16px;
+          display: flex;
+          text-align: center;
+
+          @media #{$large-mobile} {
+            width: 150px;
+            font-size: 15px;
+          }
+        }
+      }
+
+      .btn-container {
+        margin: 36px 0;
+
+        .enter-btn {
+          color: $theme-color--white;
+          width: 220px;
+          height: 45px;
+          font-size: 18px;
+          font-weight: 500;
+          background-color: $theme-color--marine-blue;
+          border: none;
+          border-radius: 20px;
+          font-family: IranSans;
+          line-height: 0.8;
+          letter-spacing: -0.36px;
+          cursor: pointer;
+
+          @media #{$large-mobile} {
+            width: 160px;
+            height: 40px;
+            font-size: 15px;
+          }
+        }
+      }
+    }
+  }
 }
