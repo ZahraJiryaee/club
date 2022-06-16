@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import React, { useEffect } from "react";
+import { useLocation } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 import { RWebShare } from "react-web-share";
 
@@ -15,7 +15,10 @@ const InviteFriendsPage = () => {
   const dispatch = useDispatch();
   const { t } = useTranslation();
 
-  let phoneNumber = "09194051966";
+  const currentUser = useSelector((state) => state.user.currentUser);
+
+  const phoneNumber = currentUser?.mobile_number;
+
   useEffect(() => {
     dispatch(setHeaderMode(pathname));
   }, []);
