@@ -12,6 +12,7 @@ import LeaderBoardPage from "./pages/leaderboard/leaderboard.component";
 import ShopPage from "./pages/shop/shop.component";
 import ProfilePage from "./pages/profile/profile.component";
 import EditProfilePage from "./pages/profile/edit-profile/edit-profile.conponent";
+import GiftHistorypage from "./pages/profile/gitt-history/gift-history.component";
 import InviterCodePage from "./pages/profile/inviter-code/inviter-code.component";
 import DeviceIdPage from "./pages/profile/device-id/device-id.components";
 import InviteFriendsPage from "./pages/profile/invite-friends/invite-friends.component";
@@ -27,6 +28,10 @@ const routes = [
       {
         path: `${routeNames.profile}/edit-information`,
         element: <EditProfilePage />,
+      },
+      {
+        path: `${routeNames.profile}/gift-history`,
+        element: <GiftHistorypage />,
       },
       {
         path: `${routeNames.profile}/set-inviter`,

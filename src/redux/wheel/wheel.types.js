@@ -1,5 +1,6 @@
 export const WheelActionTypes = {
   SET_BONUS_LIST: "SET_BONUS_LIST",
   SET_BONUS: "SET_BONUS",
+  GET_BONUS_LOG: "GET_BONUS_LOG",
   OPEN_WHEEL_MODAL: "OPEN_WHEEL_MODAL",
 };
