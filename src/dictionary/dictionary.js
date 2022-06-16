@@ -38,6 +38,7 @@ const resources = {
       X_Results_Were_Found: "مورد یافت شد.",
       All: "همه",
       Prize: "جایزه",
+      Prizes: "جوایز",
       Leaderboard_Table: "جدول رده‌بندی",
       Weekly: "هفتگی",
       Purchase: "خرید",
@@ -74,6 +75,25 @@ const resources = {
       Invite_Friends_Message_Title: "مدریک کلاب 😊",
       Invite_Friends_Message_Text:
         "گردونه رو بچرخون و از مدریک کلاب جایزه بگیر!\nاگه شماره تلفن من ({{phoneNumber}}) رو هم به عنوان معرف ثبت کنی، شانس چرخوندن بیشتری بهت داده میشه.",
+
+      Thousand: "هزار",
+      Active_Installation: "نصب فعال",
+      Size: "حجم",
+      Megabytes: "مگابایت",
+      Creator: "سازنده",
+      Install: "نصب",
+      Game_Introduction: "معرفی برنامه",
+      More: "بیشتر",
+      More_Extended: "بیشـــتر",
+      Less: "کمتر",
+      Awards_That_Can_Be_Achieved_With_This_Game:
+        "جوایزی که با این بازی می‌تونی بگیری:",
+      Install_This_App_And: "این برنامه را نصب کنبد و",
+      Get_X_Points: "امتیاز دریافت کنید",
+      And: "و",
+      Similar_Games: "بازی‌های مشابه",
+      Achieve_X_Points_By_Installing_This_Game:
+        "امتیاز با نصب این بازی دریافت کنید.",
     },
   },
 };

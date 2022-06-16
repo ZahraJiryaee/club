@@ -1,14 +1,26 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
-import { getGameDetailsInformation } from "../../redux/games/games.action";
+import {
+  getGameDetailsInformation,
+  getUserApplicationInformation,
+  isApplicationInstalled,
+} from "../../redux/games/games.action";
+
+import {
+  selectUserApplicationInfo,
+  selectIsApplicationInstalled,
+} from "../../redux/games/games.selectors";
 
 import GameDetailHeader from "../../components/game-details-header/game-details-header.componetnt";
 import GamesRow from "../../components/games/games-row/games-row.component";
 import DownloadAppsBottomSheet from "../../components/download-apps-bottom-sheet/download-apps-bottom-sheet.component";
 
-// import level from "../../components/mock/level.mock";
+import { routeNames } from "../../services/routeService";
+
+// import {levelMock,purchaseMock,userAppInfoMock,} from "../../components/mock/level.mock";
 
 import InstagramIcon from "../../assets/images/icon/instagram.png";
 import ArrowIconMB from "../../assets/images/icon/arrow-back-marineblue.png";
@@ -22,55 +34,103 @@ import "./game-details.styles.scss";
 
 const GameDetails = () => {
   const dispatch = useDispatch();
+  let navigate = useNavigate();
+  const { t } = useTranslation();
 
   const { id: gameId } = useParams();
 
   const gameDetails = useSelector((state) => state.games.gameDetails);
+  const userApplicationInfo = useSelector(selectUserApplicationInfo);
+  const appInstallationStatus = useSelector(selectIsApplicationInstalled);
+
   console.log("gameDetails:", gameDetails);
+  console.log("userApplicationInfo:", userApplicationInfo);
+  console.log("appInstallationStatus:", appInstallationStatus);
 
   const [showMore, setShowMore] = useState(false);
   const [openBtmSheet, setOpenBtmSheet] = useState(false);
 
-  const [levelLength, setLevelLength] = useState(0);
-  const [levelFilterConuter, setLevelFilterConuter] = useState(0);
-  const [levelFilterClickTimes, setLevelFilterClickTimes] = useState(0);
+  const [awardsThatUserPassed, setAwardsThatUserPassed] = useState({});
+  const [awardsList, setAwardsList] = useState([]);
+  const [awardsListLength, setAwardsListLength] = useState(0);
+  const [awardsListFilterConuter, setAwardsListFilterConuter] = useState(0);
+  const [awardsListFilterClickTimes, setAwardsListFilterClickTimes] =
+    useState(0);
   const howManyItemToShowOnEachClick = 4;
-  const [levelFilter, setLevelFilter] = useState(howManyItemToShowOnEachClick);
-  const [levelTxt, setLevelTxt] = useState(true); /* true=>بیشتر  false=>کمتر */
+  const [awardsListFilter, setAwardsListFilter] = useState(
+    howManyItemToShowOnEachClick
+  );
+  const [awardsListTxt, setAwardsListTxt] =
+    useState(true); /* true=>show more  false=>show less */
+
+  useEffect(() => {
+    dispatch(isApplicationInstalled(gameId));
+  }, [gameId]);
 
   useEffect(() => {
     dispatch(getGameDetailsInformation(gameId));
   }, [gameId]);
 
   useEffect(() => {
-    if (gameDetails.length !== 0) {
-      const { level } = gameDetails;
-      setLevelLength(level.length);
-      setLevelFilterConuter(
-        level.length > howManyItemToShowOnEachClick ? 1 : 0
-      );
-      setLevelFilterClickTimes(
-        (level.length / howManyItemToShowOnEachClick) % 1 === 0
-          ? level.length / howManyItemToShowOnEachClick - 1
-          : level.length / howManyItemToShowOnEachClick
-      );
-    }
+    dispatch(getUserApplicationInformation(gameId));
+    /* returns a award lists that user has achieved -level */
+  }, [gameId]);
+
+  useEffect(() => {
+    let userPassedLevels = {};
+    userApplicationInfo.forEach(
+      (item) => (userPassedLevels[item.level.id] = true)
+    );
+    console.log("userPassedLevels:", userPassedLevels);
+    setAwardsThatUserPassed(userPassedLevels);
+  }, [userApplicationInfo]);
+
+  useEffect(() => {
+    let level_purchase = [];
+    /* ------------- Load Data --------------- */
+    /* original */
+    const { level } = gameDetails;
+    const { purchase } = gameDetails;
+    /* mock */
+    // const level = levelMock;
+    // const purchase = purchaseMock;
+    /* -------------------------------------- */
+    level.forEach((level) => {
+      level_purchase.push({ ...level, _customType: "level" });
+    });
+    purchase.forEach((purchase) => {
+      level_purchase.push({ ...purchase, _customType: "purchase" });
+    });
+    console.log("level_purchase:", level_purchase);
+    setAwardsList(level_purchase);
+    //
+    setAwardsListLength(level_purchase.length);
+    setAwardsListFilterConuter(
+      level_purchase.length > howManyItemToShowOnEachClick ? 1 : 0
+    );
+    setAwardsListFilterClickTimes(
+      (level_purchase.length / howManyItemToShowOnEachClick) % 1 === 0
+        ? level_purchase.length / howManyItemToShowOnEachClick - 1
+        : level_purchase.length / howManyItemToShowOnEachClick
+    );
   }, [gameDetails]);
 
   useEffect(() => {
-    if (levelFilterConuter > levelFilterClickTimes) {
-      setLevelTxt(false);
+    if (awardsListFilterConuter > awardsListFilterClickTimes) {
+      setAwardsListTxt(false);
     }
-  }, [levelFilterConuter, levelFilterClickTimes]);
+  }, [awardsListFilterConuter, awardsListFilterClickTimes]);
 
   const handleMoreBonusClick = () => {
-    setLevelFilter(levelFilter + howManyItemToShowOnEachClick);
-    setLevelFilterConuter(levelFilterConuter + 1);
+    setAwardsListFilter(awardsListFilter + howManyItemToShowOnEachClick);
+    setAwardsListFilterConuter(awardsListFilterConuter + 1);
 
-    if (!levelTxt) {
-      setLevelFilter(howManyItemToShowOnEachClick);
-      setLevelFilterConuter(levelLength > howManyItemToShowOnEachClick ? 1 : 0);
-      setLevelTxt(true);
+    if (!awardsListTxt) {
+      setAwardsListFilter(howManyItemToShowOnEachClick);
+      setAwardsListFilterConuter(
+        awardsListLength > howManyItemToShowOnEachClick ? 1 : 0
+      );
+      setAwardsListTxt(true);
     }
   };
 
@@ -111,9 +171,11 @@ const GameDetails = () => {
             <div className="game-detail-list-info-container">
               <ul>
                 <li>
-                  <span>+{gameDetails.user_install_counter / 1000} هزار</span>
+                  <span>
+                    +{gameDetails.user_install_counter / 1000} {t("Thousand")}
+                  </span>
                   <br />
-                  <span>نصب فعال</span>
+                  <span>{t("Active_Installation")}</span>
                 </li>
                 <hr />
                 <li>
@@ -122,17 +184,19 @@ const GameDetails = () => {
                     <StarLogo />
                   </span>
                   <br />
-                  <span>امتیاز</span>
+                  <span>{t("Score")}</span>
                 </li>
                 <hr />
                 <li>
-                  <span>حجم</span>
+                  <span>{t("Size")}</span>
                   <br />
-                  <span>{gameDetails.size} مگابایت</span>
+                  <span>
+                    {gameDetails.size} {t("Megabytes")}
+                  </span>
                 </li>
                 <hr />
                 <li>
-                  <span>سازنده</span>
+                  <span>{t("Creator")}</span>
                   <br />
                   <span>{gameDetails.creator}</span>
                 </li>
@@ -141,16 +205,16 @@ const GameDetails = () => {
                 className="install-btn"
                 onClick={() => setOpenBtmSheet(true)}
               >
-                نصب
+                {t("Install")}
               </button>
             </div>
           </div>
           {/* intro */}
           <div className="game-detail-intro-container">
             <div className="game-detail-header">
-              <p className="title">معرفی برنامه</p>
+              <p className="title">{t("Game_Introduction")}</p>
               <p className="more" onClick={() => setShowMore(!showMore)}>
-                {showMore ? "کمتر" : "بیشتر"}
+                {showMore ? t("Less") : t("More")}
                 <img src={ArrowIconMB} alt="arrow-back" />
               </p>
             </div>
@@ -169,8 +233,8 @@ const GameDetails = () => {
               {gameDetails.description}
             </div>
           </div>
-          {/* levels */}
-          {gameDetails.level.length > 0 && (
+          {/* Awards List */}
+          {awardsList.length > 0 && (
             <div className="game-detail-level-container">
               <img
                 className="game-detail-level-badge"
@@ -178,40 +242,74 @@ const GameDetails = () => {
                 alt="level-badge"
               />
               <p className="game-detail-level-header">
-                جوایزی که با این بازی می‌تونی بگیری:
+                {t("Awards_That_Can_Be_Achieved_With_This_Game")}
               </p>
               <ul className="game-detail-level-list-container">
                 <li>
                   <span className="level-icons">
-                    <img src={NotCheckedIcon} alt="check-icon" />
+                    <img
+                      src={
+                        appInstallationStatus.is_install
+                          ? CheckedIcon
+                          : NotCheckedIcon
+                      }
+                      alt="check-icon"
+                      className="check-icon"
+                    />
                   </span>
-                  <span>
-                    این برنامه را نصب کنبد و {gameDetails.install_score_counter}{" "}
-                    امتیاز دریافت کنید
+                  <span
+                    className={`${
+                      appInstallationStatus.is_install ? "color-dark-65" : ""
+                    }`}
+                  >
+                    {t("Install_This_App_And")}{" "}
+                    {gameDetails.install_score_counter} {t("Get_X_Points")}
                   </span>
                 </li>
-                {gameDetails.level
-                  .filter((level, idx) => idx < levelFilter)
-                  .map((level) => (
-                    <div key={level.id}>
-                      <li>
-                        <span className="level-icons">
-                          <img src={NotCheckedIcon} alt="check-icon" />
-                        </span>
-                        <span>
-                          به مرحله {level.level} برسید و{" "}
-                          {level.reach_score_counter} امتیاز دریافت نمایید
-                        </span>
-                      </li>
-                    </div>
-                  ))}
+                {awardsList
+                  .filter((award, idx) => idx < awardsListFilter)
+                  .map((award, idx) => {
+                    return (
+                      <div key={award.id}>
+                        <li>
+                          <span className="level-icons">
+                            {award._customType === "level" ? (
+                              <img
+                                src={
+                                  awardsThatUserPassed[award.id]
+                                    ? CheckedIcon
+                                    : NotCheckedIcon
+                                }
+                                alt="check-icon"
+                                className="check-icon"
+                              />
+                            ) : null}
+                          </span>
+                          <span
+                            className={`${
+                              awardsThatUserPassed[award.id]
+                                ? "color-dark-65"
+                                : ""
+                            }`}
+                          >
+                            {award.description} {t("And")}{" "}
+                            {award.reach_score_counter} {t("Get_X_Points")}
+                          </span>
+                        </li>
+                      </div>
+                    );
+                  })}
               </ul>
               <div className="more-bonus" onClick={handleMoreBonusClick}>
                 <span className="txt">
-                  جوایز {levelTxt ? "بیشـــتر" : "کمتر"}
+                  {t("Prizes")} {awardsListTxt ? t("More_Extended") : t("Less")}
                 </span>
-                <span className={`${!levelTxt ? "reverse-arrow" : ""}`}>
-                  <img src={BlueArrowIcon} alt="arrow-down" />
+                <span className={`${!awardsListTxt ? "reverse-arrow" : ""}`}>
+                  <img
+                    className="more-bonus-arrow"
+                    src={BlueArrowIcon}
+                    alt="arrow-down"
+                  />
                 </span>
               </div>
             </div>
@@ -219,17 +317,24 @@ const GameDetails = () => {
           {/* simiral games */}
           {gameDetails.suggest.length > 0 && (
             <div className="game-detail-simiral-games-container">
-              <div
-                className="game-detail-header"
-                // onClick={() => navigate(`/games/category/${category.id}`)}
-              >
-                <p className="title">بازی‌های مشابه</p>
-                <p className="more">
-                  بیشتر
+              <div className="game-detail-header">
+                <p className="title">{t("Similar_Games")}</p>
+                <p
+                  className="more"
+                  onClick={() => {
+                    return navigate(
+                      `/${routeNames.game}/category/${gameDetails.categories[0].id}`
+                    );
+                  }}
+                >
+                  {t("More")}
                   <img src={ArrowIconMB} alt="arrow-back" />
                 </p>
               </div>
-              <GamesRow applications={gameDetails.suggest} />
+              <GamesRow
+                applications={gameDetails.suggest}
+                page={routeNames.game}
+              />
             </div>
           )}
         </div>

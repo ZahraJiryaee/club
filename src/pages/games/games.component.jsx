@@ -1,6 +1,7 @@
 import React, { useEffect, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 import { getAllGenres } from "../../redux/genres/genres.action";
 import { getAllGames } from "../../redux/games/games.action";
@@ -13,12 +14,15 @@ import GamesRow from "../../components/games/games-row/games-row.component";
 import BannerGames from "../../components/games/games-banner/games-banner.component";
 
 import ArrowIconMB from "../../assets/images/icon/arrow-back-marineblue.png";
+
 import "./games.styles.scss";
 import "../game-details/game-details.styles.scss";
 
 const GamesPage = () => {
   const { pathname } = useLocation();
   const dispatch = useDispatch();
+  const { t } = useTranslation();
+
   const games = useSelector((state) => state.games.allGames);
 
   const setGamesAndGenres = useCallback(async () => {
@@ -50,14 +54,14 @@ const GamesPage = () => {
                   className="more"
                 >
                   <p className="more">
-                    بیشتر
+                    {t("More")}
                     <img src={ArrowIconMB} alt="arrow-back" />
                   </p>
                 </Link>
               </div>
               <GamesRow
                 applications={category.applications}
-                page="games-page"
+                page={routeNames.game}
               />
             </div>
           ) : (

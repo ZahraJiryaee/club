@@ -1,6 +1,9 @@
 import React from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { useTranslation } from "react-i18next";
+
+import { routeNames } from "../../services/routeService";
 
 import StarLogo from "../../assets/images/icon/star.png";
 
@@ -8,6 +11,7 @@ import "./genre-view.styles.scss";
 
 const GenreView = ({ title }) => {
   let navigate = useNavigate();
+  const { t } = useTranslation();
 
   const { type } = useParams();
 
@@ -18,6 +22,10 @@ const GenreView = ({ title }) => {
 
   if (type === "genre") filteredData = filteredGenre;
   else if (type === "category") filteredData = filteredCategory;
+
+  const navigateToGameDetails = (applicationId) => {
+    return navigate(`/${routeNames.game}/detail/${applicationId}`);
+  };
 
   return (
     <div className="genre-page">
@@ -37,20 +45,24 @@ const GenreView = ({ title }) => {
                     src={application.source.icon}
                     alt="game-icon"
                     onClick={() => {
-                      return navigate(`/games/detail/${application.id}`, {
-                        state: {
-                          application: application,
-                          category: { applications: [] },
-                        },
-                      });
+                      navigateToGameDetails(application.id);
                     }}
                   />
                   <div className="name-shortDes-score">
-                    <span className="name">{application.name}</span>
+                    <span
+                      className="name"
+                      onClick={() => {
+                        navigateToGameDetails(application.id);
+                      }}
+                    >
+                      {application.name}
+                    </span>
                     <span className="shortDes">
                       {application.short_description}
                     </span>
-                    <span className="score">{`${application.install_score_counter} امتیاز با نصب این بازی دریافت کنید.`}</span>
+                    <span className="score">{`${
+                      application.install_score_counter
+                    } ${t("Achieve_X_Points_By_Installing_This_Game")}`}</span>
                   </div>
                 </div>
                 <div className="rate-container">

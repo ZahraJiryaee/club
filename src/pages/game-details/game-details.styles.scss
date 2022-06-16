@@ -261,6 +261,7 @@
 
         @media #{$extra-small-mobile} {
           display: block;
+          cursor: pointer;
         }
       }
     }
@@ -286,10 +287,18 @@
       font-size: 26px;
       font-weight: bold;
       color: #ff3b30;
+
+      @media #{$small-mobile} {
+        font-size: 15px;
+      }
     }
 
     .game-detail-level-list-container {
       padding: 15px 0 0;
+
+      @media #{$small-mobile} {
+        padding: 8px 0 0;
+      }
 
       li {
         padding: 8px 0;
@@ -299,10 +308,25 @@
         justify-content: flex-start;
         align-items: center;
         line-height: 1.11;
-        // color: ;
 
         .level-icons {
-          padding: 0 16px;
+          width: 56px;
+
+          display: flex;
+          justify-content: center;
+          align-items: center;
+
+          @media #{$small-mobile} {
+            width: 30px;
+            .check-icon {
+              width: 10.6px;
+              height: 10px;
+            }
+          }
+        }
+
+        @media #{$small-mobile} {
+          font-size: 13px;
         }
       }
     }
@@ -318,11 +342,22 @@
         font-size: 18px;
         font-weight: 500;
         color: $theme-color--marine-deep-sky-blue;
+
+        @media #{$small-mobile} {
+          font-size: 13px;
+        }
       }
 
       .reverse-arrow {
         transform: rotate(180deg);
         transition: 0.3s;
+      }
+
+      .more-bonus-arrow {
+        @media #{$small-mobile} {
+          width: 10px;
+          height: 5.7px;
+        }
       }
     }
   }
@@ -360,6 +395,7 @@
     letter-spacing: -0.19px;
     text-align: left;
     color: $theme-color--marine-blue;
+    cursor: pointer;
 
     img {
       width: 5.7px;

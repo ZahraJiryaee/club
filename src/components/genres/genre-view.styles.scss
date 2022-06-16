@@ -51,6 +51,7 @@
           width: 92px;
           height: 86px;
           border-radius: 15px;
+          cursor: pointer;
           @media #{$small-mobile} {
             width: 65px;
             height: 60px;
@@ -66,6 +67,7 @@
             font-size: 18px;
             font-weight: 500;
             color: $theme-color--dark;
+            cursor: pointer;
             @media #{$small-mobile} {
               font-size: 15px;
             }

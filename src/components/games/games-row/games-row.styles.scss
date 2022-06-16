@@ -89,6 +89,7 @@
         width: var(--games-row-image-width);
         height: 86px;
         border-radius: 15px;
+        cursor: pointer;
         @media #{$small-mobile} {
           // --games-row-image-width: 65px;
           // width: 65px;
@@ -105,6 +106,7 @@
           font-size: 18px;
           font-weight: 500;
           color: $theme-color--dark;
+          cursor: pointer;
           @media #{$small-mobile} {
             font-size: 15px;
           }

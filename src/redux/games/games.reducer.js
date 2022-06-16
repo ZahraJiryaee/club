@@ -5,6 +5,8 @@ const INITIAL_STATE = {
   filteredCategory: [],
   searchedItem: [],
   gameDetails: [],
+  userApplicationInfo: [],
+  isApplicationInstalled: false,
 };
 
 const gamesReducer = (state = INITIAL_STATE, action) => {
@@ -28,6 +30,16 @@ const gamesReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         gameDetails: action.payload,
+      };
+    case GamesActionTypes.GET_USER_APPLICATION_INFO:
+      return {
+        ...state,
+        userApplicationInfo: action.payload,
+      };
+    case GamesActionTypes.IS_APPLICATION_INSTALLED:
+      return {
+        ...state,
+        isApplicationInstalled: action.payload,
       };
     default:
       return state;

@@ -1,24 +1,28 @@
 import http from "./httpServices";
-import { getAPIUrl } from "./api";
-
-const getGamesApiEndpoint = getAPIUrl() + "/api/v1/application/";
-const getFilteredCategoryApiEndpoint =
-  getAPIUrl() + "/api/v1/application/filter";
+import getApis from "./api";
 
 export const getGames = () => {
-  return http.get(getGamesApiEndpoint);
+  return http.get(getApis.getGamesApiEndpoint);
 };
 
 export const getFilteredCategory = (id) => {
   const params = { categories: id };
-  return http.get(getFilteredCategoryApiEndpoint, { params });
+  return http.get(getApis.getFilteredCategoryApiEndpoint, { params });
 };
 
 export const getSearchedApplication = (id) => {
   const params = { search: id };
-  return http.get(getFilteredCategoryApiEndpoint, { params });
+  return http.get(getApis.getFilteredCategoryApiEndpoint, { params });
 };
 
 export const getGameDetails = (id) => {
-  return http.get(getGamesApiEndpoint + id);
+  return http.get(getApis.getGamesApiEndpoint + id);
+};
+
+export const getUserApplicationInfo = (gameId) => {
+  return http.get(getApis.getUserApplicationInfoEndpoint + gameId);
+};
+
+export const isAppInstalled = (gameId) => {
+  return http.get(getApis.isAppInstalledEndpoint + gameId);
 };
