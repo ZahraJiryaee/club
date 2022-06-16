@@ -196,6 +196,29 @@
         color: $theme-color--brownish-grey !important;
       }
     }
+    .invite-friends-container {
+      margin-top: 64px;
+      .share-btn {
+        color: $theme-color--white;
+        width: 220px;
+        height: 45px;
+        font-size: 18px;
+        font-weight: 500;
+        background-color: $theme-color--marine-blue;
+        border: none;
+        border-radius: 20px;
+        font-family: IranSans;
+        line-height: 0.8;
+        letter-spacing: -0.36px;
+        cursor: pointer;
+
+        @media #{$large-mobile} {
+          width: 160px;
+          height: 40px;
+          font-size: 15px;
+        }
+      }
+    }
   }
 
   .device-id-container {

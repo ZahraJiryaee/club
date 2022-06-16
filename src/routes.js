@@ -12,8 +12,9 @@ import LeaderBoardPage from "./pages/leaderboard/leaderboard.component";
 import ShopPage from "./pages/shop/shop.component";
 import ProfilePage from "./pages/profile/profile.component";
 import EditProfilePage from "./pages/profile/edit-profile/edit-profile.conponent";
-import InviterCodePage from "./pages/profile/inviter-code/inviter-code.components";
+import InviterCodePage from "./pages/profile/inviter-code/inviter-code.component";
 import DeviceIdPage from "./pages/profile/device-id/device-id.components";
+import InviteFriendsPage from "./pages/profile/invite-friends/invite-friends.component";
 
 import { routeNames } from "./services/routeService";
 
@@ -30,6 +31,10 @@ const routes = [
       {
         path: `${routeNames.profile}/set-inviter`,
         element: <InviterCodePage />,
+      },
+      {
+        path: `${routeNames.profile}/invite-friends`,
+        element: <InviteFriendsPage />,
       },
       {
         path: `${routeNames.profile}/connet-device`,
