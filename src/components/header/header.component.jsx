@@ -15,6 +15,7 @@ import { sidebarNavigation, headerNavigation } from "../../model/header.model";
 import Loading from "../common/loading/loading.component";
 
 import generateUniqueId from "../../services/generateUniqueId";
+import { routeNames } from "../../services/routeService";
 
 import "./header.styles.scss";
 
@@ -61,7 +62,7 @@ const Header = () => {
       </div>
       {/* ---------------------- Logo --------------------------- */}
       <div className="logo">
-        <NavLink to="/lucky-wheel">
+        <NavLink to={`/${routeNames.lucky_wheel}`}>
           <img src={Logo} alt="navbar-logo" />
         </NavLink>
       </div>

@@ -9,9 +9,9 @@ export const sidebarNavigation = [
 ];
 
 export const headerNavigation = [
-  { id: "hn1", title: "گردونه", link: "lucky-wheel" },
+  { id: "hn1", title: "گردونه", link: `${routeNames.lucky_wheel}` },
   { id: "hn2", title: "بازی‌ها", link: `${routeNames.game}/genre/all` },
   { id: "hn3", title: "فروشگاه", link: `${routeNames.shop}` },
-  { id: "hn4", title: "رده‌بندی", link: "leaderboard" },
+  { id: "hn4", title: "رده‌بندی", link: `${routeNames.leaderboard}` },
   { id: "hn5", title: "پروفایل", link: "profile" },
 ];

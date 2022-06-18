@@ -22,9 +22,9 @@ const Footer = () => {
   const MapUrlToIndicatorNum = () => {
     if (pathname.includes("profile")) return -2;
     else if (pathname.includes(`${routeNames.shop}`)) return -1;
-    else if (pathname.includes("lucky-wheel")) return 0;
+    else if (pathname.includes(`${routeNames.lucky_wheel}`)) return 0;
     else if (pathname.includes(`${routeNames.game}`)) return 1;
-    else if (pathname.includes("leaderboard")) return 2;
+    else if (pathname.includes(`${routeNames.leaderboard}`)) return 2;
   };
 
   return (
@@ -73,12 +73,12 @@ const Footer = () => {
             </li>
             <li
               className={`list ${
-                pathname.includes("lucky-wheel") ? "active" : ""
+                pathname.includes(`${routeNames.lucky_wheel}`) ? "active" : ""
               }`}
             >
-              <NavLink to="/lucky-wheel">
+              <NavLink to={`/${routeNames.lucky_wheel}`}>
                 <span className="icon">
-                  {pathname === "/lucky-wheel" ? (
+                  {pathname === `/${routeNames.lucky_wheel}` ? (
                     <ActiveWheelLogo />
                   ) : (
                     <WheelLogo />
@@ -105,12 +105,12 @@ const Footer = () => {
             </li>
             <li
               className={`list ${
-                pathname.includes("leaderboard") ? "active" : ""
+                pathname.includes(`${routeNames.leaderboard}`) ? "active" : ""
               }`}
             >
-              <NavLink to="/leaderboard">
+              <NavLink to={`/${routeNames.leaderboard}`}>
                 <span className="icon">
-                  {pathname === "/leaderboard" ? (
+                  {pathname === `/${routeNames.leaderboard}` ? (
                     <ActiveLeaderBoardLogo />
                   ) : (
                     <LeaderBoardLogo />

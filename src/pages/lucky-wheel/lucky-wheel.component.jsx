@@ -36,6 +36,7 @@ const LuckyWheelPage = () => {
   };
 
   useEffect(() => {
+    console.log("isLoading::", isLoading);
     dispatch(getBonusList());
   }, [dispatch, isLoading]);
 
