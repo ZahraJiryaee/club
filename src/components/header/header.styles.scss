@@ -280,7 +280,7 @@ header {
     &.transparent {
       background-color: transparent;
     }
-    &.games {
+    &.full-gradient {
       background-color: $theme-color--navbar-medium-blue;
       background-image: linear-gradient(
         to bottom,
@@ -288,7 +288,7 @@ header {
         $theme-color--navbar-medium-blue
       );
     }
-    &.simple {
+    &.half-gradient {
       background-image: linear-gradient(
         to bottom,
         $theme-color--navbar-dark-blue,

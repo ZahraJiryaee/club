@@ -12,8 +12,8 @@ export const setHeaderMode = (pathname) => async (dispatch) => {
     pathname.includes("leaderboard") ||
     pathname.includes(`${routeNames.shop}`)
   )
-    headerMode = "games";
-  else headerMode = "simple";
+    headerMode = "full-gradient";
+  else headerMode = "half-gradient";
 
   await dispatch({
     type: HeaderActionTypes.GET_HEADER_MODE,
