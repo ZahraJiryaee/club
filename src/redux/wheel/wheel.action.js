@@ -1,6 +1,7 @@
 import { WheelActionTypes } from "./wheel.types";
 
 import { retrieveBonusList, setBonus } from "./../../services/wheelService";
+import { error } from "./../../services/toastService";
 
 export const getBonusList = () => async (dispatch) => {
   let result;
@@ -40,6 +41,9 @@ export const setUserBonus = () => async (dispatch) => {
       //error toast-> e.response.data.message
       console.log("e:", e, "-", e.response);
       result = e.response;
+      if (e.response.status === 403) {
+        error("دوباره تلاش کنید!");
+      }
       dispatch({
         type: WheelActionTypes.SET_BONUS,
         payload: null,
@@ -50,5 +54,10 @@ export const setUserBonus = () => async (dispatch) => {
 
 export const setOpenWheelModal = (value) => ({
   type: WheelActionTypes.OPEN_WHEEL_MODAL,
+  payload: value,
+});
+
+export const setWantMoreChanceModaMode = (value) => ({
+  type: WheelActionTypes.IS_WANT_MORE_CHANCE_MODAL_OPEN,
   payload: value,
 });

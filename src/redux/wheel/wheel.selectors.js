@@ -16,3 +16,8 @@ export const selectOpenWheelModal = createSelector(
   [selectWheel],
   (wheel) => wheel.openWheelModal
 );
+
+export const selectIsWantMorreChanceModalOpen = createSelector(
+  [selectWheel],
+  (wheel) => wheel.isWantMorreChanceModalOpen
+);

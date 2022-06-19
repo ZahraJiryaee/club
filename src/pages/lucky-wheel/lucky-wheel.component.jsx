@@ -8,6 +8,7 @@ import {
   getBonusList,
   setUserBonus,
   setOpenWheelModal,
+  setWantMoreChanceModaMode,
 } from "../../redux/wheel/wheel.action";
 
 import {
@@ -42,9 +43,7 @@ const LuckyWheelPage = () => {
 
   useEffect(() => {
     console.log("currentUser-luck:", currentUser);
-    if (currentUser) {
-      setUserChanceConuter(currentUser.chance_counter);
-    }
+    setUserChanceConuter(currentUser ? currentUser.chance_counter : "?");
   }, [currentUser]);
 
   const [isWheelSpinning, setIsWheelSpinning] = useState(false);
@@ -85,6 +84,10 @@ const LuckyWheelPage = () => {
       setTimeout(spinHandler, 450);
     }
   }, []);
+
+  const handleWantMoreChanceClick = () => {
+    dispatch(setWantMoreChanceModaMode(true));
+  };
 
   return (
     <div className="blue-bg outer-box">
@@ -127,7 +130,9 @@ const LuckyWheelPage = () => {
           src={HandPointUp}
           alt="hand-point-up"
         />
-        <p className="click-here--text">{t("Lucky_Wheel_Click_Here")}</p>
+        <p className="click-here--text" onClick={handleWantMoreChanceClick}>
+          {t("Lucky_Wheel_Click_Here")}
+        </p>
       </div>
     </div>
   );

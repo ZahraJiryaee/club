@@ -9,6 +9,7 @@ import { selectIsLoading } from "./redux/user/user.selectors";
 import SignupSignin from "./components/signup-signin/signup-signin.component";
 import LuckyWheelModal from "./components/lucky-wheel-modal/lucky-wheel-modal.component";
 import ShopModal from "./components/shop-modal/shop-modal.component";
+import WantMoreChance from "./components/want-more-chance/want-more-chance.component";
 
 import { useSetupAxios } from "./services/httpServices";
 import ScrollToTop from "./services/scrollToTop";
@@ -33,6 +34,7 @@ function App() {
     <>
       <LuckyWheelModal />
       <ShopModal />
+      <WantMoreChance />
       <SignupSignin />
       <ScrollToTop>
         <>{routing}</>

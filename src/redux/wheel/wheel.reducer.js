@@ -4,6 +4,7 @@ const INITIAL_STATE = {
   bonusList: [],
   bonus: null,
   openWheelModal: false,
+  isWantMorreChanceModalOpen: false,
 };
 
 const wheelReducer = (state = INITIAL_STATE, action) => {
@@ -22,6 +23,11 @@ const wheelReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         openWheelModal: action.payload,
+      };
+    case WheelActionTypes.IS_WANT_MORE_CHANCE_MODAL_OPEN:
+      return {
+        ...state,
+        isWantMorreChanceModalOpen: action.payload,
       };
     default:
       return state;

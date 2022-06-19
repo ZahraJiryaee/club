@@ -30,7 +30,7 @@ const Header = () => {
   const [scoreCounter, setScoreCounter] = useState(0);
 
   useEffect(() => {
-    if (currentUser) setScoreCounter(currentUser.score_counter);
+    setScoreCounter(currentUser ? currentUser.score_counter : "?");
   }, [currentUser]);
 
   return (
