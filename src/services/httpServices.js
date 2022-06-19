@@ -44,7 +44,6 @@ export function useSetupAxios() {
                 accessToken: data.access,
                 refreshToken: data.refresh,
               });
-
               error.config.headers["Authorization"] = `Bearer ${data.access}`;
               error.config.baseURL = undefined;
               return axios.request(error.config);
@@ -58,7 +57,6 @@ export function useSetupAxios() {
               } else {
                 // dispatch(setOpenValidationDialog(true));
               }
-
               if (refreshError.response.status === 401) {
                 localstorageService.clearToken();
               }

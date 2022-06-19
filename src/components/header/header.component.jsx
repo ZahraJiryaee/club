@@ -84,10 +84,10 @@ const Header = () => {
                         {hn.title}
                         <i className="fa fa-caret-down" />
                       </>
-                      <div class="subnav-content">
+                      <div className="subnav-content">
                         {genres.map((genre) => {
                           return (
-                            <li>
+                            <li key={genre.id}>
                               <NavLink
                                 to={`/games/genre/${genre.id}`}
                                 className={({ isActive }) =>

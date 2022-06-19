@@ -1,6 +1,10 @@
 import { WheelActionTypes } from "./wheel.types";
 
-import { retrieveBonusList, setBonus } from "./../../services/wheelService";
+import {
+  retrieveBonusList,
+  setBonus,
+  getBonusLog,
+} from "./../../services/wheelService";
 
 export const getBonusList = () => async (dispatch) => {
   let result;
@@ -42,6 +46,31 @@ export const setUserBonus = () => async (dispatch) => {
       result = e.response;
       dispatch({
         type: WheelActionTypes.SET_BONUS,
+        payload: null,
+      });
+    });
+  return result;
+};
+
+export const getBonusHistory = () => async (dispatch) => {
+  let result;
+  await getBonusLog()
+    .then((response) => {
+      if (response.status === 200) {
+        result = response;
+        console.log("response-set-bonus:", response);
+        dispatch({
+          type: WheelActionTypes.GET_BONUS_LOG,
+          payload: response.data,
+        });
+      }
+    })
+    .catch((e) => {
+      //error toast-> e.response.data.message
+      console.log("e:", e, "-", e.response);
+      result = e.response;
+      dispatch({
+        type: WheelActionTypes.GET_BONUS_LOG,
         payload: null,
       });
     });
