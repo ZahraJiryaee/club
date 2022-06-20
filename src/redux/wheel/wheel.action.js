@@ -1,3 +1,5 @@
+import i18n from "i18next";
+
 import { WheelActionTypes } from "./wheel.types";
 
 import {
@@ -46,7 +48,7 @@ export const setUserBonus = () => async (dispatch) => {
       console.log("e:", e, "-", e.response);
       result = e.response;
       if (e.response.status === 403) {
-        error("دوباره تلاش کنید!");
+        error(i18n.t("Try_Again"));
       }
       dispatch({
         type: WheelActionTypes.SET_BONUS,

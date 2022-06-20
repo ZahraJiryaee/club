@@ -1,5 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useTranslation } from "react-i18next";
 
 import { setWantMoreChanceModaMode } from "../../redux/wheel/wheel.action";
 
@@ -15,6 +16,7 @@ import "./want-more-chance.styles.scss";
 
 const WantMoreChance = () => {
   const dispatch = useDispatch();
+  const { t } = useTranslation();
 
   const isWantMoreChanceModalOpen = useSelector(
     selectIsWantMorreChanceModalOpen
@@ -45,7 +47,9 @@ const WantMoreChance = () => {
           className="want-more-chance-roulette"
         />
         <p className="want-more-chance-header">
-          از طریق فعالیت‌های زیر می‌تونی شانس چرخوندن گردونه را دریافت کنی
+          {t(
+            "Through_The_Following_Activities_You_Can_Get_A_Chance_To_Spin_The_Wheel"
+          )}
         </p>
         <div className="want-more-chance-content-list">
           {wantMoreChanceModalData.map((item) => (

@@ -94,6 +94,10 @@ const resources = {
       Similar_Games: "بازی‌های مشابه",
       Achieve_X_Points_By_Installing_This_Game:
         "امتیاز با نصب این بازی دریافت کنید.",
+      No_Links_To_display: "لینکی برای نمایش وجود ندارد!",
+      Through_The_Following_Activities_You_Can_Get_A_Chance_To_Spin_The_Wheel:
+        "از طریق فعالیت‌های زیر می‌تونی شانس چرخوندن گردونه را دریافت کنی",
+      Try_Again: "دوباره تلاش کنید!",
     },
   },
 };

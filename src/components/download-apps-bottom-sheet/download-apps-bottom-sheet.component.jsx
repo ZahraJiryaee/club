@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { BottomSheet } from "react-spring-bottom-sheet";
+import { useTranslation } from "react-i18next";
 
 import appLogoMapper from "./appsLogosMapper";
 
@@ -8,6 +9,8 @@ import generateUniqueId from "../../services/generateUniqueId";
 import "./download-apps-bottom-sheet.styles.scss";
 
 const DownloadAppsBottomSheet = ({ open, setOpen, downloadLinks }) => {
+  const { t } = useTranslation();
+
   const [availableLinks, setAvailableLinks] = useState([]);
 
   const onDismiss = () => {
@@ -25,7 +28,6 @@ const DownloadAppsBottomSheet = ({ open, setOpen, downloadLinks }) => {
           id: generateUniqueId("dn-apps"),
         });
     });
-    console.log("links:", links);
     setAvailableLinks(links.length === 0 ? null : links);
   }, [downloadLinks]);
 
@@ -54,7 +56,7 @@ const DownloadAppsBottomSheet = ({ open, setOpen, downloadLinks }) => {
           </div>
         ) : (
           <p className="bottom-sheet-dn--no-links">
-            لینکی برای نمایش وجود ندارد!
+            {t("No_Links_To_display")}
           </p>
         )}
       </BottomSheet>
