@@ -50,6 +50,7 @@
       }
 
       .swiper-slide {
+        display: -ms-grid;
         display: grid;
         justify-content: center;
         width: calc(
@@ -64,6 +65,8 @@
         width: var(--game-details-header-screenshot-width) !important;
         height: var(--game-details-header-screenshot-height);
         margin: 0 8px;
+        -o-object-fit: cover;
+        object-fit: cover;
 
         @media #{$small-mobile} {
           -webkit-backdrop-filter: blur(30px);
