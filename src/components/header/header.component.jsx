@@ -96,10 +96,7 @@ const Header = () => {
                       <div className="subnav-content">
                         {genres.map((genre) => {
                           return (
-                            <div
-                              className="subnav-content-list"
-                              key={generateUniqueId("subnav-content")}
-                            >
+                            <li key={genre.id}>
                               <NavLink
                                 to={`/games/genre/${genre.id}`}
                                 className={({ isActive }) =>

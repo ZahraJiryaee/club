@@ -20,7 +20,7 @@ import "./footer.styles.scss";
 const Footer = () => {
   const { pathname } = useLocation();
   const MapUrlToIndicatorNum = () => {
-    if (pathname.includes("profile")) return -2;
+    if (pathname.includes(`${routeNames.profile}`)) return -2;
     else if (pathname.includes(`${routeNames.shop}`)) return -1;
     else if (pathname.includes(`${routeNames.lucky_wheel}`)) return 0;
     else if (pathname.includes(`${routeNames.game}`)) return 1;
@@ -42,11 +42,13 @@ const Footer = () => {
         <div className="footer-navigation">
           <ul>
             <li
-              className={`list ${pathname.includes("profile") ? "active" : ""}`}
+              className={`list ${
+                pathname.includes(`${routeNames.profile}`) ? "active" : ""
+              }`}
             >
               <NavLink to="/profile">
                 <span className="icon">
-                  {pathname === "/profile" ? (
+                  {pathname.includes(`${routeNames.profile}`) ? (
                     <ActiveProfileLogo />
                   ) : (
                     <ProfileLogo />

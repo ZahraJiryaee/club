@@ -10,6 +10,12 @@ import GenrePage from "../src/pages/genre/genre.component";
 import SearchPage from "./pages/search/search.component";
 import LeaderBoardPage from "./pages/leaderboard/leaderboard.component";
 import ShopPage from "./pages/shop/shop.component";
+import ProfilePage from "./pages/profile/profile.component";
+import EditProfilePage from "./pages/profile/edit-profile/edit-profile.conponent";
+import GiftHistorypage from "./pages/profile/gitt-history/gift-history.component";
+import InviterCodePage from "./pages/profile/inviter-code/inviter-code.component";
+import DeviceIdPage from "./pages/profile/device-id/device-id.components";
+import InviteFriendsPage from "./pages/profile/invite-friends/invite-friends.component";
 
 import { routeNames } from "./services/routeService";
 
@@ -18,8 +24,28 @@ const routes = [
     path: "/",
     element: <MainLayout />,
     children: [
-      { path: `${routeNames.lucky_wheel}`, element: <LuckyWheelPage /> },
-      { path: "profile", element: <LuckyWheelPage /> },
+      { path: "lucky-wheel", element: <LuckyWheelPage /> },
+      {
+        path: `${routeNames.profile}/edit-information`,
+        element: <EditProfilePage />,
+      },
+      {
+        path: `${routeNames.profile}/gift-history`,
+        element: <GiftHistorypage />,
+      },
+      {
+        path: `${routeNames.profile}/set-inviter`,
+        element: <InviterCodePage />,
+      },
+      {
+        path: `${routeNames.profile}/invite-friends`,
+        element: <InviteFriendsPage />,
+      },
+      {
+        path: `${routeNames.profile}/connet-device`,
+        element: <DeviceIdPage />,
+      },
+      { path: "profile", element: <ProfilePage /> },
       { path: "home", element: <LuckyWheelPage /> },
       { path: `${routeNames.game}/genre/all`, element: <GamesPage /> },
       { path: `${routeNames.game}/:type/:id`, element: <GenrePage /> },
