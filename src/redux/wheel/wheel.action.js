@@ -5,6 +5,7 @@ import {
   setBonus,
   getBonusLog,
 } from "./../../services/wheelService";
+import { error } from "./../../services/toastService";
 
 export const getBonusList = () => async (dispatch) => {
   let result;

@@ -105,7 +105,7 @@ const Header = () => {
                               >
                                 {genre.title}
                               </NavLink>
-                            </div>
+                            </li>
                           );
                         })}
                       </div>
