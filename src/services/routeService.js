@@ -3,4 +3,5 @@ export const routeNames = {
   game: "games",
   lucky_wheel: "lucky-wheel",
   leaderboard: "leaderboard",
+  profile: "profile",
 };
