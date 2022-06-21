@@ -7,17 +7,14 @@ import "./games-banner.styles.scss";
 
 const BannerGames = ({ category }) => {
   let navigate = useNavigate();
-  console.log("category.applications.length", category.applications.length);
+
   return (
-    <div
-      className="games-banner-container"
-      style={{ "--games-banner-items-length": category.applications.length }}
-    >
+    <div className="games-banner-container">
       {category.applications.map((application) => {
         return (
           <img
             key={application.id}
-            className="banner"
+            className={`banner banner__${category.applications.length}`}
             src={application.source.banner}
             alt="banner"
             onClick={() => {
