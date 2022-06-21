@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
 import {
@@ -8,6 +8,7 @@ import {
   getUserApplicationInformation,
   isApplicationInstalled,
 } from "../../redux/games/games.action";
+import { setHeaderMode } from "../../redux/header/header.action";
 
 import {
   selectUserApplicationInfo,
@@ -37,6 +38,7 @@ import "./game-details.styles.scss";
 const GameDetails = () => {
   const dispatch = useDispatch();
   let navigate = useNavigate();
+  const { pathname } = useLocation();
   const { t } = useTranslation();
 
   const { id: gameId } = useParams();
@@ -64,6 +66,10 @@ const GameDetails = () => {
   );
   const [awardsListTxt, setAwardsListTxt] =
     useState(true); /* true=>show more  false=>show less */
+
+  useEffect(() => {
+    dispatch(setHeaderMode(pathname));
+  }, [dispatch, pathname]);
 
   useEffect(() => {
     dispatch(isApplicationInstalled(gameId));

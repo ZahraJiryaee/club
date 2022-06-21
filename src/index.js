@@ -4,6 +4,7 @@ import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import { ToastContainer } from "react-toastify";
 import { PersistGate } from "redux-persist/integration/react"; //wrap around App
+import { HelmetProvider } from "react-helmet-async";
 
 import { store, persistor } from "./redux/store";
 
@@ -35,7 +36,9 @@ ReactDOM.render(
           theme="colored"
         />
         <BrowserRouter>
-          <App />
+          <HelmetProvider>
+            <App />
+          </HelmetProvider>
         </BrowserRouter>
       </PersistGate>
     </Provider>

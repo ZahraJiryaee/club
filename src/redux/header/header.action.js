@@ -11,6 +11,7 @@ export const setHeaderMode = (pathname) => async (dispatch) => {
     pathname.includes(`${routeNames.game}`) ||
     pathname.includes(`${routeNames.leaderboard}`) ||
     pathname.includes(`${routeNames.shop}`)
+    // add search if needed
   )
     headerMode = "full-gradient";
   else headerMode = "half-gradient";

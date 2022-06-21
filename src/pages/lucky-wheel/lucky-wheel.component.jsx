@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useCallback, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
 import SpinningWheel from "../../components/spinning-wheel/spinning-wheel.component";
@@ -11,6 +12,7 @@ import {
   setOpenWheelModal,
   setWantMoreChanceModaMode,
 } from "../../redux/wheel/wheel.action";
+import { setHeaderMode } from "../../redux/header/header.action";
 
 import {
   selectCurrentUser,
@@ -24,6 +26,7 @@ import "./lucky-wheel.component.scss";
 
 const LuckyWheelPage = () => {
   const dispatch = useDispatch();
+  const { pathname } = useLocation();
   const { t } = useTranslation();
 
   const currentUser = useSelector(selectCurrentUser);
@@ -32,6 +35,10 @@ const LuckyWheelPage = () => {
 
   const [userChanceConuter, setUserChanceConuter] = useState(0);
   const [wheelItem, setWheelItem] = useState(6);
+
+  useEffect(() => {
+    dispatch(setHeaderMode(pathname));
+  }, [dispatch, pathname]);
 
   const toggleModal = () => {
     dispatch(setOpenWheelModal(true));

@@ -1,9 +1,10 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 
 import { getSelectedGenre } from "../../redux/genres/genres.action";
 import { getSelectedCategory } from "../../redux/games/games.action";
+import { setHeaderMode } from "../../redux/header/header.action";
 
 import { selectAllGames } from "../../redux/games/games.selectors";
 
@@ -12,7 +13,9 @@ import GenreView from "../../components/genres/genre-view.component";
 
 const GenrePage = () => {
   const dispatch = useDispatch();
+  const { pathname } = useLocation();
   const { type, id } = useParams();
+
   const allCategories = useSelector(selectAllGames);
 
   const [categoryTitle, setCategoryTitle] = useState("");
@@ -37,6 +40,10 @@ const GenrePage = () => {
   useEffect(() => {
     setGenres();
   }, [setGenres]);
+
+  useEffect(() => {
+    dispatch(setHeaderMode(pathname));
+  }, [dispatch, pathname]);
 
   return (
     <div>

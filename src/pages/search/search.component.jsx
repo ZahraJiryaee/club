@@ -9,6 +9,7 @@ import {
   getSearchedShopItems,
 } from "../../redux/shop/shop.actions";
 import { getSearchedItem } from "../../redux/games/games.action";
+import { setHeaderMode } from "../../redux/header/header.action";
 
 import { selectSearchedGameItemsMappedToSearchPage } from "../../redux/games/games.selectors";
 import { selectSearchedShopItemsMappedToSearchPage } from "../../redux/shop/shop.selectors";
@@ -26,7 +27,7 @@ import StarLogo from "../../assets/images/icon/star.png";
 import "../../components/genres/genre-view.styles.scss";
 
 const SearchPage = () => {
-  const location = useLocation();
+  const { pathname } = useLocation();
   const dispatch = useDispatch();
   let navigate = useNavigate();
   const { t } = useTranslation();
@@ -35,10 +36,14 @@ const SearchPage = () => {
   route format:
   {the component we are searching on-as firstSliceOfPathname}/"search"/{searchField}
   */
-  const firstSliceOfPathname = location.pathname.slice(1).split("/")[0];
-  const searchField = location.pathname.slice(1).split("/")[2];
+  const firstSliceOfPathname = pathname.slice(1).split("/")[0];
+  const searchField = pathname.slice(1).split("/")[2];
 
   const [pageTitle, setPageTitle] = useState("");
+
+  useEffect(() => {
+    dispatch(setHeaderMode(pathname));
+  }, [dispatch, pathname]);
 
   useEffect(() => {
     switch (firstSliceOfPathname) {
@@ -56,7 +61,7 @@ const SearchPage = () => {
       default:
         break;
     }
-  }, [location, firstSliceOfPathname, searchField, dispatch, t]);
+  }, [pathname, firstSliceOfPathname, searchField, dispatch, t]);
 
   const selector = {
     [routeNames["game"]]: useSelector(
