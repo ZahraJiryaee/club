@@ -108,6 +108,7 @@ const resources = {
       Search_Page__Game: "جستجو در بازی‌ها",
       Search_Page__Shop: "جستجو در فروشگاه",
       Shop_Page: "فروشگاه",
+      Error_Boundary_Msg: "خطایی رخ داده است! لطفا با پشتیبانی تماس بگیرید.",
     },
   },
 };
