@@ -4,10 +4,12 @@ const INITIAL_STATE = {
   headerMode: "",
 };
 
-//Header Modes//
-// transparent
-// simple
-// games
+/*
+Header Modes :
+- transparent
+- half-gradient
+- full-gradient
+*/
 
 const headerReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {

@@ -6,14 +6,14 @@ import { routeNames } from "../../services/routeService";
 export const setHeaderMode = (pathname) => async (dispatch) => {
   let headerMode = "";
 
-  if (pathname === "/lucky-wheel") headerMode = "transparent";
+  if (pathname === `/${routeNames.lucky_wheel}`) headerMode = "transparent";
   else if (
     pathname.includes(`${routeNames.game}`) ||
-    pathname.includes("leaderboard") ||
+    pathname.includes(`${routeNames.leaderboard}`) ||
     pathname.includes(`${routeNames.shop}`)
   )
-    headerMode = "games";
-  else headerMode = "simple";
+    headerMode = "full-gradient";
+  else headerMode = "half-gradient";
 
   await dispatch({
     type: HeaderActionTypes.GET_HEADER_MODE,

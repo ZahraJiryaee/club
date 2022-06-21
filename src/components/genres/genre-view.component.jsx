@@ -1,9 +1,13 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 
+import { selectFilteredGenre } from "../../redux/genres/genres.seletors";
+import { selectFilteredCategory } from "../../redux/games/games.selectors";
+
 import { routeNames } from "../../services/routeService";
+import generateUniqueId from "../../services/generateUniqueId";
 
 import StarLogo from "../../assets/images/icon/star.png";
 
@@ -17,8 +21,8 @@ const GenreView = ({ title }) => {
 
   let filteredData;
 
-  const filteredGenre = useSelector((state) => state.genres.filteredGenre);
-  const filteredCategory = useSelector((state) => state.games.filteredCategory);
+  const filteredGenre = useSelector(selectFilteredGenre);
+  const filteredCategory = useSelector(selectFilteredCategory);
 
   if (type === "genre") filteredData = filteredGenre;
   else if (type === "category") filteredData = filteredCategory;
@@ -37,8 +41,8 @@ const GenreView = ({ title }) => {
         ) : null}
         {filteredData.map((application) => {
           return (
-            <>
-              <div key={application.id} className="game-detail">
+            <Fragment key={application.id}>
+              <div className="game-detail">
                 <div className="icon-name-shortDes-score">
                   <img
                     className="icon"
@@ -72,18 +76,16 @@ const GenreView = ({ title }) => {
               </div>
 
               <div className="games-banner-container">
-                {application.source.screenshots.map((screenshot, index) => {
-                  return (
-                    <img
-                      className="banner"
-                      key={index}
-                      src={screenshot}
-                      alt="banner"
-                    />
-                  );
-                })}
+                {application.source.screenshots.map((screenshot) => (
+                  <img
+                    className="banner"
+                    key={generateUniqueId("genre-view")}
+                    src={screenshot}
+                    alt="banner"
+                  />
+                ))}
               </div>
-            </>
+            </Fragment>
           );
         })}
       </div>

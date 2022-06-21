@@ -3,16 +3,14 @@ import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper";
 
+import generateUniqueId from "../../services/generateUniqueId";
+
 import "./game-details-header.styles.scss";
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
 
 const GameDetailHeader = ({ screenshots }) => {
-  const genererateRandomId = () => {
-    return Math.floor(100000 + Math.random() * 900000);
-  };
-
   return (
     <div className="game-detail-header-container">
       <div className="game-detail-header">
@@ -38,7 +36,7 @@ const GameDetailHeader = ({ screenshots }) => {
           }}
         >
           {screenshots.map((screenshot) => (
-            <SwiperSlide key={screenshot + genererateRandomId()}>
+            <SwiperSlide key={generateUniqueId("screenshot")}>
               <img src={screenshot} alt="game-screenshot" />
             </SwiperSlide>
           ))}

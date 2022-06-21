@@ -115,6 +115,10 @@
   overflow: auto;
   overscroll-behavior: contain;
   -webkit-overflow-scrolling: touch;
+  //
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 [data-rsbs-scroll]:focus {
   outline: none;
@@ -151,32 +155,24 @@
 }
 
 .bottom-sheet-dn-logo-list {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  vertical-align: middle;
-  text-align: center;
   list-style: none;
-  padding: 0 32px;
-  color: $theme-color--dark;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 100%;
+  width: 100%;
+  gap: 10vw;
 
   font-size: 18px;
   font-weight: 500;
   line-height: 1.11;
   letter-spacing: -0.29px;
 
-  margin-right: auto;
-  margin-left: auto;
-  width: 470px;
   @media #{$small-mobile} {
-    width: 400px;
-
     font-size: 13px;
     line-height: 1.54;
     letter-spacing: -0.21px;
-  }
-  @media #{$extra-small-mobile} {
-    width: auto;
   }
 
   a {
@@ -184,14 +180,22 @@
     color: inherit;
   }
 
-  .bottom-sheet-icon {
+  img {
     height: 40px;
     width: auto;
-    margin-bottom: 12px;
     @media #{$small-mobile} {
       height: 28px;
       width: auto;
-      margin-bottom: 5px;
     }
+  }
+}
+
+.bottom-sheet-dn--no-links {
+  direction: rtl;
+  font-size: 18px;
+  font-weight: bold;
+
+  @media #{$small-mobile} {
+    font-size: 15px;
   }
 }

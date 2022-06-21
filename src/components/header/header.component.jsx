@@ -3,35 +3,44 @@ import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
+import { selectCurrentUser } from "../../redux/user/user.selectors";
+import { selectHeaderMode } from "../../redux/header/header.selectors";
+import { selectAllGenres } from "../../redux/genres/genres.seletors";
+
 import { ReactComponent as StarLogo } from "../../assets/images/header/star.svg";
 import Logo from "../../assets/images/icon/medrick-logo.png";
 import ArrowBack from "../../assets/images/icon/arrow-back.png";
 
 import { sidebarNavigation, headerNavigation } from "../../model/header.model";
+import Loading from "../common/loading/loading.component";
+
+import generateUniqueId from "../../services/generateUniqueId";
+import { routeNames } from "../../services/routeService";
 
 import "./header.styles.scss";
 
 const Header = () => {
   const { t } = useTranslation();
 
-  const currentUser = useSelector((state) => state.user.currentUser);
-  const headerMode = useSelector((state) => state.header.headerMode);
-  const genres = useSelector((state) => state.genres.allGenres);
+  const currentUser = useSelector(selectCurrentUser);
+  const headerMode = useSelector(selectHeaderMode);
+  const genres = useSelector(selectAllGenres);
 
   const [toggleMenu, setToggleMenu] = useState(false);
   const [scoreCounter, setScoreCounter] = useState(0);
 
   useEffect(() => {
-    if (currentUser) setScoreCounter(currentUser.score_counter);
+    setScoreCounter(currentUser ? currentUser.score_counter : "?");
   }, [currentUser]);
 
   return (
     <header className={headerMode}>
+      <Loading />
       {/* ---------------------- Sidebar --------------------------- */}
       <div className="sidebar-group">
         <ul className={`${toggleMenu ? "active" : ""} sidebar-navigation`}>
           {sidebarNavigation.map((sn) => (
-            <li key={sn.id}>
+            <li key={generateUniqueId("sidebar-navigation")}>
               <NavLink
                 to={`/${sn.link}`}
                 className={({ isActive }) =>
@@ -53,7 +62,7 @@ const Header = () => {
       </div>
       {/* ---------------------- Logo --------------------------- */}
       <div className="logo">
-        <NavLink to="/lucky-wheel">
+        <NavLink to={`/${routeNames.lucky_wheel}`}>
           <img src={Logo} alt="navbar-logo" />
         </NavLink>
       </div>
@@ -71,7 +80,7 @@ const Header = () => {
         <div className="header-group">
           <ul className={`${toggleMenu ? "active" : ""} header-navigation`}>
             {headerNavigation.map((hn) => (
-              <li key={hn.id}>
+              <li key={generateUniqueId("header-navigation")}>
                 <NavLink
                   to={`/${hn.link}`}
                   className={({ isActive }) =>

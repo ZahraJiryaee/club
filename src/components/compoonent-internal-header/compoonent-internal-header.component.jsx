@@ -6,19 +6,27 @@ const ComponentInternalHeader = ({ setFixer, children }) => {
   const [navbarGenreFixed, setNavbarGenreFixed] = useState("");
 
   useEffect(() => {
-    if (setFixer && typeof window !== "undefined") {
-      window.onscroll = () => {
-        let currentScrollPos = window.pageYOffset;
-        // console.log("currentScrollPos:", currentScrollPos);
-        let maxScroll = document.body.scrollHeight - window.innerHeight;
-        // console.log("maxScroll:", maxScroll);
-        if (currentScrollPos > 51) {
+    const updateNavbarGenreFixed = () => {
+      if (setFixer) {
+        if (
+          document.documentElement.scrollTop >= 85 ||
+          document.body.scrollTop >= 85
+        ) {
           setNavbarGenreFixed("component-internal-header-fixed");
-        } else {
+        } else if (
+          document.documentElement.scrollTop < 85 ||
+          document.body.scrollTop < 85
+        ) {
           setNavbarGenreFixed("");
         }
-      };
-    }
+      }
+    };
+
+    window.addEventListener("scroll", updateNavbarGenreFixed);
+
+    return function cleanup() {
+      window.removeEventListener("scroll", updateNavbarGenreFixed);
+    };
   });
 
   return (

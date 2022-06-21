@@ -6,12 +6,14 @@
 }
 
 .games-rows-container {
+  display: -ms-grid;
   display: grid;
   grid-auto-flow: column;
   grid-template-rows: repeat(2, auto);
   grid-template-columns: repeat(3, 1fr);
   gap: 3vh 10px;
   width: 100%;
+  height: auto;
   direction: rtl;
 
   @media #{$tablet-device,$large-mobile} {
@@ -22,21 +24,32 @@
   @media #{$small-mobile} {
     grid-template-rows: repeat(3, auto);
     grid-template-columns: repeat(2, 85vw);
-    overflow-x: auto;
+    overflow-x: scroll;
+    overflow-y: hidden;
 
     &::-webkit-scrollbar {
       display: none;
     }
   }
 
-  &.games-rows-container-short {
+  &__4 {
     grid-auto-flow: row;
     @media #{$small-mobile} {
       grid-auto-flow: column;
     }
   }
 
-  &.games-rows-container-1-and-2 {
+  &__3 {
+    grid-auto-flow: row;
+    @media #{$small-mobile} {
+      grid-auto-flow: column;
+      grid-template-rows: repeat(3, auto);
+      grid-template-columns: repeat(1, 1fr);
+    }
+  }
+
+  &__1,
+  &__2 {
     grid-template-rows: repeat(1, auto);
     grid-template-columns: repeat(var(--games-row-items-length), 1fr);
     @media #{$small-mobile} {

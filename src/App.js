@@ -1,15 +1,18 @@
-import React, { Fragment, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useRoutes } from "react-router-dom";
 
 import { setCurrentUser } from "./redux/user/user.action";
 
-import { useSetupAxios } from "./services/httpServices";
+import { selectIsLoading } from "./redux/user/user.selectors";
 
-import Loading from "./components/common/loading/loading.component";
 import SignupSignin from "./components/signup-signin/signup-signin.component";
 import LuckyWheelModal from "./components/lucky-wheel-modal/lucky-wheel-modal.component";
 import ShopModal from "./components/shop-modal/shop-modal.component";
+import WantMoreChance from "./components/want-more-chance/want-more-chance.component";
+
+import { useSetupAxios } from "./services/httpServices";
+import ScrollToTop from "./services/scrollToTop";
 
 import routes from "./routes";
 
@@ -17,21 +20,25 @@ function App() {
   const routing = useRoutes(routes);
   const dispatch = useDispatch();
 
+  const isLoading = useSelector(selectIsLoading);
+
   useSetupAxios();
 
   useEffect(() => {
     dispatch(setCurrentUser()).then((response) => {
       console.log("profile response app", response);
     });
-  }, [dispatch]);
+  }, [dispatch, isLoading]);
 
   return (
     <>
       <LuckyWheelModal />
       <ShopModal />
+      <WantMoreChance />
       <SignupSignin />
-      <Loading />
-      <Fragment>{routing}</Fragment>
+      <ScrollToTop>
+        <>{routing}</>
+      </ScrollToTop>
     </>
   );
 }

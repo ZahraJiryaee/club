@@ -193,3 +193,8 @@ export const setOpenValidationDialog = (value) => ({
   type: UserActionTypes.SET_OPEN_VALIDATION_DIALOG,
   payload: value,
 });
+
+export const setIsLoading = (value) => ({
+  type: UserActionTypes.SET_IS_LOADING,
+  payload: value,
+});

@@ -1,15 +1,35 @@
-import React from "react";
-
+import React, { useState, useEffect } from "react";
 import { BottomSheet } from "react-spring-bottom-sheet";
+import { useTranslation } from "react-i18next";
 
 import appLogoMapper from "./appsLogosMapper";
+
+import generateUniqueId from "../../services/generateUniqueId";
 
 import "./download-apps-bottom-sheet.styles.scss";
 
 const DownloadAppsBottomSheet = ({ open, setOpen, downloadLinks }) => {
+  const { t } = useTranslation();
+
+  const [availableLinks, setAvailableLinks] = useState([]);
+
   const onDismiss = () => {
     setOpen(false);
   };
+
+  useEffect(() => {
+    let links = [];
+    Object.keys(downloadLinks).forEach((key) => {
+      if (downloadLinks[key])
+        links.push({
+          name: appLogoMapper[key].name,
+          icon: appLogoMapper[key].icon,
+          content: downloadLinks[key],
+          id: generateUniqueId("dn-apps"),
+        });
+    });
+    setAvailableLinks(links.length === 0 ? null : links);
+  }, [downloadLinks]);
 
   return (
     <div>
@@ -22,27 +42,23 @@ const DownloadAppsBottomSheet = ({ open, setOpen, downloadLinks }) => {
         }}
         blocking={true}
       >
-        <ul className="bottom-sheet-dn-logo-list">
-          {Object.keys(downloadLinks).map((key, index) =>
-            Object.keys(appLogoMapper[key]).length === 0 ? null : (
-              <a
-                href={downloadLinks[key] ? downloadLinks[key] : "/"}
-                target="_blank"
-                key={index}
-              >
+        {availableLinks ? (
+          <div className="bottom-sheet-dn-logo-list">
+            {availableLinks.map((item) => (
+              <a href={item.content} target="_blank" key={item.id}>
                 <li>
-                  <img
-                    src={appLogoMapper[key].icon}
-                    alt={appLogoMapper[key].name}
-                    className="bottom-sheet-icon"
-                  />{" "}
+                  <img src={item.icon} alt={item.name} />
                   <br />
-                  {appLogoMapper[key].name}
+                  {item.name}
                 </li>
               </a>
-            )
-          )}
-        </ul>
+            ))}
+          </div>
+        ) : (
+          <p className="bottom-sheet-dn--no-links">
+            {t("No_Links_To_display")}
+          </p>
+        )}
       </BottomSheet>
     </div>
   );

@@ -1,9 +1,9 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React from "react";
+import { useSelector } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
-import { getSearchedItem } from "../../redux/games/games.action";
+import { selectAllGenres } from "../../redux/genres/genres.seletors";
 
 import { routeNames } from "../../services/routeService";
 
@@ -13,17 +13,15 @@ import SearchBox from "../search-box/search-box.component";
 import "./genre-header.styles.scss";
 
 const GenreHeader = () => {
-  const dispatch = useDispatch();
   const navigate = useNavigate();
   const { t } = useTranslation();
 
-  const genres = useSelector((state) => state.genres.allGenres);
+  const genres = useSelector(selectAllGenres);
 
   const [searchField, setSearchField] = React.useState("");
 
   const handelSearch = () => {
     setSearchField("");
-    dispatch(getSearchedItem(searchField));
     return navigate(`/${routeNames.game}/search/${searchField}`);
   };
 

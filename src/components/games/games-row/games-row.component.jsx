@@ -27,8 +27,10 @@ const GamesRow = ({ applications, page }) => {
   return (
     <div
       className={`games-rows-container ${
-        applications.length <= 4 ? `games-rows-container-short` : ""
-      } ${applications.length <= 2 ? `games-rows-container-1-and-2` : ""}`}
+        applications.length <= 4
+          ? `games-rows-container__${applications.length}`
+          : ""
+      }`}
       style={{ "--games-row-items-length": applications.length }}
     >
       {applications.map((app) => (

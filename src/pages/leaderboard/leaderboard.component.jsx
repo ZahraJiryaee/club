@@ -9,6 +9,8 @@ import {
   getUserListSeasonal,
 } from "../../redux/leaderboard/leaderboard.action";
 
+import { selectCurrentUser } from "../../redux/user/user.selectors";
+
 import LeaderboardHeader from "../../components/leaderboard-header/leaderboard-header.component";
 
 // import topUsersWeekly from "../../components/mock/leaderborad.mock";
@@ -25,7 +27,7 @@ const LeaderBoardPage = () => {
   const leaderboardHeaderStatus = useSelector(
     (state) => state.leaderboard.leaderboardHeaderStatus
   );
-  const currentUser = useSelector((state) => state.user.currentUser);
+  const currentUser = useSelector(selectCurrentUser);
 
   const [topUsers, setTopUsers] = useState(null);
   const [loggedinUser, setLoggedinUser] = useState(null);

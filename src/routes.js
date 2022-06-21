@@ -53,11 +53,17 @@ const routes = [
       { path: `${routeNames.game}/detail/:id`, element: <GameDetails /> },
       { path: `${routeNames.shop}`, element: <ShopPage /> },
       { path: `${routeNames.shop}/search/:id`, element: <SearchPage /> },
-      { path: "leaderboard", element: <LeaderBoardPage /> },
+      { path: `${routeNames.leaderboard}`, element: <LeaderBoardPage /> },
       { path: "about-us", element: <LuckyWheelPage /> },
       { path: "contact-us", element: <LuckyWheelPage /> },
-      { path: "/", element: <Navigate replace to="/lucky-wheel" /> },
-      { path: "*", element: <Navigate replace to="/lucky-wheel" /> },
+      {
+        path: "/",
+        element: <Navigate replace to={`/${routeNames.lucky_wheel}`} />,
+      },
+      {
+        path: "*",
+        element: <Navigate replace to={`/${routeNames.lucky_wheel}`} />,
+      },
     ],
   },
 ];

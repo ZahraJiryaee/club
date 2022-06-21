@@ -1,7 +1,6 @@
 import React from "react";
 
-import ReactLoading from "react-loading";
-import { useTranslation } from "react-i18next";
+import ClipLoader from "react-spinners/BarLoader";
 
 import useAxiosLoader from "../../../services/useLoader";
 
@@ -10,19 +9,21 @@ import "./loading.style.scss";
 const Loading = () => {
   const [loading] = useAxiosLoader();
 
-  const { t } = useTranslation();
-
   return (
     loading && (
-      <div className="loading-container">
-        <ReactLoading
-          type="spinningBubbles"
-          color="#3399de"
-          width="50px"
-          height="50px"
-        />
-        <p>{t("Please_Wait")}</p>
-      </div>
+      <ClipLoader
+        color={"#ff9f0a"}
+        loading={true}
+        css={{
+          position: "absolute",
+          top: "0",
+          left: "0",
+          right: "0",
+          width: "100vw",
+          margin: "0 auto",
+          padding: "0",
+        }}
+      />
     )
   );
 };
