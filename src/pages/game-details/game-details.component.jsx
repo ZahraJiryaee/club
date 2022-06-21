@@ -18,6 +18,7 @@ import {
 import GameDetailHeader from "../../components/game-details-header/game-details-header.componetnt";
 import GamesRow from "../../components/games/games-row/games-row.component";
 import DownloadAppsBottomSheet from "../../components/download-apps-bottom-sheet/download-apps-bottom-sheet.component";
+import Page from "../page";
 
 import { routeNames } from "../../services/routeService";
 
@@ -137,7 +138,7 @@ const GameDetails = () => {
 
   return (
     gameDetails.length !== 0 && (
-      <div>
+      <Page title={`${t("Game_Details_Page")} ${gameDetails.name}`}>
         {/* header */}
         <GameDetailHeader screenshots={gameDetails.source.screenshots} />
 
@@ -346,7 +347,7 @@ const GameDetails = () => {
           setOpen={(e) => setOpenBtmSheet(e)}
           downloadLinks={gameDetails.link}
         />
-      </div>
+      </Page>
     )
   );
 };

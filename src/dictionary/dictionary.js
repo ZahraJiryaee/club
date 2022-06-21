@@ -24,11 +24,12 @@ const resources = {
       Required: "(اجباری)",
       Send_To: "ارسال به:",
       Support_Number: "شماره پشتیبانی:",
-      Enter_Code_In_Game: "توجه: کد دریافتی را در بازی مورد نظر وارد نمایید.",
+      Enter_Code_In_Game__LuckyWheelModal:
+        "توجه: کد دریافتی را در بازی مورد نظر وارد نمایید.",
+      Enter_Code_In_Game__ShopModal:
+        "توجه: کد تایید دریافتی را در بازی مورد نظر وارد نمایید.",
       Low_Score_Warning: "امتیاز شما از حد مجاز کمتر است.",
       Your_Request_Was_Successful: "درخواست شما با موفقیت انجام شد",
-      Enter_Code_In_Game:
-        "توجه: کد تایید دریافتی را در بازی مورد نظر وارد نمایید.",
       Continue: "ادامه",
       Score: "امتیاز",
       Your_Score: "امتیاز شما:",
@@ -98,6 +99,15 @@ const resources = {
       Through_The_Following_Activities_You_Can_Get_A_Chance_To_Spin_The_Wheel:
         "از طریق فعالیت‌های زیر می‌تونی شانس چرخوندن گردونه را دریافت کنی",
       Try_Again: "دوباره تلاش کنید!",
+      Lucky_Wheel_Page: "گردونه شانس",
+      Leaderboard_Page: "جدول رده‌بندی",
+      Games_Page: "بازی‌ها",
+      Game_Details_Page: "بازی ",
+      Genre: "ژانر ",
+      Category: "کتگوری ",
+      Search_Page__Game: "جستجو در بازی‌ها",
+      Search_Page__Shop: "جستجو در فروشگاه",
+      Shop_Page: "فروشگاه",
     },
   },
 };

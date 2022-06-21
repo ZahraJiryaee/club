@@ -138,7 +138,7 @@ const LuckyWheelModal = () => {
           {/*--------------------- Digital Specific -------------------*/}
           {prizeType === "dig" && prizeReceived && (
             <p className="center-absolute dig-prize-received-hint">
-              {t("Enter_Code_In_Game")}
+              {t("Enter_Code_In_Game__LuckyWheelModal")}
             </p>
           )}
           {/*--------------------- Button -------------------*/}

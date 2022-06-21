@@ -127,7 +127,7 @@ const ShopModal = () => {
     return (
       <p className="shop-modal-enter-code-in-game fontsize-13">
         <img src={ErrorOutlineMarineBlue} alt="error-outline" />
-        <span>{t("Enter_Code_In_Game")}</span>
+        <span>{t("Enter_Code_In_Game__ShopModal")}</span>
       </p>
     );
   };

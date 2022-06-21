@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { useTranslation } from "react-i18next";
@@ -15,6 +15,7 @@ import { selectSearchedShopItemsMappedToSearchPage } from "../../redux/shop/shop
 
 import GenreHeader from "../../components/genres/genre-header.component";
 import ShopHeader from "../../components/shop-header/shop-header.component";
+import Page from "../page";
 
 import { routeNames } from "../../services/routeService";
 
@@ -37,21 +38,25 @@ const SearchPage = () => {
   const firstSliceOfPathname = location.pathname.slice(1).split("/")[0];
   const searchField = location.pathname.slice(1).split("/")[2];
 
+  const [pageTitle, setPageTitle] = useState("");
+
   useEffect(() => {
     switch (firstSliceOfPathname) {
       case routeNames.game:
         dispatch(getSearchedItem(searchField));
+        setPageTitle(t("Search_Page__Game"));
         break;
 
       case routeNames.shop: {
         dispatch(getSearchedShopItems([shopMock.shopItems[0]]));
+        setPageTitle(t("Search_Page__Shop"));
         break;
       }
 
       default:
         break;
     }
-  }, [location, firstSliceOfPathname, searchField, dispatch]);
+  }, [location, firstSliceOfPathname, searchField, dispatch, t]);
 
   const selector = {
     [routeNames["game"]]: useSelector(
@@ -111,7 +116,7 @@ const SearchPage = () => {
   };
 
   return (
-    <div>
+    <Page title={pageTitle}>
       {firstSliceOfPathname === routeNames["game"] ? <GenreHeader /> : null}
       {firstSliceOfPathname === routeNames["shop"] ? <ShopHeader /> : null}
 
@@ -153,7 +158,7 @@ const SearchPage = () => {
           })}
         </div>
       </div>
-    </div>
+    </Page>
   );
 };
 

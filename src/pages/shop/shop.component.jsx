@@ -21,6 +21,7 @@ import Pagination from "../../components/common/pagination/pagination.component"
 import ShopItem from "./../../assets/images/test/shop-item.png";
 
 import "./shop.styles.scss";
+import Page from "../page";
 
 let PageSize = 4 * 4;
 
@@ -38,7 +39,7 @@ const ShopPage = () => {
     const firstPageIndex = (currentPage - 1) * PageSize;
     const lastPageIndex = firstPageIndex + PageSize;
     return allShopItems.slice(firstPageIndex, lastPageIndex);
-  }, [currentPage]);
+  }, [currentPage, allShopItems]);
 
   const onPurchaseClick = (item) => {
     dispatch(setOpenShopModal(true));
@@ -47,14 +48,14 @@ const ShopPage = () => {
 
   useEffect(() => {
     dispatch(setHeaderMode(pathname));
-  }, []);
+  }, [dispatch, pathname]);
 
   useEffect(() => {
     dispatch(getAllShopItems());
-  }, []);
+  }, [dispatch]);
 
   return (
-    <div>
+    <Page title={t("Shop_Page")}>
       {/* General Haeder */}
       <ShopHeader />
 
@@ -91,7 +92,7 @@ const ShopPage = () => {
         pageSize={PageSize}
         onPageChange={(page) => setCurrentPage(page)}
       />
-    </div>
+    </Page>
   );
 };
 
