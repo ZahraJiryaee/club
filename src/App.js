@@ -1,7 +1,6 @@
 import React, { useEffect, Suspense } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useRoutes } from "react-router-dom";
-import { ErrorBoundary } from "react-error-boundary";
 
 import { setCurrentUser } from "./redux/user/user.action";
 
@@ -11,11 +10,8 @@ import SignupSignin from "./components/signup-signin/signup-signin.component";
 import LuckyWheelModal from "./components/lucky-wheel-modal/lucky-wheel-modal.component";
 import ShopModal from "./components/shop-modal/shop-modal.component";
 import WantMoreChance from "./components/want-more-chance/want-more-chance.component";
-import Loading from "./components/common/loading/loading.component";
-import {
-  ErrorFallback,
-  myErrorHandler,
-} from "./components/common/error-boundary/error-boundary.component";
+import Spinner from "./components/common/spinner/spinner.componnent";
+import ErrorBoundary from "./components/common/error-boundary/error-boundary.component";
 
 import { useSetupAxios } from "./services/httpServices";
 import ScrollToTop from "./services/scrollToTop";
@@ -39,13 +35,13 @@ function App() {
 
   return (
     <>
-      <ErrorBoundary FallbackComponent={ErrorFallback} onError={myErrorHandler}>
+      <ErrorBoundary>
         <LuckyWheelModal />
         <ShopModal />
         <WantMoreChance />
         <SignupSignin />
         <ScrollToTop>
-          <Suspense fallback={<Loading />}>{routing}</Suspense>
+          <Suspense fallback={<Spinner />}>{routing}</Suspense>
         </ScrollToTop>
       </ErrorBoundary>
     </>
