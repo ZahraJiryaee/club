@@ -1,11 +1,18 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useTranslation } from "react-i18next";
 
 import { setHeaderMode } from "../../redux/header/header.action";
 
+import calculateInnerBorderDegrees from "./inner-border-degrees";
+
 import logger from "../../services/logService";
+
+import {
+  extraWheelItem,
+  // wheelOfPrizes,
+} from "../mock/wheel.mock";
 
 import Arrow from "./../../assets/images/lucky-wheel/arrow/arrow.png";
 
@@ -22,9 +29,18 @@ const SpinningWheel = ({
   const dispatch = useDispatch();
   const { t } = useTranslation();
 
+  const [listOfPrizes, setlistOfPrizes] = useState([]);
+
   useEffect(() => {
     dispatch(setHeaderMode(pathname));
   }, [pathname, dispatch]);
+
+  useEffect(() => {
+    const list = [...bonusList];
+    if (list.length % 2 !== 0) list.push(extraWheelItem);
+    setlistOfPrizes(list);
+    /* setlistOfPrizes(wheelOfPrizes);*/
+  }, [bonusList]);
 
   const colors = [
     "linear-gradient(180deg, #fe8816, #f4c446)",
@@ -32,9 +48,12 @@ const SpinningWheel = ({
   ];
 
   const wheelvars = {
-    "--wheel-items-length": bonusList.length,
+    "--wheel-items-length": listOfPrizes.length,
     "--selectedd-item": bonusId,
     "--item-width": "",
+    "--wheel-inner-borser-degrees": calculateInnerBorderDegrees(
+      listOfPrizes.length
+    ),
   };
   return (
     <div className="spinning-wheel-component">
@@ -47,14 +66,14 @@ const SpinningWheel = ({
 
       <div className="wheel-outer-container">
         <div className="wheel-inner-container">
-          <div className="inner-border">
-            <div
-              className={`wheel ${
-                isWheelSpinning === true ? "spinning-wheel" : ""
-              }`}
-              style={wheelvars}
-            >
-              {bonusList.map((item, index) => (
+          <div
+            style={wheelvars}
+            className={`inner-border ${
+              isWheelSpinning === true ? "spinning-wheel" : ""
+            }`}
+          >
+            <div className="wheel">
+              {listOfPrizes.map((item, index) => (
                 <div
                   className="item"
                   key={index}
