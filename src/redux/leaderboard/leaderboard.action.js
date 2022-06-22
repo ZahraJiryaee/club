@@ -4,6 +4,7 @@ import {
   userListMonthly,
   userListSeasonal,
 } from "../../services/leaderboardService";
+import logger from "../../services/logService";
 
 export const setLeaderBoardHeaderStatus = (value) => ({
   type: LeaderboardActionTypes.SET_LEADERBOARD_HEADER_STATUS,
@@ -14,7 +15,7 @@ export const getUserListWeekly = () => async (dispatch) => {
   let result;
   await userListWeekly()
     .then((response) => {
-      console.log("response-weekly:", response);
+      logger.logInfo("response-leaderboard-weekly:", response);
       result = response;
       if (response.status === 200) {
         dispatch({
@@ -24,7 +25,7 @@ export const getUserListWeekly = () => async (dispatch) => {
       }
     })
     .catch((error) => {
-      console.log("error-weekly", error.response);
+      logger.logError("error-leaderboard-weekly", error.response);
       result = error.response;
       dispatch({
         type: LeaderboardActionTypes.USER_LIST_WEEKLY,
@@ -38,7 +39,7 @@ export const getUserListMonthly = () => async (dispatch) => {
   let result;
   await userListMonthly()
     .then((response) => {
-      console.log("response-monthly:", response);
+      logger.logInfo("response-leaderboard-monthly:", response);
       result = response;
       if (response.status === 200) {
         dispatch({
@@ -48,7 +49,7 @@ export const getUserListMonthly = () => async (dispatch) => {
       }
     })
     .catch((error) => {
-      console.log("error-monthly", error.response);
+      logger.logError("error-leaderboard-monthly", error.response);
       result = error.response;
       dispatch({
         type: LeaderboardActionTypes.USER_LIST_MONTHLY,
@@ -62,7 +63,7 @@ export const getUserListSeasonal = () => async (dispatch) => {
   let result;
   await userListSeasonal()
     .then((response) => {
-      console.log("response-seasonal:", response);
+      logger.logInfo("response-leaderboard-seasonal:", response);
       result = response;
       if (response.status === 200) {
         dispatch({
@@ -72,7 +73,7 @@ export const getUserListSeasonal = () => async (dispatch) => {
       }
     })
     .catch((error) => {
-      console.log("error-seasonal", error.response);
+      logger.logError("error-leaderboard-seasonal", error.response);
       result = error.response;
       dispatch({
         type: LeaderboardActionTypes.USER_LIST_SEASONAL,

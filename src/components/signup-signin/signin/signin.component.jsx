@@ -3,6 +3,8 @@ import { useDispatch } from "react-redux";
 
 import { login } from "../../../redux/user/user.action";
 
+import logger from "../../../services/logService";
+
 const Signin = ({ setSignupMode }) => {
   const dispatch = useDispatch();
 
@@ -22,7 +24,7 @@ const Signin = ({ setSignupMode }) => {
     result.then((response) => {
       if (response.status === 200) {
         // success toast => Welcome to medrick club
-        console.log("Welcome to Medrick Club!");
+        logger.logInfo("Welcome to Medrick Club! - signin");
       }
     });
   };

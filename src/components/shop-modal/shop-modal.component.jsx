@@ -13,6 +13,8 @@ import { selectCurrentUser } from "../../redux/user/user.selectors";
 
 import CustomButton from "../common/custom-button/custom-button.component";
 
+import logger from "../../services/logService";
+
 import CloseIcon from "./../../assets/images/icon/close-icon.png";
 import ShopItemImg from "./../../assets/images/test/shop-item.png";
 import CheckCircleGreen from "./../../assets/images/icon/check-circle-green.png";
@@ -27,7 +29,7 @@ const ShopModal = () => {
   const isShopModalOPen = useSelector(selectSetOpenShopModal);
   const shopModalData = useSelector(selectShopModalData);
   const currentUser = useSelector(selectCurrentUser);
-  console.log("shopModalData:", shopModalData);
+  logger.logInfo("shopModalData:", shopModalData);
 
   const [phase, setPhase] = useState(1);
   const [userAddress, setUserAddress] = useState("");

@@ -14,6 +14,8 @@ import {
 } from "../../redux/wheel/wheel.selectors";
 import { selectCurrentUser } from "../../redux/user/user.selectors";
 
+import logger from "../../services/logService";
+
 import CloseIcon from "./../../assets/images/icon/close-icon.png";
 
 import "./lucky-wheel-modal.styles.scss";
@@ -35,7 +37,6 @@ const LuckyWheelModal = () => {
   );
 
   const popupPrizeBtn = () => {
-    console.log("api call");
     setPrizeReceived(true);
     if (prizeType === "dig") {
       setPopupBtnTxt(`${t("Verification_Code")}: ${value}`);
@@ -77,7 +78,7 @@ const LuckyWheelModal = () => {
   };
 
   useEffect(() => {
-    console.log("setBonus- modal:", setBonus);
+    logger.logInfo("setBonus-wheel-modal:", setBonus);
     const { type } = setBonus || {};
 
     setPrizeReceived(false);

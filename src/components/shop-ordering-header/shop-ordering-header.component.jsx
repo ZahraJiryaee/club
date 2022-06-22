@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 
+import logger from "../../services/logService";
+
 import shopMock from "../mock/shop.mock";
 
 import "./shop-ordering-header.styles.scss";
@@ -18,7 +20,7 @@ const ShopOrderingHeader = () => {
   };
   const handleCheckedItem = (id) => {
     /* set the "checked" value for the selected id to true & others to false */
-    console.log("id:", id);
+    logger.logInfo("id-shop-ordering-header:", id);
     if (toggleSelect) {
       let clone = [...orderShop];
       let picked_data = clone.filter((item) => item.id === id);

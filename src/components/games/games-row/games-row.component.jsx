@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
 import { routeNames } from "../../../services/routeService";
+import logger from "../../../services/logService";
 
 import StarLogo from "./../../../assets/images/icon/star.png";
 
@@ -22,7 +23,7 @@ const GamesRow = ({ applications, page }) => {
     }
   };
 
-  console.log("applications:", applications);
+  logger.logInfo("applications-games-row:", applications);
 
   return (
     <div

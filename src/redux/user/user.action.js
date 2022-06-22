@@ -8,6 +8,7 @@ import {
   setInviterNumber,
   setDeviceId,
 } from "../../services/userServices";
+import logger from "../../services/logService";
 import { UserActionTypes } from "./user.types";
 
 export const signUp_Phase1 = (phoneNumber) => async () => {
@@ -114,14 +115,14 @@ export const editUserProfileInformation = (body) => async (dispatch) => {
   let result;
   await setUserProfile(body)
     .then(async (response) => {
-      console.log("response-setuser-profile-address", response);
+      logger.logInfo("response-editUserProfileInformation", response);
       if (response.status === 200) {
         result = await dispatch(setCurrentUser());
         // result = response;
       }
     })
     .catch((error) => {
-      console.log("error-setuser-profile-address", error);
+      logger.logError("error-editUserProfileInformation", error);
       result = error.response;
     });
   return result;
@@ -155,13 +156,13 @@ export const setUserProfileAddress = (body) => async (dispatch) => {
   let result;
   await setUserProfile(body)
     .then((response) => {
-      console.log("response-setuser-profile-address", response);
+      logger.logInfo("response-setUserProfileAddress", response);
       if (response.status === 200) {
         result = response;
       }
     })
     .catch((error) => {
-      console.log("error-setuser-profile-address", error);
+      logger.logError("error-setUserProfileAddress", error);
       result = error.response;
     });
   return result;
@@ -171,7 +172,7 @@ export const inviteFriends = (inviterCode) => async () => {
   const accessToken = localStorage.getItem("accessToken");
   await setInviterNumber(inviterCode, accessToken)
     .then((response) => {
-      console.log(response);
+      logger.logInfo("response-invite-friends", response);
     })
     .catch((e) => {
       //error toast-> e.response.data.message
@@ -182,7 +183,7 @@ export const LinkDeviceID = (deviceID) => async () => {
   const accessToken = localStorage.getItem("accessToken");
   await setDeviceId(deviceID, accessToken)
     .then((response) => {
-      console.log(response);
+      logger.logInfo("response-link-device-id", response);
     })
     .catch((e) => {
       //error toast-> e.response.data.message

@@ -7,6 +7,7 @@ import {
   setBonus,
   getBonusLog,
 } from "./../../services/wheelService";
+import logger from "../../services/logService";
 import { error } from "./../../services/toastService";
 
 export const getBonusList = () => async (dispatch) => {
@@ -15,7 +16,7 @@ export const getBonusList = () => async (dispatch) => {
     .then((response) => {
       if (response.status === 200) {
         result = "success";
-        console.log("response:", response);
+        logger.logInfo("response-get-bonus-list:", response);
         dispatch({
           type: WheelActionTypes.SET_BONUS_LIST,
           payload: response.data,
@@ -25,7 +26,7 @@ export const getBonusList = () => async (dispatch) => {
     .catch((e) => {
       //error toast-> e.response.data.message
       //   result = e.response.data.message;
-      console.log("e:", e);
+      logger.logInfo("error-get-bonus-list:", e);
     });
   return result;
 };
@@ -36,7 +37,7 @@ export const setUserBonus = () => async (dispatch) => {
     .then((response) => {
       if (response.status === 200) {
         result = response;
-        console.log("response-set-bonus:", response);
+        logger.logInfo("response-set-bonus:", response);
         dispatch({
           type: WheelActionTypes.SET_BONUS,
           payload: response.data,
@@ -45,7 +46,8 @@ export const setUserBonus = () => async (dispatch) => {
     })
     .catch((e) => {
       //error toast-> e.response.data.message
-      console.log("e:", e, "-", e.response);
+      logger.logError("error-set-bonus:", e);
+      logger.logError("error.response-set-bonus:", e.response);
       result = e.response;
       if (e.response.status === 403) {
         error(i18n.t("Try_Again"));
@@ -64,7 +66,7 @@ export const getBonusHistory = () => async (dispatch) => {
     .then((response) => {
       if (response.status === 200) {
         result = response;
-        console.log("response-set-bonus:", response);
+        logger.logInfo("response-getBonusHistory:", response);
         dispatch({
           type: WheelActionTypes.GET_BONUS_LOG,
           payload: response.data,
@@ -73,7 +75,8 @@ export const getBonusHistory = () => async (dispatch) => {
     })
     .catch((e) => {
       //error toast-> e.response.data.message
-      console.log("e:", e, "-", e.response);
+      logger.logError("error-getBonusHistory:", e);
+      logger.logError("err.response-getBonusHistory:", e.response);
       result = e.response;
       dispatch({
         type: WheelActionTypes.GET_BONUS_LOG,

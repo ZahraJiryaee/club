@@ -22,6 +22,7 @@ import DownloadAppsBottomSheet from "../../components/download-apps-bottom-sheet
 import Page from "../page";
 
 import { routeNames } from "../../services/routeService";
+import logger from "../../services/logService";
 
 // import {levelMock,purchaseMock,userAppInfoMock,} from "../../components/mock/level.mock";
 
@@ -47,9 +48,9 @@ const GameDetails = () => {
   const userApplicationInfo = useSelector(selectUserApplicationInfo);
   const appInstallationStatus = useSelector(selectIsApplicationInstalled);
 
-  console.log("gameDetails:", gameDetails);
-  console.log("userApplicationInfo:", userApplicationInfo);
-  console.log("appInstallationStatus:", appInstallationStatus);
+  logger.logInfo("gameDetails-game-details:", gameDetails);
+  logger.logInfo("userApplicationInfo-game-details:", userApplicationInfo);
+  logger.logInfo("appInstallationStatus-game-details:", appInstallationStatus);
 
   const [showMore, setShowMore] = useState(false);
   const [openBtmSheet, setOpenBtmSheet] = useState(false);
@@ -89,7 +90,7 @@ const GameDetails = () => {
     userApplicationInfo.forEach(
       (item) => (userPassedLevels[item.level.id] = true)
     );
-    console.log("userPassedLevels:", userPassedLevels);
+    logger.logInfo("userPassedLevels-game-details:", userPassedLevels);
     setAwardsThatUserPassed(userPassedLevels);
   }, [userApplicationInfo]);
 
@@ -109,7 +110,7 @@ const GameDetails = () => {
     purchase.forEach((purchase) => {
       level_purchase.push({ ...purchase, _customType: "purchase" });
     });
-    console.log("level_purchase:", level_purchase);
+    logger.logInfo("level_purchase-game-details:", level_purchase);
     setAwardsList(level_purchase);
     //
     setAwardsListLength(level_purchase.length);

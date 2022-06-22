@@ -18,6 +18,7 @@ import {
 
 import { useSetupAxios } from "./services/httpServices";
 import ScrollToTop from "./services/scrollToTop";
+import logger from "./services/logService";
 
 import routes from "./routes";
 
@@ -31,7 +32,7 @@ function App() {
 
   useEffect(() => {
     dispatch(setCurrentUser()).then((response) => {
-      console.log("profile response app", response);
+      logger.logInfo("profile response app", response);
     });
   }, [dispatch, isLoading]);
 

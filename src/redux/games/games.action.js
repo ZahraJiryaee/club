@@ -6,6 +6,7 @@ import {
   getUserApplicationInfo,
   isAppInstalled,
 } from "../../services/gamesServices";
+import logger from "../../services/logService";
 import { GamesActionTypes } from "./games.types";
 
 export const getAllGames = () => async (dispatch) => {
@@ -20,7 +21,7 @@ export const getAllGames = () => async (dispatch) => {
       }
     })
     .catch((e) => {
-      console.log(e);
+      logger.logError("error-getallgames", e);
       //toast
     });
   return result;
@@ -63,7 +64,7 @@ export const getGameDetailsInformation = (id) => async (dispatch) => {
       }
     })
     .catch((e) => {
-      console.log(e);
+      logger.logError("error-getGameDetailsInformation", e);
       //toast
     });
   return result;
@@ -80,7 +81,7 @@ export const getUserApplicationInformation = (gameId) => async (dispatch) => {
       }
     })
     .catch((error) => {
-      console.log(error);
+      logger.logError("error-getUserApplicationInformation", error);
     });
 };
 
@@ -95,6 +96,6 @@ export const isApplicationInstalled = (gameId) => async (dispatch) => {
       }
     })
     .catch((error) => {
-      console.log(error);
+      logger.logError("error-isApplicationInstalled", error);
     });
 };

@@ -10,6 +10,7 @@ import Page from "../../pages/page";
 
 import { routeNames } from "../../services/routeService";
 import generateUniqueId from "../../services/generateUniqueId";
+import logger from "../../services/logService";
 
 import StarLogo from "../../assets/images/icon/star.png";
 
@@ -28,7 +29,7 @@ const GenreView = ({ title }) => {
 
   useEffect(() => {
     if (filteredGenre && filteredCategory) {
-      console.log("filteredGenre:", filteredGenre);
+      logger.logInfo("filteredGenre-genre-view:", filteredGenre);
       if (type === "genre") {
         setFilteredData(filteredGenre);
         let currentGenre = filteredGenre[0].genres.filter(

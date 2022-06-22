@@ -10,6 +10,7 @@ import { setHeaderMode } from "../../redux/header/header.action";
 import { selectAllGames } from "../../redux/games/games.selectors";
 
 import { routeNames } from "../../services/routeService";
+import logger from "../../services/logService";
 
 import GenreHeader from "../../components/genres/genre-header.component";
 import GamesRow from "../../components/games/games-row/games-row.component";
@@ -34,7 +35,7 @@ const GamesPage = () => {
       dispatch(getAllGames());
       dispatch(getAllGenres());
     } catch (ex) {
-      console.log(ex);
+      logger.logError("ex-games", ex);
       //tast error
     }
   }, [dispatch, pathname]);

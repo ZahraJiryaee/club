@@ -7,6 +7,8 @@ import {
   signUp_Phase3,
 } from "../../../redux/user/user.action";
 
+import logger from "../../../services/logService";
+
 const Signup = ({ setSignupMode }) => {
   const dispatch = useDispatch();
 
@@ -88,7 +90,7 @@ const Signup = ({ setSignupMode }) => {
       result.then((response) => {
         if (response.status === 200) {
           // success toast => Welcome to medrick club
-          console.log("Welcome to Medrick Club!");
+          logger.logInfo("Welcome to Medrick Club! - signup");
         }
       });
     } else {
@@ -137,7 +139,7 @@ const Signup = ({ setSignupMode }) => {
     const inviterPhoneNumber = value.slice(0, maxLength);
     setSignupInviterPhoneNumber(inviterPhoneNumber);
 
-    console.log(signupInviterPhoneNumber);
+    logger.logInfo("signupInviterPhoneNumber", signupInviterPhoneNumber);
   };
 
   const handleResendButton = async () => {

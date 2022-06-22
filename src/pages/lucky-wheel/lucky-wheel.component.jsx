@@ -20,6 +20,8 @@ import {
 } from "../../redux/user/user.selectors";
 import { selectBonusList } from "../../redux/wheel/wheel.selectors";
 
+import logger from "../../services/logService";
+
 import HandPointUp from "./../../assets/images/icon/hand-point-up.png";
 
 import "./lucky-wheel.component.scss";
@@ -45,12 +47,12 @@ const LuckyWheelPage = () => {
   };
 
   useEffect(() => {
-    console.log("isLoading::", isLoading);
+    logger.logInfo("isLoading-luckywheel::", isLoading);
     dispatch(getBonusList());
   }, [dispatch, isLoading]);
 
   useEffect(() => {
-    console.log("currentUser-luck:", currentUser);
+    logger.logInfo("currentUser-luckywheel:", currentUser);
     setUserChanceConuter(currentUser ? currentUser.chance_counter : "?");
   }, [currentUser]);
 
@@ -64,7 +66,8 @@ const LuckyWheelPage = () => {
         const bonusId = bonusList.findIndex(
           (bonus) => bonus.id === response.data.id
         );
-        console.log("bonusId:", bonusId);
+
+        logger.logInfo("bonusId-luckywheel:", bonusId);
         setBonusId(bonusId);
 
         spinHandler();
@@ -82,7 +85,10 @@ const LuckyWheelPage = () => {
 
   const isSpinOnItemOne = useRef(false); //controls wheel goes back to item1 after every spin
   const spinHandler = useCallback(() => {
-    console.log("isSpinOnItemOne.current:", isSpinOnItemOne.current);
+    logger.logInfo(
+      "isSpinOnItemOne.current-luckywheel:",
+      isSpinOnItemOne.current
+    );
     if (isSpinOnItemOne.current === true) {
       setIsWheelSpinning(true);
       isSpinOnItemOne.current = false;

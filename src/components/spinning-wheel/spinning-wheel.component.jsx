@@ -5,6 +5,8 @@ import { useTranslation } from "react-i18next";
 
 import { setHeaderMode } from "../../redux/header/header.action";
 
+import logger from "../../services/logService";
+
 import Arrow from "./../../assets/images/lucky-wheel/arrow/arrow.png";
 
 import "./spinning-wheel.styles.scss";
@@ -15,7 +17,7 @@ const SpinningWheel = ({
   bonusId,
   isWheelSpinning,
 }) => {
-  console.log("bonusList:", bonusList);
+  logger.logInfo("bonusList-spinning-wheel:", bonusList);
   const { pathname } = useLocation();
   const dispatch = useDispatch();
   const { t } = useTranslation();
@@ -48,7 +50,7 @@ const SpinningWheel = ({
           <div className="inner-border">
             <div
               className={`wheel ${
-                isWheelSpinning == true ? "spinning-wheel" : ""
+                isWheelSpinning === true ? "spinning-wheel" : ""
               }`}
               style={wheelvars}
             >
