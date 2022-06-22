@@ -1,23 +1,40 @@
-import React from "react";
+import React, { lazy } from "react";
 import { Navigate } from "react-router-dom";
 
-import MainLayout from "./layouts/main-layout/main-layout.component";
-
-import LuckyWheelPage from "./pages/lucky-wheel/lucky-wheel.component";
-import GamesPage from "../src/pages/games/games.component";
-import GameDetails from "./pages/game-details/game-details.component";
-import GenrePage from "../src/pages/genre/genre.component";
-import SearchPage from "./pages/search/search.component";
-import LeaderBoardPage from "./pages/leaderboard/leaderboard.component";
-import ShopPage from "./pages/shop/shop.component";
-import ProfilePage from "./pages/profile/profile.component";
-import EditProfilePage from "./pages/profile/edit-profile/edit-profile.conponent";
-import GiftHistorypage from "./pages/profile/gitt-history/gift-history.component";
-import InviterCodePage from "./pages/profile/inviter-code/inviter-code.component";
-import DeviceIdPage from "./pages/profile/device-id/device-id.components";
-import InviteFriendsPage from "./pages/profile/invite-friends/invite-friends.component";
-
 import { routeNames } from "./services/routeService";
+
+const MainLayout = lazy(() =>
+  import("./layouts/main-layout/main-layout.component")
+);
+const LuckyWheelPage = lazy(() =>
+  import("./pages/lucky-wheel/lucky-wheel.component")
+);
+const GamesPage = lazy(() => import("../src/pages/games/games.component"));
+const GameDetails = lazy(() =>
+  import("./pages/game-details/game-details.component")
+);
+const GenrePage = lazy(() => import("../src/pages/genre/genre.component"));
+const SearchPage = lazy(() => import("./pages/search/search.component"));
+const LeaderBoardPage = lazy(() =>
+  import("./pages/leaderboard/leaderboard.component")
+);
+const ShopPage = lazy(() => import("./pages/shop/shop.component"));
+const ProfilePage = lazy(() => import("./pages/profile/profile.component"));
+const EditProfilePage = lazy(() =>
+  import("./pages/profile/edit-profile/edit-profile.conponent")
+);
+const GiftHistorypage = lazy(() =>
+  import("./pages/profile/gitt-history/gift-history.component")
+);
+const InviterCodePage = lazy(() =>
+  import("./pages/lucky-wheel/lucky-wheel.component")
+);
+const DeviceIdPage = lazy(() =>
+  import("./pages/profile/device-id/device-id.components")
+);
+const InviteFriendsPage = lazy(() =>
+  import("./pages/profile/invite-friends/invite-friends.component")
+);
 
 const routes = [
   {
