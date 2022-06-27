@@ -5,14 +5,13 @@ import { useTranslation } from "react-i18next";
 import { setOpenWheelModal } from "../../redux/wheel/wheel.action";
 import {
   setCurrentUser,
-  setUserProfileAddress,
+  setUserBonusAddress,
 } from "../../redux/user/user.action";
 
 import {
   selectBonus,
   selectOpenWheelModal,
 } from "../../redux/wheel/wheel.selectors";
-import { selectCurrentUser } from "../../redux/user/user.selectors";
 
 import logger from "../../services/logService";
 
@@ -24,11 +23,10 @@ const LuckyWheelModal = () => {
   const dispatch = useDispatch();
   const { t } = useTranslation();
 
-  const setBonus = useSelector(selectBonus);
+  const { detail: setBonus, log_id } = useSelector(selectBonus) || {};
   const openWheelModal = useSelector(selectOpenWheelModal);
-  const currentUser = useSelector(selectCurrentUser);
 
-  const { title, type: prizeType, value } = setBonus || {};
+  const { title, type: prizeType, code } = setBonus || {};
 
   const [prizeReceived, setPrizeReceived] = useState(false);
   const [userAddress, setUserAddress] = useState("");
@@ -39,32 +37,15 @@ const LuckyWheelModal = () => {
   const popupPrizeBtn = () => {
     setPrizeReceived(true);
     if (prizeType === "dig") {
-      setPopupBtnTxt(`${t("Verification_Code")}: ${value}`);
+      setPopupBtnTxt(`${t("Verification_Code")}: ${code}`);
     } else if (prizeType === "non-dig") {
-      setPopupBtnTxt(`${t("Tracking_Code")}: ${value}`);
+      setPopupBtnTxt(`${t("Tracking_Code")}: ${code}`);
 
-      const {
-        first_name,
-        last_name,
-        avatar,
-        gender,
-        birth_date,
-        postal_code,
-        username,
-      } = currentUser;
-
-      const setProfileBody = {
-        first_name,
-        last_name,
-        avatar,
-        gender,
-        birth_date,
+      const setBonusAddressBody = {
         address: userAddress,
-        postal_code,
-        contact_mobile_number: username,
       };
 
-      dispatch(setUserProfileAddress(setProfileBody));
+      dispatch(setUserBonusAddress(log_id, setBonusAddressBody));
     }
   };
 

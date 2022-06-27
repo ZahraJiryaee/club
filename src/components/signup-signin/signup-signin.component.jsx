@@ -13,7 +13,7 @@ import MedrickLogo from "./../../assets/images/icon/medrick-logo.png";
 
 import "./signup-signin.styles.scss";
 
-const SignupSignin = ({ warningMsg }) => {
+const SignupSignin = () => {
   const dispatch = useDispatch();
 
   const [signupMode, setSignupMode] = useState(true); // true=>signup   false=>login
@@ -41,11 +41,9 @@ const SignupSignin = ({ warningMsg }) => {
               alt="medrick-logo"
             />
             {/*--------------------- warning Msg -------------------*/}
-            {warningMsg && (
-              <p className="warningMsg">
-                برای دسترسی به امکانات برنامه لطفا وارد شوید
-              </p>
-            )}
+            <p className="warningMsg">
+              برای دسترسی به امکانات برنامه لطفا وارد شوید
+            </p>
             {/*------------------ SignUp or Signin ------------------*/}
             {signupMode ? (
               <Signup setSignupMode={setSignupMode} />

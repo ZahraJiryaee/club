@@ -11,6 +11,9 @@ const newTokenApiEndpoint = API_URL + "/api/v1/user/token/refresh";
 // profile
 const userProfileApiEndpoint = API_URL + "/api/v1/user/profile";
 
+// bonus
+const setBonusAddress = API_URL + "/api/v1/bonus/";
+
 // leaderboard
 const listUserWeekly = API_URL + "/api/v1/score/weakly";
 const listUserMonthly = API_URL + "/api/v1/score/monthly";
@@ -29,6 +32,7 @@ const getApis = {
   API_URL,
   newTokenApiEndpoint,
   userProfileApiEndpoint,
+  setBonusAddress,
   listUserWeekly,
   listUserMonthly,
   listUserSeasonal,

@@ -1,74 +1,78 @@
+import i18n from "i18next";
+
+import { UserActionTypes } from "./user.types";
+
 import {
   sendPhoneNumber,
   checkOTP,
-  setPassword,
   setLoginToken,
   getUserProfile,
   setUserProfile,
   setInviterNumber,
   setDeviceId,
+  setBonusAddress,
 } from "../../services/userServices";
 import logger from "../../services/logService";
-import { UserActionTypes } from "./user.types";
+import { error } from "./../../services/toastService";
+import localstorageService from "../../services/localstorageService";
 
 export const signUp_Phase1 = (phoneNumber) => async () => {
   let result;
+  localstorageService.setToken({ accessToken: "", refreshTokken: "" });
   await sendPhoneNumber(phoneNumber)
     .then((response) => {
       if (response.status === 200) {
         result = "success";
+        logger.logInfo("signUp_Phase1-response::", response);
       }
     })
     .catch((e) => {
-      //error toast-> e.response.data.message
-      result = e.response.data.message;
+      result = e;
+      logger.logError("signUp_Phase1-error::", e.response);
+      if (e.response.status === 409) {
+        error(i18n.t("User_Already_Exist"));
+      } else {
+        error(i18n.t("Try_Again"));
+      }
     });
   return result;
 };
 
-export const signUp_Phase2 = (phoneNumber, otp) => async () => {
+export const signUp_Phase2 = (body) => async (dispatch) => {
   let result;
-  await checkOTP(phoneNumber, otp)
-    .then((response) => {
-      if (response.status === 200) {
+  const { inviter_number, mobile_number, password } = body;
+  await checkOTP(body)
+    .then(async (response) => {
+      if (response.status === 200 || response.status === 201) {
         result = "success";
+        logger.logInfo("signUp_Phase2-response::", response);
+
+        result = await dispatch(login(mobile_number, password));
+
+        if (inviter_number) {
+          await dispatch(inviteFriends(inviter_number));
+        }
+        dispatch(setOpenValidationDialog(false));
       }
     })
     .catch((e) => {
       //error toast-> e.response.data.message
       result = e.response.data.message;
+      logger.logError("signUp_Phase2-error::", e.response);
     });
   return result;
 };
-
-export const signUp_Phase3 =
-  (phoneNumber, password, hasInviterCode, inviterCode) => async (dispatch) => {
-    let result;
-    await setPassword(password, phoneNumber)
-      .then(async (response) => {
-        if (response.status === 200 || response.status === 201) {
-          //result = "success";
-          result = await dispatch(login(phoneNumber, password));
-          if (hasInviterCode) {
-            await dispatch(inviteFriends(inviterCode));
-          }
-          dispatch(setOpenValidationDialog(false));
-        }
-      })
-      .catch((e) => {
-        //error toast-> e.response.data.message
-        result = e.response.data.message;
-      });
-    return result;
-  };
 
 export const login = (username, password) => async (dispatch) => {
   let result;
   await setLoginToken(username, password)
     .then(async (response) => {
       if (response.status === 200) {
-        localStorage.setItem("accessToken", response.data.access);
-        localStorage.setItem("refreshToken", response.data.refresh);
+        logger.logInfo("login-response::", response);
+        localstorageService.setToken({
+          accessToken: response.data.access,
+          refreshToken: response.data.refresh,
+        });
         dispatch({
           type: UserActionTypes.SET_ACCESS_TOKEN,
           payload: response.data.access,
@@ -85,6 +89,7 @@ export const login = (username, password) => async (dispatch) => {
     .catch((e) => {
       //error toast-> e.response.data.message
       result = e.response.data.message;
+      logger.logError("login-error::", e);
     });
   return result;
 };
@@ -132,6 +137,7 @@ export const setCurrentUser = () => async (dispatch) => {
   let result;
   await getUserProfile()
     .then((response) => {
+      logger.logInfo("response-setCurrentUser", response);
       if (response.status === 200) {
         dispatch({
           type: UserActionTypes.SET_CURRENT_USER,
@@ -143,6 +149,7 @@ export const setCurrentUser = () => async (dispatch) => {
     })
     .catch((e) => {
       //error toast-> e.response.data.message
+      logger.logError("error-setCurrentUser", e);
       dispatch({
         type: UserActionTypes.SET_CURRENT_USER,
         payload: null,
@@ -152,30 +159,32 @@ export const setCurrentUser = () => async (dispatch) => {
   return result;
 };
 
-export const setUserProfileAddress = (body) => async (dispatch) => {
+export const setUserBonusAddress = (bonusLogId, body) => async (dispatch) => {
   let result;
-  await setUserProfile(body)
+  await setBonusAddress(bonusLogId, body)
     .then((response) => {
-      logger.logInfo("response-setUserProfileAddress", response);
+      logger.logInfo("response-setBonusAddress", response);
       if (response.status === 200) {
         result = response;
       }
     })
     .catch((error) => {
-      logger.logError("error-setUserProfileAddress", error);
+      logger.logError("error-setBonusAddress", error);
       result = error.response;
     });
   return result;
 };
 
-export const inviteFriends = (inviterCode) => async () => {
+export const inviteFriends = (inviter_number) => async () => {
   const accessToken = localStorage.getItem("accessToken");
-  await setInviterNumber(inviterCode, accessToken)
+  await setInviterNumber(inviter_number, accessToken)
     .then((response) => {
       logger.logInfo("response-invite-friends", response);
     })
     .catch((e) => {
       //error toast-> e.response.data.message
+      logger.logError("error-invite-friends", e);
+      error(i18n.t("InviteFriends_Error_Message"));
     });
 };
 

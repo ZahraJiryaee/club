@@ -78,7 +78,7 @@ const ShopModal = () => {
           <span
             className={`shop-item-leave-chance-counter fontsize-${leaveScoreFontSize}`}
           >
-            {shopModalData.leave_chance_counter} {t("Score")}
+            {shopModalData.cost_chance_count} {t("Score")}
           </span>
         </p>
       </>

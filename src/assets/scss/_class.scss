@@ -32,3 +32,10 @@
 .color-dark-65 {
   color: $theme-color--dark-65;
 }
+
+.text-right {
+  display: flex;
+  justify-content: flex-start;
+  align-items: baseline;
+  text-align: right;
+}

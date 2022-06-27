@@ -64,7 +64,7 @@ const LuckyWheelPage = () => {
     result.then((response) => {
       if (response.status === 200) {
         const bonusId = bonusList.findIndex(
-          (bonus) => bonus.id === response.data.id
+          (bonus) => bonus.id === response.data.detail.id
         );
 
         logger.logInfo("bonusId-luckywheel:", bonusId);
@@ -77,6 +77,8 @@ const LuckyWheelPage = () => {
         }, 10000);
       } else if (response.status === 403) {
         // popup optopns to increase chances
+      } else if (response.status === 422) {
+        handleWantMoreChanceClick();
       } else {
         // toast
       }

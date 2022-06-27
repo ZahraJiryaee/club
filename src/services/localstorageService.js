@@ -13,9 +13,11 @@ function clearToken() {
   localStorage.removeItem("refreshToken");
 }
 
-export default {
+const localstorageService = {
   setToken: setToken,
   getAccessToken: getAccessToken,
   getRefreshToken: getRefreshToken,
   clearToken: clearToken,
 };
+
+export default localstorageService;

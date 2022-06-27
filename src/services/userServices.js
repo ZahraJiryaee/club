@@ -6,10 +6,9 @@ import localstorageService from "./localstorageService";
 const refreshToken = localstorageService.getRefreshToken();
 
 //Signup
-const postPhoneNumberApiEndpoint =
-  getAPIUrl() + "/api/v1/user/signup/verify/request";
+const postPhoneNumberApiEndpoint = getAPIUrl() + "/api/v1/user/signup/request";
 const postOtpApiEndpoint = getAPIUrl() + "/api/v1/user/signup/verify";
-const postPasswordApiEndpoint = getAPIUrl() + "/api/v1/user/signup";
+// const postPasswordApiEndpoint = getAPIUrl() + "/api/v1/user/signup";
 
 //Login
 const getLoginTokenApiEndpoint = getAPIUrl() + "/api/v1/user/token";
@@ -30,16 +29,10 @@ export const sendPhoneNumber = (phoneNumber) => {
   return http.post(postPhoneNumberApiEndpoint, body);
 };
 
-export const checkOTP = (phoneNumber, otp) => {
-  const body = { mobile_number: phoneNumber, otp: otp };
+export const checkOTP = (body) => {
+  delete body.inviter_number;
   JSON.stringify(body);
   return http.post(postOtpApiEndpoint, body);
-};
-
-export const setPassword = (password, phoneNumber) => {
-  const body = { mobile_number: phoneNumber, password: password };
-  JSON.stringify(body);
-  return http.post(postPasswordApiEndpoint, body);
 };
 
 //Login//
@@ -50,7 +43,7 @@ export const setLoginToken = (username, password) => {
 };
 
 export const setNewToken = () => {
-  const body = { refresh: `${refreshToken}` };
+  const body = { refresh: refreshToken ? `${refreshToken}` : "Bearer" };
   JSON.stringify(body);
   return http.post(getApis.newTokenApiEndpoint, body);
 };
@@ -64,9 +57,13 @@ export const setUserProfile = (body) => {
   return http.put(getApis.userProfileApiEndpoint, body);
 };
 
+export const setBonusAddress = (bonusLogId, body) => {
+  return http.put(getApis.setBonusAddress + bonusLogId + `/address`, body);
+};
+
 //InviterNumber//
-export const setInviterNumber = (inviterNumber) => {
-  const body = { inviter_number: inviterNumber };
+export const setInviterNumber = (inviter_number) => {
+  const body = { inviter_number };
   JSON.stringify(body);
   return http.post(postInviterPhoneNumberApiEndpoint, body);
 };

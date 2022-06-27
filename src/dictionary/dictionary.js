@@ -109,6 +109,10 @@ const resources = {
       Search_Page__Shop: "جستجو در فروشگاه",
       Shop_Page: "فروشگاه",
       Error_Boundary_Msg: "خطایی رخ داده است! لطفا با پشتیبانی تماس بگیرید.",
+      Signup: "ثبت نام",
+      Resend: "ارسال مجدد",
+      User_Already_Exist: "این شماره موبایل قبلا ثبت نام کرده است.",
+      InviteFriends_Error_Message: "ورود کد معرف با خطا مواجه شد!",
     },
   },
 };
