@@ -17,21 +17,6 @@ export function useSetupAxios() {
 
   dispatch(setIsLoading(true));
 
-  request.interceptors.request.use(
-    (config) => {
-      const accessToken = localstorageService.getAccessToken();
-
-      config.headers["Authorization"] = accessToken
-        ? `Bearer ${accessToken}`
-        : "";
-      request.defaults.headers.post["Content-Type"] = "application/json";
-      return config;
-    },
-    (error) => {
-      return Promise.reject(error);
-    }
-  );
-
   request.interceptors.response.use(
     (response) => {
       return response;
@@ -76,8 +61,8 @@ export function useSetupAxios() {
             dispatch(setIsLoading(false));
           });
         // return error;
-        return Promise.reject(error);
       }
+      return Promise.reject(error);
     }
   );
 

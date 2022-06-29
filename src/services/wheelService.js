@@ -1,5 +1,6 @@
 import http from "./httpServices";
 import getApis from "./api";
+import localstorageService from "./localstorageService";
 
 const apiUrl = getApis.API_URL;
 
@@ -8,9 +9,15 @@ export const retrieveBonusList = () => {
 };
 
 export const setBonus = () => {
-  return http.post(apiUrl + "/api/v1/bonus/view");
+  const accessToken = localstorageService.getAccessToken();
+  return http.post(apiUrl + "/api/v1/bonus/view", null, {
+    headers: { Authorization: `Bearer ${accessToken}` },
+  });
 };
 
 export const getBonusLog = () => {
-  return http.get(apiUrl + "/api/v1/bonus/log");
+  const accessToken = localstorageService.getAccessToken();
+  return http.get(apiUrl + "/api/v1/bonus/log", {
+    headers: { Authorization: `Bearer ${accessToken}` },
+  });
 };

@@ -50,27 +50,42 @@ export const setNewToken = () => {
 
 //Profile//
 export const getUserProfile = () => {
-  return http.get(getApis.userProfileApiEndpoint);
+  const accessToken = localstorageService.getAccessToken();
+  return http.get(getApis.userProfileApiEndpoint, {
+    headers: { Authorization: `Bearer ${accessToken}` },
+  });
 };
 
 export const setUserProfile = (body) => {
-  return http.put(getApis.userProfileApiEndpoint, body);
+  const accessToken = localstorageService.getAccessToken();
+  return http.put(getApis.userProfileApiEndpoint, body, {
+    headers: { Authorization: `Bearer ${accessToken}` },
+  });
 };
 
 export const setBonusAddress = (bonusLogId, body) => {
-  return http.put(getApis.setBonusAddress + bonusLogId + `/address`, body);
+  const accessToken = localstorageService.getAccessToken();
+  return http.put(getApis.setBonusAddress + bonusLogId + `/address`, body, {
+    headers: { Authorization: `Bearer ${accessToken}` },
+  });
 };
 
 //InviterNumber//
 export const setInviterNumber = (inviter_number) => {
+  const accessToken = localstorageService.getAccessToken();
   const body = { inviter_number };
   JSON.stringify(body);
-  return http.post(postInviterPhoneNumberApiEndpoint, body);
+  return http.post(postInviterPhoneNumberApiEndpoint, body, {
+    headers: { Authorization: `Bearer ${accessToken}` },
+  });
 };
 
 //DeviceId//
 export const setDeviceId = (deviceId) => {
+  const accessToken = localstorageService.getAccessToken();
   const body = { public_id: deviceId };
   JSON.stringify(body);
-  return http.post(postDeviceIdApiEndpoint, body);
+  return http.post(postDeviceIdApiEndpoint, body, {
+    headers: { Authorization: `Bearer ${accessToken}` },
+  });
 };

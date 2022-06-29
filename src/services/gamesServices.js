@@ -1,5 +1,6 @@
 import http from "./httpServices";
 import getApis from "./api";
+import localstorageService from "./localstorageService";
 
 export const getGames = () => {
   return http.get(getApis.getGamesApiEndpoint);
@@ -19,9 +20,15 @@ export const getGameDetails = (id) => {
 };
 
 export const getUserApplicationInfo = (gameId) => {
-  return http.get(getApis.getUserApplicationInfoEndpoint + gameId);
+  const accessToken = localstorageService.getAccessToken();
+  return http.get(getApis.getUserApplicationInfoEndpoint + gameId, {
+    headers: { Authorization: `Bearer ${accessToken}` },
+  });
 };
 
 export const isAppInstalled = (gameId) => {
-  return http.get(getApis.isAppInstalledEndpoint + gameId);
+  const accessToken = localstorageService.getAccessToken();
+  return http.get(getApis.isAppInstalledEndpoint + gameId, {
+    headers: { Authorization: `Bearer ${accessToken}` },
+  });
 };

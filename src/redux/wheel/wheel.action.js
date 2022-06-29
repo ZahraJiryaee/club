@@ -45,7 +45,6 @@ export const setUserBonus = () => async (dispatch) => {
       }
     })
     .catch((e) => {
-      //error toast-> e.response.data.message
       logger.logError("error-set-bonus:", e);
       logger.logError("error.response-set-bonus:", e.response);
       result = e.response;
