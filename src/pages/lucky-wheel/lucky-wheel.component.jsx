@@ -14,10 +14,7 @@ import {
 } from "../../redux/wheel/wheel.action";
 import { setHeaderMode } from "../../redux/header/header.action";
 
-import {
-  selectCurrentUser,
-  selectIsLoading,
-} from "../../redux/user/user.selectors";
+import { selectCurrentUser } from "../../redux/user/user.selectors";
 import { selectBonusList } from "../../redux/wheel/wheel.selectors";
 
 import logger from "../../services/logService";
@@ -33,7 +30,6 @@ const LuckyWheelPage = () => {
 
   const currentUser = useSelector(selectCurrentUser);
   const bonusList = useSelector(selectBonusList);
-  const isLoading = useSelector(selectIsLoading);
 
   const [userChanceConuter, setUserChanceConuter] = useState(0);
   const [wheelItem, setWheelItem] = useState(6);
@@ -47,9 +43,8 @@ const LuckyWheelPage = () => {
   };
 
   useEffect(() => {
-    logger.logInfo("isLoading-luckywheel::", isLoading);
     dispatch(getBonusList());
-  }, [dispatch, isLoading]);
+  }, [dispatch]);
 
   useEffect(() => {
     logger.logInfo("currentUser-luckywheel:", currentUser);

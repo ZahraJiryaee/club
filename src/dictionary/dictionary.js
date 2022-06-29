@@ -113,6 +113,8 @@ const resources = {
       Resend: "ارسال مجدد",
       User_Already_Exist: "این شماره موبایل قبلا ثبت نام کرده است.",
       InviteFriends_Error_Message: "ورود کد معرف با خطا مواجه شد!",
+      User_Not_Valid_Msg: "User_Not_Valid",
+      Login_To_See_Award_List: "برای دیدن لیست جوایز خود وارد شوید!",
     },
   },
 };

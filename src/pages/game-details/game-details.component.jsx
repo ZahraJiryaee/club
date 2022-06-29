@@ -9,12 +9,14 @@ import {
   isApplicationInstalled,
 } from "../../redux/games/games.action";
 import { setHeaderMode } from "../../redux/header/header.action";
+import { setOpenValidationDialog } from "../../redux/user/user.action";
 
 import {
   selectUserApplicationInfo,
   selectIsApplicationInstalled,
   selectGameDetails,
 } from "../../redux/games/games.selectors";
+import { selectCurrentUser } from "../../redux/user/user.selectors";
 
 import GameDetailHeader from "../../components/game-details-header/game-details-header.componetnt";
 import GamesRow from "../../components/games/games-row/games-row.component";
@@ -47,6 +49,7 @@ const GameDetails = () => {
   const gameDetails = useSelector(selectGameDetails);
   const userApplicationInfo = useSelector(selectUserApplicationInfo);
   const appInstallationStatus = useSelector(selectIsApplicationInstalled);
+  const currentUser = useSelector(selectCurrentUser);
 
   logger.logInfo("gameDetails-game-details:", gameDetails);
   logger.logInfo("userApplicationInfo-game-details:", userApplicationInfo);
@@ -54,6 +57,8 @@ const GameDetails = () => {
 
   const [showMore, setShowMore] = useState(false);
   const [openBtmSheet, setOpenBtmSheet] = useState(false);
+
+  const [isUserValid, setIsUserValid] = useState(true);
 
   const [awardsThatUserPassed, setAwardsThatUserPassed] = useState({});
   const [awardsList, setAwardsList] = useState([]);
@@ -74,7 +79,7 @@ const GameDetails = () => {
 
   useEffect(() => {
     dispatch(isApplicationInstalled(gameId));
-  }, [gameId, dispatch]);
+  }, [gameId, dispatch, currentUser]);
 
   useEffect(() => {
     dispatch(getGameDetailsInformation(gameId));
@@ -83,16 +88,21 @@ const GameDetails = () => {
   useEffect(() => {
     dispatch(getUserApplicationInformation(gameId));
     /* returns a award lists that user has achieved -level */
-  }, [gameId, dispatch]);
+  }, [gameId, dispatch, currentUser]);
 
   useEffect(() => {
     let userPassedLevels = {};
-    userApplicationInfo.forEach(
-      (item) => (userPassedLevels[item.level.id] = true)
-    );
-    logger.logInfo("userPassedLevels-game-details:", userPassedLevels);
-    setAwardsThatUserPassed(userPassedLevels);
-  }, [userApplicationInfo]);
+    if (userApplicationInfo == t("User_Not_Valid_Msg")) {
+      setIsUserValid(false);
+    } else {
+      setIsUserValid(true);
+      userApplicationInfo.forEach(
+        (item) => (userPassedLevels[item.level.id] = true)
+      );
+      logger.logInfo("userPassedLevels-game-details:", userPassedLevels);
+      setAwardsThatUserPassed(userPassedLevels);
+    }
+  }, [userApplicationInfo, currentUser]);
 
   useEffect(() => {
     let level_purchase = [];
@@ -141,6 +151,10 @@ const GameDetails = () => {
       );
       setAwardsListTxt(true);
     }
+  };
+
+  const handleUserNotValidTextClick = () => {
+    dispatch(setOpenValidationDialog(true));
   };
 
   return (
@@ -253,6 +267,14 @@ const GameDetails = () => {
               <p className="game-detail-level-header">
                 {t("Awards_That_Can_Be_Achieved_With_This_Game")}
               </p>
+              {!isUserValid ? (
+                <p
+                  className="game-detail-level-user-not-valid"
+                  onClick={handleUserNotValidTextClick}
+                >
+                  {t("Login_To_See_Award_List")}
+                </p>
+              ) : null}
               <ul className="game-detail-level-list-container">
                 <li>
                   <span className="level-icons">

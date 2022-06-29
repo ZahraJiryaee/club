@@ -1,3 +1,4 @@
+import i18n from "../../dictionary/dictionary";
 import {
   getGames,
   getFilteredCategory,
@@ -82,6 +83,12 @@ export const getUserApplicationInformation = (gameId) => async (dispatch) => {
     })
     .catch((error) => {
       logger.logError("error-getUserApplicationInformation", error);
+      if (error.response.status === 401) {
+        dispatch({
+          type: GamesActionTypes.GET_USER_APPLICATION_INFO,
+          payload: i18n.t("User_Not_Valid_Msg"),
+        });
+      }
     });
 };
 
@@ -97,5 +104,11 @@ export const isApplicationInstalled = (gameId) => async (dispatch) => {
     })
     .catch((error) => {
       logger.logError("error-isApplicationInstalled", error);
+      if (error.response.status === 401) {
+        dispatch({
+          type: GamesActionTypes.IS_APPLICATION_INSTALLED,
+          payload: i18n.t("User_Not_Valid_Msg"),
+        });
+      }
     });
 };
