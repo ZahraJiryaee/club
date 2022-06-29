@@ -54,7 +54,7 @@ const LeaderBoardPage = () => {
   );
 
   const UserRecord = ({ user }) => {
-    const { first_name, last_name, avatar } = user.user;
+    const { profile_name, avatar } = user.user;
     const { award, index, seasonal, weakly } = user;
     return (
       <Page title={t("Leaderboard_Page")}>
@@ -67,9 +67,7 @@ const LeaderBoardPage = () => {
                 alt="user-avater"
                 className="avatar"
               />
-              <span className="name">
-                {first_name} {last_name}
-              </span>
+              <span className="name">{profile_name}</span>
             </div>
             <div className="user--score-prize">
               {award && <span>{t("Prize")}</span>}

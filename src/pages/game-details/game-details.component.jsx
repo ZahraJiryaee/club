@@ -92,7 +92,7 @@ const GameDetails = () => {
 
   useEffect(() => {
     let userPassedLevels = {};
-    if (userApplicationInfo == t("User_Not_Valid_Msg")) {
+    if (userApplicationInfo === t("User_Not_Valid_Msg")) {
       setIsUserValid(false);
     } else {
       setIsUserValid(true);
@@ -102,7 +102,7 @@ const GameDetails = () => {
       logger.logInfo("userPassedLevels-game-details:", userPassedLevels);
       setAwardsThatUserPassed(userPassedLevels);
     }
-  }, [userApplicationInfo, currentUser]);
+  }, [userApplicationInfo, currentUser, t]);
 
   useEffect(() => {
     let level_purchase = [];

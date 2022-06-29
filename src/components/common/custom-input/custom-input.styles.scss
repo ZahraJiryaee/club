@@ -35,3 +35,10 @@
     font-size: 19px;
   }
 }
+
+.custom-input-error-message {
+  margin: 10px 0 0;
+  display: flex;
+  justify-content: flex-start;
+  color: $theme-color--orangey-red;
+}

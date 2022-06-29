@@ -7,7 +7,7 @@ import { signUp_Phase1, signUp_Phase2 } from "../../../redux/user/user.action";
 import CustomInput from "../../common/custom-input/custom-input.component";
 import CustomButton from "../../common/custom-button/custom-button.component";
 
-import logger from "../../../services/logService";
+import { validateMobileNumber } from "../../../services/validateMobileNumber";
 
 const Signup = ({ setSignupMode }) => {
   const dispatch = useDispatch();
@@ -23,8 +23,18 @@ const Signup = ({ setSignupMode }) => {
   const [password1Visible, setPassword1Visible] = useState(false);
   const [password2Visible, setPassword2Visible] = useState(false);
 
+  const [isSignupMobileNumberValid, setIsSignupMobileNumberValid] =
+    useState(false);
+  const [mobileNumberNotValidErrorMsg, setMobileNumberNotValidErrorMsg] =
+    useState("");
+  const [password1NotValidErrorMsg, setPassword1NotValidErrorMsg] =
+    useState("");
+  const [password2NotValidErrorMsg, setPassword2NotValidErrorMsg] =
+    useState("");
+  const [passwordsDoesNotMatchErrorMsg, setPasswordsDoesNotMatchErrorMsg] =
+    useState("");
+
   const [signupMobileNumber, setSignupMobileNumber] = useState("");
-  const [signupMobileNumberValid, setSignupMobileNumberValid] = useState(false);
   const [profileName, setProfileName] = useState("");
   const [signupOTP, setsignupOTP] = useState("");
   const [signupPassword1, setSignupPassword1] = useState("");
@@ -44,9 +54,13 @@ const Signup = ({ setSignupMode }) => {
     const { value, maxLength } = event.target;
     const mobileNumber = value.slice(0, maxLength);
     setSignupMobileNumber(mobileNumber);
-    setSignupMobileNumberValid(
-      mobileNumber.length === maxLength ? true : false
-    );
+    if (validateMobileNumber(mobileNumber)) {
+      setIsSignupMobileNumberValid(true);
+      setMobileNumberNotValidErrorMsg(null);
+    } else {
+      setIsSignupMobileNumberValid(false);
+      setMobileNumberNotValidErrorMsg(t("Mobile_Number_Not_valid_Error_Msg"));
+    }
   };
 
   const handleSignupProfileNameChange = (event) => {
@@ -63,12 +77,30 @@ const Signup = ({ setSignupMode }) => {
 
   const handleSignupPassword1Change = (event) => {
     const { value } = event.target;
-    const password1 = value;
-    setSignupPassword1(password1);
+    setSignupPassword1(value);
+    setPassword1NotValidErrorMsg(
+      value.length < passwordMinLength
+        ? t("Password_Should_Contain_Atleast_8_Chars")
+        : null
+    );
+
+    setPasswordsDoesNotMatchErrorMsg(
+      value === signupPassword2 ? null : t("Passwords_Does_Not_Match")
+    );
   };
 
   const handleSignupPassword2Change = (event) => {
-    setSignupPassword2(event.target.value);
+    const { value } = event.target;
+    setSignupPassword2(value);
+    setPassword2NotValidErrorMsg(
+      value.length < passwordMinLength
+        ? t("Password_Should_Contain_Atleast_8_Chars")
+        : null
+    );
+
+    setPasswordsDoesNotMatchErrorMsg(
+      value === signupPassword1 ? null : t("Passwords_Does_Not_Match")
+    );
   };
 
   const handleSignUp_Phase1 = () => {
@@ -158,7 +190,7 @@ const Signup = ({ setSignupMode }) => {
   useEffect(() => {
     if (signinSignupStages === 1) {
       setDisableSubmitButton(
-        signupMobileNumberValid &&
+        isSignupMobileNumberValid &&
           profileName !== "" &&
           signupPassword1.length >= 8 &&
           signupPassword2.length >= 8 &&
@@ -171,7 +203,7 @@ const Signup = ({ setSignupMode }) => {
     }
   }, [
     signinSignupStages,
-    signupMobileNumberValid,
+    isSignupMobileNumberValid,
     profileName,
     signupPassword1,
     signupPassword2,
@@ -186,52 +218,52 @@ const Signup = ({ setSignupMode }) => {
           <span className="text-right bolder-txt space-padding--up--10">
             ثبت نام
           </span>
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              gap: "20px",
-              margin: "20px 0",
-            }}
-          >
-            <CustomInput
-              icon="mobile"
-              label="شماره موبایل"
-              type="number"
-              maxLength={mobilNumberMaxLength}
-              placeholder="مثلا ۰۹۱۲۱۲۳۴۵۶۷"
-              value={signupMobileNumber}
-              onValueChange={handleSignupMobileNumberChange}
-            />
-            <CustomInput
-              icon="user"
-              label="نام کاربری"
-              type="text"
-              placeholder=""
-              value={profileName}
-              onValueChange={handleSignupProfileNameChange}
-            />
-            <CustomInput
-              icon={`eye${!password1Visible ? "-slash" : ""}`}
-              label="کلمه عبور"
-              type={`${password1Visible ? "text" : "password"}`}
-              minLength={passwordMinLength}
-              placeholder=""
-              value={signupPassword1}
-              onValueChange={handleSignupPassword1Change}
-              onPassword1VisibleIconToggle={handlePassword1VisibleIconToggle}
-            />
-            <CustomInput
-              icon={`eye${!password2Visible ? "-slash" : ""}`}
-              label="تکرار کلمه عبور"
-              type={`${password2Visible ? "text" : "password"}`}
-              minLength={passwordMinLength}
-              placeholder=""
-              value={signupPassword2}
-              onValueChange={handleSignupPassword2Change}
-              onPassword1VisibleIconToggle={handlePassword2VisibleIconToggle}
-            />
-          </div>
+          <CustomInput
+            icon="mobile"
+            label="شماره موبایل"
+            type="number"
+            maxLength={mobilNumberMaxLength}
+            placeholder="مثلا ۰۹۱۲۱۲۳۴۵۶۷"
+            value={signupMobileNumber}
+            onValueChange={handleSignupMobileNumberChange}
+            errorMsg={mobileNumberNotValidErrorMsg}
+          />
+          <CustomInput
+            icon="user"
+            label="نام کاربری"
+            type="text"
+            placeholder=""
+            value={profileName}
+            onValueChange={handleSignupProfileNameChange}
+          />
+          <CustomInput
+            icon={`eye${!password1Visible ? "-slash" : ""}`}
+            label="کلمه عبور"
+            type={`${password1Visible ? "text" : "password"}`}
+            minLength={passwordMinLength}
+            placeholder=""
+            value={signupPassword1}
+            onValueChange={handleSignupPassword1Change}
+            onPassword1VisibleIconToggle={handlePassword1VisibleIconToggle}
+            errorMsg={password1NotValidErrorMsg}
+          />
+          <CustomInput
+            icon={`eye${!password2Visible ? "-slash" : ""}`}
+            label="تکرار کلمه عبور"
+            type={`${password2Visible ? "text" : "password"}`}
+            minLength={passwordMinLength}
+            placeholder=""
+            value={signupPassword2}
+            onValueChange={handleSignupPassword2Change}
+            onPassword1VisibleIconToggle={handlePassword2VisibleIconToggle}
+            errorMsg={password2NotValidErrorMsg}
+          />
+
+          {passwordsDoesNotMatchErrorMsg ? (
+            <p className="custom-input-error-message">
+              {passwordsDoesNotMatchErrorMsg}
+            </p>
+          ) : null}
           <CustomButton
             btnBgColor="marine-blue"
             onClick={handleSignUp_Phase1}

@@ -115,6 +115,10 @@ const resources = {
       InviteFriends_Error_Message: "ورود کد معرف با خطا مواجه شد!",
       User_Not_Valid_Msg: "User_Not_Valid",
       Login_To_See_Award_List: "برای دیدن لیست جوایز خود وارد شوید!",
+      Mobile_Number_Not_valid_Error_Msg: "شماره موبایل معتبر نیست!",
+      Password_Should_Contain_Atleast_8_Chars:
+        "کلمه عبور باید حاوی 8 کاراکتر باشد!",
+      Passwords_Does_Not_Match: "کلمه های عبور بر هم منطبق نیستند!",
     },
   },
 };
