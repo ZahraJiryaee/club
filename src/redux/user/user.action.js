@@ -13,7 +13,7 @@ import {
   setBonusAddress,
 } from "../../services/userServices";
 import logger from "../../services/logService";
-import { error } from "./../../services/toastService";
+import { toastError } from "./../../services/toastService";
 import localstorageService from "../../services/localstorageService";
 
 export const signUp_Phase1 = (phoneNumber) => async () => {
@@ -30,9 +30,9 @@ export const signUp_Phase1 = (phoneNumber) => async () => {
       result = e;
       logger.logError("signUp_Phase1-error::", e.response);
       if (e.response.status === 409) {
-        error(i18n.t("User_Already_Exist"));
+        toastError(i18n.t("User_Already_Exist"));
       } else {
-        error(i18n.t("Try_Again"));
+        toastError(i18n.t("Try_Again"));
       }
     });
   return result;
@@ -184,7 +184,7 @@ export const inviteFriends = (inviter_number) => async () => {
     .catch((e) => {
       //error toast-> e.response.data.message
       logger.logError("error-invite-friends", e);
-      error(i18n.t("InviteFriends_Error_Message"));
+      toastError(i18n.t("InviteFriends_Error_Message"));
     });
 };
 

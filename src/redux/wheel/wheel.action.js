@@ -8,7 +8,7 @@ import {
   getBonusLog,
 } from "./../../services/wheelService";
 import logger from "../../services/logService";
-import { error } from "./../../services/toastService";
+import { toastError } from "./../../services/toastService";
 
 export const getBonusList = () => async (dispatch) => {
   let result;
@@ -49,7 +49,7 @@ export const setUserBonus = () => async (dispatch) => {
       logger.logError("error.response-set-bonus:", e.response);
       result = e.response;
       if (e.response.status === 403) {
-        error(i18n.t("Try_Again"));
+        toastError(i18n.t("Try_Again"));
       }
       dispatch({
         type: WheelActionTypes.SET_BONUS,
