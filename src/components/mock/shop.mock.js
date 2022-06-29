@@ -533,12 +533,6 @@ const shopItems = [
   // },
 ];
 
-const orderShop = [
-  { id: "os1", content: "بیشترین امتیاز", checked: false },
-  { id: "os2", content: "کمترین امتیاز", checked: false },
-  { id: "os3", content: "جدیدترین", checked: true },
-];
-
-const shopMock = { orderShop, shopItems };
+const shopMock = { shopItems };
 
 export default shopMock;

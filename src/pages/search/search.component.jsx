@@ -20,8 +20,6 @@ import Page from "../page";
 
 import { routeNames } from "../../services/routeService";
 
-import shopMock from "../../components/mock/shop.mock";
-
 import StarLogo from "../../assets/images/icon/star.png";
 
 import "../../components/genres/genre-view.styles.scss";
@@ -53,7 +51,7 @@ const SearchPage = () => {
         break;
 
       case routeNames.shop: {
-        dispatch(getSearchedShopItems([shopMock.shopItems[0]]));
+        dispatch(getSearchedShopItems(searchField));
         setPageTitle(t("Search_Page__Shop"));
         break;
       }
