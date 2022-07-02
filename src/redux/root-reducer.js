@@ -13,7 +13,15 @@ import shopReducer from "./shop/shop.reducer";
 const persistConfig = {
   key: "root",
   storage,
-  whitelist: ["header", "games", "genres", "shop"],
+  whitelist: [
+    "header",
+    "user",
+    "games",
+    "genres",
+    "wheel",
+    "leaderboard",
+    "shop",
+  ],
   //containing any reducer that we wanna store
 };
 

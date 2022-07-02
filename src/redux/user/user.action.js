@@ -1,5 +1,7 @@
 import i18n from "i18next";
 
+import { clearTokens, SetTokens } from "./token.action";
+
 import { UserActionTypes } from "./user.types";
 
 import {
@@ -14,11 +16,10 @@ import {
 } from "../../services/userServices";
 import logger from "../../services/logService";
 import { toastError } from "./../../services/toastService";
-import localstorageService from "../../services/localstorageService";
 
-export const signUp_Phase1 = (phoneNumber) => async () => {
+export const signUp_Phase1 = (phoneNumber) => async (dispatch) => {
   let result;
-  localstorageService.setToken({ accessToken: "", refreshTokken: "" });
+  dispatch(clearTokens());
   await sendPhoneNumber(phoneNumber)
     .then((response) => {
       if (response.status === 200) {
@@ -74,18 +75,10 @@ export const login = (username, password) => async (dispatch) => {
     .then(async (response) => {
       if (response.status === 200) {
         logger.logInfo("login-response::", response);
-        localstorageService.setToken({
-          accessToken: response.data.access,
-          refreshToken: response.data.refresh,
-        });
-        dispatch({
-          type: UserActionTypes.SET_ACCESS_TOKEN,
-          payload: response.data.access,
-        });
-        dispatch({
-          type: UserActionTypes.SET_REFRESH_TOKEN,
-          payload: response.data.refresh,
-        });
+
+        const { access: accessToken, refresh: refreshToken } = response.data;
+        dispatch(SetTokens({ accessToken, refreshToken }));
+
         dispatch(setOpenValidationDialog(false));
 
         result = await dispatch(setCurrentUser());
@@ -110,15 +103,7 @@ export const logout = () => async (dispatch) => {
     payload: null,
   });
 
-  dispatch({
-    type: UserActionTypes.SET_ACCESS_TOKEN,
-    payload: null,
-  });
-
-  dispatch({
-    type: UserActionTypes.SET_REFRESH_TOKEN,
-    payload: null,
-  });
+  dispatch(clearTokens());
 };
 
 export const editUserProfileInformation = (body) => async (dispatch) => {

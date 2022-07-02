@@ -14,7 +14,7 @@ const CustomInput = ({
     <div className="custom-input-container">
       <label
         htmlFor=""
-        className="text-right lighter-txt space-padding--bottom--5 space-padding--up--25"
+        className="text-right lighter-txt space-padding--bottom--10 space-padding--up--25"
       >
         {label}
       </label>

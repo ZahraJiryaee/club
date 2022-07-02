@@ -1,9 +1,8 @@
 import http from "./httpServices";
 import { getAPIUrl } from "./api";
 import getApis from "./api";
-import localstorageService from "./localstorageService";
 
-const refreshToken = localstorageService.getRefreshToken();
+import { getAccessToken, getRefreshToken } from "../redux/user/token.action";
 
 //Signup
 const postPhoneNumberApiEndpoint = getAPIUrl() + "/api/v1/user/signup/request";
@@ -43,6 +42,7 @@ export const setLoginToken = (username, password) => {
 };
 
 export const setNewToken = () => {
+  const refreshToken = getRefreshToken();
   const body = { refresh: refreshToken ? `${refreshToken}` : "Bearer" };
   JSON.stringify(body);
   return http.post(getApis.newTokenApiEndpoint, body);
@@ -50,21 +50,21 @@ export const setNewToken = () => {
 
 //Profile//
 export const getUserProfile = () => {
-  const accessToken = localstorageService.getAccessToken();
+  const accessToken = getAccessToken();
   return http.get(getApis.userProfileApiEndpoint, {
     headers: { Authorization: `Bearer ${accessToken}` },
   });
 };
 
 export const setUserProfile = (body) => {
-  const accessToken = localstorageService.getAccessToken();
+  const accessToken = getAccessToken();
   return http.put(getApis.userProfileApiEndpoint, body, {
     headers: { Authorization: `Bearer ${accessToken}` },
   });
 };
 
 export const setBonusAddress = (bonusLogId, body) => {
-  const accessToken = localstorageService.getAccessToken();
+  const accessToken = getAccessToken();
   return http.put(getApis.setBonusAddress + bonusLogId + `/address`, body, {
     headers: { Authorization: `Bearer ${accessToken}` },
   });
@@ -72,7 +72,7 @@ export const setBonusAddress = (bonusLogId, body) => {
 
 //InviterNumber//
 export const setInviterNumber = (inviter_number) => {
-  const accessToken = localstorageService.getAccessToken();
+  const accessToken = getAccessToken();
   const body = { inviter_number };
   JSON.stringify(body);
   return http.post(postInviterPhoneNumberApiEndpoint, body, {
@@ -82,7 +82,7 @@ export const setInviterNumber = (inviter_number) => {
 
 //DeviceId//
 export const setDeviceId = (deviceId) => {
-  const accessToken = localstorageService.getAccessToken();
+  const accessToken = getAccessToken();
   const body = { public_id: deviceId };
   JSON.stringify(body);
   return http.post(postDeviceIdApiEndpoint, body, {

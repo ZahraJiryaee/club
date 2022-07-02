@@ -1,6 +1,7 @@
 import http from "./httpServices";
 import getApis from "./api";
-import localstorageService from "./localstorageService";
+
+import { getAccessToken } from "../redux/user/token.action";
 
 export const getGames = () => {
   return http.get(getApis.getGamesApiEndpoint);
@@ -20,14 +21,16 @@ export const getGameDetails = (id) => {
 };
 
 export const getUserApplicationInfo = (gameId) => {
-  const accessToken = localstorageService.getAccessToken();
+  const accessToken = getAccessToken();
+
   return http.get(getApis.getUserApplicationInfoEndpoint + gameId, {
     headers: { Authorization: `Bearer ${accessToken}` },
   });
 };
 
 export const isAppInstalled = (gameId) => {
-  const accessToken = localstorageService.getAccessToken();
+  const accessToken = getAccessToken();
+
   return http.get(getApis.isAppInstalledEndpoint + gameId, {
     headers: { Authorization: `Bearer ${accessToken}` },
   });

@@ -6,9 +6,9 @@ import {
   setOpenValidationDialog,
   setIsLoading,
 } from "./../redux/user/user.action";
+import { clearTokens, SetTokens } from "./../redux/user/token.action";
 
 import getApis from "./api";
-import localstorageService from "./localstorageService";
 import { setNewToken } from "./userServices";
 
 const request = axios.create({});
@@ -24,23 +24,20 @@ export function useSetupAxios() {
         return response;
       },
       async (error) => {
-        const accessToken = localstorageService.getAccessToken();
-
         if (
           error.response.status === 401 &&
           error.response.request.responseURL === getApis.newTokenApiEndpoint
         ) {
           dispatch(setOpenValidationDialog(true));
         } else if (error.response.status === 401) {
-          await setNewToken(accessToken)
+          await setNewToken()
             .then((response) => {
-              const { data } = response;
-              localstorageService.setToken({
-                accessToken: data.access,
-                refreshToken: data.refresh,
-              });
+              const { access: accessToken, refresh: refreshToken } =
+                response.data;
 
-              error.config.headers["Authorization"] = `Bearer ${data.access}`;
+              dispatch(SetTokens({ accessToken, refreshToken }));
+
+              error.config.headers["Authorization"] = `Bearer ${accessToken}`;
               error.config.baseURL = undefined;
               // window.location.reload();
               return request.request(error.config);
@@ -58,7 +55,7 @@ export function useSetupAxios() {
               }
 
               if (refreshError.response.status === 401) {
-                localstorageService.clearToken();
+                dispatch(clearTokens());
               }
             })
             .finally(() => {
