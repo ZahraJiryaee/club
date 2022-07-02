@@ -105,33 +105,37 @@ const GameDetails = () => {
   }, [userApplicationInfo, currentUser, t]);
 
   useEffect(() => {
-    let level_purchase = [];
-    /* ------------- Load Data --------------- */
-    /* original */
-    const { level } = gameDetails;
-    const { purchase } = gameDetails;
-    /* mock */
-    // const level = levelMock;
-    // const purchase = purchaseMock;
-    /* -------------------------------------- */
-    level.forEach((level) => {
-      level_purchase.push({ ...level, _customType: "level" });
-    });
-    purchase.forEach((purchase) => {
-      level_purchase.push({ ...purchase, _customType: "purchase" });
-    });
-    logger.logInfo("level_purchase-game-details:", level_purchase);
-    setAwardsList(level_purchase);
-    //
-    setAwardsListLength(level_purchase.length);
-    setAwardsListFilterConuter(
-      level_purchase.length > howManyItemToShowOnEachClick ? 1 : 0
-    );
-    setAwardsListFilterClickTimes(
-      (level_purchase.length / howManyItemToShowOnEachClick) % 1 === 0
-        ? level_purchase.length / howManyItemToShowOnEachClick - 1
-        : level_purchase.length / howManyItemToShowOnEachClick
-    );
+    if (Object.keys(gameDetails).length !== 0) {
+      let level_purchase = [];
+      /* ------------- Load Data --------------- */
+      /* original */
+      console.log("gameDetails:", gameDetails);
+      const { level } = gameDetails;
+      const { purchase } = gameDetails;
+      /* mock */
+      // const level = levelMock;
+      // const purchase = purchaseMock;
+      /* -------------------------------------- */
+      console.log("level", level);
+      level.forEach((l) => {
+        level_purchase.push({ ...l, _customType: "level" });
+      });
+      purchase.forEach((p) => {
+        level_purchase.push({ ...p, _customType: "purchase" });
+      });
+      logger.logInfo("level_purchase-game-details:", level_purchase);
+      setAwardsList(level_purchase);
+      //
+      setAwardsListLength(level_purchase.length);
+      setAwardsListFilterConuter(
+        level_purchase.length > howManyItemToShowOnEachClick ? 1 : 0
+      );
+      setAwardsListFilterClickTimes(
+        (level_purchase.length / howManyItemToShowOnEachClick) % 1 === 0
+          ? level_purchase.length / howManyItemToShowOnEachClick - 1
+          : level_purchase.length / howManyItemToShowOnEachClick
+      );
+    }
   }, [gameDetails]);
 
   useEffect(() => {
@@ -158,7 +162,7 @@ const GameDetails = () => {
   };
 
   return (
-    gameDetails.length !== 0 && (
+    Object.keys(gameDetails).length !== 0 && (
       <Page title={`${t("Game_Details_Page")} ${gameDetails.name}`}>
         {/* header */}
         <GameDetailHeader screenshots={gameDetails.source.screenshots} />

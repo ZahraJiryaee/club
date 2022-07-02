@@ -4,7 +4,7 @@ const INITIAL_STATE = {
   allGames: [],
   filteredCategory: [],
   searchedItem: [],
-  gameDetails: [],
+  gameDetails: {},
   userApplicationInfo: [],
   isApplicationInstalled: false,
 };
