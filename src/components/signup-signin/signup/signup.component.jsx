@@ -9,6 +9,8 @@ import CustomButton from "../../common/custom-button/custom-button.component";
 
 import { validateMobileNumber } from "../../../services/validateMobileNumber";
 
+import ArrowBack from "./../../../assets/images/icon/arrow-back.png";
+
 const Signup = ({ setSignupMode }) => {
   const dispatch = useDispatch();
   const { t } = useTranslation();
@@ -192,8 +194,8 @@ const Signup = ({ setSignupMode }) => {
       setDisableSubmitButton(
         isSignupMobileNumberValid &&
           profileName !== "" &&
-          signupPassword1.length >= 8 &&
-          signupPassword2.length >= 8 &&
+          signupPassword1.length >= passwordMinLength &&
+          signupPassword2.length >= passwordMinLength &&
           signupPassword1 === signupPassword2
           ? false
           : true
@@ -208,7 +210,14 @@ const Signup = ({ setSignupMode }) => {
     signupPassword1,
     signupPassword2,
     otpTimer,
+    passwordMinLength,
   ]);
+
+  const handleBackSignUp = () => {
+    setSigninSignupStages(1);
+    setsignupOTP("");
+    setSignupInviterPhoneNumber("");
+  };
 
   return (
     <React.Fragment>
@@ -276,6 +285,14 @@ const Signup = ({ setSignupMode }) => {
       {/* ------------------- SignUp Phase 2 -------------------- */}
       {signinSignupStages === 2 && (
         <>
+          {/* back icon */}
+          <img
+            src={ArrowBack}
+            alt="signup-back"
+            className="signup-back"
+            onClick={handleBackSignUp}
+          />
+
           <span className="text-right bolder-txt">کد تائید را وارد نمایید</span>
 
           <CustomInput
@@ -286,7 +303,6 @@ const Signup = ({ setSignupMode }) => {
             placeholder="مثلا ۱۲۳۴۵"
             value={signupOTP}
             onValueChange={handleSignupOTPChange}
-            // autoFocus={true}
           />
 
           {/* OTP time */}
