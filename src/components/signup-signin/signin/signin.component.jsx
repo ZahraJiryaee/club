@@ -82,17 +82,17 @@ const Signin = ({ setSignupMode }) => {
       <span className="text-right bolder-txt space-padding--up--30">ورود</span>
       <CustomInput
         icon="mobile"
-        label="شماره موبایل"
+        label={t("Mobile_Number")}
         type="number"
         maxLength={mobilNumberMaxLength}
-        placeholder="مثلا ۰۹۱۲۱۲۳۴۵۶۷"
+        placeholder={t("Mobile_Number_Placeholder")}
         value={signinMobileNumber}
         onValueChange={handleSigninMobileNumberChange}
         errorMsg={mobileNumberNotValidErrorMsg}
       />
       <CustomInput
         icon={`eye${!passwordVisible ? "-slash" : ""}`}
-        label="کلمه عبور"
+        label={t("Password")}
         type={`${passwordVisible ? "text" : "password"}`}
         minLength={passwordMinLength}
         placeholder=""
@@ -106,13 +106,13 @@ const Signin = ({ setSignupMode }) => {
         onClick={handleSignin}
         disabled={disableSubmitButton}
       >
-        ورود
+        {t("Signin")}
       </CustomButton>
       <p className="switch-between-signin-signup-text">
-        اگر در مدریک کلاب حساب کاربری ندارید،
+        {t("If_You_Dont_Have_An_Account_Signup__Part1")}
         <span className="link" onClick={() => setSignupMode(true)}>
           {" "}
-          ثبت نام کنید
+          {t("If_You_Dont_Have_An_Account_Signup__Part2")}
         </span>
       </p>
     </React.Fragment>

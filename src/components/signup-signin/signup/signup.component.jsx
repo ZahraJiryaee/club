@@ -230,21 +230,21 @@ const Signup = ({ setSignupMode }) => {
       {signinSignupStages === 1 && (
         <>
           <span className="text-right bolder-txt space-padding--up--10">
-            ثبت نام
+            {t("Signup")}
           </span>
           <CustomInput
             icon="mobile"
-            label="شماره موبایل"
+            label={t("Mobile_Number")}
             type="number"
             maxLength={mobilNumberMaxLength}
-            placeholder="مثلا ۰۹۱۲۱۲۳۴۵۶۷"
+            placeholder={t("Mobile_Number_Placeholder")}
             value={signupMobileNumber}
             onValueChange={handleSignupMobileNumberChange}
             errorMsg={mobileNumberNotValidErrorMsg}
           />
           <CustomInput
             icon="user"
-            label="نام کاربری"
+            label={t("Profile_Name")}
             type="text"
             placeholder=""
             value={profileName}
@@ -252,7 +252,7 @@ const Signup = ({ setSignupMode }) => {
           />
           <CustomInput
             icon={`eye${!password1Visible ? "-slash" : ""}`}
-            label="کلمه عبور"
+            label={t("Password")}
             type={`${password1Visible ? "text" : "password"}`}
             minLength={passwordMinLength}
             placeholder=""
@@ -263,7 +263,7 @@ const Signup = ({ setSignupMode }) => {
           />
           <CustomInput
             icon={`eye${!password2Visible ? "-slash" : ""}`}
-            label="تکرار کلمه عبور"
+            label={t("Password_Repeat")}
             type={`${password2Visible ? "text" : "password"}`}
             minLength={passwordMinLength}
             placeholder=""
@@ -298,14 +298,16 @@ const Signup = ({ setSignupMode }) => {
             onClick={handleBackSignUp}
           />
 
-          <span className="text-right bolder-txt">کد تائید را وارد نمایید</span>
+          <span className="text-right bolder-txt">{t("Enter_Otp_Number")}</span>
 
           <CustomInput
             icon="mobile"
-            label={`کد تائید برای شماره موبایل ${signupMobileNumber} ارسال گردید`}
+            label={`${t("Otp_Was_sent_To_Mobile_Number", {
+              signupMobileNumber,
+            })}`}
             type="number"
             maxLength={otpMaxLength}
-            placeholder="مثلا ۱۲۳۴۵"
+            placeholder={t("Otp_Placeholder")}
             value={signupOTP}
             onValueChange={handleSignupOTPChange}
           />
@@ -316,13 +318,14 @@ const Signup = ({ setSignupMode }) => {
               <p>
                 <span>{minutes}</span>
                 <span>:</span>
-                <span>{seconds}</span> <span>مانده تا دریافت مجدد کد</span>
+                <span>{seconds}</span>{" "}
+                <span>{t("X_Time_Is_left_To_Resend_Otp")}</span>
               </p>
             ) : (
               <p>
-                دریافت مجدد کد از طریق{" "}
+                {t("Resend_Otp_Code_Via")}{" "}
                 <span onClick={handleResendButton} className="resend-txt">
-                  پیامک
+                  {t("SMS")}
                 </span>
               </p>
             )}
@@ -330,7 +333,7 @@ const Signup = ({ setSignupMode }) => {
 
           {/* referral code */}
           <div className="referral-container space-padding--up--35">
-            <span className="bolder-txt">ورود کد معرف</span>
+            <span className="bolder-txt">{t("Enter_Referral_Code")}</span>
             <div>
               <input
                 className="referral-input"
@@ -348,7 +351,7 @@ const Signup = ({ setSignupMode }) => {
           </div>
 
           <p className="referral-txt">
-            کد معرفتان را وارد کنید و هردو شانس چرخوندن گردونه را دریافت نمایید
+            {t("Enter_Referral_Code_And_Get_Chances_To_Spin_The_Wheel")}
           </p>
 
           <CustomButton
@@ -362,10 +365,10 @@ const Signup = ({ setSignupMode }) => {
       )}
 
       <p className="switch-between-signin-signup-text">
-        اگر در مدریک کلاب حساب کاربری دارید،
+        {t("If_You_Already_Have_An_Account_Login__Part1")}
         <span className="link" onClick={() => setSignupMode(false)}>
           {" "}
-          وارد شوید
+          {t("If_You_Already_Have_An_Account_Login__Part2")}
         </span>
       </p>
     </React.Fragment>

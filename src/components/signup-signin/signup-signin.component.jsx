@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { useTranslation } from "react-i18next";
 
 import Signup from "./signup/signup.component";
 import Signin from "./signin/signin.component";
@@ -15,6 +16,7 @@ import "./signup-signin.styles.scss";
 
 const SignupSignin = () => {
   const dispatch = useDispatch();
+  const { t } = useTranslation();
 
   const [signupMode, setSignupMode] = useState(true); // true=>signup   false=>login
   const openVal = useSelector(selectOpenValidationDialog);
@@ -41,9 +43,7 @@ const SignupSignin = () => {
               alt="medrick-logo"
             />
             {/*--------------------- warning Msg -------------------*/}
-            <p className="warningMsg">
-              برای دسترسی به امکانات برنامه لطفا وارد شوید
-            </p>
+            <p className="warningMsg">{t("Login_To_Access_Features")}</p>
             {/*------------------ SignUp or Signin ------------------*/}
             {signupMode ? (
               <Signup setSignupMode={setSignupMode} />

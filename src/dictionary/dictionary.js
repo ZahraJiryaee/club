@@ -120,6 +120,28 @@ const resources = {
         "کلمه عبور باید حاوی 8 کاراکتر باشد!",
       Passwords_Does_Not_Match: "کلمه های عبور بر هم منطبق نیستند!",
       Otp_Not_Valid: "کد تایید وارد شده صحیح نیست!",
+      Mobile_Number: "شماره موبایل",
+      Mobile_Number_Placeholder: "مثلا ۰۹۱۲۱۲۳۴۵۶۷",
+      Profile_Name: "نام کاربری",
+      Password: "کلمه عبور",
+      Password_Repeat: "تکرار کلمه عبور",
+      Enter_Otp_Number: "کد تائید را وارد نمایید",
+      Otp_Was_sent_To_Mobile_Number:
+        "کد تائید برای شماره موبایل {{signupMobileNumber}} ارسال گردید",
+      Otp_Placeholder: "مثلا ۱۲۳۴۵",
+      X_Time_Is_left_To_Resend_Otp: "مانده تا دریافت مجدد کد",
+      Resend_Otp_Code_Via: "دریافت مجدد کد از طریق",
+      SMS: "پیامک",
+      Enter_Referral_Code: "ورود کد معرف",
+      Enter_Referral_Code_And_Get_Chances_To_Spin_The_Wheel:
+        "کد معرفتان را وارد کنید و هردو شانس چرخوندن گردونه را دریافت نمایید",
+      If_You_Already_Have_An_Account_Login__Part1:
+        "اگر در مدریک کلاب حساب کاربری دارید،",
+      If_You_Already_Have_An_Account_Login__Part2: "وارد شوید",
+      If_You_Dont_Have_An_Account_Signup__Part1:
+        "اگر در مدریک کلاب حساب کاربری ندارید،",
+      If_You_Dont_Have_An_Account_Signup__Part2: "ثبت نام کنید",
+      Signin: "ورود",
     },
   },
 };
