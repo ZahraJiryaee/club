@@ -276,9 +276,7 @@ const Signup = ({ setSignupMode }) => {
       {/* ------------------- SignUp Phase 2 -------------------- */}
       {signinSignupStages === 2 && (
         <>
-          <span className="text-right bolder-txt space-padding--y--30">
-            کد تائید را وارد نمایید
-          </span>
+          <span className="text-right bolder-txt">کد تائید را وارد نمایید</span>
 
           <CustomInput
             icon="mobile"

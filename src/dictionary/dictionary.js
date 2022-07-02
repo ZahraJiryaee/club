@@ -119,6 +119,7 @@ const resources = {
       Password_Should_Contain_Atleast_8_Chars:
         "کلمه عبور باید حاوی 8 کاراکتر باشد!",
       Passwords_Does_Not_Match: "کلمه های عبور بر هم منطبق نیستند!",
+      Otp_Not_Valid: "کد تایید وارد شده صحیح نیست!",
     },
   },
 };

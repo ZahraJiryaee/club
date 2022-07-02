@@ -59,6 +59,10 @@ export const signUp_Phase2 = (body) => async (dispatch) => {
       //error toast-> e.response.data.message
       result = e.response.data.message;
       logger.logError("signUp_Phase2-error::", e.response);
+
+      if (e.response.status === 422) {
+        toastError(i18n.t("Otp_Not_Valid"));
+      }
     });
   return result;
 };
