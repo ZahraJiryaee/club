@@ -35,6 +35,8 @@ const Signup = ({ setSignupMode }) => {
     useState("");
   const [passwordsDoesNotMatchErrorMsg, setPasswordsDoesNotMatchErrorMsg] =
     useState("");
+  const [isInviterPhoneNumberValid, setIsInviterPhoneNumberValid] =
+    useState(true);
 
   const [signupMobileNumber, setSignupMobileNumber] = useState("");
   const [profileName, setProfileName] = useState("");
@@ -164,6 +166,7 @@ const Signup = ({ setSignupMode }) => {
     const { value, maxLength } = event.target;
     const inviterPhoneNumber = value.slice(0, maxLength);
     setSignupInviterPhoneNumber(inviterPhoneNumber);
+    setIsInviterPhoneNumberValid(validateMobileNumber(inviterPhoneNumber));
   };
 
   const handleSignUp_Phase2 = () => {
@@ -175,10 +178,9 @@ const Signup = ({ setSignupMode }) => {
       inviter_number: null,
     };
 
-    reqBody.inviter_number =
-      signupInviterPhoneNumber !== "" && signupInviterPhoneNumber.length === 11
-        ? signupInviterPhoneNumber
-        : null;
+    reqBody.inviter_number = isInviterPhoneNumberValid
+      ? signupInviterPhoneNumber
+      : null;
     const result = dispatch(signUp_Phase2(reqBody));
     result.then((response) => {
       if (response === "success") {
@@ -201,7 +203,9 @@ const Signup = ({ setSignupMode }) => {
           : true
       );
     } else {
-      setDisableSubmitButton(otpTimer !== "" ? false : true);
+      setDisableSubmitButton(
+        signupOTP.trim().length === otpMaxLength ? false : true
+      );
     }
   }, [
     signinSignupStages,
@@ -209,8 +213,9 @@ const Signup = ({ setSignupMode }) => {
     profileName,
     signupPassword1,
     signupPassword2,
-    otpTimer,
     passwordMinLength,
+    signupOTP,
+    otpMaxLength,
   ]);
 
   const handleBackSignUp = () => {
@@ -326,14 +331,22 @@ const Signup = ({ setSignupMode }) => {
           {/* referral code */}
           <div className="referral-container space-padding--up--35">
             <span className="bolder-txt">ورود کد معرف</span>
-            <input
-              className="referral-input"
-              type="text"
-              maxLength={inviteNumberMaxLength}
-              value={signupInviterPhoneNumber}
-              onChange={(e) => handleSignupInviterNumberChange(e)}
-            />
+            <div>
+              <input
+                className="referral-input"
+                type="text"
+                maxLength={inviteNumberMaxLength}
+                value={signupInviterPhoneNumber}
+                onChange={(e) => handleSignupInviterNumberChange(e)}
+              />
+              {!isInviterPhoneNumberValid ? (
+                <p className="custom-input-error-message">
+                  {t("Mobile_Number_Not_valid_Error_Msg")}
+                </p>
+              ) : null}
+            </div>
           </div>
+
           <p className="referral-txt">
             کد معرفتان را وارد کنید و هردو شانس چرخوندن گردونه را دریافت نمایید
           </p>
