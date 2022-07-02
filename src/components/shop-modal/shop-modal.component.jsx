@@ -13,8 +13,10 @@ import { selectCurrentUser } from "../../redux/user/user.selectors";
 
 import CustomButton from "../common/custom-button/custom-button.component";
 
+import logger from "../../services/logService";
+
 import CloseIcon from "./../../assets/images/icon/close-icon.png";
-import ShopItemImg from "./../../assets/images/test/shop-item.png";
+import ShopItemImg from "./../../assets/images/icon/shop-item.png";
 import CheckCircleGreen from "./../../assets/images/icon/check-circle-green.png";
 import ErrorOutlineMarineBlue from "./../../assets/images/icon/error-outline-marineblue.png";
 
@@ -27,7 +29,7 @@ const ShopModal = () => {
   const isShopModalOPen = useSelector(selectSetOpenShopModal);
   const shopModalData = useSelector(selectShopModalData);
   const currentUser = useSelector(selectCurrentUser);
-  console.log("shopModalData:", shopModalData);
+  logger.logInfo("shopModalData:", shopModalData);
 
   const [phase, setPhase] = useState(1);
   const [userAddress, setUserAddress] = useState("");
@@ -64,7 +66,9 @@ const ShopModal = () => {
         </p>
         {/* Item Img */}
         <img
-          src={ShopItemImg}
+          src={
+            shopModalData.icon.source ? shopModalData.icon.source : ShopItemImg
+          }
           alt="shop-item"
           className={`shop-modal-item-img img-width-${imgWidth} responsive-${stage}`}
         />
@@ -76,7 +80,7 @@ const ShopModal = () => {
           <span
             className={`shop-item-leave-chance-counter fontsize-${leaveScoreFontSize}`}
           >
-            {shopModalData.leave_chance_counter} {t("Score")}
+            {shopModalData.cost_chance_count} {t("Score")}
           </span>
         </p>
       </>
@@ -105,9 +109,9 @@ const ShopModal = () => {
 
   const LowScoreWarning = () => {
     const { score_counter } = currentUser || {};
-    const { leave_chance_counter } = shopModalData;
+    const { cost_chance_count } = shopModalData;
 
-    return leave_chance_counter > score_counter ? (
+    return cost_chance_count > score_counter ? (
       <p className="shop-modal-low-scroe-warning fontsize-10">
         {t("Low_Score_Warning")}
       </p>
@@ -127,7 +131,7 @@ const ShopModal = () => {
     return (
       <p className="shop-modal-enter-code-in-game fontsize-13">
         <img src={ErrorOutlineMarineBlue} alt="error-outline" />
-        <span>{t("Enter_Code_In_Game")}</span>
+        <span>{t("Enter_Code_In_Game__ShopModal")}</span>
       </p>
     );
   };

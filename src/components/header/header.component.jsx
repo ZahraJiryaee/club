@@ -12,7 +12,7 @@ import Logo from "../../assets/images/icon/medrick-logo.png";
 import ArrowBack from "../../assets/images/icon/arrow-back.png";
 
 import { sidebarNavigation, headerNavigation } from "../../model/header.model";
-import Loading from "../common/loading/loading.component";
+import BarLoader from "../common/bar-loader/bar-loader.component";
 
 import generateUniqueId from "../../services/generateUniqueId";
 import { routeNames } from "../../services/routeService";
@@ -35,7 +35,7 @@ const Header = () => {
 
   return (
     <header className={headerMode}>
-      <Loading />
+      <BarLoader />
       {/* ---------------------- Sidebar --------------------------- */}
       <div className="sidebar-group">
         <ul className={`${toggleMenu ? "active" : ""} sidebar-navigation`}>

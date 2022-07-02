@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
 import {
@@ -8,18 +8,23 @@ import {
   getUserApplicationInformation,
   isApplicationInstalled,
 } from "../../redux/games/games.action";
+import { setHeaderMode } from "../../redux/header/header.action";
+import { setOpenValidationDialog } from "../../redux/user/user.action";
 
 import {
   selectUserApplicationInfo,
   selectIsApplicationInstalled,
   selectGameDetails,
 } from "../../redux/games/games.selectors";
+import { selectCurrentUser } from "../../redux/user/user.selectors";
 
 import GameDetailHeader from "../../components/game-details-header/game-details-header.componetnt";
 import GamesRow from "../../components/games/games-row/games-row.component";
 import DownloadAppsBottomSheet from "../../components/download-apps-bottom-sheet/download-apps-bottom-sheet.component";
+import Page from "../page";
 
 import { routeNames } from "../../services/routeService";
+import logger from "../../services/logService";
 
 // import {levelMock,purchaseMock,userAppInfoMock,} from "../../components/mock/level.mock";
 
@@ -36,6 +41,7 @@ import "./game-details.styles.scss";
 const GameDetails = () => {
   const dispatch = useDispatch();
   let navigate = useNavigate();
+  const { pathname } = useLocation();
   const { t } = useTranslation();
 
   const { id: gameId } = useParams();
@@ -43,13 +49,16 @@ const GameDetails = () => {
   const gameDetails = useSelector(selectGameDetails);
   const userApplicationInfo = useSelector(selectUserApplicationInfo);
   const appInstallationStatus = useSelector(selectIsApplicationInstalled);
+  const currentUser = useSelector(selectCurrentUser);
 
-  console.log("gameDetails:", gameDetails);
-  console.log("userApplicationInfo:", userApplicationInfo);
-  console.log("appInstallationStatus:", appInstallationStatus);
+  logger.logInfo("gameDetails-game-details:", gameDetails);
+  logger.logInfo("userApplicationInfo-game-details:", userApplicationInfo);
+  logger.logInfo("appInstallationStatus-game-details:", appInstallationStatus);
 
   const [showMore, setShowMore] = useState(false);
   const [openBtmSheet, setOpenBtmSheet] = useState(false);
+
+  const [isUserValid, setIsUserValid] = useState(true);
 
   const [awardsThatUserPassed, setAwardsThatUserPassed] = useState({});
   const [awardsList, setAwardsList] = useState([]);
@@ -65,8 +74,12 @@ const GameDetails = () => {
     useState(true); /* true=>show more  false=>show less */
 
   useEffect(() => {
+    dispatch(setHeaderMode(pathname));
+  }, [dispatch, pathname]);
+
+  useEffect(() => {
     dispatch(isApplicationInstalled(gameId));
-  }, [gameId, dispatch]);
+  }, [gameId, dispatch, currentUser]);
 
   useEffect(() => {
     dispatch(getGameDetailsInformation(gameId));
@@ -75,45 +88,54 @@ const GameDetails = () => {
   useEffect(() => {
     dispatch(getUserApplicationInformation(gameId));
     /* returns a award lists that user has achieved -level */
-  }, [gameId, dispatch]);
+  }, [gameId, dispatch, currentUser]);
 
   useEffect(() => {
     let userPassedLevels = {};
-    userApplicationInfo.forEach(
-      (item) => (userPassedLevels[item.level.id] = true)
-    );
-    console.log("userPassedLevels:", userPassedLevels);
-    setAwardsThatUserPassed(userPassedLevels);
-  }, [userApplicationInfo]);
+    if (userApplicationInfo === t("User_Not_Valid_Msg")) {
+      setIsUserValid(false);
+    } else {
+      setIsUserValid(true);
+      userApplicationInfo.forEach(
+        (item) => (userPassedLevels[item.level.id] = true)
+      );
+      logger.logInfo("userPassedLevels-game-details:", userPassedLevels);
+      setAwardsThatUserPassed(userPassedLevels);
+    }
+  }, [userApplicationInfo, currentUser, t]);
 
   useEffect(() => {
-    let level_purchase = [];
-    /* ------------- Load Data --------------- */
-    /* original */
-    const { level } = gameDetails;
-    const { purchase } = gameDetails;
-    /* mock */
-    // const level = levelMock;
-    // const purchase = purchaseMock;
-    /* -------------------------------------- */
-    level.forEach((level) => {
-      level_purchase.push({ ...level, _customType: "level" });
-    });
-    purchase.forEach((purchase) => {
-      level_purchase.push({ ...purchase, _customType: "purchase" });
-    });
-    console.log("level_purchase:", level_purchase);
-    setAwardsList(level_purchase);
-    //
-    setAwardsListLength(level_purchase.length);
-    setAwardsListFilterConuter(
-      level_purchase.length > howManyItemToShowOnEachClick ? 1 : 0
-    );
-    setAwardsListFilterClickTimes(
-      (level_purchase.length / howManyItemToShowOnEachClick) % 1 === 0
-        ? level_purchase.length / howManyItemToShowOnEachClick - 1
-        : level_purchase.length / howManyItemToShowOnEachClick
-    );
+    if (Object.keys(gameDetails).length !== 0) {
+      let level_purchase = [];
+      /* ------------- Load Data --------------- */
+      /* original */
+      console.log("gameDetails:", gameDetails);
+      const { level } = gameDetails;
+      const { purchase } = gameDetails;
+      /* mock */
+      // const level = levelMock;
+      // const purchase = purchaseMock;
+      /* -------------------------------------- */
+      console.log("level", level);
+      level.forEach((l) => {
+        level_purchase.push({ ...l, _customType: "level" });
+      });
+      purchase.forEach((p) => {
+        level_purchase.push({ ...p, _customType: "purchase" });
+      });
+      logger.logInfo("level_purchase-game-details:", level_purchase);
+      setAwardsList(level_purchase);
+      //
+      setAwardsListLength(level_purchase.length);
+      setAwardsListFilterConuter(
+        level_purchase.length > howManyItemToShowOnEachClick ? 1 : 0
+      );
+      setAwardsListFilterClickTimes(
+        (level_purchase.length / howManyItemToShowOnEachClick) % 1 === 0
+          ? level_purchase.length / howManyItemToShowOnEachClick - 1
+          : level_purchase.length / howManyItemToShowOnEachClick
+      );
+    }
   }, [gameDetails]);
 
   useEffect(() => {
@@ -135,9 +157,13 @@ const GameDetails = () => {
     }
   };
 
+  const handleUserNotValidTextClick = () => {
+    dispatch(setOpenValidationDialog(true));
+  };
+
   return (
-    gameDetails.length !== 0 && (
-      <div>
+    Object.keys(gameDetails).length !== 0 && (
+      <Page title={`${t("Game_Details_Page")} ${gameDetails.name}`}>
         {/* header */}
         <GameDetailHeader screenshots={gameDetails.source.screenshots} />
 
@@ -245,6 +271,14 @@ const GameDetails = () => {
               <p className="game-detail-level-header">
                 {t("Awards_That_Can_Be_Achieved_With_This_Game")}
               </p>
+              {!isUserValid ? (
+                <p
+                  className="game-detail-level-user-not-valid"
+                  onClick={handleUserNotValidTextClick}
+                >
+                  {t("Login_To_See_Award_List")}
+                </p>
+              ) : null}
               <ul className="game-detail-level-list-container">
                 <li>
                   <span className="level-icons">
@@ -346,7 +380,7 @@ const GameDetails = () => {
           setOpen={(e) => setOpenBtmSheet(e)}
           downloadLinks={gameDetails.link}
         />
-      </div>
+      </Page>
     )
   );
 };

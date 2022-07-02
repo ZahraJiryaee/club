@@ -1,6 +1,10 @@
 import { ShopActionTypes } from "./shop.types";
 
-import { getAllShopGoods } from "../../services/shopService";
+import {
+  getAllShopGoods,
+  getSearchedShopGoods,
+  getSortedShopGoods,
+} from "../../services/shopService";
 
 export const setOpenShopModal = (value) => ({
   type: ShopActionTypes.SET_OPEN_SHOP_MODAL,
@@ -30,9 +34,18 @@ export const setShopModalData = (data) => ({
   payload: data,
 });
 
-export const getSearchedShopItems = (mockData) => async (dispatch) => {
+export const getSearchedShopItems = (searchField) => async (dispatch) => {
+  const { data } = await getSearchedShopGoods(searchField);
   dispatch({
     type: ShopActionTypes.GET_SEARCHED_SHOP_ITEMS,
-    payload: mockData,
+    payload: data,
+  });
+};
+
+export const getSortedShopItems = (sortKey) => async (dispatch) => {
+  const { data } = await getSortedShopGoods(sortKey);
+  dispatch({
+    type: ShopActionTypes.GET_ALL_SHOP_ITEMS,
+    payload: data,
   });
 };

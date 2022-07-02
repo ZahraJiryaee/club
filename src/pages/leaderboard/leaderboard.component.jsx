@@ -12,6 +12,7 @@ import {
 import { selectCurrentUser } from "../../redux/user/user.selectors";
 
 import LeaderboardHeader from "../../components/leaderboard-header/leaderboard-header.component";
+import Page from "../page";
 
 // import topUsersWeekly from "../../components/mock/leaderborad.mock";
 
@@ -53,30 +54,30 @@ const LeaderBoardPage = () => {
   );
 
   const UserRecord = ({ user }) => {
-    const { first_name, last_name, avatar } = user.user;
+    const { profile_name, avatar } = user.user;
     const { award, index, seasonal, weakly } = user;
     return (
-      <div className="user-record">
-        <span className="user-index">{index}</span>
-        <div className="user-info">
-          <div className="user--avatar-name">
-            <img
-              src={`${avatar ? avatar : ProfileAvatar}`}
-              alt="user-avater"
-              className="avatar"
-            />
-            <span className="name">
-              {first_name} {last_name}
-            </span>
-          </div>
-          <div className="user--score-prize">
-            {award && <span>{t("Prize")}</span>}
-            <span>
-              {leaderboardHeaderStatus ? weakly : seasonal} {t("Score")}
-            </span>
+      <Page title={t("Leaderboard_Page")}>
+        <div className="user-record">
+          <span className="user-index">{index}</span>
+          <div className="user-info">
+            <div className="user--avatar-name">
+              <img
+                src={`${avatar ? avatar : ProfileAvatar}`}
+                alt="user-avater"
+                className="avatar"
+              />
+              <span className="name">{profile_name}</span>
+            </div>
+            <div className="user--score-prize">
+              {award && <span>{t("Prize")}</span>}
+              <span>
+                {leaderboardHeaderStatus ? weakly : seasonal} {t("Score")}
+              </span>
+            </div>
           </div>
         </div>
-      </div>
+      </Page>
     );
   };
 

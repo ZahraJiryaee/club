@@ -5,14 +5,15 @@ import { useTranslation } from "react-i18next";
 import { setOpenWheelModal } from "../../redux/wheel/wheel.action";
 import {
   setCurrentUser,
-  setUserProfileAddress,
+  setUserBonusAddress,
 } from "../../redux/user/user.action";
 
 import {
   selectBonus,
   selectOpenWheelModal,
 } from "../../redux/wheel/wheel.selectors";
-import { selectCurrentUser } from "../../redux/user/user.selectors";
+
+import logger from "../../services/logService";
 
 import CloseIcon from "./../../assets/images/icon/close-icon.png";
 
@@ -22,11 +23,10 @@ const LuckyWheelModal = () => {
   const dispatch = useDispatch();
   const { t } = useTranslation();
 
-  const setBonus = useSelector(selectBonus);
+  const { detail: setBonus, log_id } = useSelector(selectBonus) || {};
   const openWheelModal = useSelector(selectOpenWheelModal);
-  const currentUser = useSelector(selectCurrentUser);
 
-  const { title, type: prizeType, value } = setBonus || {};
+  const { title, type: prizeType, code } = setBonus || {};
 
   const [prizeReceived, setPrizeReceived] = useState(false);
   const [userAddress, setUserAddress] = useState("");
@@ -35,35 +35,17 @@ const LuckyWheelModal = () => {
   );
 
   const popupPrizeBtn = () => {
-    console.log("api call");
     setPrizeReceived(true);
     if (prizeType === "dig") {
-      setPopupBtnTxt(`${t("Verification_Code")}: ${value}`);
+      setPopupBtnTxt(`${t("Verification_Code")}: ${code}`);
     } else if (prizeType === "non-dig") {
-      setPopupBtnTxt(`${t("Tracking_Code")}: ${value}`);
+      setPopupBtnTxt(`${t("Tracking_Code")}: ${code}`);
 
-      const {
-        first_name,
-        last_name,
-        avatar,
-        gender,
-        birth_date,
-        postal_code,
-        username,
-      } = currentUser;
-
-      const setProfileBody = {
-        first_name,
-        last_name,
-        avatar,
-        gender,
-        birth_date,
+      const setBonusAddressBody = {
         address: userAddress,
-        postal_code,
-        contact_mobile_number: username,
       };
 
-      dispatch(setUserProfileAddress(setProfileBody));
+      dispatch(setUserBonusAddress(log_id, setBonusAddressBody));
     }
   };
 
@@ -77,7 +59,7 @@ const LuckyWheelModal = () => {
   };
 
   useEffect(() => {
-    console.log("setBonus- modal:", setBonus);
+    logger.logInfo("setBonus-wheel-modal:", setBonus);
     const { type } = setBonus || {};
 
     setPrizeReceived(false);
@@ -138,7 +120,7 @@ const LuckyWheelModal = () => {
           {/*--------------------- Digital Specific -------------------*/}
           {prizeType === "dig" && prizeReceived && (
             <p className="center-absolute dig-prize-received-hint">
-              {t("Enter_Code_In_Game")}
+              {t("Enter_Code_In_Game__LuckyWheelModal")}
             </p>
           )}
           {/*--------------------- Button -------------------*/}

@@ -10,10 +10,12 @@ import { setHeaderMode } from "../../redux/header/header.action";
 import { selectAllGames } from "../../redux/games/games.selectors";
 
 import { routeNames } from "../../services/routeService";
+import logger from "../../services/logService";
 
 import GenreHeader from "../../components/genres/genre-header.component";
 import GamesRow from "../../components/games/games-row/games-row.component";
 import BannerGames from "../../components/games/games-banner/games-banner.component";
+import Page from "../page";
 
 import ArrowIconMB from "../../assets/images/icon/arrow-back-marineblue.png";
 
@@ -33,7 +35,7 @@ const GamesPage = () => {
       dispatch(getAllGames());
       dispatch(getAllGenres());
     } catch (ex) {
-      console.log(ex);
+      logger.logError("ex-games", ex);
       //tast error
     }
   }, [dispatch, pathname]);
@@ -43,7 +45,7 @@ const GamesPage = () => {
   }, [setGamesAndGenres]);
 
   return (
-    <div>
+    <Page title={t("Games_Page")}>
       <GenreHeader />
       <div className="games-page">
         {games.map((category) => {
@@ -76,7 +78,7 @@ const GamesPage = () => {
           );
         })}
       </div>
-    </div>
+    </Page>
   );
 };
 

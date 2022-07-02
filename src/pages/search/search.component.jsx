@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { useTranslation } from "react-i18next";
@@ -9,23 +9,23 @@ import {
   getSearchedShopItems,
 } from "../../redux/shop/shop.actions";
 import { getSearchedItem } from "../../redux/games/games.action";
+import { setHeaderMode } from "../../redux/header/header.action";
 
 import { selectSearchedGameItemsMappedToSearchPage } from "../../redux/games/games.selectors";
 import { selectSearchedShopItemsMappedToSearchPage } from "../../redux/shop/shop.selectors";
 
 import GenreHeader from "../../components/genres/genre-header.component";
 import ShopHeader from "../../components/shop-header/shop-header.component";
+import Page from "../page";
 
 import { routeNames } from "../../services/routeService";
-
-import shopMock from "../../components/mock/shop.mock";
 
 import StarLogo from "../../assets/images/icon/star.png";
 
 import "../../components/genres/genre-view.styles.scss";
 
 const SearchPage = () => {
-  const location = useLocation();
+  const { pathname } = useLocation();
   const dispatch = useDispatch();
   let navigate = useNavigate();
   const { t } = useTranslation();
@@ -34,24 +34,32 @@ const SearchPage = () => {
   route format:
   {the component we are searching on-as firstSliceOfPathname}/"search"/{searchField}
   */
-  const firstSliceOfPathname = location.pathname.slice(1).split("/")[0];
-  const searchField = location.pathname.slice(1).split("/")[2];
+  const firstSliceOfPathname = pathname.slice(1).split("/")[0];
+  const searchField = pathname.slice(1).split("/")[2];
+
+  const [pageTitle, setPageTitle] = useState("");
+
+  useEffect(() => {
+    dispatch(setHeaderMode(pathname));
+  }, [dispatch, pathname]);
 
   useEffect(() => {
     switch (firstSliceOfPathname) {
       case routeNames.game:
         dispatch(getSearchedItem(searchField));
+        setPageTitle(t("Search_Page__Game"));
         break;
 
       case routeNames.shop: {
-        dispatch(getSearchedShopItems([shopMock.shopItems[0]]));
+        dispatch(getSearchedShopItems(searchField));
+        setPageTitle(t("Search_Page__Shop"));
         break;
       }
 
       default:
         break;
     }
-  }, [location, firstSliceOfPathname, searchField, dispatch]);
+  }, [pathname, firstSliceOfPathname, searchField, dispatch, t]);
 
   const selector = {
     [routeNames["game"]]: useSelector(
@@ -111,7 +119,7 @@ const SearchPage = () => {
   };
 
   return (
-    <div>
+    <Page title={pageTitle}>
       {firstSliceOfPathname === routeNames["game"] ? <GenreHeader /> : null}
       {firstSliceOfPathname === routeNames["shop"] ? <ShopHeader /> : null}
 
@@ -153,7 +161,7 @@ const SearchPage = () => {
           })}
         </div>
       </div>
-    </div>
+    </Page>
   );
 };
 

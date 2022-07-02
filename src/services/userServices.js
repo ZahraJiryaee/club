@@ -1,15 +1,13 @@
 import http from "./httpServices";
 import { getAPIUrl } from "./api";
 import getApis from "./api";
-import localstorageService from "./localstorageService";
 
-const refreshToken = localstorageService.getRefreshToken();
+import { getAccessToken, getRefreshToken } from "../redux/user/token.action";
 
 //Signup
-const postPhoneNumberApiEndpoint =
-  getAPIUrl() + "/api/v1/user/signup/verify/request";
+const postPhoneNumberApiEndpoint = getAPIUrl() + "/api/v1/user/signup/request";
 const postOtpApiEndpoint = getAPIUrl() + "/api/v1/user/signup/verify";
-const postPasswordApiEndpoint = getAPIUrl() + "/api/v1/user/signup";
+// const postPasswordApiEndpoint = getAPIUrl() + "/api/v1/user/signup";
 
 //Login
 const getLoginTokenApiEndpoint = getAPIUrl() + "/api/v1/user/token";
@@ -30,16 +28,10 @@ export const sendPhoneNumber = (phoneNumber) => {
   return http.post(postPhoneNumberApiEndpoint, body);
 };
 
-export const checkOTP = (phoneNumber, otp) => {
-  const body = { mobile_number: phoneNumber, otp: otp };
+export const checkOTP = (body) => {
+  delete body.inviter_number;
   JSON.stringify(body);
   return http.post(postOtpApiEndpoint, body);
-};
-
-export const setPassword = (password, phoneNumber) => {
-  const body = { mobile_number: phoneNumber, password: password };
-  JSON.stringify(body);
-  return http.post(postPasswordApiEndpoint, body);
 };
 
 //Login//
@@ -50,30 +42,50 @@ export const setLoginToken = (username, password) => {
 };
 
 export const setNewToken = () => {
-  const body = { refresh: `${refreshToken}` };
+  const refreshToken = getRefreshToken();
+  const body = { refresh: refreshToken ? `${refreshToken}` : "Bearer" };
   JSON.stringify(body);
   return http.post(getApis.newTokenApiEndpoint, body);
 };
 
 //Profile//
 export const getUserProfile = () => {
-  return http.get(getApis.userProfileApiEndpoint);
+  const accessToken = getAccessToken();
+  return http.get(getApis.userProfileApiEndpoint, {
+    headers: { Authorization: `Bearer ${accessToken}` },
+  });
 };
 
 export const setUserProfile = (body) => {
-  return http.put(getApis.userProfileApiEndpoint, body);
+  const accessToken = getAccessToken();
+  return http.put(getApis.userProfileApiEndpoint, body, {
+    headers: { Authorization: `Bearer ${accessToken}` },
+  });
+};
+
+export const setBonusAddress = (bonusLogId, body) => {
+  const accessToken = getAccessToken();
+  return http.put(getApis.setBonusAddress + bonusLogId + `/address`, body, {
+    headers: { Authorization: `Bearer ${accessToken}` },
+  });
 };
 
 //InviterNumber//
-export const setInviterNumber = (inviterNumber) => {
-  const body = { inviter_number: inviterNumber };
+export const setInviterNumber = (inviter_number) => {
+  const accessToken = getAccessToken();
+  const body = { inviter_number };
   JSON.stringify(body);
-  return http.post(postInviterPhoneNumberApiEndpoint, body);
+  return http.post(postInviterPhoneNumberApiEndpoint, body, {
+    headers: { Authorization: `Bearer ${accessToken}` },
+  });
 };
 
 //DeviceId//
 export const setDeviceId = (deviceId) => {
+  const accessToken = getAccessToken();
   const body = { public_id: deviceId };
   JSON.stringify(body);
-  return http.post(postDeviceIdApiEndpoint, body);
+  return http.post(postDeviceIdApiEndpoint, body, {
+    headers: { Authorization: `Bearer ${accessToken}` },
+  });
 };

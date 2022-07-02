@@ -1,3 +1,4 @@
+import i18n from "../../dictionary/dictionary";
 import {
   getGames,
   getFilteredCategory,
@@ -6,6 +7,7 @@ import {
   getUserApplicationInfo,
   isAppInstalled,
 } from "../../services/gamesServices";
+import logger from "../../services/logService";
 import { GamesActionTypes } from "./games.types";
 
 export const getAllGames = () => async (dispatch) => {
@@ -20,7 +22,7 @@ export const getAllGames = () => async (dispatch) => {
       }
     })
     .catch((e) => {
-      console.log(e);
+      logger.logError("error-getallgames", e);
       //toast
     });
   return result;
@@ -63,7 +65,7 @@ export const getGameDetailsInformation = (id) => async (dispatch) => {
       }
     })
     .catch((e) => {
-      console.log(e);
+      logger.logError("error-getGameDetailsInformation", e);
       //toast
     });
   return result;
@@ -80,7 +82,13 @@ export const getUserApplicationInformation = (gameId) => async (dispatch) => {
       }
     })
     .catch((error) => {
-      console.log(error);
+      logger.logError("error-getUserApplicationInformation", error);
+      if (error.response.status === 401) {
+        dispatch({
+          type: GamesActionTypes.GET_USER_APPLICATION_INFO,
+          payload: i18n.t("User_Not_Valid_Msg"),
+        });
+      }
     });
 };
 
@@ -95,6 +103,12 @@ export const isApplicationInstalled = (gameId) => async (dispatch) => {
       }
     })
     .catch((error) => {
-      console.log(error);
+      logger.logError("error-isApplicationInstalled", error);
+      if (error.response.status === 401) {
+        dispatch({
+          type: GamesActionTypes.IS_APPLICATION_INSTALLED,
+          payload: i18n.t("User_Not_Valid_Msg"),
+        });
+      }
     });
 };

@@ -4,9 +4,9 @@ import ClipLoader from "react-spinners/BarLoader";
 
 import useAxiosLoader from "../../../services/useLoader";
 
-import "./loading.style.scss";
+import "./bar-loader.style.scss";
 
-const Loading = () => {
+const BarLoader = () => {
   const [loading] = useAxiosLoader();
 
   return (
@@ -28,4 +28,4 @@ const Loading = () => {
   );
 };
 
-export default Loading;
+export default BarLoader;

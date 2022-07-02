@@ -18,9 +18,10 @@ import Pagination from "../../components/common/pagination/pagination.component"
 
 // import shopMock from "../../components/mock/shop.mock";
 
-import ShopItem from "./../../assets/images/test/shop-item.png";
+import ShopItem from "./../../assets/images/icon/shop-item.png";
 
 import "./shop.styles.scss";
+import Page from "../page";
 
 let PageSize = 4 * 4;
 
@@ -38,7 +39,7 @@ const ShopPage = () => {
     const firstPageIndex = (currentPage - 1) * PageSize;
     const lastPageIndex = firstPageIndex + PageSize;
     return allShopItems.slice(firstPageIndex, lastPageIndex);
-  }, [currentPage]);
+  }, [currentPage, allShopItems]);
 
   const onPurchaseClick = (item) => {
     dispatch(setOpenShopModal(true));
@@ -47,14 +48,14 @@ const ShopPage = () => {
 
   useEffect(() => {
     dispatch(setHeaderMode(pathname));
-  }, []);
+  }, [dispatch, pathname]);
 
   useEffect(() => {
     dispatch(getAllShopItems());
-  }, []);
+  }, [dispatch]);
 
   return (
-    <div>
+    <Page title={t("Shop_Page")}>
       {/* General Haeder */}
       <ShopHeader />
 
@@ -66,12 +67,16 @@ const ShopPage = () => {
         {currentShopData.map((item) => (
           <div className="shop-item" key={item.id}>
             <div className="shop-item-img-container">
-              <img className="shop-item-img" src={ShopItem} alt="shop-item" />
+              <img
+                className="shop-item-img"
+                src={item.icon.source ? item.icon.source : ShopItem}
+                alt="shop-item"
+              />
             </div>
             <div className="name-score-container">
               <div className="shop-item-name">{item.title}</div>
               <div className="shop-item-score-needed">
-                {item.leave_chance_counter} {t("Score")}
+                {item.cost_chance_count} {t("Score")}
               </div>
             </div>
             <button
@@ -91,7 +96,7 @@ const ShopPage = () => {
         pageSize={PageSize}
         onPageChange={(page) => setCurrentPage(page)}
       />
-    </div>
+    </Page>
   );
 };
 

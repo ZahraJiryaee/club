@@ -1,15 +1,21 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import { useTranslation } from "react-i18next";
 
-import shopMock from "../mock/shop.mock";
+import { getSortedShopItems } from "../../redux/shop/shop.actions";
+
+import logger from "../../services/logService";
+
+import { shopOrderingHeaderList } from "../../model/shop.model";
 
 import "./shop-ordering-header.styles.scss";
 
 const ShopOrderingHeader = () => {
+  const dispatch = useDispatch();
   const { t } = useTranslation();
 
   const [toggleSelect, setToggleSelect] = useState(false);
-  const [orderShop, setOrderShop] = useState(shopMock.orderShop);
+  const [orderShop, setOrderShop] = useState(shopOrderingHeaderList);
   const handleSelectToggle = (e) => {
     e.preventDefault();
     e.stopPropagation();
@@ -18,7 +24,7 @@ const ShopOrderingHeader = () => {
   };
   const handleCheckedItem = (id) => {
     /* set the "checked" value for the selected id to true & others to false */
-    console.log("id:", id);
+    logger.logInfo("id-shop-ordering-header:", id);
     if (toggleSelect) {
       let clone = [...orderShop];
       let picked_data = clone.filter((item) => item.id === id);
@@ -29,6 +35,8 @@ const ShopOrderingHeader = () => {
       }
       setOrderShop(clone);
     }
+
+    dispatch(getSortedShopItems(id));
   };
 
   return (
