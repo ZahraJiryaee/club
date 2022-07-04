@@ -8,41 +8,63 @@
   width: 100vw;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.35);
-  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(2px);
+  backdrop-filter: blur(2px);
 
   position: fixed;
   z-index: 21;
   top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
 
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
 
+  direction: rtl;
+
   .popup {
     position: relative;
 
-    width: 540px;
-    height: 70%;
-    background-color: white;
+    width: 520px;
+    height: 500px;
+    background-color: $white;
     border-radius: 10px;
     z-index: 200;
+    overflow: hidden;
 
     @media #{$small-mobile} {
-      width: 100%;
-      height: 360px;
+      width: 100vw;
     }
 
     .bg-hooray {
       position: absolute;
-      top: 0;
+      top: -10px;
+      right: 0;
+      left: 0;
+
       background-image: url("./../../assets/images/lucky-wheel/popup/hooray.png");
-      background-position: bottom center;
+      background-position: top;
       background-repeat: no-repeat;
       background-size: cover;
+
       border-radius: 10px;
-      width: 100%;
-      height: 100%;
+      width: 520px;
+      height: 420px;
+
+      @media #{$small-mobile} {
+        width: 100%;
+      }
+
+      &__non-dig_1 {
+        top: -70px;
+      }
+      &__non-dig_2,
+      &__non-dig_3 {
+        top: -50px;
+      }
     }
 
     .popup-close {
@@ -59,85 +81,121 @@
       }
     }
 
-    .popup-title {
-      top: 35%;
-
+    .modal-title {
       direction: rtl;
       font-size: 34px;
       font-weight: bold;
       letter-spacing: -0.82px;
       color: $theme-color--vermillion;
       width: 100%;
-      padding: 0 10px;
-
-      &.popup-title-dig {
-        top: 35%;
-      }
-      &.popup-title-dig-prize-received-true {
-        top: 35%;
-      }
-      &.popup-title-non-dig {
-        top: 10%;
-      }
-      &.popup-title-non-dig-prize-received-true {
-        top: 15%;
-      }
 
       @media #{$small-mobile} {
         font-size: 25px;
-        line-height: 0.48;
-        letter-spacing: -0.6px;
+      }
+    }
+
+    .modal-choose-address {
+      font-size: 18px;
+      font-weight: bold;
+
+      @media #{$small-mobile} {
+        font-size: 16px;
+      }
+    }
+
+    .modal-add-new-address {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 10px 20px 0;
+      .img {
+        width: 20px;
+        height: auto;
+      }
+    }
+
+    .user-address-label {
+      width: 100%;
+
+      text-align: right;
+      padding-right: calc(var(--lucky-wheel-popup-textarea-padding) / 2);
+      font-size: 18px;
+
+      & span:nth-child(2) {
+        color: $theme-color--vermillion;
+        padding-right: 10px;
+      }
+
+      @media #{$small-mobile} {
+        font-size: 12px;
+      }
+    }
+
+    .user-address {
+      background-color: $theme-color--white;
+      border-radius: 10px;
+      width: calc(100% - var(--lucky-wheel-popup-textarea-padding));
+      height: 170px;
+      font-family: $font-family-iransans;
+      text-align: right;
+      padding: 10px 15px;
+
+      border: none;
+      overflow: auto;
+      outline: none;
+      -webkit-box-shadow: none;
+      -moz-box-shadow: none;
+      box-shadow: none;
+      resize: none;
+
+      @media #{$small-mobile} {
+        height: 135px;
+      }
+    }
+
+    .send-to-user-address {
+      padding: 0 5vw;
+      font-size: 18px;
+      font-weight: 500;
+      line-height: 1.67;
+      letter-spacing: -0.29px;
+      color: $theme-color--dark;
+      min-width: 65%;
+      display: block;
+      margin: auto;
+
+      & span:nth-child(2) {
+        padding-right: 10px;
+      }
+
+      @media #{$small-mobile} {
+        min-width: 80%;
+        font-size: 12px;
+        line-height: 1.5;
+        letter-spacing: -0.19px;
+      }
+    }
+
+    .support-number {
+      font-size: 13px;
+      font-weight: 500;
+      line-height: 0.92;
+      letter-spacing: -0.21px;
+
+      & span:nth-child(2) {
+        padding-right: 10px;
+      }
+
+      @media #{$small-mobile} {
+        font-size: 10px;
+        line-height: 1.2;
+        letter-spacing: -0.16px;
       }
     }
 
     /*---------------- Prize -----------------*/
-    .popup-prize-btn {
-      top: 42%;
-
-      width: 168px;
-      height: 45px;
-      background-color: $theme-color--marine-blue;
-      color: $theme-color--white;
-      border: none;
-      border-radius: 25px;
-
-      font-family: $font-family-iransans;
-      font-size: 18px;
-      font-weight: 500;
-      line-height: 0.67;
-      letter-spacing: -0.43px;
-      direction: rtl;
-
-      cursor: pointer;
-
-      &.popup-prize-btn-dig {
-        top: 70%;
-      }
-      &.popup-prize-btn-dig-prize-received-true {
-        background-color: $theme-color--marine-deep-sky-blue;
-      }
-      &.popup-prize-btn-non-dig {
-        top: 90%;
-        background-color: $theme-color--cool-green;
-      }
-      &.popup-prize-btn-non-dig-prize-received-true {
-        top: 72%;
-        background-color: $theme-color--marine-deep-sky-blue;
-      }
-
-      &.disabled {
-        background-color: $theme-color--brown-grey;
-      }
-
-      @media #{$small-mobile} {
-        width: 150px;
-        height: 40px;
-        font-size: 15px;
-        line-height: 0.8;
-        letter-spacing: -0.36px;
-      }
-    }
-
+    /*  
     .dig-prize-received-hint {
       top: 80%;
 
@@ -149,92 +207,7 @@
       color: $theme-color--dark;
       width: 100%;
       padding: 0 10px;
-    }
-
-    .user-address-container {
-      direction: rtl;
-
-      .user-address-label {
-        top: 26%;
-        width: 100%;
-
-        text-align: right;
-        padding-right: calc(var(--lucky-wheel-popup-textarea-padding) / 2);
-        font-size: 18px;
-
-        & span:nth-child(2) {
-          color: $theme-color--vermillion;
-          padding-right: 10px;
-        }
-
-        @media #{$small-mobile} {
-          font-size: 12px;
-        }
-      }
-
-      .user-address {
-        top: 55%;
-
-        background-color: $theme-color--white;
-        border-radius: 10px;
-        width: calc(100% - var(--lucky-wheel-popup-textarea-padding));
-        height: 170px;
-        font-family: $font-family-iransans;
-        text-align: right;
-        padding: 10px 15px;
-
-        border: none;
-        overflow: auto;
-        outline: none;
-        -webkit-box-shadow: none;
-        -moz-box-shadow: none;
-        box-shadow: none;
-        resize: none;
-
-        @media #{$small-mobile} {
-          height: 135px;
-        }
-      }
-
-      .send-to-user-address {
-        top: 40%;
-
-        font-size: 18px;
-        font-weight: 500;
-        line-height: 1.67;
-        letter-spacing: -0.29px;
-        color: $theme-color--dark;
-        width: 80%;
-
-        & span:nth-child(2) {
-          padding-right: 10px;
-        }
-
-        @media #{$small-mobile} {
-          font-size: 12px;
-          line-height: 1.5;
-          letter-spacing: -0.19px;
-        }
-      }
-
-      .support-number {
-        top: 85%;
-
-        font-size: 13px;
-        font-weight: 500;
-        line-height: 0.92;
-        letter-spacing: -0.21px;
-
-        & span:nth-child(2) {
-          padding-right: 10px;
-        }
-
-        @media #{$small-mobile} {
-          font-size: 10px;
-          line-height: 1.2;
-          letter-spacing: -0.16px;
-        }
-      }
-    }
+    }    
+    */
   }
 }

@@ -142,6 +142,8 @@ const resources = {
         "اگر در مدریک کلاب حساب کاربری ندارید،",
       If_You_Dont_Have_An_Account_Signup__Part2: "ثبت نام کنید",
       Signin: "ورود",
+      Choose_Address: "انتخاب آدرس",
+      Add_New_Address: "اضافه کردن آدرس جدید",
     },
   },
 };
