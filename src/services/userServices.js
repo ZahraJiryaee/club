@@ -70,6 +70,13 @@ export const setBonusAddress = (bonusLogId, body) => {
   });
 };
 
+export const getAllOfTheUserAddresses = () => {
+  const accessToken = getAccessToken();
+  return http.get(getApis.getUserAddresses, {
+    headers: { Authorization: `Bearer ${accessToken}` },
+  });
+};
+
 //InviterNumber//
 export const setInviterNumber = (inviter_number) => {
   const accessToken = getAccessToken();

@@ -13,6 +13,7 @@ import {
   setInviterNumber,
   setDeviceId,
   setBonusAddress,
+  getAllOfTheUserAddresses,
 } from "../../services/userServices";
 import logger from "../../services/logService";
 import { toastError } from "./../../services/toastService";
@@ -160,7 +161,32 @@ export const setUserBonusAddress = (bonusLogId, body) => async (dispatch) => {
     })
     .catch((error) => {
       logger.logError("error-setBonusAddress", error);
+      toastError(i18n.t("Try_Again"));
       result = error.response;
+    });
+  return result;
+};
+
+export const getUserAddresses = () => async (dispatch) => {
+  let result;
+  await getAllOfTheUserAddresses()
+    .then((response) => {
+      logger.logInfo("response-getUserAddresses", response);
+      result = response;
+      dispatch({
+        type: UserActionTypes.SET_ALL_USER_ADDRESSES,
+        payload: response.data,
+      });
+    })
+    .catch((error) => {
+      logger.logError("error-getUserAddresses", error);
+      result = error.response;
+      dispatch({
+        type: UserActionTypes.SET_ALL_USER_ADDRESSES,
+        payload: {
+          addresses: [],
+        },
+      });
     });
   return result;
 };
