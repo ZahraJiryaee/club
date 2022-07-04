@@ -4,7 +4,7 @@
   --lucky-wheel-popup-textarea-padding: 20px;
 }
 
-.overlay {
+.lucky-wheel-modal-overlay {
   width: 100vw;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.35);
@@ -25,7 +25,7 @@
 
   direction: rtl;
 
-  .popup {
+  .lucky-wheel-modal-popup {
     position: relative;
 
     width: 520px;
@@ -41,7 +41,7 @@
 
     .bg-hooray {
       position: absolute;
-      top: -10px;
+      top: 0px;
       right: 0;
       left: 0;
 
@@ -94,7 +94,7 @@
       }
     }
 
-    .modal-choose-address {
+    .choose-address {
       font-size: 18px;
       font-weight: bold;
 
@@ -103,7 +103,7 @@
       }
     }
 
-    .modal-add-new-address {
+    .add-new-address {
       display: flex;
       justify-content: flex-start;
       align-items: center;
@@ -183,6 +183,10 @@
       line-height: 0.92;
       letter-spacing: -0.21px;
 
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
       & span:nth-child(2) {
         padding-right: 10px;
       }
@@ -194,20 +198,19 @@
       }
     }
 
-    /*---------------- Prize -----------------*/
-    /*  
     .dig-prize-received-hint {
-      top: 80%;
-
       direction: rtl;
-      font-size: 12px;
+      font-size: 18px;
       font-weight: bold;
       line-height: 1;
       letter-spacing: -0.19px;
       color: $theme-color--dark;
       width: 100%;
       padding: 0 10px;
-    }    
-    */
+
+      @media #{$small-mobile} {
+        font-size: 12px;
+      }
+    }
   }
 }
