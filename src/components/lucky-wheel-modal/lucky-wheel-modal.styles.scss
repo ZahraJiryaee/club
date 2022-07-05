@@ -94,27 +94,6 @@
       }
     }
 
-    .choose-address {
-      font-size: 18px;
-      font-weight: bold;
-
-      @media #{$small-mobile} {
-        font-size: 16px;
-      }
-    }
-
-    .add-new-address {
-      display: flex;
-      justify-content: flex-start;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 10px 20px 0;
-      .img {
-        width: 20px;
-        height: auto;
-      }
-    }
-
     .user-address-label {
       width: 100%;
 
@@ -174,27 +153,6 @@
         font-size: 12px;
         line-height: 1.5;
         letter-spacing: -0.19px;
-      }
-    }
-
-    .support-number {
-      font-size: 13px;
-      font-weight: 500;
-      line-height: 0.92;
-      letter-spacing: -0.21px;
-
-      display: flex;
-      justify-content: center;
-      align-items: center;
-
-      & span:nth-child(2) {
-        padding-right: 10px;
-      }
-
-      @media #{$small-mobile} {
-        font-size: 10px;
-        line-height: 1.2;
-        letter-spacing: -0.16px;
       }
     }
 

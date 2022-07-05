@@ -28,21 +28,19 @@ const GenreView = ({ title }) => {
   const [pageTitle, setPageTitle] = useState("");
 
   useEffect(() => {
-    if (filteredGenre && filteredCategory) {
-      logger.logInfo("filteredGenre-genre-view:", filteredGenre);
-      if (type === "genre") {
-        setFilteredData(filteredGenre);
-        let currentGenre = filteredGenre[0].genres.filter(
-          (item) => item.id === id
-        );
-        setPageTitle(currentGenre[0]?.title);
-      } else if (type === "category") {
-        setFilteredData(filteredCategory);
-        let currentCaretory = filteredCategory[0].categories.filter(
-          (item) => item.id === id
-        );
-        setPageTitle(currentCaretory[0]?.title);
-      }
+    logger.logInfo("filteredGenre-genre-view:", filteredGenre);
+    if (type === "genre" && filteredGenre.length !== 0) {
+      setFilteredData(filteredGenre);
+      let currentGenre = filteredGenre[0].genres.filter(
+        (item) => item.id === id
+      );
+      setPageTitle(currentGenre[0]?.title);
+    } else if (type === "category" && filteredCategory.length !== 0) {
+      setFilteredData(filteredCategory);
+      let currentCaretory = filteredCategory[0].categories.filter(
+        (item) => item.id === id
+      );
+      setPageTitle(currentCaretory[0]?.title);
     }
   }, [type, id, filteredData, filteredCategory, filteredGenre]);
 

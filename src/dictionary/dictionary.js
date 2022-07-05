@@ -168,6 +168,8 @@ const resources = {
         "ماموریت‌های مختلفی که توی هر بازی نوشته شده رو ببین! بعضیاشون جایزه گردونه شانس بهت میدن!",
       With_Your_Points_You_Can_Buy_Chances_To_Spin_The_Wheel_From_The_Store:
         "با امتیازهات از توی فروشگاه میتونی شانس گردونه شانس بخری!",
+      You_Dont_Have_Enough_Score_To_Buy_This_Item:
+        "امتیاز شما برای خرید این محصول کافی نیست",
     },
   },
 };

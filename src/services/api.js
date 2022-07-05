@@ -22,6 +22,7 @@ const listUserSeasonal = API_URL + "/api/v1/score/seasonal";
 
 // shop
 const listShopItems = API_URL + "/api/v1/shop/goods";
+const buyShopItems = API_URL + "/api/v1/shop/buy/";
 
 // game
 const getGamesApiEndpoint = API_URL + "/api/v1/application/";
@@ -39,6 +40,7 @@ const getApis = {
   listUserMonthly,
   listUserSeasonal,
   listShopItems,
+  buyShopItems,
   getGamesApiEndpoint,
   getFilteredCategoryApiEndpoint,
   getUserApplicationInfoEndpoint,

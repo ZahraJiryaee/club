@@ -1,10 +1,15 @@
+import { t } from "i18next";
+
 import { ShopActionTypes } from "./shop.types";
 
 import {
+  buyShopGood,
   getAllShopGoods,
   getSearchedShopGoods,
   getSortedShopGoods,
 } from "../../services/shopService";
+import logger from "../../services/logService";
+import { toastError } from "../../services/toastService";
 
 export const setOpenShopModal = (value) => ({
   type: ShopActionTypes.SET_OPEN_SHOP_MODAL,
@@ -48,4 +53,26 @@ export const getSortedShopItems = (sortKey) => async (dispatch) => {
     type: ShopActionTypes.GET_ALL_SHOP_ITEMS,
     payload: data,
   });
+};
+
+export const buyShopItem = (shopItemId) => async (dispatch) => {
+  let result;
+  await buyShopGood(shopItemId).then(
+    (response) => {
+      result = response.data;
+      logger.logInfo("response-buyShopItem", response);
+    },
+    (error) => {
+      result = error.response;
+      logger.logError("response-buyShopItem", error);
+      const { status } = error.response;
+      if (status === 403) {
+        toastError(t("You_Dont_Have_Enough_Score_To_Buy_This_Item"));
+      } else if (status === 401) {
+      } else {
+        toastError(t("Try_Again"));
+      }
+    }
+  );
+  return result;
 };
