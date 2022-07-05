@@ -64,7 +64,7 @@ const LuckyWheelModal = () => {
         setAddressData(data);
       }
     }
-  }, [allUserAddresses]);
+  }, [allUserAddresses, prizeType]);
 
   const setBonusAddress = () => {
     const setBonusAddressBody = {
@@ -102,10 +102,6 @@ const LuckyWheelModal = () => {
   const handleModalBtn_Phase2_NonDig = () => {
     setBonusAddress();
     setLuckyWheelModalStage(3);
-  };
-
-  const handleModalBtn_Phase3_NonDig = () => {
-    setLuckyWheelModalStage(1);
   };
 
   const handleAddressSelected = (value) => {
@@ -172,10 +168,7 @@ const LuckyWheelModal = () => {
           <span>{t("Send_To")}</span>
           <span>{userAddress}</span>
         </p>
-        <CustomButton
-          btnBgColor="deep-sky-blue"
-          onClick={handleModalBtn_Phase3_NonDig}
-        >
+        <CustomButton btnBgColor="deep-sky-blue" cursorAuto>
           {t("Tracking_Code")}: {code}
         </CustomButton>
         <p className="support-number">
@@ -213,7 +206,7 @@ const LuckyWheelModal = () => {
       <>
         <div className="center-absolute top--45">{ModalTitle()}</div>
         <div className="center-absolute top--65">
-          <CustomButton btnBgColor="deep-sky-blue">
+          <CustomButton btnBgColor="deep-sky-blue" cursorAuto>
             {t("Verification_Code")}: {code}
           </CustomButton>
         </div>

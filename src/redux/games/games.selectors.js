@@ -1,3 +1,4 @@
+import { t } from "i18next";
 import { createSelector } from "reselect";
 
 const selectGames = (state) => state.games;
@@ -43,7 +44,9 @@ const mapSearchedGameItemsToSearchPage = (items) => {
       id: item.id,
       icon: item.source.icon,
       header: item.name,
-      subHeader: `${item.install_score_counter} امتیاز با نصب این بازی دریافت کنید.`,
+      subHeader: `${item.install_score_counter} ${t(
+        "Achieve_X_Points_By_Installing_This_Game"
+      )}`,
       action: { component: "game", content: item.rate },
     };
   });

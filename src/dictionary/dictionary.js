@@ -144,6 +144,30 @@ const resources = {
       Signin: "ورود",
       Choose_Address: "انتخاب آدرس",
       Add_New_Address: "اضافه کردن آدرس جدید",
+      Bazaar: "بـــازار",
+      Play_Store: "پلی‌استور",
+      Myket: "مایکت",
+      App_Store: "اپ‌اسـتور",
+      Profile: "پروفایل",
+      Shop: "فروشگاه",
+      Wheel: "گردونه",
+      Games: "بازی‌ها",
+      Leaderboard: "رده‌بندی",
+      Guide_To_Using_Medric_Bonus_Codes: "راهنمای استفاده از کدهای جایزه مدریک",
+      Contact_Us: "تماس با ما",
+      About_Us: "درباره ما",
+      Frequently_Asked_Questions: "سوالات متداول",
+      Highest_Score: "بیشترین امتیاز",
+      Lowest_Score: "کمترین امتیاز",
+      Newest: "جدیدترین",
+      Introduce_Medrick_Club_To_Your_Friends_And_Get_A_Chance_To_Spin_The_Wheel:
+        "مدریک کلاب رو به دوستات معرفی کن و شانس گردونه شانس دریافت کن!",
+      Just_Tell_Them_To_Register_Your_Phone_Number_As_An_Referral_Code_When_Signingup:
+        "فقط بهشون بگو زمان ثبت نام شماره تلفنت رو به عنوان معرف ثبت کنن!",
+      Look_At_Each_Game_Mission_Some_OF_Them_Give_You_Chances_To_Spin_The_Wheel:
+        "ماموریت‌های مختلفی که توی هر بازی نوشته شده رو ببین! بعضیاشون جایزه گردونه شانس بهت میدن!",
+      With_Your_Points_You_Can_Buy_Chances_To_Spin_The_Wheel_From_The_Store:
+        "با امتیازهات از توی فروشگاه میتونی شانس گردونه شانس بخری!",
     },
   },
 };

@@ -57,7 +57,9 @@ const Header = () => {
               <hr />
             </li>
           ))}
-          <p className="version">{t("Version")} 1.1.1</p>
+          <p className="version">
+            {t("Version")} {process.env.REACT_APP_VERSION}
+          </p>
         </ul>
       </div>
       {/* ---------------------- Logo --------------------------- */}
@@ -96,7 +98,7 @@ const Header = () => {
                       <div className="subnav-content">
                         {genres.map((genre) => {
                           return (
-                            <li key={genre.id}>
+                            <div className="subnav-content-list" key={genre.id}>
                               <NavLink
                                 to={`/games/genre/${genre.id}`}
                                 className={({ isActive }) =>
@@ -105,7 +107,7 @@ const Header = () => {
                               >
                                 {genre.title}
                               </NavLink>
-                            </li>
+                            </div>
                           );
                         })}
                       </div>
