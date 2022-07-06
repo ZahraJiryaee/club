@@ -13,16 +13,30 @@ import CloseIcon from "./../../assets/images/icon/close-icon.png";
 import MedrickLogo from "./../../assets/images/icon/medrick-logo.png";
 
 import "./signup-signin.styles.scss";
+import ForgetPassword from "./forget-password/forget-password.component";
 
 const SignupSignin = () => {
   const dispatch = useDispatch();
   const { t } = useTranslation();
 
-  const [signupMode, setSignupMode] = useState(true); // true=>signup   false=>login
+  const [authMode, setAuthMode] = useState(1); // 1=>signup   2=>login    3=>forget-pass
   const openVal = useSelector(selectOpenValidationDialog);
 
   const handleCloseSignUpSignIn = () => {
     dispatch(setOpenValidationDialog(false));
+  };
+
+  const populateAuthForm = () => {
+    switch (authMode) {
+      case 1:
+        return <Signup setAuthMode={setAuthMode} />;
+      case 2:
+        return <Signin setAuthMode={setAuthMode} />;
+      case 3:
+        return <ForgetPassword />;
+      default:
+        break;
+    }
   };
 
   return (
@@ -45,11 +59,7 @@ const SignupSignin = () => {
             {/*--------------------- warning Msg -------------------*/}
             <p className="warningMsg">{t("Login_To_Access_Features")}</p>
             {/*------------------ SignUp or Signin ------------------*/}
-            {signupMode ? (
-              <Signup setSignupMode={setSignupMode} />
-            ) : (
-              <Signin setSignupMode={setSignupMode} />
-            )}
+            {populateAuthForm()}
           </div>
         </div>
       </div>

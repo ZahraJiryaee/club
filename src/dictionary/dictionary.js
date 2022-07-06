@@ -124,7 +124,9 @@ const resources = {
       Mobile_Number_Placeholder: "مثلا ۰۹۱۲۱۲۳۴۵۶۷",
       Profile_Name: "نام کاربری",
       Password: "کلمه عبور",
+      New_Password: "کلمه عبور جدید",
       Password_Repeat: "تکرار کلمه عبور",
+      New_Password_Repeat: "تکرار کلمه عبور جدید",
       Enter_Otp_Number: "کد تائید را وارد نمایید",
       Otp_Was_sent_To_Mobile_Number:
         "کد تائید برای شماره موبایل {{signupMobileNumber}} ارسال گردید",
@@ -170,6 +172,10 @@ const resources = {
         "با امتیازهات از توی فروشگاه میتونی شانس گردونه شانس بخری!",
       You_Dont_Have_Enough_Score_To_Buy_This_Item:
         "امتیاز شما برای خرید این محصول کافی نیست",
+      Forget_Your_Password: "رمز خود را فراموش کرده اید؟",
+      Reset_Password: "بازیابی رمز عبور",
+      Receive_Otp: "دریافت پیامک",
+      Retrieve_Account: "بازیابی حساب",
     },
   },
 };

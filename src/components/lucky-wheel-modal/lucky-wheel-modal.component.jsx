@@ -54,7 +54,7 @@ const LuckyWheelModal = () => {
 
   useEffect(() => {
     if (prizeType === "non-dig") {
-      if (allUserAddresses.addresses.length === 0) {
+      if (allUserAddresses?.addresses?.length === 0) {
         setLuckyWheelModalStage(2);
       } else {
         const data = allUserAddresses.addresses.map((address) => ({
