@@ -7,6 +7,8 @@ import { setOpenValidationDialog } from "../../redux/user/user.action";
 import { setHeaderMode } from "../../redux/header/header.action";
 
 import { routeNames } from "../../services/routeService";
+import { toastError } from "./../../services/toastService";
+
 import { ProfileMenu } from "../../model/profile-menu-model";
 
 import ProfileAvatar from "./../../assets/images/icon/blue-avatar-icon.png";
@@ -22,6 +24,7 @@ const ProfilePage = () => {
 
   const currentUser = useSelector((state) => state.user.currentUser);
 
+  console.log("currentUser", currentUser);
   useEffect(() => {
     dispatch(setHeaderMode(pathname));
   }, []);
@@ -35,7 +38,11 @@ const ProfilePage = () => {
   };
 
   const handleMovePage = (route) => {
-    navigate(`/${routeNames.profile}${route}`);
+    if (currentUser) {
+      route === "/set-inviter" && currentUser?.has_invited === true
+        ? toastError(t("Inviter_Code_Error"))
+        : navigate(`/${routeNames.profile}${route}`);
+    }
   };
 
   return (
@@ -54,27 +61,19 @@ const ProfilePage = () => {
       </div>
       <div className="profile-details">
         {ProfileMenu.map((item) => {
-          if (item.title === "" && currentUser?.has_invited)
-            // if (item.title === "Inviter_Code" && currentUser.has_invited)
-            return null;
-          else
-            return (
-              <div
-                className="details-container"
-                key={item.id}
-                onClick={() => handleMovePage(item.route)}
-              >
-                <div className="title-container">
-                  <img
-                    src={item.icon}
-                    alt="title-icon"
-                    className="title-icon"
-                  />
-                  <span className="title">{t(item.title)}</span>
-                </div>
-                <img className="more-icon" src={ArrowIconMB} alt="arrow-back" />
+          return (
+            <div
+              className="details-container"
+              key={item.id}
+              onClick={() => handleMovePage(item.route)}
+            >
+              <div className="title-container">
+                <img src={item.icon} alt="title-icon" className="title-icon" />
+                <span className="title">{t(item.title)}</span>
               </div>
-            );
+              <img className="more-icon" src={ArrowIconMB} alt="arrow-back" />
+            </div>
+          );
         })}
       </div>
     </div>

@@ -27,7 +27,7 @@ const GiftHistorypage = lazy(() =>
   import("./pages/profile/gitt-history/gift-history.component")
 );
 const InviterCodePage = lazy(() =>
-  import("./pages/lucky-wheel/lucky-wheel.component")
+  import("./pages/profile/inviter-code/inviter-code.component")
 );
 const DeviceIdPage = lazy(() =>
   import("./pages/profile/device-id/device-id.components")

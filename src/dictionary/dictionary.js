@@ -109,6 +109,7 @@ const resources = {
       Search_Page__Shop: "جستجو در فروشگاه",
       Shop_Page: "فروشگاه",
       Error_Boundary_Msg: "خطایی رخ داده است! لطفا با پشتیبانی تماس بگیرید.",
+      Error_Something_Wrong_Msg: "خطایی رخ داده است! لطفا مجدد تلاش کنید.",
       Signup: "ثبت نام",
       Resend: "ارسال مجدد",
       User_Already_Exist: "این شماره موبایل قبلا ثبت نام کرده است.",
@@ -142,6 +143,8 @@ const resources = {
         "اگر در مدریک کلاب حساب کاربری ندارید،",
       If_You_Dont_Have_An_Account_Signup__Part2: "ثبت نام کنید",
       Signin: "ورود",
+      Empty_Field_Error: "هیچ فیلدی نباید خالی باشد.",
+      Inviter_Code_Error: "معرف خود را قبلا ثبت کرده‌اید.",
     },
   },
 };
