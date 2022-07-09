@@ -2,6 +2,11 @@ import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useTranslation } from "react-i18next";
 
+import {
+  forgetPassword_Phase1_Request,
+  forgetPassword_Phase2_Verify,
+} from "../../../redux/user/user.action";
+
 import CustomInput from "../../common/custom-input/custom-input.component";
 import CustomButton from "../../common/custom-button/custom-button.component";
 
@@ -163,14 +168,35 @@ const ForgetPassword = () => {
 
   /* ------------------------------- HANDLE ONCLICKS ---------------------------------- */
   const handleForgetPassword_Phase1 = () => {
-    setOtpTimer(true);
-    setForgetPasswordStage(2);
     setDisableSubmitButton(true);
+    const requestBody = {
+      mobile_number: mobileNumber,
+    };
+    let result = dispatch(forgetPassword_Phase1_Request(requestBody));
+    result.then((response) => {
+      setDisableSubmitButton(false);
+      if (response === "OK") {
+        setOtpTimer(true);
+        setForgetPasswordStage(2);
+        setDisableSubmitButton(true);
+      }
+    });
   };
 
   const handleForgetPassword_Phase2 = () => {
-    setOtpTimer(false);
-    setForgetPasswordStage(1);
+    setDisableSubmitButton(true);
+    const requestBody = {
+      mobile_number: mobileNumber,
+      otp: signupOTP,
+      new_password: password_1,
+    };
+    let result = dispatch(forgetPassword_Phase2_Verify(requestBody));
+    result.then((response) => {
+      setDisableSubmitButton(false);
+      if (response === "OK") {
+        setOtpTimer(false);
+      }
+    });
   };
 
   /* ------------------------------- POPULATE FORM ---------------------------------- */

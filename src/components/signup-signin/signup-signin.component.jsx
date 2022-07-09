@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useTranslation } from "react-i18next";
 
 import Signup from "./signup/signup.component";
 import Signin from "./signin/signin.component";
+import ForgetPassword from "./forget-password/forget-password.component";
 
 import { setOpenValidationDialog } from "../../redux/user/user.action";
 
@@ -13,7 +14,6 @@ import CloseIcon from "./../../assets/images/icon/close-icon.png";
 import MedrickLogo from "./../../assets/images/icon/medrick-logo.png";
 
 import "./signup-signin.styles.scss";
-import ForgetPassword from "./forget-password/forget-password.component";
 
 const SignupSignin = () => {
   const dispatch = useDispatch();
@@ -21,6 +21,10 @@ const SignupSignin = () => {
 
   const [authMode, setAuthMode] = useState(1); // 1=>signup   2=>login    3=>forget-pass
   const openVal = useSelector(selectOpenValidationDialog);
+
+  useEffect(() => {
+    setAuthMode(1);
+  }, []);
 
   const handleCloseSignUpSignIn = () => {
     dispatch(setOpenValidationDialog(false));

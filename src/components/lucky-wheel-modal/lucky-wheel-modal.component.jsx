@@ -53,7 +53,7 @@ const LuckyWheelModal = () => {
   }, [setBonus]);
 
   useEffect(() => {
-    if (prizeType === "non-dig") {
+    if (prizeType === "non-dig" && allUserAddresses.addresses) {
       if (allUserAddresses?.addresses?.length === 0) {
         setLuckyWheelModalStage(2);
       } else {

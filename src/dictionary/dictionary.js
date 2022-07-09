@@ -176,6 +176,7 @@ const resources = {
       Reset_Password: "بازیابی رمز عبور",
       Receive_Otp: "دریافت پیامک",
       Retrieve_Account: "بازیابی حساب",
+      User_Does_Not_Exist: "کاربری با این شماره موبایل پیدا نشد!",
     },
   },
 };
