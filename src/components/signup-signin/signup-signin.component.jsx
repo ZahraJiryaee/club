@@ -24,7 +24,7 @@ const SignupSignin = () => {
 
   useEffect(() => {
     setAuthMode(1);
-  }, []);
+  }, [openVal]);
 
   const handleCloseSignUpSignIn = () => {
     dispatch(setOpenValidationDialog(false));

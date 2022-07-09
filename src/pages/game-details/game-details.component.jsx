@@ -109,14 +109,14 @@ const GameDetails = () => {
       let level_purchase = [];
       /* ------------- Load Data --------------- */
       /* original */
-      console.log("gameDetails:", gameDetails);
+      logger.logInfo("gameDetails:", gameDetails);
       const { level } = gameDetails;
       const { purchase } = gameDetails;
       /* mock */
       // const level = levelMock;
       // const purchase = purchaseMock;
       /* -------------------------------------- */
-      console.log("level", level);
+      logger.logInfo("level", level);
       level.forEach((l) => {
         level_purchase.push({ ...l, _customType: "level" });
       });

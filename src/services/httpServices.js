@@ -37,10 +37,13 @@ export function useSetupAxios() {
 
               dispatch(SetTokens({ accessToken, refreshToken }));
 
-              error.config.headers["Authorization"] = `Bearer ${accessToken}`;
-              error.config.baseURL = undefined;
-              // window.location.reload();
-              return request.request(error.config);
+              if (error.response.request.responseURL.includes("bonus/view")) {
+                return null;
+              } else {
+                error.config.headers["Authorization"] = `Bearer ${accessToken}`;
+                error.config.baseURL = undefined;
+                return request.request(error.config);
+              }
             })
             .catch((refreshError) => {
               const { responseURL } = error.response.request;

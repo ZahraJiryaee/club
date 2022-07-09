@@ -2,8 +2,10 @@ import { UserActionTypes } from "./user.types";
 
 import { store } from "./../store";
 
+import logger from "../../services/logService";
+
 export const SetTokens = (tokenObj) => (dispatch) => {
-  console.log("tokenObj::", tokenObj);
+  logger.logInfo("tokenObj::", tokenObj);
   dispatch({
     type: UserActionTypes.SET_ACCESS_TOKEN,
     payload: tokenObj.accessToken,

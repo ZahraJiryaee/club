@@ -32,7 +32,6 @@ export const selectSearchedShopItemsMappedToSearchPage = createSelector(
 
 const mapSearchedShopItemsToSearchPage = (items) => {
   const newItems = items.map((item) => {
-    console.log("item:", item);
     return {
       id: item.id,
       icon: item.icon.source ? item.icon.source : ShopItem,
