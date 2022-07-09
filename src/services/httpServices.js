@@ -2,10 +2,7 @@ import axios from "axios";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 
-import {
-  setOpenValidationDialog,
-  setIsLoading,
-} from "./../redux/user/user.action";
+import { setOpenValidationDialog } from "./../redux/user/user.action";
 import { clearTokens, SetTokens } from "./../redux/user/token.action";
 
 import getApis from "./api";
@@ -15,8 +12,6 @@ const request = axios.create({});
 
 export function useSetupAxios() {
   const dispatch = useDispatch();
-
-  dispatch(setIsLoading(true));
 
   useEffect(() => {
     request.interceptors.response.use(
@@ -60,11 +55,7 @@ export function useSetupAxios() {
               if (refreshError.response.status === 401) {
                 dispatch(clearTokens());
               }
-            })
-            .finally(() => {
-              dispatch(setIsLoading(false));
             });
-          // return error;
         }
         return Promise.reject(error);
       }

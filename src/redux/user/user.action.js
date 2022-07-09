@@ -222,11 +222,6 @@ export const setOpenValidationDialog = (value) => ({
   payload: value,
 });
 
-export const setIsLoading = (value) => ({
-  type: UserActionTypes.SET_IS_LOADING,
-  payload: value,
-});
-
 export const forgetPassword_Phase1_Request = (body) => async (dispatch) => {
   let result;
   await Forget_Password_Request(body).then(

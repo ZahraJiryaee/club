@@ -12,11 +12,6 @@ export const selectOpenValidationDialog = createSelector(
   (user) => user.openValidationDialog
 );
 
-export const selectIsLoading = createSelector(
-  [selectUser],
-  (user) => user.isLoading
-);
-
 export const selectAllUserAddresses = createSelector(
   [selectUser],
   (user) => user.allUserAddresses
