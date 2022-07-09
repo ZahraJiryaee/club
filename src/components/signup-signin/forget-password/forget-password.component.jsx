@@ -139,6 +139,11 @@ const ForgetPassword = () => {
     setCounter(120);
     setDisableOTPTimer(true);
     setOtpTimer(true);
+    dispatch(
+      forgetPassword_Phase1_Request({
+        mobile_number: mobileNumber,
+      })
+    );
   };
 
   /* ------------------------------- DISABLE SUBMIT BTNs ---------------------------------- */

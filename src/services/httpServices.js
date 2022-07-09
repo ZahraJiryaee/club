@@ -14,7 +14,7 @@ export function useSetupAxios() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    request.interceptors.response.use(
+    const responseInterceptor = request.interceptors.response.use(
       (response) => {
         return response;
       },
@@ -60,6 +60,10 @@ export function useSetupAxios() {
         return Promise.reject(error);
       }
     );
+
+    return () => {
+      request.interceptors.response.eject(responseInterceptor);
+    };
   }, [dispatch]);
 
   return request;
