@@ -9,6 +9,7 @@ import { setHeaderMode } from "../../redux/header/header.action";
 import { routeNames } from "../../services/routeService";
 import { toastError } from "./../../services/toastService";
 
+import Page from "../page";
 import { ProfileMenu } from "../../model/profile-menu-model";
 
 import ProfileAvatar from "./../../assets/images/icon/blue-avatar-icon.png";
@@ -46,37 +47,45 @@ const ProfilePage = () => {
   };
 
   return (
-    <div className="profile-container">
-      <div className="profile-info">
-        <img src={ProfileAvatar} alt="user-avater" className="avatar" />
-        <p className="user-name">
-          {currentUser ? currentUser?.username : t("Login_To_Access_Features")}
-        </p>
-        <button
-          className="login-btn"
-          onClick={currentUser ? handleEditProfile : handleLogin}
-        >
-          {currentUser ? t("Edit_Profile") : t("Login")}
-        </button>
-      </div>
-      <div className="profile-details">
-        {ProfileMenu.map((item) => {
-          return (
-            <div
-              className="details-container"
-              key={item.id}
-              onClick={() => handleMovePage(item.route)}
-            >
-              <div className="title-container">
-                <img src={item.icon} alt="title-icon" className="title-icon" />
-                <span className="title">{t(item.title)}</span>
+    <Page title={t("Profile")}>
+      <div className="profile-container">
+        <div className="profile-info">
+          <img src={ProfileAvatar} alt="user-avater" className="avatar" />
+          <p className="user-name">
+            {currentUser
+              ? currentUser?.username
+              : t("Login_To_Access_Features")}
+          </p>
+          <button
+            className="login-btn"
+            onClick={currentUser ? handleEditProfile : handleLogin}
+          >
+            {currentUser ? t("Edit_Profile") : t("Login")}
+          </button>
+        </div>
+        <div className="profile-details">
+          {ProfileMenu.map((item) => {
+            return (
+              <div
+                className="details-container"
+                key={item.id}
+                onClick={() => handleMovePage(item.route)}
+              >
+                <div className="title-container">
+                  <img
+                    src={item.icon}
+                    alt="title-icon"
+                    className="title-icon"
+                  />
+                  <span className="title">{t(item.title)}</span>
+                </div>
+                <img className="more-icon" src={ArrowIconMB} alt="arrow-back" />
               </div>
-              <img className="more-icon" src={ArrowIconMB} alt="arrow-back" />
-            </div>
-          );
-        })}
+            );
+          })}
+        </div>
       </div>
-    </div>
+    </Page>
   );
 };
 

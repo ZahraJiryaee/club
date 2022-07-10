@@ -10,6 +10,7 @@ import {
 import { setHeaderMode } from "../../../redux/header/header.action";
 import { toastError } from "./../../../services/toastService";
 
+import Page from "../../page";
 import CustomButton from "../../../components/common/custom-button/custom-button.component";
 
 import { Gender } from "../../../model/gender.model";
@@ -84,51 +85,53 @@ const EditProfilePage = () => {
   };
 
   return (
-    <div className="profile-container">
-      <div className="profile-header">
-        <img src={ProfileAvatar} alt="user-avater" className="avatar" />
-        <p
-          className="edit-button"
-          onClick={editMode ? () => {} : changeEditMode}
-        >
-          {editMode ? "" : t("Edit")}
-        </p>
-      </div>
-
-      <div className="profile-info">
-        <span className="label">{t("Username")}</span>
-        <div className="input-container">
-          <input
-            name="username"
-            className={`input ${!editMode ? "disable-input" : ""}`}
-            value={userName}
-            disabled={editMode ? false : true}
-            onChange={(e) => setUserName(e.target.value)}
-          />
-        </div>
-        <span className="label">{t("Gender")}</span>
-        <div className="input-container">
-          <select
-            name="gender"
-            className={`input ${!editMode ? "disable-input" : ""}`}
-            value={gender}
-            disabled={editMode ? false : true}
-            onChange={(e) => setGender(e.target.value)}
+    <Page title={t("Profile")}>
+      <div className="profile-container">
+        <div className="profile-header">
+          <img src={ProfileAvatar} alt="user-avater" className="avatar" />
+          <p
+            className="edit-button"
+            onClick={editMode ? () => {} : changeEditMode}
           >
-            {Gender.map((gender) => (
-              <option value={gender.value}>{t(gender.label)}</option>
-            ))}
-          </select>
+            {editMode ? "" : t("Edit")}
+          </p>
         </div>
-        <CustomButton
-          btnBgColor="marine-blue"
-          onClick={editMode ? handleSaveEditedValues : handleLogout}
-          className="logout-btn"
-        >
-          {editMode ? t("Save") : t("Logout")}
-        </CustomButton>
+
+        <div className="profile-info">
+          <span className="label">{t("Username")}</span>
+          <div className="input-container">
+            <input
+              name="username"
+              className={`input ${!editMode ? "disable-input" : ""}`}
+              value={userName}
+              disabled={editMode ? false : true}
+              onChange={(e) => setUserName(e.target.value)}
+            />
+          </div>
+          <span className="label">{t("Gender")}</span>
+          <div className="input-container">
+            <select
+              name="gender"
+              className={`input ${!editMode ? "disable-input" : ""}`}
+              value={gender}
+              disabled={editMode ? false : true}
+              onChange={(e) => setGender(e.target.value)}
+            >
+              {Gender.map((gender) => (
+                <option value={gender.value}>{t(gender.label)}</option>
+              ))}
+            </select>
+          </div>
+          <CustomButton
+            btnBgColor="marine-blue"
+            onClick={editMode ? handleSaveEditedValues : handleLogout}
+            className="logout-btn"
+          >
+            {editMode ? t("Save") : t("Logout")}
+          </CustomButton>
+        </div>
       </div>
-    </div>
+    </Page>
   );
 };
 

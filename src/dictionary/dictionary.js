@@ -148,6 +148,7 @@ const resources = {
       Address: "آدرس محل دریافت",
       Edit_Address: "ویرایش آدرس",
       Gift_Code: "کد مصرفی",
+      Profile: "پروفایل",
     },
   },
 };
