@@ -145,6 +145,9 @@ const resources = {
       Signin: "ورود",
       Empty_Field_Error: "هیچ فیلدی نباید خالی باشد.",
       Inviter_Code_Error: "معرف خود را قبلا ثبت کرده‌اید.",
+      Address: "آدرس محل دریافت",
+      Edit_Address: "ویرایش آدرس",
+      Gift_Code: "کد مصرفی",
     },
   },
 };

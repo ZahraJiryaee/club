@@ -5,7 +5,11 @@ import { useDispatch } from "react-redux";
 import { getBonusHistory } from "../../../redux/wheel/wheel.action";
 import { setHeaderMode } from "../../../redux/header/header.action";
 
-import "../profile.styles.scss";
+import HistoryContainer from "../../../components/history/history.component";
+
+import { GiftHistory } from "./giftHistoryMock";
+
+import "./gift-history.styles.scss";
 
 const GiftHistorypage = () => {
   const { pathname } = useLocation();
@@ -17,8 +21,14 @@ const GiftHistorypage = () => {
   }, []);
 
   return (
-    <div className="profile-container">
-      <p>History</p>
+    <div className="gift-history-page">
+      {GiftHistory.map((data) => {
+        return (
+          <div className="gift-container">
+            <HistoryContainer history={data} />
+          </div>
+        );
+      })}
     </div>
   );
 };

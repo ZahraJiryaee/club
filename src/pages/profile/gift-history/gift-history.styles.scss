@@ -1,0 +1,12 @@
+@import "../../../style.scss";
+
+.gift-history-page {
+  //   margin: auto;
+  padding-top: calc($navbar-height + 16px);
+
+  .gift-container {
+    margin-bottom: 16px;
+    justify-content: center;
+    display: flex;
+  }
+}

@@ -24,7 +24,7 @@ const EditProfilePage = lazy(() =>
   import("./pages/profile/edit-profile/edit-profile.conponent")
 );
 const GiftHistorypage = lazy(() =>
-  import("./pages/profile/gitt-history/gift-history.component")
+  import("./pages/profile/gift-history/gift-history.component")
 );
 const InviterCodePage = lazy(() =>
   import("./pages/profile/inviter-code/inviter-code.component")
