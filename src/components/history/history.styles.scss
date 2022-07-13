@@ -1,0 +1,132 @@
+@import "./../../style.scss";
+
+.history-container {
+  direction: rtl;
+  background-color: $theme-color--leaderboard-user-records-bg;
+  padding: 8px 16px 8px 32px;
+  border-radius: 15px;
+  width: 70%;
+
+  @media #{$large-mobile} {
+    padding: 12px 9px;
+    width: 90%;
+  }
+
+  .image-container {
+    display: flex;
+    align-items: center;
+
+    .icon {
+      width: 92px;
+      height: 86px;
+      margin-left: 8px;
+
+      @media #{$large-mobile} {
+        width: 60px;
+        height: 55px;
+      }
+    }
+
+    .historyTitle {
+      color: $theme-color--marine-blue;
+      font-weight: 500;
+      font-size: 18px;
+      margin-bottom: 20px;
+
+      @media #{$large-mobile} {
+        font-size: 15px;
+        margin-bottom: 9px;
+      }
+    }
+
+    .trackingCode {
+      color: $theme-color--tangerine;
+      font-weight: 500;
+      font-size: 15px;
+      @media #{$large-mobile} {
+        font-size: 12px;
+      }
+    }
+  }
+
+  .info-box {
+    // display: block;
+    // justify-items: center;.
+    color: $theme-color--brown-grey;
+    font-weight: 500;
+    font-size: 15px;
+    margin: auto 0px;
+
+    @media #{$large-mobile} {
+      font-size: 12px;
+    }
+
+    .score {
+      margin-bottom: 20px;
+
+      @media #{$large-mobile} {
+        margin-bottom: 9px;
+      }
+    }
+  }
+
+  .address-box {
+    display: flex;
+    justify-content: flex-start;
+    font-weight: 500;
+    font-size: 15px;
+    margin: auto 0px;
+
+    @media #{$large-mobile} {
+      font-size: 12px;
+    }
+
+    .addresstitle {
+      color: $theme-color--dark;
+      margin-bottom: 20px;
+
+      @media #{$large-mobile} {
+        margin-bottom: 9px;
+      }
+    }
+
+    .address {
+      color: $theme-color--marine-blue;
+    }
+  }
+
+  .address-resp {
+    display: block;
+    @media #{$large-mobile} {
+      display: none;
+    }
+  }
+
+  .address-resp2 {
+    display: none;
+    @media #{$large-mobile} {
+      margin: 16px 0;
+      display: flex;
+    }
+  }
+
+  .edit-address {
+    color: $theme-color--marine-deep-sky-blue;
+    font-weight: 500;
+    font-size: 15px;
+    margin: auto 0px;
+    cursor: pointer;
+
+    @media #{$large-mobile} {
+      font-size: 12px;
+    }
+  }
+
+  .edit-address-resp {
+    display: none;
+    @media #{$large-mobile} {
+      display: flex;
+      justify-content: center;
+    }
+  }
+}

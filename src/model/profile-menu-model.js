@@ -2,6 +2,7 @@ import ShoppingHistory from "../assets/images/icon/shopping-icon.png";
 import GiftHistory from "../assets/images/icon/gift-icon.png";
 import InviteFriends from "../assets/images/icon/users-icon.png";
 import InviterCode from "../assets/images/icon/user-plus-icon.png";
+import ConnectGames from "../assets/images/icon/joy-stick.png";
 
 export const ProfileMenu = [
   // {
@@ -31,7 +32,7 @@ export const ProfileMenu = [
   {
     id: "5",
     title: "Connect_To_Games",
-    icon: InviterCode,
+    icon: ConnectGames,
     route: "/connet-device",
   },
 ];
