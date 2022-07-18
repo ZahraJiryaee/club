@@ -2,10 +2,7 @@ import axios from "axios";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 
-import {
-  setOpenValidationDialog,
-  setIsLoading,
-} from "./../redux/user/user.action";
+import { setOpenValidationDialog } from "./../redux/user/user.action";
 import { clearTokens, SetTokens } from "./../redux/user/token.action";
 
 import getApis from "./api";
@@ -16,10 +13,8 @@ const request = axios.create({});
 export function useSetupAxios() {
   const dispatch = useDispatch();
 
-  dispatch(setIsLoading(true));
-
   useEffect(() => {
-    request.interceptors.response.use(
+    const responseInterceptor = request.interceptors.response.use(
       (response) => {
         return response;
       },
@@ -37,10 +32,13 @@ export function useSetupAxios() {
 
               dispatch(SetTokens({ accessToken, refreshToken }));
 
-              error.config.headers["Authorization"] = `Bearer ${accessToken}`;
-              error.config.baseURL = undefined;
-              // window.location.reload();
-              return request.request(error.config);
+              if (error.response.request.responseURL.includes("bonus/view")) {
+                return null;
+              } else {
+                error.config.headers["Authorization"] = `Bearer ${accessToken}`;
+                error.config.baseURL = undefined;
+                return request.request(error.config);
+              }
             })
             .catch((refreshError) => {
               const { responseURL } = error.response.request;
@@ -57,15 +55,15 @@ export function useSetupAxios() {
               if (refreshError.response.status === 401) {
                 dispatch(clearTokens());
               }
-            })
-            .finally(() => {
-              dispatch(setIsLoading(false));
             });
-          // return error;
         }
         return Promise.reject(error);
       }
     );
+
+    return () => {
+      request.interceptors.response.eject(responseInterceptor);
+    };
   }, [dispatch]);
 
   return request;

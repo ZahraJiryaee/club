@@ -13,6 +13,9 @@ import {
   setInviterNumber,
   setDeviceId,
   setBonusAddress,
+  getAllOfTheUserAddresses,
+  Forget_Password_Verify,
+  Forget_Password_Request,
 } from "../../services/userServices";
 import logger from "../../services/logService";
 import { toastError } from "./../../services/toastService";
@@ -161,7 +164,32 @@ export const setUserBonusAddress = (bonusLogId, body) => async (dispatch) => {
     })
     .catch((error) => {
       logger.logError("error-setBonusAddress", error);
+      toastError(i18n.t("Try_Again"));
       result = error.response;
+    });
+  return result;
+};
+
+export const getUserAddresses = () => async (dispatch) => {
+  let result;
+  await getAllOfTheUserAddresses()
+    .then((response) => {
+      logger.logInfo("response-getUserAddresses", response);
+      result = response;
+      dispatch({
+        type: UserActionTypes.SET_ALL_USER_ADDRESSES,
+        payload: response.data,
+      });
+    })
+    .catch((error) => {
+      logger.logError("error-getUserAddresses", error);
+      result = error.response;
+      dispatch({
+        type: UserActionTypes.SET_ALL_USER_ADDRESSES,
+        payload: {
+          addresses: [],
+        },
+      });
     });
   return result;
 };
@@ -195,7 +223,46 @@ export const setOpenValidationDialog = (value) => ({
   payload: value,
 });
 
-export const setIsLoading = (value) => ({
-  type: UserActionTypes.SET_IS_LOADING,
-  payload: value,
-});
+export const forgetPassword_Phase1_Request = (body) => async (dispatch) => {
+  let result;
+  await Forget_Password_Request(body).then(
+    (response) => {
+      logger.logInfo("response-forgetPassword_Phase1_Verify", response);
+      result = response.statusText;
+    },
+    (error) => {
+      logger.logError("error-forgetPassword_Phase1_Verify", error);
+      result = error.response;
+      if (error.response.status === 404) {
+        toastError(i18n.t("User_Does_Not_Exist"));
+      } else {
+        toastError(i18n.t("Try_Again"));
+      }
+    }
+  );
+
+  return result;
+};
+
+export const forgetPassword_Phase2_Verify = (body) => async (dispatch) => {
+  let result;
+  await Forget_Password_Verify(body).then(
+    async (response) => {
+      logger.logInfo("response-forgetPassword_Phase2_Verify", response);
+      const { mobile_number, new_password: password } = body;
+      result = await dispatch(login(mobile_number, password));
+      result = response.statusText;
+    },
+    (error) => {
+      logger.logError("error-forgetPassword_Phase2_Verify", error);
+      result = error.response;
+      if (error.response.status === 422) {
+        toastError(i18n.t("Otp_Not_Valid"));
+      } else {
+        toastError(i18n.t("Try_Again"));
+      }
+    }
+  );
+
+  return result;
+};

@@ -1,4 +1,7 @@
+import { t } from "i18next";
 import { createSelector } from "reselect";
+
+import ShopItem from "./../../assets/images/icon/shop-item.png";
 
 const selectShop = (state) => state.shop;
 
@@ -31,10 +34,10 @@ const mapSearchedShopItemsToSearchPage = (items) => {
   const newItems = items.map((item) => {
     return {
       id: item.id,
-      icon: "https://th.bing.com/th?q=League+of+Legends+Borders&w=120&h=120&c=1&rs=1&qlt=90&cb=1&dpr=1.5&pid=InlineBlock&mkt=en-WW&cc=IR&setlang=en&adlt=strict&t=1&mw=247",
+      icon: item.icon.source ? item.icon.source : ShopItem,
       header: item.title,
-      subHeader: `${item.cost_chance_count} امتیاز`,
-      action: { component: "shop", content: "خرید" },
+      subHeader: `${item.cost_chance_count} ${t("Score")}`,
+      action: { component: "shop", content: t("Purchase") },
       originalItem: item,
     };
   });

@@ -18,6 +18,7 @@ import { selectCurrentUser } from "../../redux/user/user.selectors";
 import { selectBonusList } from "../../redux/wheel/wheel.selectors";
 
 import logger from "../../services/logService";
+import { toastError } from "../../services/toastService";
 
 import HandPointUp from "./../../assets/images/icon/hand-point-up.png";
 
@@ -57,7 +58,8 @@ const LuckyWheelPage = () => {
   const handleWheelSpinBtnClick = () => {
     let result = dispatch(setUserBonus());
     result.then((response) => {
-      if (response.status === 200) {
+      const { status } = response;
+      if (status === 200) {
         const bonusId = bonusList.findIndex(
           (bonus) => bonus.id === response.data.detail.id
         );
@@ -70,12 +72,12 @@ const LuckyWheelPage = () => {
         setTimeout(() => {
           toggleModal();
         }, 10000);
-      } else if (response.status === 403) {
-        // popup optopns to increase chances
-      } else if (response.status === 422) {
+      } else if (status === 401) {
+        currentUser && handleWheelSpinBtnClick();
+      } else if (status === 422) {
         handleWantMoreChanceClick();
       } else {
-        // toast
+        toastError(t("Try_Again"));
       }
     });
   };

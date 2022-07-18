@@ -12,6 +12,13 @@ const postOtpApiEndpoint = getAPIUrl() + "/api/v1/user/signup/verify";
 //Login
 const getLoginTokenApiEndpoint = getAPIUrl() + "/api/v1/user/token";
 
+// Foget Password
+const forgetPasswordRequestApiEndpoint =
+  getAPIUrl() + "/api/v1/user/forget_password/request";
+
+const forgetPasswordVerifyApiEndpoint =
+  getAPIUrl() + "/api/v1/user/forget_password/verify";
+
 //InviterNumer
 const postInviterPhoneNumberApiEndpoint = getAPIUrl() + "/api/v1/user/invite";
 
@@ -70,6 +77,13 @@ export const setBonusAddress = (bonusLogId, body) => {
   });
 };
 
+export const getAllOfTheUserAddresses = () => {
+  const accessToken = getAccessToken();
+  return http.get(getApis.getUserAddresses, {
+    headers: { Authorization: `Bearer ${accessToken}` },
+  });
+};
+
 //InviterNumber//
 export const setInviterNumber = (inviter_number) => {
   const accessToken = getAccessToken();
@@ -88,4 +102,12 @@ export const setDeviceId = (deviceId) => {
   return http.post(postDeviceIdApiEndpoint, body, {
     headers: { Authorization: `Bearer ${accessToken}` },
   });
+};
+
+export const Forget_Password_Request = (body) => {
+  return http.post(forgetPasswordRequestApiEndpoint, body);
+};
+
+export const Forget_Password_Verify = (body) => {
+  return http.post(forgetPasswordVerifyApiEndpoint, body);
 };

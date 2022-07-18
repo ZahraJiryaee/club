@@ -11,7 +11,7 @@ import { validateMobileNumber } from "../../../services/validateMobileNumber";
 
 import ArrowBack from "./../../../assets/images/icon/arrow-back.png";
 
-const Signup = ({ setSignupMode }) => {
+const Signup = ({ setAuthMode }) => {
   const dispatch = useDispatch();
   const { t } = useTranslation();
 
@@ -366,7 +366,7 @@ const Signup = ({ setSignupMode }) => {
 
       <p className="switch-between-signin-signup-text">
         {t("If_You_Already_Have_An_Account_Login__Part1")}
-        <span className="link" onClick={() => setSignupMode(false)}>
+        <span className="link" onClick={() => setAuthMode(2)}>
           {" "}
           {t("If_You_Already_Have_An_Account_Login__Part2")}
         </span>

@@ -12,7 +12,7 @@ export const selectOpenValidationDialog = createSelector(
   (user) => user.openValidationDialog
 );
 
-export const selectIsLoading = createSelector(
+export const selectAllUserAddresses = createSelector(
   [selectUser],
-  (user) => user.isLoading
+  (user) => user.allUserAddresses
 );

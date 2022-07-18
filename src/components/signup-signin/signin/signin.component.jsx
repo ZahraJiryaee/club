@@ -10,7 +10,7 @@ import CustomButton from "../../common/custom-button/custom-button.component";
 import { validateMobileNumber } from "../../../services/validateMobileNumber";
 import logger from "../../../services/logService";
 
-const Signin = ({ setSignupMode }) => {
+const Signin = ({ setAuthMode }) => {
   const dispatch = useDispatch();
   const { t } = useTranslation();
 
@@ -79,7 +79,9 @@ const Signin = ({ setSignupMode }) => {
 
   return (
     <React.Fragment>
-      <span className="text-right bolder-txt space-padding--up--30">ورود</span>
+      <span className="text-right bolder-txt space-padding--up--30">
+        {t("Signin")}
+      </span>
       <CustomInput
         icon="mobile"
         label={t("Mobile_Number")}
@@ -108,9 +110,12 @@ const Signin = ({ setSignupMode }) => {
       >
         {t("Signin")}
       </CustomButton>
+      <p className="forget-pssword" onClick={() => setAuthMode(3)}>
+        {t("Forget_Your_Password")}
+      </p>
       <p className="switch-between-signin-signup-text">
         {t("If_You_Dont_Have_An_Account_Signup__Part1")}
-        <span className="link" onClick={() => setSignupMode(true)}>
+        <span className="link" onClick={() => setAuthMode(1)}>
           {" "}
           {t("If_You_Dont_Have_An_Account_Signup__Part2")}
         </span>

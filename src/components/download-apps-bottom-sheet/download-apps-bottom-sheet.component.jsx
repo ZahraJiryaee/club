@@ -45,7 +45,12 @@ const DownloadAppsBottomSheet = ({ open, setOpen, downloadLinks }) => {
         {availableLinks ? (
           <div className="bottom-sheet-dn-logo-list">
             {availableLinks.map((item) => (
-              <a href={item.content} target="_blank" key={item.id}>
+              <a
+                key={item.id}
+                href={item.content}
+                target="_blank"
+                rel="noreferrer"
+              >
                 <li>
                   <img src={item.icon} alt={item.name} />
                   <br />

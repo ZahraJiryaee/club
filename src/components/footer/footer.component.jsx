@@ -1,5 +1,6 @@
 import React from "react";
 import { NavLink, useLocation } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 import { routeNames } from "../../services/routeService";
 
@@ -19,6 +20,8 @@ import "./footer.styles.scss";
 
 const Footer = () => {
   const { pathname } = useLocation();
+  const { t } = useTranslation();
+
   const MapUrlToIndicatorNum = () => {
     if (pathname.includes(`${routeNames.profile}`)) return -2;
     else if (pathname.includes(`${routeNames.shop}`)) return -1;
@@ -54,7 +57,7 @@ const Footer = () => {
                     <ProfileLogo />
                   )}
                 </span>
-                <span className="text">پروفایل</span>
+                <span className="text">{t("Profile")}</span>
               </NavLink>
             </li>
             <li
@@ -70,7 +73,7 @@ const Footer = () => {
                     <ShopLogo />
                   )}
                 </span>
-                <span className="text">فروشگاه</span>
+                <span className="text">{t("Shop")}</span>
               </NavLink>
             </li>
             <li
@@ -86,7 +89,7 @@ const Footer = () => {
                     <WheelLogo />
                   )}
                 </span>
-                <span className="text">گردونه</span>
+                <span className="text">{t("Wheel")}</span>
               </NavLink>
             </li>
             <li
@@ -102,7 +105,7 @@ const Footer = () => {
                     <GamesLogo />
                   )}
                 </span>
-                <span className="text">بازی‌ها</span>
+                <span className="text">{t("Games")}</span>
               </NavLink>
             </li>
             <li
@@ -118,7 +121,7 @@ const Footer = () => {
                     <LeaderBoardLogo />
                   )}
                 </span>
-                <span className="text">رده‌بندی</span>
+                <span className="text">{t("Leaderboard")}</span>
               </NavLink>
             </li>
             <div className="indicator"></div>

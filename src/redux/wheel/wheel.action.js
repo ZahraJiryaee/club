@@ -1,5 +1,3 @@
-import i18n from "i18next";
-
 import { WheelActionTypes } from "./wheel.types";
 
 import {
@@ -8,7 +6,6 @@ import {
   getBonusLog,
 } from "./../../services/wheelService";
 import logger from "../../services/logService";
-import { toastError } from "./../../services/toastService";
 
 export const getBonusList = () => async (dispatch) => {
   let result;
@@ -48,9 +45,6 @@ export const setUserBonus = () => async (dispatch) => {
       logger.logError("error-set-bonus:", e);
       logger.logError("error.response-set-bonus:", e.response);
       result = e.response;
-      if (e.response.status === 403) {
-        toastError(i18n.t("Try_Again"));
-      }
       dispatch({
         type: WheelActionTypes.SET_BONUS,
         payload: null,

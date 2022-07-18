@@ -13,6 +13,7 @@ const userProfileApiEndpoint = API_URL + "/api/v1/user/profile";
 
 // bonus
 const setBonusAddress = API_URL + "/api/v1/bonus/";
+const getUserAddresses = API_URL + "/api/v1/user/address";
 
 // leaderboard
 const listUserWeekly = API_URL + "/api/v1/score/weakly";
@@ -21,6 +22,7 @@ const listUserSeasonal = API_URL + "/api/v1/score/seasonal";
 
 // shop
 const listShopItems = API_URL + "/api/v1/shop/goods";
+const buyShopItems = API_URL + "/api/v1/shop/buy/";
 
 // game
 const getGamesApiEndpoint = API_URL + "/api/v1/application/";
@@ -33,10 +35,12 @@ const getApis = {
   newTokenApiEndpoint,
   userProfileApiEndpoint,
   setBonusAddress,
+  getUserAddresses,
   listUserWeekly,
   listUserMonthly,
   listUserSeasonal,
   listShopItems,
+  buyShopItems,
   getGamesApiEndpoint,
   getFilteredCategoryApiEndpoint,
   getUserApplicationInfoEndpoint,

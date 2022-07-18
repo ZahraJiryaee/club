@@ -5,7 +5,7 @@ const INITIAL_STATE = {
   refreshToken: null,
   currentUser: null,
   openValidationDialog: false,
-  isLoading: false,
+  allUserAddresses: {},
 };
 
 const userReducer = (state = INITIAL_STATE, action) => {
@@ -30,10 +30,10 @@ const userReducer = (state = INITIAL_STATE, action) => {
         ...state,
         openValidationDialog: action.payload,
       };
-    case UserActionTypes.SET_IS_LOADING:
+    case UserActionTypes.SET_ALL_USER_ADDRESSES:
       return {
         ...state,
-        isLoading: action.payload,
+        allUserAddresses: action.payload,
       };
     default:
       return state;

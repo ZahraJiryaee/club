@@ -6,7 +6,7 @@ import { setWantMoreChanceModaMode } from "../../redux/wheel/wheel.action";
 
 import { selectIsWantMorreChanceModalOpen } from "../../redux/wheel/wheel.selectors";
 
-import wantMoreChanceModalData from "../mock/want-more-chance.mock";
+import wantMoreChanceModalData from "../../model/want-more-chance.model";
 
 import CloseIcon from "./../../assets/images/icon/close-icon.png";
 import Roulette from "./../../assets/images/icon/roulette.png";

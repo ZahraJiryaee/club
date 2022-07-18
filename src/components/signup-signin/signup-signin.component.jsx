@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useTranslation } from "react-i18next";
 
 import Signup from "./signup/signup.component";
 import Signin from "./signin/signin.component";
+import ForgetPassword from "./forget-password/forget-password.component";
 
 import { setOpenValidationDialog } from "../../redux/user/user.action";
 
@@ -18,11 +19,28 @@ const SignupSignin = () => {
   const dispatch = useDispatch();
   const { t } = useTranslation();
 
-  const [signupMode, setSignupMode] = useState(true); // true=>signup   false=>login
+  const [authMode, setAuthMode] = useState(1); // 1=>signup   2=>login    3=>forget-pass
   const openVal = useSelector(selectOpenValidationDialog);
+
+  useEffect(() => {
+    setAuthMode(1);
+  }, [openVal]);
 
   const handleCloseSignUpSignIn = () => {
     dispatch(setOpenValidationDialog(false));
+  };
+
+  const populateAuthForm = () => {
+    switch (authMode) {
+      case 1:
+        return <Signup setAuthMode={setAuthMode} />;
+      case 2:
+        return <Signin setAuthMode={setAuthMode} />;
+      case 3:
+        return <ForgetPassword />;
+      default:
+        break;
+    }
   };
 
   return (
@@ -45,11 +63,7 @@ const SignupSignin = () => {
             {/*--------------------- warning Msg -------------------*/}
             <p className="warningMsg">{t("Login_To_Access_Features")}</p>
             {/*------------------ SignUp or Signin ------------------*/}
-            {signupMode ? (
-              <Signup setSignupMode={setSignupMode} />
-            ) : (
-              <Signin setSignupMode={setSignupMode} />
-            )}
+            {populateAuthForm()}
           </div>
         </div>
       </div>
