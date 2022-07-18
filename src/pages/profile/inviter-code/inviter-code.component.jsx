@@ -6,6 +6,8 @@ import { useTranslation } from "react-i18next";
 import { inviteFriends } from "../../../redux/user/user.action";
 import { setHeaderMode } from "../../../redux/header/header.action";
 
+import Page from "../../page";
+
 import FriendsIcon from "./../../../assets/images/icon/invite-friends.png";
 
 import "../profile.styles.scss";
@@ -42,33 +44,35 @@ const InviterCodePage = () => {
   };
 
   return (
-    <div className="profile-container">
-      <div className="friends-container ">
-        <div className="header-container">
-          <img src={FriendsIcon} alt="friends" className="avatar" />
-          <p className="description-text">{t("Inviter_Description")}</p>
-        </div>
-        <div className="set-inviter-container">
-          <div className="inviter-code">
-            <input
-              className="code-input"
-              type="number"
-              maxLength={11}
-              value={inviterCode}
-              onChange={(e) => handleInviterCodeChange(e)}
-            />
+    <Page title={t("Inviter_Code")}>
+      <div className="profile-container">
+        <div className="friends-container ">
+          <div className="header-container">
+            <img src={FriendsIcon} alt="friends" className="avatar" />
+            <p className="description-text">{t("Inviter_Description")}</p>
           </div>
-          <div
-            className={`${
-              activeSendButton ? "active-button" : "deactive-button"
-            } send-code-text`}
-            onClick={activeSendButton ? () => handleSendCode() : () => {}}
-          >
-            {t("Inviter_Code")}
+          <div className="set-inviter-container">
+            <div className="inviter-code">
+              <input
+                className="code-input"
+                type="number"
+                maxLength={11}
+                value={inviterCode}
+                onChange={(e) => handleInviterCodeChange(e)}
+              />
+            </div>
+            <div
+              className={`${
+                activeSendButton ? "active-button" : "deactive-button"
+              } send-code-text`}
+              onClick={activeSendButton ? () => handleSendCode() : () => {}}
+            >
+              {t("Inviter_Code")}
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </Page>
   );
 };
 

@@ -99,7 +99,7 @@ export const logout = () => async (dispatch) => {
   localStorage.removeItem("accessToken");
   localStorage.removeItem("refreshToken");
 
-  await dispatch(setOpenValidationDialog(true));
+  window.location = "/";
 
   dispatch({
     type: UserActionTypes.SET_CURRENT_USER,
@@ -116,13 +116,14 @@ export const editUserProfileInformation = (body) => async (dispatch) => {
       logger.logInfo("response-editUserProfileInformation", response);
       if (response.status === 200) {
         result = await dispatch(setCurrentUser());
-        // result = response;
       }
     })
     .catch((error) => {
+      toastError(i18n.t("InviteFriends_Error_Message"));
       logger.logError("error-editUserProfileInformation", error);
       result = error.response;
     });
+
   return result;
 };
 

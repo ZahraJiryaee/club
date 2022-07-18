@@ -7,6 +7,9 @@ import { setOpenValidationDialog } from "../../redux/user/user.action";
 import { setHeaderMode } from "../../redux/header/header.action";
 
 import { routeNames } from "../../services/routeService";
+import { toastError } from "./../../services/toastService";
+
+import Page from "../page";
 import { ProfileMenu } from "../../model/profile-menu-model";
 
 import ProfileAvatar from "./../../assets/images/icon/blue-avatar-icon.png";
@@ -22,6 +25,7 @@ const ProfilePage = () => {
 
   const currentUser = useSelector((state) => state.user.currentUser);
 
+  console.log("currentUser", currentUser);
   useEffect(() => {
     dispatch(setHeaderMode(pathname));
   }, []);
@@ -35,29 +39,32 @@ const ProfilePage = () => {
   };
 
   const handleMovePage = (route) => {
-    navigate(`/${routeNames.profile}${route}`);
+    if (currentUser) {
+      route === "/set-inviter" && currentUser?.has_invited === true
+        ? toastError(t("Inviter_Code_Error"))
+        : navigate(`/${routeNames.profile}${route}`);
+    }
   };
 
   return (
-    <div className="profile-container">
-      <div className="profile-info">
-        <img src={ProfileAvatar} alt="user-avater" className="avatar" />
-        <p className="user-name">
-          {currentUser ? currentUser?.username : t("Login_To_Access_Features")}
-        </p>
-        <button
-          className="login-btn"
-          onClick={currentUser ? handleEditProfile : handleLogin}
-        >
-          {currentUser ? t("Edit_Profile") : t("Login")}
-        </button>
-      </div>
-      <div className="profile-details">
-        {ProfileMenu.map((item) => {
-          if (item.title === "" && currentUser?.has_invited)
-            // if (item.title === "Inviter_Code" && currentUser.has_invited)
-            return null;
-          else
+    <Page title={t("Profile")}>
+      <div className="profile-container">
+        <div className="profile-info">
+          <img src={ProfileAvatar} alt="user-avater" className="avatar" />
+          <p className="user-name">
+            {currentUser
+              ? currentUser?.username
+              : t("Login_To_Access_Features")}
+          </p>
+          <button
+            className="login-btn"
+            onClick={currentUser ? handleEditProfile : handleLogin}
+          >
+            {currentUser ? t("Edit_Profile") : t("Login")}
+          </button>
+        </div>
+        <div className="profile-details">
+          {ProfileMenu.map((item) => {
             return (
               <div
                 className="details-container"
@@ -75,9 +82,10 @@ const ProfilePage = () => {
                 <img className="more-icon" src={ArrowIconMB} alt="arrow-back" />
               </div>
             );
-        })}
+          })}
+        </div>
       </div>
-    </div>
+    </Page>
   );
 };
 
