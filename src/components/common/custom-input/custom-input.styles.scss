@@ -1,0 +1,44 @@
+@import "./../../../style.scss";
+
+.custom-input-container {
+  position: relative;
+
+  label {
+    line-height: 1.5;
+  }
+
+  .custom-input {
+    width: 100%;
+    background-color: $white;
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid #838383;
+    font-size: 18px;
+    position: relative;
+    outline: none;
+    height: 32px;
+    font-family: $font-family-iransans;
+  }
+  .fa {
+    position: absolute;
+    margin: auto;
+    bottom: 5px;
+    left: 0;
+    color: $theme-color--brown-grey;
+  }
+  .input-mobile-icon {
+    font-size: 30px;
+  }
+  .input-eye-icon,
+  .input-eye-slash-icon,
+  .input-user-icon {
+    font-size: 19px;
+  }
+}
+
+.custom-input-error-message {
+  margin: 10px 0 0;
+  display: flex;
+  justify-content: flex-start;
+  color: $theme-color--orangey-red;
+}

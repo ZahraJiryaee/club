@@ -1,0 +1,31 @@
+@import "./../../../style.scss";
+
+.games-banner-container {
+  width: 100%;
+  display: flex;
+  gap: 3vh 16px;
+  overflow: scroll;
+  margin-bottom: 1.5rem;
+
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  .banner {
+    width: 31%;
+    height: auto;
+    border-radius: 10px;
+    cursor: pointer;
+
+    @media #{$tablet-device,$large-mobile} {
+      width: 90%;
+    }
+
+    &__1 {
+      @media #{$tablet-device,$large-mobile} {
+        width: 100%;
+      }
+    }
+  }
+}

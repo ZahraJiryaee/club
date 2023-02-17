@@ -1,0 +1,110 @@
+@import "./../../style.scss";
+
+.want-more-chance-container {
+  background-color: rgba($color: #000000, $alpha: 0.35);
+  z-index: 30;
+  direction: rtl;
+
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+
+  .want-more-chance {
+    width: 700px;
+    max-height: 70vh;
+    background-color: $white;
+    border-radius: 15px;
+    padding: 32px 64px 76px;
+    position: relative;
+    overflow-y: scroll;
+
+    @media #{$tablet-device,$large-mobile} {
+      width: 100%;
+      margin: 20px;
+      padding: 32px 16px 30px;
+    }
+
+    .want-more-chance-close-container {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      cursor: pointer;
+      @media #{$small-mobile} {
+        top: 16px;
+        right: 16px;
+      }
+      .want-more-chance-close {
+        width: 20px;
+        height: 20px;
+        @media #{$small-mobile} {
+          width: 15px;
+          height: 15px;
+        }
+      }
+    }
+
+    .want-more-chance-roulette {
+      @media #{$small-mobile} {
+        width: 45px;
+        height: 45px;
+      }
+    }
+
+    .want-more-chance-header {
+      width: 100%;
+      font-size: 18px;
+      font-weight: bold;
+      line-height: 0.67;
+      letter-spacing: -0.43px;
+
+      @media #{$small-mobile} {
+        font-size: 15px;
+        line-height: 2.13;
+        letter-spacing: -0.36px;
+      }
+    }
+
+    .want-more-chance-content-list {
+      display: flex;
+      justify-content: flex-start;
+      flex-wrap: wrap;
+      list-style: none;
+      text-align: right;
+      margin: 32px 0 0;
+
+      .list {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 16px;
+        width: 100%;
+        color: $theme-color--marine-blue;
+        font-size: 15px;
+        line-height: 1.73;
+
+        @media #{$small-mobile} {
+          font-size: 12px;
+          line-height: 1.67;
+        }
+      }
+
+      .divider {
+        width: 100%;
+        height: 1px;
+        background-color: $theme-color--brown-grey;
+        margin: 16px 0;
+
+        &:last-child {
+          display: none;
+        }
+      }
+    }
+  }
+}

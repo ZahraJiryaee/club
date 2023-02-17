@@ -1,0 +1,145 @@
+@import "./../../style.scss";
+
+:root {
+  --shop-items-border-radius: 15px;
+}
+
+.shop-grid-data {
+  position: relative;
+  direction: rtl;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  /*gap*/
+  row-gap: 36px;
+  column-gap: 76px;
+  /*margin*/
+  margin: 23px 12vw 60px;
+
+  @media #{$tablet-device,$large-mobile} {
+    /*gap*/
+    row-gap: 44px;
+    column-gap: 28px;
+    /*margin*/
+    margin: 0 3vw 50px;
+  }
+  @media #{$small-mobile} {
+    row-gap: 16px;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .shop-item {
+    position: relative;
+    height: 225px;
+    background-color: $theme-color--white;
+    box-shadow: 0 0 8px 0 $theme-color--brown-grey-70;
+    border-radius: var(--shop-items-border-radius);
+    overflow: hidden;
+
+    @media #{$tablet-device,$large-mobile} {
+      //
+      &:nth-child(2),
+      &:nth-child(4) {
+        margin-top: 48px;
+      }
+      &:nth-child(n + 5) {
+        margin-top: 0;
+        &:nth-child(odd) {
+          margin-top: -48px;
+        }
+      }
+    }
+
+    @media #{$small-mobile} {
+      height: 184px;
+      //
+      &:nth-child(2) {
+        margin-top: 17px;
+      }
+      &:nth-child(n + 3) {
+        margin-top: 0;
+        &:nth-child(odd) {
+          margin-top: -17px;
+        }
+      }
+    }
+
+    .shop-item-img-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      border-radius: 10px;
+      margin: 10px 18px 0;
+      overflow: hidden;
+
+      .shop-item-img {
+        height: 132px;
+        width: auto;
+        border-radius: 10px;
+
+        @media #{$small-mobile} {
+          height: 113px;
+        }
+      }
+    }
+
+    .name-score-container {
+      padding: 8px 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+
+      @media #{$small-mobile} {
+        gap: 4px;
+      }
+
+      .shop-item-name {
+        font-size: 18px;
+        font-weight: 500;
+        color: $theme-color--dark;
+        @media #{$small-mobile} {
+          font-size: 13px;
+        }
+      }
+
+      .shop-item-score-needed {
+        font-size: 13px;
+        font-weight: 500;
+        color: $theme-color--vermillion;
+
+        @media #{$small-mobile} {
+          font-size: 10px;
+        }
+      }
+    }
+  }
+}
+
+.shop-item-purchase-btn {
+  width: 70px;
+  height: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: $theme-color--shop-purchase-btn;
+  background-color: $theme-color--marine-blue;
+  font-size: 15px;
+  font-weight: 500;
+  outline: none;
+  border: none;
+  font-family: $font-family-iransans;
+  border-radius: 10px;
+  cursor: pointer;
+
+  @media #{$small-mobile} {
+    width: 60px;
+    height: 30px;
+    font-size: 12px;
+  }
+}
+.shop-item-purchase-btn-position {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  border-radius: 0 var(--shop-items-border-radius);
+}

@@ -1,0 +1,170 @@
+@import "./../../style.scss";
+
+.shop-modal-container {
+  background-color: rgba($color: #000000, $alpha: 0.35);
+  z-index: 30;
+  direction: rtl;
+
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+
+  .shop-modal {
+    width: 540px;
+    height: auto;
+    background-color: $white;
+    border-radius: 15px;
+    padding: 30px 17px;
+    position: relative;
+
+    @media #{$small-mobile} {
+      width: 100%;
+    }
+
+    .shop-modal-close-container {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      cursor: pointer;
+      @media #{$small-mobile} {
+        top: 16px;
+        right: 16px;
+      }
+      .shop-modal-close {
+        width: 20px;
+        height: 20px;
+        @media #{$small-mobile} {
+          width: 15px;
+          height: 15px;
+        }
+      }
+    }
+
+    .flex-container {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      justify-content: center;
+      flex-direction: column;
+      // gap: 16px;
+      height: 100%;
+      width: 100%;
+
+      @media #{$small-mobile} {
+        p {
+          margin: 6px 0;
+        }
+      }
+
+      .shop-moadal-score-container {
+        color: $theme-color--marine-blue;
+      }
+
+      .shop-modal-item-img {
+        box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.2);
+        border-radius: 10px;
+
+        &.img-width-143 {
+          width: 143px;
+          height: 132px;
+        }
+        &.img-width-93 {
+          width: 93px;
+          height: 88px;
+        }
+
+        @media #{$small-mobile} {
+          &.responsive-non-dig-1 {
+            width: 123px;
+            height: 111px;
+          }
+          &.responsive-non-dig-2,
+          &.responsive-non-dig-3,
+          &.responsive-non-dig-4 {
+            width: 71px;
+            height: 65px;
+          }
+          &.responsive-dig-1 {
+            width: 123px;
+            height: 113px;
+          }
+          &.responsive-dig-2 {
+            width: 99px;
+            height: 91px;
+          }
+        }
+      }
+
+      .shop-item-titleandscore {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+
+        @media #{$small-mobile} {
+          gap: 2px;
+        }
+
+        .shop-item-title {
+          color: $theme-color--dark;
+        }
+
+        .shop-item-leave-chance-counter {
+          color: $theme-color--orangey-red;
+        }
+      }
+
+      .shop-modal-enter-address-container {
+        width: 100%;
+        display: flex;
+        justify-content: flex-start;
+        gap: 0.5rem;
+
+        .required {
+          color: $theme-color--orangey-red;
+        }
+      }
+
+      .shop-item-textarea {
+        height: 140px;
+      }
+
+      .shop-modal-low-scroe-warning {
+        color: $theme-color--vermillion;
+      }
+
+      .successful-req {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: $theme-color--green;
+        gap: 8px;
+      }
+
+      .shop-modal-enter-code-in-game {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 0.5rem;
+        color: $theme-color--marine-blue;
+      }
+
+      .shop-modal-support-number {
+        color: $theme-color--medium-blue;
+      }
+
+      .shop-modal-send-to-address {
+        color: $theme-color--medium-blue;
+      }
+    }
+  }
+}

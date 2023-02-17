@@ -1,0 +1,42 @@
+// Declare Fonts
+@font-face {
+  font-family: "IranSans";
+  src: url("./../fonts/IRANSans\(FaNum\).ttf") format("truetype");
+}
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
+body {
+  line-height: $line-height-general;
+  font-size: $font-paragraph;
+  font-style: normal;
+  font-weight: $font-weight-semi;
+  visibility: visible;
+  font-family: $font-family-iransans;
+  color: $theme-color--dark;
+  position: relative;
+  background-color: $white;
+  min-height: calc(100vh - $navbar-height);
+  margin: 0;
+  padding: 0;
+
+  &.boxed {
+    max-width: 1500px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.06);
+    margin: 0 auto;
+  }
+
+  .toast {
+    font-family: $font-family-iransans;
+  }
+
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+}

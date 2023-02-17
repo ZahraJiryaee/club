@@ -1,0 +1,411 @@
+@import "./../../style.scss";
+
+.game-detail-icon-list-responsive-controller {
+  display: flex;
+  justify-content: space-between;
+
+  margin: 0 5%;
+
+  @media #{$tablet-device, $large-mobile} {
+    margin: 0 2%;
+  }
+  @media #{$small-mobile} {
+    margin: 0 16px;
+    display: block;
+    margin: auto;
+  }
+}
+
+.game-details-container {
+  width: 100%;
+  height: auto;
+  padding-top: 2.5rem;
+  padding-bottom: calc(var(--footer-height) + 30px);
+  direction: rtl;
+  background-color: $white;
+  min-height: calc(100vh - var(--game-details-header-screenshot-height) * 2);
+
+  .game-details-icons-container {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 16px;
+
+    .game-details-gameicon-names-container {
+      display: flex;
+      flex-direction: row;
+
+      .gameicon {
+        width: 106px;
+        height: 100px;
+        border-radius: 25px;
+        box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+
+        @media #{$tablet-device, $large-mobile} {
+          width: 124px;
+          height: 116px;
+        }
+        @media #{$small-mobile} {
+          width: 85px;
+          height: 78px;
+          border-radius: 15px;
+        }
+      }
+      .names {
+        margin: 5px 10px;
+        height: auto;
+
+        @media #{$small-mobile} {
+          margin: 10px 10px;
+        }
+
+        .name {
+          text-align: center;
+          color: $theme-color--dark;
+
+          font-size: 23px;
+          font-weight: 500;
+          line-height: 1.2;
+          letter-spacing: 0.21px;
+
+          @media #{$tablet-device, $large-mobile} {
+            font-size: 26px;
+            font-weight: 500;
+            line-height: 1.3;
+            letter-spacing: 0.23px;
+          }
+
+          @media #{$small-mobile} {
+            font-size: 17px;
+            font-weight: bold;
+            line-height: 2;
+            letter-spacing: -0.41px;
+          }
+        }
+        .short-des {
+          text-align: left;
+          color: $theme-color--brownish-grey;
+
+          font-size: 15px;
+          font-weight: 500;
+          line-height: 2.3;
+          letter-spacing: -0.24px;
+
+          @media #{$tablet-device, $large-mobile} {
+            font-size: 18px;
+            font-weight: 500;
+            line-height: 2;
+            letter-spacing: -0.29px;
+          }
+
+          @media #{$small-mobile} {
+            font-size: 13px;
+            font-weight: 500;
+            line-height: 1.54;
+            letter-spacing: -0.21px;
+          }
+        }
+      }
+    }
+
+    .game-details-shareicon-container {
+      display: flex;
+      margin: auto -130px 53px auto;
+
+      @media #{$tablet-device, $large-mobile} {
+        margin: auto -147px 35px auto;
+      }
+
+      @media #{$small-mobile} {
+        display: flex;
+        margin: auto 0px 10px;
+      }
+
+      .instagramicon {
+        width: 19px;
+        height: 19px;
+      }
+    }
+  }
+
+  .game-detail-list-info-container {
+    margin-bottom: 20px;
+
+    @media #{$small-mobile} {
+      width: auto;
+    }
+
+    ul {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      vertical-align: middle;
+      text-align: center;
+      list-style: none;
+      padding: 0 32px;
+
+      margin-right: auto;
+      margin-left: auto;
+      width: 470px;
+
+      @media #{$tablet-device} {
+        width: 400px;
+      }
+      @media #{$large-mobile,$small-mobile} {
+        width: auto;
+      }
+
+      hr {
+        width: 1px;
+        height: 20px;
+        border: solid 1px rgba(131, 131, 131, 0.6);
+      }
+      li {
+        & span:nth-child(1) {
+          font-size: 15px;
+          font-weight: 500;
+          line-height: 1.33;
+          letter-spacing: -0.24px;
+          color: $theme-color--marine-blue;
+
+          svg {
+            padding: 0 2px;
+          }
+        }
+        & span:nth-child(3) {
+          font-size: 12px;
+          font-weight: 500;
+          line-height: 1.67;
+          letter-spacing: -0.19px;
+          color: #838383;
+        }
+      }
+    }
+
+    .install-btn {
+      display: block;
+      margin: auto;
+
+      border: 1px solid $theme-color--marine-blue;
+      border-radius: 20px;
+      background-color: $theme-color--marine-blue;
+
+      font-family: IranSans;
+      font-size: 15px;
+      font-weight: 500;
+      line-height: 0.8;
+      letter-spacing: -0.36px;
+      text-align: center;
+      color: #efeff4;
+      cursor: pointer;
+
+      width: 270px;
+      height: 50px;
+      padding: 8.5px 112px 8.5px 112px;
+
+      @media #{$tablet-device, $large-mobile} {
+        width: 270px;
+        height: 45px;
+        padding: 8.5px 116px;
+      }
+      @media #{$extra-small-mobile} {
+        width: 225px;
+        height: 40px;
+        padding: 8px 96.5px 8px 96.5px;
+      }
+    }
+  }
+
+  .game-detail-intro-container {
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1.83;
+    letter-spacing: -0.29px;
+    text-align: right;
+    color: rgba(24, 39, 55, 0.65);
+    text-align: justify;
+
+    margin: 0 calc(5% + 16px) 20px;
+    @media #{$tablet-device, $large-mobile} {
+      margin: 0 calc(2% + 16px) 20px;
+    }
+    @media #{$small-mobile} {
+      margin: 0 16px 20px;
+    }
+
+    .game-detail-intro-tabdes {
+      display: block;
+      @media #{$extra-small-mobile} {
+        display: none;
+      }
+    }
+
+    .game-detail-intro-mobile {
+      display: none;
+      @media #{$extra-small-mobile} {
+        transition: height 0.5s ease-in-out;
+        display: block;
+        max-height: calc(1.5rem * 5);
+        overflow: hidden;
+
+        &.full-height {
+          height: 100%;
+          max-height: 100%;
+          overflow: auto;
+        }
+      }
+    }
+
+    .game-detail-header {
+      .more {
+        display: none;
+
+        @media #{$extra-small-mobile} {
+          display: block;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+
+  .game-detail-level-container {
+    background-color: $theme-color--white;
+    padding: 3vh calc(5% + 16px);
+    position: relative;
+
+    .game-detail-level-badge {
+      position: absolute;
+      left: 0;
+      top: 0;
+
+      @media #{$small-mobile} {
+        width: 66px;
+        height: 66px;
+      }
+    }
+
+    .game-detail-level-header {
+      font-size: 26px;
+      font-weight: bold;
+      color: #ff3b30;
+
+      @media #{$small-mobile} {
+        font-size: 15px;
+      }
+    }
+
+    .game-detail-level-user-not-valid {
+      color: $theme-color--brown-grey;
+    }
+
+    .game-detail-level-list-container {
+      padding: 15px 0 0;
+
+      @media #{$small-mobile} {
+        padding: 8px 0 0;
+      }
+
+      li {
+        padding: 8px 0;
+        font-size: 18px;
+        font-weight: 500;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        line-height: 1.11;
+
+        .level-icons {
+          width: 56px;
+
+          display: flex;
+          justify-content: center;
+          align-items: center;
+
+          @media #{$small-mobile} {
+            width: 30px;
+            .check-icon {
+              width: 10.6px;
+              height: 10px;
+            }
+          }
+        }
+
+        @media #{$small-mobile} {
+          font-size: 13px;
+        }
+      }
+    }
+
+    .more-bonus {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 16px;
+      cursor: pointer;
+
+      .txt {
+        font-size: 18px;
+        font-weight: 500;
+        color: $theme-color--marine-deep-sky-blue;
+
+        @media #{$small-mobile} {
+          font-size: 13px;
+        }
+      }
+
+      .reverse-arrow {
+        transform: rotate(180deg);
+        transition: 0.3s;
+      }
+
+      .more-bonus-arrow {
+        @media #{$small-mobile} {
+          width: 10px;
+          height: 5.7px;
+        }
+      }
+    }
+  }
+
+  .game-detail-simiral-games-container {
+    direction: rtl;
+
+    margin: 0 calc(5% + 16px);
+    @media #{$tablet-device, $large-mobile} {
+      margin: 0 calc(2% + 16px);
+    }
+    @media #{$small-mobile} {
+      margin: 16px 16px 0;
+    }
+  }
+}
+
+.game-detail-header {
+  display: flex;
+  justify-content: space-between;
+
+  .title {
+    font-size: 17px;
+    font-weight: bold;
+    line-height: 0.71;
+    letter-spacing: -0.41px;
+    text-align: center;
+    color: $theme-color--dark;
+  }
+
+  .more {
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1.67;
+    letter-spacing: -0.19px;
+    text-align: left;
+    color: $theme-color--marine-blue;
+    cursor: pointer;
+
+    img {
+      width: 5.7px;
+      height: 10px;
+      margin-right: 8px;
+      vertical-align: middle;
+    }
+  }
+}

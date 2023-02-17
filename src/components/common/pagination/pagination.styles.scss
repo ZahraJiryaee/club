@@ -1,0 +1,107 @@
+@import "./../../../style.scss";
+
+.pagination-container {
+  // position: absolute;
+  // bottom: 0;
+
+  display: flex;
+  width: 100%;
+  height: auto;
+  justify-content: space-between;
+  align-items: center;
+  list-style-type: none;
+  direction: rtl;
+  padding: 30px 100px 90px;
+
+  @media #{$tablet-device,$large-mobile} {
+    padding: 30px 16px 100px;
+  }
+
+  .pagination-number-range-area {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .pagination-item {
+      padding: 0 12px;
+      height: 32px;
+      text-align: center;
+      margin: auto 4px;
+      color: $theme-color--brown-grey;
+      display: flex;
+      box-sizing: border-box;
+      letter-spacing: 0.01071em;
+      border-radius: 16px;
+      line-height: 1.43;
+      font-size: 13px;
+      min-width: 32px;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      @media #{$small-mobile} {
+        font-size: 11px;
+      }
+
+      &.dots:hover {
+        background-color: transparent;
+        cursor: default;
+      }
+      &:hover {
+        background-color: rgba(0, 0, 0, 0.04);
+        cursor: pointer;
+      }
+
+      &.selected {
+        color: $white;
+        background-color: $theme-color--dark;
+        font-size: 19px;
+        @media #{$small-mobile} {
+          font-size: 13px;
+        }
+      }
+    }
+  }
+
+  .pagination-btn {
+    background: none;
+    border: none;
+    font-family: $font-family-iransans;
+    font-size: 15px;
+    font-weight: 500;
+    color: $theme-color--dark;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+
+    @media #{$small-mobile} {
+      font-size: 12px;
+      gap: 0.5rem;
+    }
+
+    &:disabled {
+      -webkit-filter: contrast(0.1);
+      -ms-filter: contrast(0.1);
+      filter: contrast(0.1);
+    }
+
+    .pagination-arrow {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      @media #{$small-mobile} {
+        img {
+          width: 5px;
+          height: 9px;
+        }
+      }
+      &--prev {
+        transform: rotate(180deg);
+      }
+    }
+  }
+}
